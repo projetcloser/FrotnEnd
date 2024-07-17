@@ -1,0 +1,150 @@
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+          <!-- Horizontal Form -->
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Ajouter un projet</h3>
+
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form class="form-horizontal" [formGroup]="form" (ngSubmit)="submit()">
+              <div class="card-body">
+                <!-- <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Pays</label>
+                  <div class="col-sm-10">
+                    <select type="text" class="form-control" id="contry_id" placeholder="Pays" formControlName="contry_id">
+                      <option *ngFor="let projet of projet" [value]="projet.id">{{ projet.nom }}</option>
+                    </select>
+                    <div class="alert alert-danger" *ngIf="f['contry_id'].touched && f['contry_id'].invalid">
+                        <div *ngIf="f['contry_id'].errors && f['contry_id'].errors['required']">
+                          the country is required.
+                        </div>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">nom</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nom" placeholder="author" formControlName="author">
+                    <div class="alert alert-danger" *ngIf="f['author'].touched && f['author'].invalid">
+                        <div *ngIf="f['author'].errors && f['author'].errors['required']">
+                          the author is required.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- company_typetion -->
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">company_type</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="company_type" placeholder="company_type" formControlName="company_type">
+                    <div class="alert alert-danger" *ngIf="f['company_type'].touched && f['company_type'].invalid">
+                        <div *ngIf="f['company_type'].errors && f['company_type'].errors['required']">
+                          the company_typetion is required.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- debut -->
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">debut</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" id="email" placeholder="date debut" formControlName="email">
+                    <div class="alert alert-danger" *ngIf="f['email'].touched && f['email'].invalid">
+                        <div *ngIf="f['email'].errors && f['email'].errors['required']">
+                          the date is required.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- fin -->
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">fin</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" id="country_id" placeholder="end date" formControlName="country_id">
+                    <div class="alert alert-danger" *ngIf="f['country_id'].touched && f['country_id'].invalid">
+                        <div *ngIf="f['country_id'].errors && f['country_id'].errors['required']">
+                          the name is required.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- contact_person -->
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">contact_person</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="contact_person" placeholder="contact_person" formControlName="contact_person">
+                    <div class="alert alert-danger" *ngIf="f['contact_person'].touched && f['contact_person'].invalid">
+                        <div *ngIf="f['contact_person'].errors && f['contact_person'].errors['required']">
+                          the name is required.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                 <!-- contact_person -->
+                 <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">phone</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="phone" placeholder="phone" formControlName="phone">
+                    <div class="alert alert-danger" *ngIf="f['phone'].touched && f['phone'].invalid">
+                        <div *ngIf="f['phone'].errors && f['phone'].errors['required']">
+                          the phone is required.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                 <!-- contact_person -->
+                 <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">contact_person</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="contact_person" placeholder="contact_person" formControlName="contact_person">
+                    <div class="alert alert-danger" *ngIf="f['contact_person'].touched && f['contact_person'].invalid">
+                        <div *ngIf="f['contact_person'].errors && f['contact_person'].errors['required']">
+                          the name is required.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                 <!-- contact_person -->
+                 <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">contact_person_phone</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="contact_person_phone" placeholder="contact_person_phone" formControlName="contact_person_phone">
+                    <div class="alert alert-danger" *ngIf="f['contact_person_phone'].touched && f['contact_person_phone'].invalid">
+                        <div *ngIf="f['contact_person_phone'].errors && f['contact_person_phone'].errors['required']">
+                          the contact_person_phone is required.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                            <!-- neighborhood -->
+                 <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">contact_person_phone</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="neighborhood" placeholder="neighborhood" formControlName="neighborhood">
+                    <div class="alert alert-danger" *ngIf="f['neighborhood'].touched && f['neighborhood'].invalid">
+                        <div *ngIf="f['neighborhood'].errors && f['neighborhood'].errors['required']">
+                          the neighborhood is required.
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <button type="submit" class="btn btn-info" [disabled]="!form.valid">Submit</button>
+                <a routerLink="/Pays/index" class="btn btn-default float-right">Cancel</a>
+              </div>
+              <!-- /.card-footer -->
+            </form>
+          </div>
+          <!-- /.card -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->

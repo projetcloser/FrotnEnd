@@ -1,0 +1,122 @@
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+        <h3 class="card-title">Liste des {{pageName}}</h3>
+          <app-loading *ngIf="isLoading" />
+          <div class="col-12"  *ngIf="!isLoading">
+            <div class="card">
+              <div class="card-header">
+                <a class="btn btn-primary btn-sm float-right"  >
+                  <!-- [routerLink]="['/projet/create']" -->
+                  Ajouter
+                </a>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="table-container" *ngIf="datas?.length">
+                  <p *ngIf="datas?.length > 1">
+                    <strong>{{datas?.length}}</strong> donnees retrouvees
+                  </p>
+                  <p *ngIf="datas?.length === 1">
+                    <strong>{{datas?.length}}</strong> donnee retrouvee
+                  </p>
+                  <app-pagination >
+
+                  </app-pagination>
+                  <table id="example2" class="table table-bordered table-hover" >
+                    <thead>
+                    <tr>
+                      <th>
+                        <input class="form-check-input" type="checkbox" name="" id="">
+                      </th>
+                      <th *ngFor="let name of entityNames ">{{name | formatName  }}</th>
+                      <th>action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of datas ">
+                        <td>
+                          <input class="form-check-input" type="checkbox" name="" id="">
+                        </td>
+                        <!-- getvalue a ete creer ici en fin de definir ca logique dans le fichier ts -->
+                        <td *ngFor="let name of entityNames ">{{ getValue(data, name) }}</td>
+                        <td class="project-actions text-right">
+                          <a class="btn btn-primary btn-sm" [routerLink]="[data.i_id,'view']" >
+                            <!--  -->
+                              <i class="fa-solid fa-eye">
+                              </i>
+                              View
+                          </a>
+                          <a  class="btn btn-info btn-sm" [routerLink]="[data.i_id,'edit']" >
+                            <!-- [routerLink]="['/projet/',projet.id, 'edit']" -->
+                              <i class="fa-solid fa-edit">
+                              </i>
+                              Edit
+                          </a>
+                          <a  class="btn btn-danger btn-sm" >
+                            <!-- (click)="deletePost(projet.id)" -->
+
+                              <i class="fa-solid fa-trash">
+                              </i>
+                              Delete
+                          </a>
+                      </td>
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+                </div>
+
+                <div *ngIf="!datas.length" class="empty-box shadow">
+                  <p>
+                    Aucunne donnee disponible
+                  </p>
+                  <a routerLink="add" class="btn btn-success">
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+<!-- </div> -->
+<!-- ./wrapper -->
+
+

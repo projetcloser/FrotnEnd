@@ -1,0 +1,127 @@
+
+<!-- /* Main content */ -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <!-- <app-loading *ngIf="isLoading"/> -->
+          <div class="col-12"  >
+            <div class="card-header">
+              <h3 class="card-title">Liste des membres</h3>
+
+                <a class="btn btn-primary btn-sm float-right"   [routerLink]="['/membre/create']">
+                  <!-- [routerLink]="['/projet/create']" -->
+                  Ajouter
+                </a>
+
+            </div>
+            <div class="card-body">
+              <div class="table-container" >
+                <!-- *ngIf="membre?.length" -->
+                <!-- <p *ngIf="membre?.length > 0">
+                  <strong>{{membre?.length}}</strong> donnees retrouvees
+                </p>
+                <p *ngIf="membre?.length === 1">
+                  <strong>{{membre?.length}}</strong> donnee retrouvee -->
+                <!-- </p> -->
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Sociale</th>
+                      <th>Commande</th>
+                      <th>Tel</th>
+                      <th>Email</th>
+                      <th>Nui </th>
+                      <th>Type</th>
+                      <th>Pays</th>
+                      <th>Ville</th>
+                      <th></th>
+                      <th>Contact</th>
+                      <th>Engine version</th>
+                      <th>Statut</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="!isLoading">
+                    <tr *ngFor="let data of membre ">
+                      <td>{{data.social_reason}}</td>
+                      <td>{{data.author}}</td>
+                      <td>{{data.phone}}</td>
+                      <td>{{data.email}}</td>
+                      <td>{{data.nui}}</td>
+                      <td>{{data.type}}</td>
+                      <td>{{data.country_id}}</td>
+                      <td>{{data.city_id}}</td>
+                      <td>{{data.neighborhood}}</td>
+                      <td>{{data.contact_person}}</td>
+                      <td>{{data.contact_person_phone}}</td>
+                      <td>{{data.status }}</td>
+                      <td class="project-actions text-right">
+                        <a class="btn btn-primary btn-sm" [routerLink]="['/membre/',data.id, 'show']" >
+                          <!--  -->
+                            <i class="fa-solid fa-eye">
+                            </i>
+                            View
+                        </a>
+                        <a  class="btn btn-info btn-sm" [routerLink]="['/membre/',data.id, 'edit']" >
+                          <!-- [routerLink]="['/projet/',projet.id, 'edit']" -->
+                            <i class="fa-solid fa-edit">
+                            </i>
+                            Edit
+                        </a>
+                        <a  class="btn btn-danger btn-sm"  (click)="deletePost(data.id)">
+                          <!-- (click)="deletePost(projet.id)" -->
+
+                            <i class="fa-solid fa-trash">
+                            </i>
+                            Delete
+                        </a>
+                    </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Sociale</th>
+                      <th>Commande</th>
+                      <th>Tel</th>
+                      <th>Email</th>
+                      <th>Nui </th>
+                      <th>Type</th>
+                      <th>Pays</th>
+                      <th>Ville</th>
+                      <th></th>
+                      <th>Contact</th>
+                      <th>Engine version</th>
+                      <th>Statut</th>
+                      <th>Action</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#example1').DataTable();
+    $('#example2').DataTable();
+  });
+</script>
+
+
