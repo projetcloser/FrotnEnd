@@ -5,19 +5,28 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <app-loading *ngIf="isLoading"/>
-          <div class="col-12"  *ngIf="!isLoading">
+          <!-- <app-loading *ngIf="isLoading"/> -->
+          <div class="col-12"  >
+            <!-- *ngIf="!isLoading" -->
             <div class="card-header">
-              <h3 class="card-title">Liste des Entreprise</h3>
+              <h3 class="card-title">Liste des Compagnies</h3>
+              <a class="btn btn-primary btn-sm float-right"   [routerLink]="['/entreprise/create']">
+                <!-- [routerLink]="['/projet/create']" -->
+                Ajouter
+              </a>
             </div>
             <div class="card-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>  
+                    <th>author</th>
+                    <th>company_type</th>
+                    <th>email(s)</th>
+                    <th>country_id </th>
+                    <th>city_id</th>
+                    <th>phone(s)</th>
+                    <th>contact_person </th>
+                    <th>contact_person_phone</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -26,11 +35,14 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
+                    <th>author</th>
+                    <th>company_type</th>
+                    <th>email(s)</th>
+                    <th>country_id </th>
+                    <th>city_id</th>
+                    <th>phone(s)</th>
+                    <th>contact_person </th>
+                    <th>contact_person_phone</th>
                   </tr>
                 </tfoot>
               </table>
