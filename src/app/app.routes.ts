@@ -18,11 +18,12 @@ import { CreateVilleComponent } from './componnents/ville/create-ville/create-vi
 import { EditVilleComponent } from './componnents/ville/edit-ville/edit-ville.component';
 import { EditQuartierComponent } from './componnents/quartier/edit-quartier/edit-quartier.component';
 import { CreateQuartierComponent } from './componnents/quartier/create-quartier/create-quartier.component';
+import { DashboardComponent } from './componnents/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
     path: "",
-    component:ContainerComponent
+    component:DashboardComponent
   },
   {
     path: "membre",

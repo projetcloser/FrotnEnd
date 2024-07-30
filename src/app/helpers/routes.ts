@@ -1,6 +1,22 @@
 
 export const routes = [
   {
+    path:"/caisse",
+    name:"Caisses",
+    single:"Caisse"
+   },
+   {
+    path:"/profession",
+    name:"Professions",
+    single:"Profession"
+   },
+   {
+    path:"/poste",
+    name:"Postes",
+    single:"Poste"
+   },
+
+  {
     path:"/membre",
     name:"Membres",
     single:"Membre"
@@ -26,9 +42,5 @@ export const routes = [
     name:"Quartiers",
     single:"Quartier"
    },
-   {
-    path:"/caisse",
-    name:"Caisses",
-    single:"Caisse"
-   },
+
 ]

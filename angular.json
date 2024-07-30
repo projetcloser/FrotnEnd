@@ -29,15 +29,15 @@
             "styles": [
               "src/styles.css",
               "src/assets/css/sb-admin-2.min.css",
-              "src/assets/vendor/fontawesome-free/css/all.min.css",
+              "src/assets/css/sb-admin-2.css",
+              
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
 
-              "src/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",
-             "src/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
-             "src/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
-              "src/assets/dist/css/adminlte.min.css"
+
 
             ],
+            
             "scripts": [
               "/node_modules/bootstrap/dist/js/bootstrap.min.js",
               "/node_modules/bootstrap/dist/js/bootstrap.min.js",
@@ -47,24 +47,9 @@
               "src/assets/js/sb-admin-2.min.js",
               "src/assets/vendor/chart.js/Chart.min.js",
               "src/assets/js/demo/chart-area-demo.js",
-              "src/assets/js/demo/chart-pie-demo.js",
+              "src/assets/js/demo/chart-pie-demo.js"
 
-              "src/assets/plugins/jquery/jquery.min.js",
-              "src/assets/plugins/bootstrap/js/bootstrap.bundle.min.js",
-              "src/assets/plugins/datatables/jquery.dataTables.min.js",
-              "src/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js",
-              "src/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js",
-              "src/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js",
-              "src/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js",
-              "src/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js",
-              "src/assets/plugins/jszip/jszip.min.js",
-              "src/assets/plugins/pdfmake/pdfmake.min.js",
-             "src/assets/plugins/pdfmake/vfs_fonts.js",
-              "src/assets/plugins/datatables-buttons/js/buttons.html5.min.js",
-              "src/assets/plugins/datatables-buttons/js/buttons.print.min.js",
-              "src/assets/plugins/datatables-buttons/js/buttons.colVis.min.js",
-              "src/assets/dist/js/adminlte.min.js",
-              "src/assets/dist/js/demo.js"
+
             ]
           },
           "configurations": {
@@ -128,15 +113,15 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/styles.css",
+              "src/assets/css/sb-admin-2.css",
               "src/assets/css/sb-admin-2.min.css",
-              "src/assets/vendor/fontawesome-free/css/all.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              
+              "/node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "/node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
 
-              "src/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",
-             "src/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
-             "src/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
-              "src/assets/dist/css/adminlte.min.css"
+
             ],
             "scripts": [
               "/node_modules/bootstrap/dist/js/bootstrap.min.js",
@@ -146,25 +131,10 @@
               "src/assets/js/sb-admin-2.min.js",
               "src/assets/vendor/chart.js/Chart.min.js",
               "src/assets/js/demo/chart-area-demo.js",
-              "src/assets/js/demo/chart-pie-demo.js",
+              "src/assets/js/demo/chart-pie-demo.js"
 
 
-              "src/assets/plugins/jquery/jquery.min.js",
-              "src/assets/plugins/bootstrap/js/bootstrap.bundle.min.js",
-              "src/assets/plugins/datatables/jquery.dataTables.min.js",
-              "src/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js",
-              "src/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js",
-              "src/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js",
-              "src/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js",
-              "src/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js",
-              "src/assets/plugins/jszip/jszip.min.js",
-              "src/assets/plugins/pdfmake/pdfmake.min.js",
-             "src/assets/plugins/pdfmake/vfs_fonts.js",
-              "src/assets/plugins/datatables-buttons/js/buttons.html5.min.js",
-              "src/assets/plugins/datatables-buttons/js/buttons.print.min.js",
-              "src/assets/plugins/datatables-buttons/js/buttons.colVis.min.js",
-              "src/assets/dist/js/adminlte.min.js",
-              "src/assets/dist/js/demo.js"
+
             ]
           }
         }

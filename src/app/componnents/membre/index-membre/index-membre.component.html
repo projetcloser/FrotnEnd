@@ -2,18 +2,52 @@
 <!-- /* Main content */ -->
 <section class="content">
   <div class="container-fluid">
+    <h1 class="mt-4">Liste des membres</h1>
+    <ol class="breadcrumb mb-4" >
+      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
+          Hello M/Mme MONGO SALOMON, il est 11:17 en ce jour
+          du Lundi 29 Juillet 2024.
+      </li>
+    </ol>
     <div class="row">
       <div class="col-12">
         <div class="card">
           <!-- <app-loading *ngIf="isLoading"/> -->
           <div class="col-12"  >
             <div class="card-header">
-              <h3 class="card-title">Liste des membres</h3>
-
-                <a class="btn btn-primary btn-sm float-right"   [routerLink]="['/membre/create']">
+              <div class="row">
+                
+              </div>
+              <div class="row">
+                <div class="col" style="color: green;">
+                  <i class="fa fa-download" aria-hidden="true"><span>Expoeter</span></i>
+                </div>
+                <div class="col">
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col" >
+                  
+                <a class="btn btn-primary btn-sm float-right"   [routerLink]="['/membre/create']" >
+                  <i class="fa fa-plus" aria-hidden="true"></i>
                   <!-- [routerLink]="['/projet/create']" -->
                   Ajouter
                 </a>
+                </div>
+              </div>
+              
+
 
             </div>
             <div class="card-body">

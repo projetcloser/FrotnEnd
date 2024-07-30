@@ -9,22 +9,43 @@
           <div class="col-12"  >
             <!-- *ngIf="!isLoading" -->
             <div class="card-header">
-              <h3 class="card-title">Liste des Compagnies</h3>
-              <a class="btn btn-primary btn-sm float-right"   [routerLink]="['/entreprise/create']">
-                <!-- [routerLink]="['/projet/create']" -->
-                Ajouter
-              </a>
+              <div class="row">
+                <div class="col">
+                  <h3 class="card-title">Liste des Compagnies</h3>
+                </div>
+                <div class="col">
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                  <a class="btn btn-primary btn-sm float-right"   [routerLink]="['/entreprise/create']">
+                    <!-- [routerLink]="['/projet/create']" -->
+                    Ajouter
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th>author</th>
+                    <th>Auteur</th>
                     <th>company_type</th>
-                    <th>email(s)</th>
+                    <th>email</th>
                     <th>country_id </th>
-                    <th>city_id</th>
-                    <th>phone(s)</th>
+                    <th>Ville</th>
+                    <th>phone</th>
                     <th>contact_person </th>
                     <th>contact_person_phone</th>
                     <th>Action</th>
