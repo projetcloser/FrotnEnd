@@ -1,0 +1,16 @@
+.custom-icon {
+  color: green; /* Couleur verte */
+  font-size: 16px; /* Taille de l'icône, ajustez selon vos besoins */
+  width: 1em;
+  height: 1em;
+}
+.custom-icon {
+  color: white; /* Couleur de l'icône en blanc pour contraster avec le bouton vert */
+  font-size: 16px; /* Taille de l'icône, ajustez selon vos besoins */
+  width: 1em;
+  height: 1em;
+}
+.table-header-green {
+  background-color: green; /* Couleur de fond verte */
+  color: white; /* Couleur du texte en blanc pour un bon contraste */
+}

@@ -1,4 +1,4 @@
-table th:last-child, 
+table th:last-child,
 table th:last-child{
   text-align: right;
 }
@@ -10,3 +10,5 @@ table th:last-child{
   justify-content:center;
   align-items: center;
 }
+
+

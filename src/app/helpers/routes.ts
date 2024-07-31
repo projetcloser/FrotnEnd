@@ -16,17 +16,17 @@ export const routes = [
     single:"Poste"
    },
 
-  {
-    path:"/membre",
-    name:"Membres",
-    single:"Membre"
-   },
-   {
-    path:"/entreprise",
-    name:"Entreprises"
-    ,
-    single:"Entreprise"
-   },
+  // {
+  //   path:"/membre",
+  //   name:"Membres",
+  //   single:"Membre"
+  //  },
+  //  {
+  //   path:"/entreprise",
+  //   name:"Entreprises"
+  //   ,
+  //   single:"Entreprise"
+  //  },
    {
     path:"/pays",
     name:"pays",

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Membre } from '../../../models/membre';
 import { MembreServiceService } from '../membre-service.service';
 import { LoadingComponent } from '../../../components/loading/loading.component';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,7 +17,11 @@ export class IndexMembreComponent {
     // en voyer le loading
     isLoading:boolean = true;
 
-  constructor(public membreService: MembreServiceService){}
+  constructor(public membreService: MembreServiceService,private router: Router){}
+
+  navigateToForm() {
+    this.router.navigate(['/nouveau-membre']);
+  }
 
   ngOnInit(): void{
     this.membreService.getAll().subscribe(

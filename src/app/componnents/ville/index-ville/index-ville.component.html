@@ -1,57 +1,241 @@
+<div class="container-fluid">
+  <h1 class="mt-4">Liste des Villes</h1>
+  <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">
+          Hello M/Mme XXX, il est 13:05 en ce jour du Mercredi 31 Juillet 2024.
+      </li>
+  </ol>
+  <!--                Main Body-->
+  <div class="row">
+      <div class="col-xl-12">
+          <div class="card mb-4">
+              <form class="form-horizontal" action="save_ville.php" method="POST">
+                  <div class="card-header">
+                      Formulaire
+                  </div>
+                  <div class="card-body">
+                      <fieldset>
+                          <div class="table-responsive">
+                              <table class="table  table-hover table-condensed" id="myTable">
+                                  <tbody>
+                                  <tr>
+                                      <td>
+                                          <span class="help-block small-font">PAYS</span>
+                                          <div class="col">
+                                                                  <select name="id_pays" style="width:75%;
+                                                                  border-top: 0; border-left: 0;
+                                                                  border-right: 0;
+                                                                  background: transparent;" required="">
+                                                                      <option value="" selected="">...</option>
+                                                                      <option value="1">AFRIQUE DU SUD</option><option value="2">ALGERIE</option><option value="3">ANGOLA</option><option value="4">BENIN</option><option value="5">BOTSWANA</option><option value="6">BURKINA FASO</option><option value="7">BURUNDI</option><option value="8">CAMEROUN</option><option value="9">COMORES</option><option value="10">COTE IVOIRE</option><option value="11">DJIBOUTI</option><option value="12">EGYPTE</option><option value="13">ETHIOPIE</option><option value="14">GABON</option><option value="15">GAMBIE</option><option value="16">GHANA</option><option value="17">GUINEE</option><option value="18">GUINEE éQUATORIALE</option><option value="19">GUINEE-BISSAU</option><option value="20">KENYA</option><option value="21">LESOTHO</option><option value="22">LIBERIA</option><option value="23">LIBYE</option><option value="24">MADAGASCAR</option><option value="25">MALAWI</option><option value="26">MALI</option><option value="27">MAROC</option><option value="28">MAURICE</option><option value="29">MAURITANIE</option><option value="30">MOZAMBIQUE</option><option value="31">NAMIBIE</option><option value="32">NIGER</option><option value="33">NIGERIA </option><option value="34">OUGANDA</option><option value="35">REPUBLIQUE CENTRAFRICAINE</option><option value="36">REPUBLIQUE DéMOCRATIQUE DU CONGO</option><option value="37">REPUBLIQUE DU CONGO</option><option value="38">RWANDA</option><option value="39">SAO TOME-ET-PRINCIPE</option><option value="40">SéNEGAL</option><option value="41">SEYCHELLES</option><option value="42">SIERRA LEONE</option><option value="43">SOMALIE</option><option value="44">SOUDAN</option><option value="45">SOUDAN DU SUD</option><option value="46">SWAZILAND ESWATINI</option><option value="47">TANZANIE</option><option value="48">TCHAD</option><option value="49">TOGO</option><option value="50">TUNISIE</option><option value="51">ZAMBIE</option>
 
-<!-- /* Main content */ -->
-<section class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Liste des membres</h3>
-          </div>
-          <div class="card-body">
-            <table id="example2" class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- /* Table content */ -->
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
+                                                                  </select>
+                                                          <button type="button" data-toggle="modal" style="background-color: transparent"><a href="liste_pays.php"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> Font Awesome fontawesome.com --></a>
 
+                                                              </button>
+                                                                      </div>
+                                      </td>
+
+                                      <td>
+                                          <span class="help-block small-font">NOM DE LA VILLE</span>
+                                          <div class="col">
+                                              <input name="nom" style="width:75%;border-top: 0; border-left: 0;
+                                                                  border-right: 0;
+                                                                  background: transparent;" required="">
+                                          </div>
+                                      </td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </fieldset>
+                  </div>
+                  <div class="card-footer">
+                      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
+                          <div class="btn-group mr-2" role="group" aria-label="First group">
+                              <button type="submit" name="submit_etat_civil" class="btn btn-primary">Enregistrer</button>
+                          </div>
+                          <div class="btn-group mr-2" role="group" aria-label="Second group">
+                              <!--                                                                <a href="liste_personnels.php" class="btn btn-primary" style="float: right; padding-top: 10px; padding-bottom: 10px; margin-right: 20px"><i class="fas fa-angle-double-down"></i> Annuler</a>-->
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
       </div>
-    </div>
   </div>
-</section>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <div class="row">
+      <div class="col-md-12">
+          <hr>
+      </div>
+  </div>
 
-<script>
-  $(document).ready(function() {
-    $('#example1').DataTable();
-    $('#example2').DataTable();
-  });
-</script>
+  <div class="row">
+      <div class="col-xl-12">
+          <div class="card mb-4">
+              <div class="card-header">
+                  <svg class="svg-inline--fa fa-scroll fa-w-20  custom-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="scroll" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M48 0C21.53 0 0 21.53 0 48v64c0 8.84 7.16 16 16 16h80V48C96 21.53 74.47 0 48 0zm208 412.57V352h288V96c0-52.94-43.06-96-96-96H111.59C121.74 13.41 128 29.92 128 48v368c0 38.87 34.65 69.65 74.75 63.12C234.22 474 256 444.46 256 412.57zM288 384v32c0 52.93-43.06 96-96 96h336c61.86 0 112-50.14 112-112 0-8.84-7.16-16-16-16H288z"></path></svg><!-- <i class="fas fa-scroll"></i> Font Awesome fontawesome.com -->
+                  <b>Liste des villes</b>
+              </div>
+              <div class="card-body">
+                  <div class="well bs-component">
+                      <form class="form-horizontal">
+                          <fieldset>
+                              <div class="table-responsive">
 
+                                      <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                          <thead>
+                                          <tr class="bg-primary" role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="NOM DE LA VILLE: activate to sort column descending" style="width: 219px;"><p align="center">NOM DE LA VILLE</p></th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="PAYS: activate to sort column ascending" style="width: 119px;"><p align="center">PAYS</p></th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Options: activate to sort column ascending" style="width: 109px;"><p align="center">Options</p></th></tr>
+                                          </thead>
+                                          <tbody>
+                                                                                  <tr role="row" class="odd">
+                                            <td align="center" class="sorting_1">BAFOUSSAM  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
 
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>  
+                                                                                                                       </tr><tr role="row" class="even">
+                                            <td align="center" class="sorting_1">BAMENDA  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
+
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>
+                                                                                                                       </tr><tr role="row" class="odd">
+                                            <td align="center" class="sorting_1">BATCHENGA  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
+
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>
+                                                                                                                       </tr><tr role="row" class="even">
+                                            <td align="center" class="sorting_1">BATOURI  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
+
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>
+                                                                                                                       </tr><tr role="row" class="odd">
+                                            <td align="center" class="sorting_1">BERTOUA  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
+
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>
+                                                                                                                       </tr><tr role="row" class="even">
+                                            <td align="center" class="sorting_1">BUEA  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
+
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>
+                                                                                                                       </tr><tr role="row" class="odd">
+                                            <td align="center" class="sorting_1">DOUALA  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
+
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>
+                                                                                                                       </tr><tr role="row" class="even">
+                                            <td align="center" class="sorting_1">DSCHANG  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
+
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>
+                                                                                                                       </tr><tr role="row" class="odd">
+                                            <td align="center" class="sorting_1">DSCHANG  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
+
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>
+                                                                                                                       </tr><tr role="row" class="even">
+                                            <td align="center" class="sorting_1">EBOLOWA  </td>
+                                              <td align="center">
+                                                  CAMEROUN                                                            </td>
+                                                  <td class="project-actions text-right">
+
+                                                    <a  class="btn btn-danger btn-sm" >
+                                                      <!-- (click)="deletePost(projet.id)" -->
+                                                                       supp
+                                                        <i class="fa-solid fa-trash">
+                                                        </i>
+                                                    </a>
+                                                 </td>
+                                                                                                                       </tr></tbody>
+                                          <tfoot>
+                                          <tr class="bg-primary"><th rowspan="1" colspan="1"><p align="center">NOM DE LA VILLE</p></th><th rowspan="1" colspan="1"><p align="center">PAYS</p></th><th rowspan="1" colspan="1"><p align="center">Options</p></th></tr>
+                                          </tfoot>
+                                          <tbody></tbody>
+                                      </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 27 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+
+                              </div>
+                          </fieldset></form>
+
+                  </div>
+              </div>
+              <div class="card-footer">
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>

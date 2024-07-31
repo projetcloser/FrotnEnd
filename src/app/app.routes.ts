@@ -19,24 +19,51 @@ import { EditVilleComponent } from './componnents/ville/edit-ville/edit-ville.co
 import { EditQuartierComponent } from './componnents/quartier/edit-quartier/edit-quartier.component';
 import { CreateQuartierComponent } from './componnents/quartier/create-quartier/create-quartier.component';
 import { DashboardComponent } from './componnents/dashboard/dashboard.component';
+import { IndexpersonnelComponent } from './componnents/personnel/indexpersonnel/indexpersonnel.component';
+import { PersonnelCreateComponent } from './componnents/personnel/personnel-create/personnel-create.component';
+import { IndexPostulantComponent } from './componnents/postulant/index-postulant/index-postulant.component';
+import { CreatePostulantComponent } from './componnents/postulant/create-postulant/create-postulant.component';
+import { IndexProfessionComponent } from './componnents/profession/index-profession/index-profession.component';
+import { IndexPosteComponent } from './componnents/poste/index-poste/index-poste.component';
 
 export const routes: Routes = [
   {
     path: "",
     component:DashboardComponent
   },
+  // personnels
+  {
+    path: "personnel",
+    component:IndexpersonnelComponent
+  },
+  {
+    path: "nouvelle-personne",
+    component:PersonnelCreateComponent
+  },
+
+  // postulant
+  {
+    path: "postulant",
+    component:IndexPostulantComponent
+  },
+  {
+    path: "nouveau-postulant",
+    component:CreatePostulantComponent
+  },
+  // membre
   {
     path: "membre",
     component:IndexMembreComponent
   },
   {
-    path: "membre/create",
+    path: "nouveau-membre",
     component:CreateMembreComponent
   },
   {
     path: "membre/edit/:id",
     component:EditMembreComponent
   },
+  // entreprise
   {
     path: "entreprise",
     component:IndexEntrepriseComponent
@@ -53,6 +80,7 @@ export const routes: Routes = [
     path: "entreprise",
     component:IndexEntrepriseComponent
   },
+  // pays
   {
     path: "pays",
     component:IndexPaysComponent
@@ -65,6 +93,7 @@ export const routes: Routes = [
     path: "pays/edit/:id",
     component:EditPaysComponent
   },
+  // ville
   {
     path: "ville",
     component:IndexVilleComponent
@@ -77,6 +106,7 @@ export const routes: Routes = [
     path: "ville/edit/:id",
     component:EditVilleComponent
   },
+  // quartier
   {
     path: "quartier",
     component:IndexQuartierComponent
@@ -97,9 +127,20 @@ export const routes: Routes = [
     path: "entity/:id/:action",
     component:DataManagerComponent
   },
+  // profession
+  {
+    path: "profession",
+    component:IndexProfessionComponent
+  },
+  // poste
+  {
+    path: "poste",
+    component:IndexPosteComponent
+  },
   {
     path: "**",
     component:Error404Component
-  }
+  },
+
 
 ];

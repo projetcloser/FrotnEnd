@@ -2,7 +2,7 @@
 <!-- /* Main content */ -->
 <section class="content">
   <div class="container-fluid">
-    <h1 class="mt-4">Liste des membres</h1>
+    <h1 class="mt-4">Liste des Membres</h1>
     <ol class="breadcrumb mb-4" >
       <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
           Hello M/Mme MONGO SALOMON, il est 11:17 en ce jour
@@ -10,23 +10,48 @@
       </li>
     </ol>
     <div class="row">
+      <div class="col-xl-12">
+        <b>
+          <!-- Nav pills -->
+          <ul class="nav nav-pills" style="float: right; margin-bottom: 20px;"> <!-- Added margin-bottom for spacing -->
+            <li class="nav-item">
+              <a class="btn btn-success small-button"(click)="navigateToForm()"> <!-- Changed to btn-success for green color -->
+                <svg class="svg-inline--fa fa-plus-circle fa-w-16 small-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                  <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"></path>
+                </svg>
+                Nouveau Postulant
+              </a>
+            </li>
+          </ul>
+          <!-- <ul class="nav nav-pills" style="float: right; margin-bottom: 20px;">
+            <li class="nav-item">
+              <a class="nav-link active small-button btn-success" href="etat_liste_entreprise.php" target="blank" style="margin-right: 20px">
+                <svg class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                  <path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path>
+                </svg>
+                liste entreprise
+              </a>
+            </li>
+          </ul> -->
+        </b>
+      </div>
+    </div>
+
+
+    <div class="row">
       <div class="col-12">
         <div class="card">
           <!-- <app-loading *ngIf="isLoading"/> -->
           <div class="col-12"  >
+            <!-- *ngIf="!isLoading" -->
             <div class="card-header">
               <div class="row">
-                
-              </div>
-              <div class="row">
-                <div class="col" style="color: green;">
-                  <i class="fa fa-download" aria-hidden="true"><span>Expoeter</span></i>
-                </div>
-                <div class="col">
+
+                <div class="col" >
                     <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
+                        <div class="input-group" style="float: right; margin-bottom: 20px;">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
@@ -37,103 +62,63 @@
                         </div>
                     </form>
                 </div>
-                <div class="col" >
-                  
-                <a class="btn btn-primary btn-sm float-right"   [routerLink]="['/membre/create']" >
-                  <i class="fa fa-plus" aria-hidden="true"></i>
-                  <!-- [routerLink]="['/projet/create']" -->
-                  Ajouter
-                </a>
-                </div>
+
               </div>
-              
-
-
             </div>
             <div class="card-body">
-              <div class="table-container" >
-                <!-- *ngIf="membre?.length" -->
-                <!-- <p *ngIf="membre?.length > 0">
-                  <strong>{{membre?.length}}</strong> donnees retrouvees
-                </p>
-                <p *ngIf="membre?.length === 1">
-                  <strong>{{membre?.length}}</strong> donnee retrouvee -->
-                <!-- </p> -->
-                <table id="example2" class="table table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th>Sociale</th>
-                      <th>Commande</th>
-                      <th>Tel</th>
-                      <th>Email</th>
-                      <th>Nui </th>
-                      <th>Type</th>
-                      <th>Pays</th>
-                      <th>Ville</th>
-                      <th></th>
-                      <th>Contact</th>
-                      <th>Engine version</th>
-                      <th>Statut</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngIf="!isLoading">
-                    <tr *ngFor="let data of membre ">
-                      <td>{{data.social_reason}}</td>
-                      <td>{{data.author}}</td>
-                      <td>{{data.phone}}</td>
-                      <td>{{data.email}}</td>
-                      <td>{{data.nui}}</td>
-                      <td>{{data.type}}</td>
-                      <td>{{data.country_id}}</td>
-                      <td>{{data.city_id}}</td>
-                      <td>{{data.neighborhood}}</td>
-                      <td>{{data.contact_person}}</td>
-                      <td>{{data.contact_person_phone}}</td>
-                      <td>{{data.status }}</td>
-                      <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" [routerLink]="['/membre/',data.id, 'show']" >
-                          <!--  -->
-                            <i class="fa-solid fa-eye">
-                            </i>
-                            View
-                        </a>
-                        <a  class="btn btn-info btn-sm" [routerLink]="['/membre/',data.id, 'edit']" >
-                          <!-- [routerLink]="['/projet/',projet.id, 'edit']" -->
-                            <i class="fa-solid fa-edit">
-                            </i>
-                            Edit
-                        </a>
-                        <a  class="btn btn-danger btn-sm"  (click)="deletePost(data.id)">
-                          <!-- (click)="deletePost(projet.id)" -->
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Matricule</th>
+                    <th>Nom</th>
+                    <th>Annees</th>
+                    <th>Phone </th>
+                    <th>Email</th>
+                    <th>Montant dette</th>
+                    <th>Auteur</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="!isLoading">
+                  <tr *ngFor="let data of membre ">
+                    <td>{{data.social_reason}}</td>
+                    <td>{{data.author}}</td>
+                    <td>{{data.phone}}</td>
+                    <td>{{data.email}}</td>
+                    <td>{{data.nui}}</td>
+                    <td>{{data.type}}</td>
+                    <td>{{data.country_id}}</td>
+                    <td>{{data.city_id}}</td>
+                    <td>{{data.neighborhood}}</td>
+                    <td>{{data.contact_person}}</td>
+                    <td>{{data.contact_person_phone}}</td>
+                    <td>{{data.status }}</td>
+                    <td class="project-actions text-right">
+                      <a class="btn btn-primary btn-sm" [routerLink]="['/membre/',data.id, 'show']" >
+                        <!--  -->
+                          <i class="fa-solid fa-eye">
+                          </i>
+                          View
+                      </a>
+                      <a  class="btn btn-info btn-sm" [routerLink]="['/membre/',data.id, 'edit']" >
+                        <!-- [routerLink]="['/projet/',projet.id, 'edit']" -->
+                          <i class="fa-solid fa-edit">
+                          </i>
+                          Edit
+                      </a>
+                      <a  class="btn btn-danger btn-sm"  (click)="deletePost(data.id)">
+                        <!-- (click)="deletePost(projet.id)" -->
 
-                            <i class="fa-solid fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>Sociale</th>
-                      <th>Commande</th>
-                      <th>Tel</th>
-                      <th>Email</th>
-                      <th>Nui </th>
-                      <th>Type</th>
-                      <th>Pays</th>
-                      <th>Ville</th>
-                      <th></th>
-                      <th>Contact</th>
-                      <th>Engine version</th>
-                      <th>Statut</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
+                          <i class="fa-solid fa-trash">
+                          </i>
+                          Delete
+                      </a>
+                  </td>
+                  </tr>
+                </tbody>
 
+
+              </table>
             </div>
           </div>
 
@@ -157,5 +142,3 @@
     $('#example2').DataTable();
   });
 </script>
-
-
