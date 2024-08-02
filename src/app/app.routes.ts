@@ -25,6 +25,8 @@ import { IndexPostulantComponent } from './componnents/postulant/index-postulant
 import { CreatePostulantComponent } from './componnents/postulant/create-postulant/create-postulant.component';
 import { IndexProfessionComponent } from './componnents/profession/index-profession/index-profession.component';
 import { IndexPosteComponent } from './componnents/poste/index-poste/index-poste.component';
+import { EditPostulantComponent } from './componnents/postulant/edit-postulant/edit-postulant.component';
+import { CreateCaisseComponent } from './componnents/Caisse/create-caisse/create-caisse.component';
 
 export const routes: Routes = [
   {
@@ -49,6 +51,10 @@ export const routes: Routes = [
   {
     path: "nouveau-postulant",
     component:CreatePostulantComponent
+  },
+  {
+    path: "modifier-postulant",
+    component:EditPostulantComponent
   },
   // membre
   {
@@ -119,9 +125,14 @@ export const routes: Routes = [
     path: "quartier/edit/:id",
     component:EditQuartierComponent
   },
+  // caisse
   {
     path: "caisse",
     component:IndexCaisseComponent
+  },
+  {
+    path: "nouvelle-caisse",
+    component:CreateCaisseComponent
   },
   {
     path: "entity/:id/:action",

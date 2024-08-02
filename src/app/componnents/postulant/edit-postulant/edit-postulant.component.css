@@ -1,0 +1,15 @@
+.nav-pills .nav-link svg {
+  width: 24px;
+  height: 24px;
+}
+.nav-pills .nav-item {
+  margin-bottom: 10px;
+}
+.nav-pills .nav-link.active {
+  background-color: #28a745;
+  color: white;
+}
+.nav-pills .nav-link:hover {
+  background-color: green;
+  color: white;
+}
