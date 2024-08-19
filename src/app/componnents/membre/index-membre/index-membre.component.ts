@@ -22,7 +22,9 @@ export class IndexMembreComponent {
   navigateToForm() {
     this.router.navigate(['/nouveau-membre']);
   }
-
+  navigateToFormEdit() {
+    this.router.navigate(['/modifier-membre']);
+  }
   ngOnInit(): void{
     this.membreService.getAll().subscribe(
       (data:Membre[])=>{

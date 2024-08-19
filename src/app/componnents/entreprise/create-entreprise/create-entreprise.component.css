@@ -1,0 +1,15 @@
+.form-horizontal .form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-horizontal .form-group span {
+  margin-right: 10px;
+}
+.form-horizontal .form-group .col-sm-9 {
+  max-width: 75%;
+}
+.form-horizontal .card-footer {
+  display: flex;
+  justify-content: center;
+}

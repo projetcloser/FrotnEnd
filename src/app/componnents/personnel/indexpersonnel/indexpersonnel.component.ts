@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { StepfourpersonnelComponent } from "../stepfourpersonnel/stepfourpersonnel.component";
-import { StepOnepersonnelComponent } from '../step-onepersonnel/step-onepersonnel.component';
-import { StepTwopersonnelComponent } from '../step-twopersonnel/step-twopersonnel.component';
-import { StepTreepersonnelComponent } from '../step-treepersonnel/step-treepersonnel.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -10,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-indexpersonnel',
   standalone: true,
-  imports: [StepfourpersonnelComponent,StepOnepersonnelComponent,StepTwopersonnelComponent,StepTreepersonnelComponent,FormsModule,
+  imports: [FormsModule,
     CommonModule,ReactiveFormsModule
   ],
   templateUrl: './indexpersonnel.component.html',
@@ -24,7 +21,11 @@ export class IndexpersonnelComponent {
     this.router.navigate(['/nouvelle-personne']);
   }
 
-  
+  navigateToFormEdit() {
+    this.router.navigate(['/modifier-personne']);
+  }
+
+
   currentStep: number = 1;
 
   nextStep() {

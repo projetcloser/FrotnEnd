@@ -1,25 +1,4 @@
-<!-- <div class="container">
-  <div class="form-step" *ngIf="currentStep === 1">
-    <app-step-onepersonnel></app-step-onepersonnel>
-  </div>
-  <div class="form-step" *ngIf="currentStep === 2">
-    <app-step-twopersonnel></app-step-twopersonnel>
-  </div>
-  <div class="form-step" *ngIf="currentStep === 3">
-    <app-step-treepersonnel></app-step-treepersonnel>
-  </div>
-  <div class="form-step" *ngIf="currentStep === 4">
-    <app-stepfourpersonnel></app-stepfourpersonnel>
-  </div>
 
-
-  <div class="navigation-buttons">
-    <button (click)="previousStep()" [disabled]="currentStep === 1">Etat civil</button>
-    <button (click)="nextStep()" *ngIf="currentStep < 3">Etat Proffessionel</button>
-    <button (click)="submit()" *ngIf="currentStep === 3">Etat Academique</button>
-    <button (click)="submit()" *ngIf="currentStep === 4">Information RH</button>
-  </div>
-</div> -->
 
 
 
@@ -120,14 +99,14 @@
                           <!-- <i class="fa-solid fa-eye">
                           </i> -->
                       <!-- </a> -->
-                      <a  class="btn btn-info btn-sm"  >edit
+                      <a  class="btn btn-info btn-sm"  (click)="navigateToFormEdit()">
                         <!-- [routerLink]="['/projet/',projet.id, 'edit']" [routerLink]="[data.i_id,'edit']" -->
                           <i class="fa-solid fa-edit">
                           </i>
                       </a>
                       <a  class="btn btn-danger btn-sm" >
                         <!-- (click)="deletePost(projet.id)" -->
-                                         supp
+                                         
                           <i class="fa-solid fa-trash">
                           </i>
                       </a>

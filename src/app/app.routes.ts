@@ -27,6 +27,35 @@ import { IndexProfessionComponent } from './componnents/profession/index-profess
 import { IndexPosteComponent } from './componnents/poste/index-poste/index-poste.component';
 import { EditPostulantComponent } from './componnents/postulant/edit-postulant/edit-postulant.component';
 import { CreateCaisseComponent } from './componnents/Caisse/create-caisse/create-caisse.component';
+import { IndexEvenementComponent } from './componnents/evenement/index-evenement/index-evenement.component';
+import { CreateEvenementComponent } from './componnents/evenement/create-evenement/create-evenement.component';
+import { UpdateEvenementComponent } from './componnents/evenement/update-evenement/update-evenement.component';
+import { IndexTresorerieComponent } from './componnents/tresoreries/index-tresorerie/index-tresorerie.component';
+import { CreateTresorerieComponent } from './componnents/tresoreries/create-tresorerie/create-tresorerie.component';
+import { UpdateTresorerieComponent } from './componnents/tresoreries/update-tresorerie/update-tresorerie.component';
+import { IndexCachetComponent } from './componnents/cachet/index-cachet/index-cachet.component';
+import { CreateCachetComponent } from './componnents/cachet/create-cachet/create-cachet.component';
+import { UpdateCachetComponent } from './componnents/cachet/update-cachet/update-cachet.component';
+import { IndexCotisationComponent } from './componnents/cotisation/index-cotisation/index-cotisation.component';
+import { CreateCotisationComponent } from './componnents/cotisation/create-cotisation/create-cotisation.component';
+import { UpdateCotisationComponent } from './componnents/cotisation/update-cotisation/update-cotisation.component';
+import { IndexRequetteComponent } from './componnents/requette/index-requette/index-requette.component';
+import { CreateRequetteComponent } from './componnents/requette/create-requette/create-requette.component';
+import { UpdateRequetteComponent } from './componnents/requette/update-requette/update-requette.component';
+import { IndexAttestPersonnelComponent } from './componnents/attestation/personnel/index-attest-personnel/index-attest-personnel.component';
+import { CreateAttestPersonnelComponent } from './componnents/attestation/personnel/create-attest-personnel/create-attest-personnel.component';
+import { UpdateAttestPersonnelComponent } from './componnents/attestation/personnel/update-attest-personnel/update-attest-personnel.component';
+import { EditperssonnelComponent } from './componnents/personnel/editperssonnel/editperssonnel.component';
+import { IndexEtudeComponent } from './componnents/etude/index-etude/index-etude.component';
+import { CreateEtudeComponent } from './componnents/etude/create-etude/create-etude.component';
+
+import { CreateNonPayeComponent } from './componnents/attestation/nonPaye/create-non-paye/create-non-paye.component';
+import { IndexPayeComponent } from './componnents/attestation/paye/index-paye/index-paye.component';
+import { CreatePayeComponent } from './componnents/attestation/paye/create-paye/create-paye.component';
+import { IndexstatutComponent } from './componnents/attestation/statut-initiated/indexstatut/indexstatut.component';
+import { CreatestatutComponent } from './componnents/attestation/statut-initiated/createstatut/createstatut.component';
+import { IndexNonPayeComponent } from './componnents/attestation/nonPaye/index-non-paye/index-non-paye.component';
+import { EditNonPayeComponent } from './componnents/attestation/nonPaye/edit-non-paye/edit-non-paye.component';
 
 export const routes: Routes = [
   {
@@ -41,6 +70,10 @@ export const routes: Routes = [
   {
     path: "nouvelle-personne",
     component:PersonnelCreateComponent
+  },
+  {
+    path: "modifier-personne",
+    component:EditperssonnelComponent
   },
 
   // postulant
@@ -79,7 +112,7 @@ export const routes: Routes = [
     component:CreateEntrepriseComponent
   },
   {
-    path: "entreprise/edit/:id",
+    path: "modifier-entreprise",
     component:EditEntrepriseComponent
   },
    {
@@ -148,6 +181,127 @@ export const routes: Routes = [
     path: "poste",
     component:IndexPosteComponent
   },
+    // evenements
+    {
+      path: "evenement",
+      component:IndexEvenementComponent
+    },
+    {
+      path: "nouveau-evenement",
+      component:CreateEvenementComponent
+    },
+    {
+      path: "modifier-evenement",
+      component:UpdateEvenementComponent
+    },
+    // tresorerie
+    {
+      path: "tresorerie",
+      component:IndexTresorerieComponent
+    },
+    {
+      path: "nouveau-transfert",
+      component:CreateTresorerieComponent
+    },
+    {
+      path: "modifier-tresorerie",
+      component:UpdateTresorerieComponent
+    },
+     // cachet
+     {
+      path: "cachet",
+      component:IndexCachetComponent
+    },
+    {
+      path: "nouveau-cachet",
+      component:CreateCachetComponent
+    },
+    {
+      path: "modifier-cachet",
+      component:UpdateCachetComponent
+    },
+    // cotisation
+    {
+      path: "cotisation",
+      component:IndexCotisationComponent
+    },
+    {
+      path: "nouvelle-cotisation",
+      component:CreateCotisationComponent
+    },
+    {
+      path: "modifier-cotisation",
+      component:UpdateCotisationComponent
+    },
+     // requette
+     {
+      path: "requette",
+      component:IndexRequetteComponent
+    },
+    {
+      path: "nouvelle-demande",
+      component:CreateRequetteComponent
+    },
+    {
+      path: "modifier-demande",
+      component:UpdateRequetteComponent
+    },
+      // attestPersonnel
+      {
+        path: "attestPersonnel",
+        component:IndexAttestPersonnelComponent
+      },
+      {
+        path: "nouveau-attestPersonnel",
+        component:CreateAttestPersonnelComponent
+      },
+      {
+        path: "modifier-attestPersonnel",
+        component:UpdateAttestPersonnelComponent
+      },
+
+      // frais d'etude
+      {
+        path: "frais-etude",
+        component:IndexEtudeComponent
+      },
+      {
+        path: "nouvelle-etude",
+        component:CreateEtudeComponent
+      },
+
+      // attestation non paye
+      {
+        path: "attestation-non_paye",
+        component:IndexNonPayeComponent
+      },
+      {
+        path: "nouvelle-attestation-non_paye",
+        component:CreateNonPayeComponent
+      },
+      {
+        path: "modifier-attestation-non_paye",
+        component:EditNonPayeComponent
+      },
+      // attestation  paye
+      {
+        path: "attestation-paye",
+        component:IndexPayeComponent
+      },
+      {
+        path: "nouvelle-attestation_paye",
+        component:CreatePayeComponent
+      },
+      // attestation  initiated
+      {
+        path: "attestation-initied",
+        component:IndexstatutComponent
+      },
+      {
+        path: "nouvelle-attestation_initiedude",
+        component:CreatestatutComponent
+      },
+
   {
     path: "**",
     component:Error404Component

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoadingComponent } from '../../../components/loading/loading.component';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Entreprise } from '../../../models/entreprise';
 import { EntrepriseServiceService } from '../entreprise-service.service';
@@ -17,7 +17,7 @@ export class IndexEntrepriseComponent {
   // en voyer le loading
   isLoading:boolean = true;
 
-constructor(public entrepriseService: EntrepriseServiceService){}
+constructor(public entrepriseService: EntrepriseServiceService,private router: Router){}
 
 ngOnInit(): void{
   this.entrepriseService.getAll().subscribe(
@@ -43,6 +43,10 @@ ngOnInit(): void{
         //  console.log('activites deleted successfully!');
          alert("entreprise deleted successfully!")
     })
+  }
+
+  navigateToFormEdit() {
+    this.router.navigate(['/modifier-entreprise']);
   }
 
 }

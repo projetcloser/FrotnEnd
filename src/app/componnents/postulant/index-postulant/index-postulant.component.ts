@@ -13,5 +13,8 @@ export class IndexPostulantComponent {
   navigateToForm() {
     this.router.navigate(['/nouveau-postulant']);
   }
+  navigateToFormEdit() {
+    this.router.navigate(['/modifier-postulant']);
+  }
 
 }
