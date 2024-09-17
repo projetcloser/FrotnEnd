@@ -7,11 +7,15 @@
 
 /* bouton */
 .small-icon {
-  width: 17px;  /* Adjust the width */
-  height: 17px;  /* Adjust the height */
+  width: 35px;  /* Adjust the width */
+  height: 35px;  /* Adjust the height */
 }
 a
 {
   text-decoration: none;
   color: black;
+}
+.small-button {
+  width: 17px;  /* Adjust the width */
+  height: 17px;  /* Add margin for spacing between buttons */
 }

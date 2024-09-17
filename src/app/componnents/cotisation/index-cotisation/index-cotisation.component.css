@@ -7,12 +7,13 @@
 
 /* bouton */
 .small-icon {
-  width: 17px;  /* Adjust the width */
-  height: 17px;  /* Adjust the height */
+  width: 15px;  /* Adjust the width */
+  height: 15px;  /* Adjust the height */
 }
 a
 {
   text-decoration: none;
+  color: black;
 }
 .custom-iconbutton {
   /* Couleur verte */
@@ -25,4 +26,5 @@ a
  font-size: 30px; /* Taille de l'icône, ajustez selon vos besoins */
  width: 1em;
  height: 1em;
+
 }

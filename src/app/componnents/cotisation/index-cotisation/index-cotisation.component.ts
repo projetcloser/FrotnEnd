@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PaginationComponent } from "../../../components/pagination/pagination.component";
 
 @Component({
   selector: 'app-index-cotisation',
   standalone: true,
-  imports: [],
+  imports: [PaginationComponent],
   templateUrl: './index-cotisation.component.html',
   styleUrl: './index-cotisation.component.css'
 })

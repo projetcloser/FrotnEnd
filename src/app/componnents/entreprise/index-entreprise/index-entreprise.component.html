@@ -1,127 +1,595 @@
-
 <!-- /* Main content */ -->
 <section class="content">
-  <div class="container-fluid">
-    <h1 class="mt-4">Liste des Entreprises</h1>
-    <ol class="breadcrumb mb-4" >
-      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-          Hello M/Mme MONGO SALOMON, il est 11:17 en ce jour
-          du Lundi 29 Juillet 2024.
-      </li>
-    </ol>
-    <div class="row">
-      <div class="col-xl-12">
-        <b>
-          <!-- Nav pills -->
-          <ul class="nav nav-pills" style="float: right; margin-bottom: 20px;"> <!-- Added margin-bottom for spacing -->
-            <li class="nav-item">
-              <a class="btn btn-success small-button" [routerLink]="['/entreprise/create']"> <!-- Changed to btn-success for green color -->
-                <svg class="svg-inline--fa fa-plus-circle fa-w-16 small-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"></path>
-                </svg>
-                Nouvelle entreprise
-              </a>
-            </li>
-          </ul>
-          <ul class="nav nav-pills" style="float: right; margin-bottom: 20px;"> <!-- Added margin-bottom for spacing -->
-            <li class="nav-item">
-              <a class="nav-link active small-button btn-success" href="etat_liste_entreprise.php" target="blank" style="margin-right: 20px">
-                <svg class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path>
-                </svg>
-                liste entreprise
-              </a>
-            </li>
-          </ul>
-        </b>
-      </div>
-    </div>
+
+  <main>
+    <div class="container-fluid">
+      <h1 class="mt-4"><svg class="svg-inline--fa fa-building fa-w-14 small-icon" style="color: silver;" aria-hidden="true"
+          focusable="false" data-prefix="fas" data-icon="building" role="img" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor"
+            d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z">
+          </path>
+        </svg> Liste des
+        Entreprises</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
+          Hello M/Mme, il est 16:38 en ce jour du Lundi 16 Septembre 2024 .
+
+        </li>
+      </ol>
+      <div class="row">
+        <div class="col-xl-12">
 
 
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <!-- <app-loading *ngIf="isLoading"/> -->
-          <div class="col-12"  >
-            <!-- *ngIf="!isLoading" -->
-            <div class="card-header">
-              <div class="row">
+          <b>
+            <!-- Nav pills -->
+            <ul class="nav nav-pills" style="float: right;">
+              <li class="nav-item " >
+                <a class="btn btn-primary" [routerLink]="['/entreprise/create']" style="background-color: #28a745; color: white;" >
+                  <svg class="svg-inline--fa fa-plus-circle fa-w-16 small-button" aria-hidden="true" focusable="false"
+                    data-prefix="fas" data-icon="plus-circle" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512" data-fa-i2svg="">
+                    <path fill="currentColor"
+                      d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z">
+                    </path>
+                  </svg><!-- <i class="fas fa-plus-circle"></i> Font Awesome fontawesome.com -->
+                  Nouvelle entreprise
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-pills" style="float: right;">
+              <li class="nav-item">
+                <a class="nav-link active" href="etat_liste_entreprise.php" target="blank" style="background-color: #28a745; color: white;margin-right: 20px"
+                  ><svg class="svg-inline--fa fa-download fa-w-16 small-button" aria-hidden="true"
+                    focusable="false" data-prefix="fas" data-icon="download" role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                    <path fill="currentColor"
+                      d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z">
+                    </path>
+                  </svg><!-- <i class="fas fa-download"></i> Font Awesome fontawesome.com --> liste entreprise
+                </a>
+              </li>
+            </ul>
+          </b>
 
-                <div class="col" >
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group" style="float: right; margin-bottom: 20px;">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-              </div>
-            </div>
-            <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th>Entreprises</th>
-                    <th>Type</th>
-                    <th>Tel</th>
-                    <th>NUI </th>
-                    <th>Localisation</th>
-                    <th>Point focal</th>
-                    <th>Contact </th>
-                    <th>Auteur</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- /* Table content */ -->
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>author</td>
-                    <td>SARL</td>
-                    <td>698877452</td>
-                    <td>233444 </td>
-                    <td></td>
-                    <td></td>
-                    <td>contact_person </td>
-                    <td>contact_person_phone</td>
-                    <td class="project-actions text-right">
-                      <!-- <a class="btn btn-primary btn-sm" > -->
-                        <!--  [routerLink]="[data.i_id,'view']" -->
-                          <!-- <i class="fa-solid fa-eye">
-                          </i> -->
-                      <!-- </a> -->
-                      <a  class="btn btn-info btn-sm" (click)="navigateToFormEdit()" >
-                        <!-- [routerLink]="['/projet/',projet.id, 'edit']" [routerLink]="[data.i_id,'edit']" -->
-                          <i class="fa-solid fa-edit">
-                          </i>
-                      </a>
-                      <a  class="btn btn-danger btn-sm" >
-                        <!-- (click)="deletePost(projet.id)" -->
-
-                          <i class="fa-solid fa-trash">
-                          </i>
-                      </a>
-                   </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
 
         </div>
-
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+        </div>
+      </div>
+      <!--                Main Body              -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"
+                        aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select> entries</label></div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
+                        class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <table class="table table-border table-striped custom-table mb-0 dataTable no-footer" id="dataTable"
+                    role="grid" aria-describedby="dataTable_info">
+                    <thead>
+                      <tr align="center" style="background-color: #dde9dd" role="row">
+                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-sort="ascending" aria-label="Entreprises: activate to sort column descending"
+                          style="width: 215.719px;">Entreprises</th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-label="Type : activate to sort column ascending" style="width: 35.8438px;">Type </th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-label="Tel : activate to sort column ascending" style="width: 154.859px;">Tel </th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-label="NUI : activate to sort column ascending" style="width: 267.312px;">NUI </th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-label="Localisation : activate to sort column ascending" style="width: 190.5px;">
+                          Localisation </th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-label="Point Focal: activate to sort column ascending" style="width: 184.25px;">Point
+                          Focal</th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-label="Contact: activate to sort column ascending" style="width: 209.203px;">Contact</th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-label="Auteur: activate to sort column ascending" style="width: 99.8281px;">Auteur</th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-label=" Font Awesome fontawesome.com -->: activate to sort column ascending"
+                          style="width: 14px;"><svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true"
+                            focusable="false" data-prefix="fas" data-icon="bars" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                              d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z">
+                            </path>
+                          </svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com --></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr align="center" role="row" class="odd">
+                        <td class="sorting_1"><a href="#"> INNOVATIVE TECHNOLOGY SOLUTIONS</a></td>
+                        <td><a href="#">SARL</a></td>
+                        <td><a href="#">696 85 12 14</a></td>
+                        <td><a href="#">M051912771394D</a></td>
+                        <td><a href="#">Yaoundé </a></td>
+                        <td><a href="#">TEDJIOFO DJOUMEDJIO YANIK</a></td>
+                        <td><a href="#">696 85 12 14</a></td>
+                        <td>NANFACK ZEBAZE Joel Stéphane </td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" (click)="navigateToFormEdit()">
+                                 <!-- [routerLink]="['/projet/',projet.id, 'edit']" [routerLink]="[data.i_id,'edit']" -->
+                                <svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=1258"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                                 <!-- (click)="deletePost(projet.id)" -->
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr align="center" role="row" class="even">
+                        <td class="sorting_1"><a href="#"> SCORT SARL</a></td>
+                        <td><a href="#">SARL</a></td>
+                        <td><a href="#">677377018</a></td>
+                        <td><a href="#">MO21000031125A</a></td>
+                        <td><a href="#">GAROUA</a></td>
+                        <td><a href="#">DEFFO LUC</a></td>
+                        <td><a href="#">696369501</a></td>
+                        <td>DEFFO TCHINDA Luc </td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu  custom-iconbutton " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="modifier_entreprise.php?id=1291"><svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=1291"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr align="center" role="row" class="odd">
+                        <td class="sorting_1"><a href="#"> CABTE SARL</a></td>
+                        <td><a href="#">EIRL</a></td>
+                        <td><a href="#">671356471</a></td>
+                        <td><a href="#">: M081100039529Q</a></td>
+                        <td><a href="#">DOUALA</a></td>
+                        <td><a href="#">SECRETARIAT</a></td>
+                        <td><a href="#">671356471</a></td>
+                        <td>ZOCK Robert Hermann</td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu  custom-iconbutton " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="modifier_entreprise.php?id=1429"><svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=1429"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr align="center" role="row" class="even">
+                        <td class="sorting_1"><a href="#"> CONTRANS COMPANY LIMITED</a></td>
+                        <td><a href="#">EI</a></td>
+                        <td><a href="#">699904155</a></td>
+                        <td><a href="#">MO40216827373D</a></td>
+                        <td><a href="#">BAMENDA</a></td>
+                        <td><a href="#">JOHN MBAH ACHU</a></td>
+                        <td><a href="#">699904155</a></td>
+                        <td>NANFAH Jean Eudes </td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu  custom-iconbutton " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="modifier_entreprise.php?id=2449"><svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=2449"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr align="center" role="row" class="odd">
+                        <td class="sorting_1"><a href="#"> DJACO SARL</a></td>
+                        <td><a href="#">EI</a></td>
+                        <td><a href="#">694538378</a></td>
+                        <td><a href="#">M032015135989C</a></td>
+                        <td><a href="#"> Akwa, Rue Sylvaine</a></td>
+                        <td><a href="#">Monsieur ACOSTA De Jesus Anthony</a></td>
+                        <td><a href="#">694538378</a></td>
+                        <td>N/A</td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu  custom-iconbutton " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="modifier_entreprise.php?id=896"><svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=896"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr align="center" role="row" class="even">
+                        <td class="sorting_1"><a href="#"> ETS T.D.W BUSINESS AND SERVICE</a></td>
+                        <td><a href="#">EI</a></td>
+                        <td><a href="#">675041853</a></td>
+                        <td><a href="#">P098414223866T</a></td>
+                        <td><a href="#">BASTOS YAOUNDE </a></td>
+                        <td><a href="#">TAGATSING DJOUMESSI</a></td>
+                        <td><a href="#">675041853</a></td>
+                        <td>NZADI Christian Camille </td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu  custom-iconbutton " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="modifier_entreprise.php?id=2488"><svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=2488"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr align="center" role="row" class="odd">
+                        <td class="sorting_1"><a href="#"> FRAIZER SARL</a></td>
+                        <td><a href="#">SARL</a></td>
+                        <td><a href="#">699929679</a></td>
+                        <td><a href="#">MO42014420035H</a></td>
+                        <td><a href="#">DOUALA</a></td>
+                        <td><a href="#">Sonkeng Alain Bertrand.</a></td>
+                        <td><a href="#">699929679</a></td>
+                        <td>TILONG Georges René </td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu  custom-iconbutton " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="modifier_entreprise.php?id=2397"><svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=2397"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr align="center" role="row" class="even">
+                        <td class="sorting_1"><a href="#"> G.S.LABO SARL</a></td>
+                        <td><a href="#">SARL</a></td>
+                        <td><a href="#">694124044</a></td>
+                        <td><a href="#"> M112116722653T</a></td>
+                        <td><a href="#">YAOUNDE</a></td>
+                        <td><a href="#">SECRETARIAT</a></td>
+                        <td><a href="#">694124044</a></td>
+                        <td>NKANGA NYATE Prosper </td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu  custom-iconbutton " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="modifier_entreprise.php?id=1703"><svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=1703"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr align="center" role="row" class="odd">
+                        <td class="sorting_1"><a href="#"> GROUPEMENT TRAMIC-JOE CONAWATER LIMITED</a></td>
+                        <td><a href="#">EIRL</a></td>
+                        <td><a href="#">699129153</a></td>
+                        <td><a href="#">M 062116632118 P</a></td>
+                        <td><a href="#">YAOUNDE</a></td>
+                        <td><a href="#">699129153</a></td>
+                        <td><a href="#">699129153</a></td>
+                        <td>N/A</td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu  custom-iconbutton " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="modifier_entreprise.php?id=1131"><svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=1131"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                      <tr align="center" role="row" class="even">
+                        <td class="sorting_1"><a href="#"> GÉNÉRAL THERMIC</a></td>
+                        <td><a href="#">N/A</a></td>
+                        <td><a href="#">699734444</a></td>
+                        <td><a href="#">M011200039604R</a></td>
+                        <td><a href="#">Douala </a></td>
+                        <td><a href="#">Charlie TAVIE </a></td>
+                        <td><a href="#">699734444</a></td>
+                        <td>TOKO DEUGOUE Fabien </td>
+                        <td class="text-right">
+                          <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu  custom-iconbutton " aria-hidden="true"
+                                focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                </path>
+                              </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="modifier_entreprise.php?id=1945"><svg
+                                  class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
+
+                              <a class="dropdown-item" href="delete_entreprise.php?id=1945"><svg
+                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
+                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512" data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                  </path>
+                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of
+                    2,484 entries</div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                    <ul class="pagination">
+                      <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#"
+                          aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                      <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1"
+                          tabindex="0" class="page-link">1</a></li>
+                      <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2"
+                          tabindex="0" class="page-link">2</a></li>
+                      <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3"
+                          tabindex="0" class="page-link">3</a></li>
+                      <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4"
+                          tabindex="0" class="page-link">4</a></li>
+                      <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5"
+                          tabindex="0" class="page-link">5</a></li>
+                      <li class="paginate_button page-item disabled" id="dataTable_ellipsis"><a href="#"
+                          aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">…</a></li>
+                      <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="7"
+                          tabindex="0" class="page-link">249</a></li>
+                      <li class="paginate_button page-item next" id="dataTable_next"><a href="#"
+                          aria-controls="dataTable" data-dt-idx="8" tabindex="0" class="page-link">Next</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--                End Body              -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </main>
+
+
 </section>
 
 <!-- jQuery -->
@@ -132,10 +600,8 @@
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('#example1').DataTable();
     $('#example2').DataTable();
   });
 </script>
-
-

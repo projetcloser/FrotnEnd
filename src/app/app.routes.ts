@@ -56,6 +56,8 @@ import { IndexstatutComponent } from './componnents/attestation/statut-initiated
 import { CreatestatutComponent } from './componnents/attestation/statut-initiated/createstatut/createstatut.component';
 import { IndexNonPayeComponent } from './componnents/attestation/nonPaye/index-non-paye/index-non-paye.component';
 import { EditNonPayeComponent } from './componnents/attestation/nonPaye/edit-non-paye/edit-non-paye.component';
+import { CreateProfessionComponent } from './componnents/profession/create-profession/create-profession.component';
+import { CreatePosteComponent } from './componnents/poste/create-poste/create-poste.component';
 
 export const routes: Routes = [
   {
@@ -176,10 +178,18 @@ export const routes: Routes = [
     path: "profession",
     component:IndexProfessionComponent
   },
+  {
+    path: "nouveau-profession",
+    component:CreateProfessionComponent
+  },
   // poste
   {
     path: "poste",
     component:IndexPosteComponent
+  },
+  {
+    path: "nouveau-poste",
+    component:CreatePosteComponent
   },
     // evenements
     {

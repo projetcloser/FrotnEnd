@@ -1,12 +1,12 @@
 .custom-icon {
   /* Couleur verte */
  font-size: 30px; /* Taille de l'icône, ajustez selon vos besoins */
- width: 1em;
- height: 1em;
+ width: 2em;
+ height: 2em;
 }
 
 /* bouton */
 .small-icon {
-  width: 17px;  /* Adjust the width */
-  height: 17px;  /* Adjust the height */
+  width: 35px;  /* Adjust the width */
+  height: 35px;  /* Adjust the height */
 }

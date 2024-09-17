@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <h1 class="mt-4"> <svg class="svg-inline--fa fa-address-card fa-w-18 custom-icon " style="color: silver;" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="address-card" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-352 96c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64zm112 236.8c0 10.6-10 19.2-22.4 19.2H86.4C74 384 64 375.4 64 364.8v-19.2c0-31.8 30.1-57.6 67.2-57.6h5c12.3 5.1 25.7 8 39.8 8s27.6-2.9 39.8-8h5c37.1 0 67.2 25.8 67.2 57.6v19.2zM512 312c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-64c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-64c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16z"></path></svg><!-- <i class=" fa fa-address-card" style="color: silver"></i> Font Awesome fontawesome.com --> Liste des Cotisations</h1>
   <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active">
+      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
           <!--Hello M/Mme, il est 12:09 en ce jour du Mardi 6 Aout 2024-->
        Bien vouloir faire enregistrer  votre reçu de versement bancaire auprès du secrétariat
        de l'Ordre sis montee Elig essono, 2e étage au dessus d'élégance pressing.
@@ -16,7 +16,7 @@
               <!-- Nav pills -->
               <ul class="nav nav-pills" style="float: right;">
                   <li class="nav-item">
-                      <a class="btn btn-success" (click)="navigateToForm()">
+                      <a class="btn btn-success" (click)="navigateToForm()" style="background-color: #28a745; color: white;">
                           <svg class="svg-inline--fa fa-plus-circle fa-w-16 small-icon " aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"></path></svg><!-- <i class="fas fa-plus-circle"></i> Font Awesome fontawesome.com -->
                           Nouvelle cotisation
                       </a>
@@ -372,8 +372,10 @@
 
                                                                       </td>
                       </tr></tbody>
-              </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 1,254 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item disabled" id="dataTable_ellipsis"><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">…</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">126</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="8" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
-          </div>
+              </table></div></div>
+             <app-pagination ></app-pagination>
+
+            </div>
       </div>
   </div>
   <!--                End Body              -->

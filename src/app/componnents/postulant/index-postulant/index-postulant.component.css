@@ -19,12 +19,12 @@
   max-width: 600px;
 }
 .small-button {
-  font-size: 15px;  /* Adjust the font size */
-  padding: 5px 10px;  /* Adjust the padding */
-  margin-right: 10px;  /* Add margin for spacing between buttons */
+ 
+  width: 20px;  /* Adjust the width */
+  height: 17px;
 }
 
 .small-icon {
-  width: 17px;  /* Adjust the width */
-  height: 17px;  /* Adjust the height */
+  width: 35px;  /* Adjust the width */
+  height: 35px;  /* Adjust the height */
 }

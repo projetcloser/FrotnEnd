@@ -10,6 +10,9 @@ import { EntrepriseModule } from './componnents/entreprise/entreprise/entreprise
 import { VilleModule } from './componnents/ville/ville/ville.module';
 import { QuartierModule } from './componnents/quartier/quartier/quartier.module';
 import { PaysModule } from './componnents/pays/pays/pays.module';
+import { CotisationModule } from './componnents/cotisation/cotisation/cotisation.module';
+
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +28,10 @@ import { PaysModule } from './componnents/pays/pays/pays.module';
     EntrepriseModule,
     VilleModule,
     QuartierModule,
-    PaysModule
+    PaysModule,
+    CotisationModule,
+
+    NgxPaginationModule
   ],
 
   templateUrl: './app.component.html',

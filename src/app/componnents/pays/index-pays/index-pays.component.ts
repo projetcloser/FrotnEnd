@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Pays } from '../../../models/pays';
 import { PaysServiceService } from '../pays-service.service';
 import { LoadingComponent } from '../../../components/loading/loading.component';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,7 +17,12 @@ export class IndexPaysComponent {
   // en voyer le loading
   isLoading:boolean = true;
 
-constructor(public paysService: PaysServiceService){}
+constructor(public paysService: PaysServiceService,private router: Router){}
+
+navigateToForm() {
+  this.router.navigate(['/pays/create']);
+}
+
 
 ngOnInit(): void{
   this.paysService.getAll().subscribe(
@@ -36,7 +41,7 @@ ngOnInit(): void{
  * Write code on Method
  *
  * @return response()
- */  
+ */
   deletePost(id:number){
     this.paysService.delete(id).subscribe(res => {
          this.pays = this.pays.filter(item => item.id !== id);

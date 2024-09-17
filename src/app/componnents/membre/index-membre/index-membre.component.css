@@ -19,12 +19,30 @@
   max-width: 600px;
 }
 .small-button {
-  font-size: 15px;  /* Adjust the font size */
-  padding: 5px 10px;  /* Adjust the padding */
-  margin-right: 10px;  /* Add margin for spacing between buttons */
+  width: 17px;  /* Adjust the width */
+  height: 17pxpx;
+
 }
 
 .small-icon {
-  width: 17px;  /* Adjust the width */
-  height: 17px;  /* Adjust the height */
+  width: 35px;  /* Adjust the width */
+  height: 35px;  /* Adjust the height */
+}
+a
+{
+  text-decoration: none;
+  color: black;
+
+}
+.custom-iconbutton {
+  /* Couleur verte */
+ font-size: 10px; /* Taille de l'icône, ajustez selon vos besoins */
+ width: 1em;
+ height: 1em;
+}
+.custom-iconbuttonmenu {
+  /* Couleur verte */
+ font-size: 30px; /* Taille de l'icône, ajustez selon vos besoins */
+ width: 1em;
+ height: 1em;
 }

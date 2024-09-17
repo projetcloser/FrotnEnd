@@ -1,0 +1,10 @@
+.small-button {
+  font-size: 15px;  /* Adjust the font size */
+  padding: 5px 10px;  /* Adjust the padding */
+  margin-right: 10px;  /* Add margin for spacing between buttons */
+}
+
+.small-icon {
+  width: 35px;  /* Adjust the width */
+  height: 35px;  /* Adjust the height */
+}
