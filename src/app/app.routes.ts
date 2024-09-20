@@ -101,7 +101,8 @@ export const routes: Routes = [
     component:CreateMembreComponent
   },
   {
-    path: "membre/edit/:id",
+    // path: "membre/edit/:id",
+    path:"modifier-membre",
     component:EditMembreComponent
   },
   // entreprise

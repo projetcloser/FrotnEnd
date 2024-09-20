@@ -25,7 +25,7 @@
             <!-- Nav pills -->
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item " >
-                <a class="btn btn-primary" [routerLink]="['/entreprise/create']" style="background-color: #28a745; color: white;" >
+                <a class="btn" [routerLink]="['/entreprise/create']" style="background-color: #28a745; color: white;" >
                   <svg class="svg-inline--fa fa-plus-circle fa-w-16 small-button" aria-hidden="true" focusable="false"
                     data-prefix="fas" data-icon="plus-circle" role="img" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512" data-fa-i2svg="">
@@ -148,14 +148,16 @@
                                   </path>
                                 </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Modifier</a>
 
-                              <a class="dropdown-item" href="delete_entreprise.php?id=1258"><svg
-                                  class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false"
-                                  data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg"
-                                  viewBox="0 0 448 512" data-fa-i2svg="">
-                                  <path fill="currentColor"
-                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                  </path>
-                                </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com --> Supprimer</a>
+                                <a class="dropdown-item" (click)="confirmDelete(21)">
+                                  <svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
+                                        focusable="false" data-prefix="fas" data-icon="trash" role="img"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path fill="currentColor"
+                                              d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                        </path>
+                                  </svg>
+                                  Delete
+                                </a>
                                  <!-- (click)="deletePost(projet.id)" -->
                             </div>
                           </div>

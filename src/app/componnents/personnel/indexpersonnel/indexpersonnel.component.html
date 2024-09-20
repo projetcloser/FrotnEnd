@@ -142,16 +142,16 @@
                                 </path>
                               </svg> Edit</a>
 
-                            <a class="dropdown-item" href="delete_personnel.php?id=21"
-                              onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
+                              <a class="dropdown-item" (click)="confirmDelete(21)">
+                                <svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
+                                      focusable="false" data-prefix="fas" data-icon="trash" role="img"
+                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                      <path fill="currentColor"
+                                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                      </path>
+                                </svg>
+                                Delete
+                              </a>
 
                           </div>
                         </div>
@@ -658,16 +658,17 @@
                                 </path>
                               </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
 
-                            <a class="dropdown-item" href="delete_personnel.php?id=23"
-                              onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
+                              <a class="dropdown-item" (click)="confirmDelete(21)">
+                                <svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
+                                      focusable="false" data-prefix="fas" data-icon="trash" role="img"
+                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                      <path fill="currentColor"
+                                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                      </path>
+                                </svg>
+                                Delete
+                              </a>
+
 
                           </div>
                         </div>
@@ -726,3 +727,4 @@
     $('#example2').DataTable();
   });
 </script>
+

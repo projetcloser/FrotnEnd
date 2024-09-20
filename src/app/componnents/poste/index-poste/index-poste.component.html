@@ -44,21 +44,21 @@
                                                   <tr role="row" class="odd">
                                                       <input name="nom" type="hidden" value="AGENT DE LIAISON">
                                                       <td align="center" class="sorting_1"><b>AGENT DE LIAISON</b></td>
-                                                      <td align="center"><a class="btn btn-danger" href="delete_poste.php?id=11" onclick="(this.href); return(false);" title="rimer" style="background-color: transparent">
-                                                        <a  class="btn btn-danger btn-sm" >
+                                                      <td align="center">
+                                                        <a  class="btn btn-danger btn-sm" (click)="confirmDelete(21)">
                                                           <!-- (click)="deletePost(projet.id)" -->
 
                                                             <i class="fa-solid fa-trash">
                                                             </i>
                                                         </a>
-                                              </a></td>
+                                                     </td>
 
 
                                                   </tr><tr role="row" class="even">
                                                       <input name="nom" type="hidden" value="ASSISTANTE ADMINISTRATIVE">
                                                       <td align="center" class="sorting_1"><b>ASSISTANTE ADMINISTRATIVE</b></td>
                                                       <td align="center">
-                                                        <a  class="btn btn-danger btn-sm" >
+                                                        <a  class="btn btn-danger btn-sm" (click)="confirmDelete(21)" >
                                                           <!-- (click)="deletePost(projet.id)" -->
 
                                                             <i class="fa-solid fa-trash">

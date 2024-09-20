@@ -1,140 +1,251 @@
 <div class="container-fluid">
   <h1 class="mt-4">Liste des Quartiers</h1>
   <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-          Hello M/Mme XXX, il est 13:07 en ce jour du Mercredi 31 Juillet 2024.
-      </li>
+    <li class="breadcrumb-item active"
+      style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
+      Hello M/Mme XXX, il est 13:07 en ce jour du Mercredi 31 Juillet 2024.
+    </li>
   </ol>
   <!--                Main Body-->
   <div class="row">
-      <div class="col-xl-12">
-          <div class="card mb-4">
-              <form class="form-horizontal" action="save_quat.php" method="POST">
-                  <div class="card-header">
-                      Formulaire
-                  </div>
-                  <div class="card-body">
-                      <fieldset>
-                          <div class="table-responsive">
-                              <table class="table  table-hover table-condensed" id="myTable">
-                                  <tbody>
-                                  <tr>
-                                      <td>
-                                          <span class="help-block small-font">VILLE</span>
-                                          <div class="col">
-                                                                  <select name="id_ville" style="width:75%;
+    <div class="col-xl-12">
+      <div class="card mb-4">
+        <form class="form-horizontal" action="save_quat.php" method="POST">
+          <div class="card-header">
+            Formulaire
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="table-responsive">
+                <table class="table  table-hover table-condensed" id="myTable">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <span class="help-block small-font">VILLE</span>
+                        <div class="col">
+                          <select name="id_ville" style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
                                                                   background: transparent;" required="">
-                                                                      <option value="" selected="">...</option>
-                                                                      <option value="1">YAOUNDE</option><option value="3">BAMENDA</option><option value="4">DOUALA</option><option value="7">BERTOUA</option><option value="8">KRIBI</option><option value="9">BAFOUSSAM</option><option value="10">MAROUA</option><option value="11">GAROUA</option><option value="12">NGAOUNDERE</option><option value="13">EBOLOWA</option><option value="14">MBOUDA</option><option value="15">EDEA</option><option value="16">KUMBA</option><option value="17">BATCHENGA</option><option value="18">LIMBE</option><option value="19">MAROUA</option><option value="20">TOUBORO</option><option value="21">MEIGANGA</option><option value="22">MOKOLO</option><option value="23">DSCHANG</option><option value="24">DSCHANG</option><option value="25">FUNDONG</option><option value="26">BATOURI</option><option value="27">BUEA</option><option value="28">TIBATI</option><option value="29">MENGONG</option><option value="30">KAELE</option>
+                            <option value="" selected="">...</option>
+                            <option value="1">YAOUNDE</option>
+                            <option value="3">BAMENDA</option>
+                            <option value="4">DOUALA</option>
+                            <option value="7">BERTOUA</option>
+                            <option value="8">KRIBI</option>
+                            <option value="9">BAFOUSSAM</option>
+                            <option value="10">MAROUA</option>
+                            <option value="11">GAROUA</option>
+                            <option value="12">NGAOUNDERE</option>
+                            <option value="13">EBOLOWA</option>
+                            <option value="14">MBOUDA</option>
+                            <option value="15">EDEA</option>
+                            <option value="16">KUMBA</option>
+                            <option value="17">BATCHENGA</option>
+                            <option value="18">LIMBE</option>
+                            <option value="19">MAROUA</option>
+                            <option value="20">TOUBORO</option>
+                            <option value="21">MEIGANGA</option>
+                            <option value="22">MOKOLO</option>
+                            <option value="23">DSCHANG</option>
+                            <option value="24">DSCHANG</option>
+                            <option value="25">FUNDONG</option>
+                            <option value="26">BATOURI</option>
+                            <option value="27">BUEA</option>
+                            <option value="28">TIBATI</option>
+                            <option value="29">MENGONG</option>
+                            <option value="30">KAELE</option>
 
-                                                                  </select>
-                                                          <button type="button" data-toggle="modal" style="background-color: transparent"><a href="liste_ville.php"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> Font Awesome fontawesome.com --></a>
+                          </select>
+                          <button type="button" data-toggle="modal" style="background-color: transparent"><a
+                              href="liste_ville.php"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true"
+                                focusable="false" data-prefix="fas" data-icon="plus" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                  d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                                </path>
+                              </svg><!-- <i class="fas fa-plus"></i> Font Awesome fontawesome.com --></a>
 
-                                                              </button>
-                                                                      </div>
-                                      </td>
+                          </button>
+                        </div>
+                      </td>
 
-                                      <td>
-                                          <span class="help-block small-font">NOM DU QUARTIER</span>
-                                          <div class="col">
-                                              <input name="nom_quat" style="width:75%;border-top: 0; border-left: 0;
+                      <td>
+                        <span class="help-block small-font">NOM DU QUARTIER</span>
+                        <div class="col">
+                          <input name="nom_quat" style="width:75%;border-top: 0; border-left: 0;
                                                                   border-right: 0;
                                                                   background: transparent;" required="">
-                                          </div>
-                                      </td>
-                                  </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </fieldset>
-                  </div>
-                  <div class="card-footer">
-                      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
-                          <div class="btn-group mr-2" role="group" aria-label="First group">
-                              <button type="submit" name="submit_etat_civil" class="btn btn-primary" style="background-color: #28a745; color: white;">Enregistrer</button>
-                          </div>
-                          <div class="btn-group mr-2" role="group" aria-label="Second group">
-                              <!--                                                                <a href="liste_personnels.php" class="btn btn-primary" style="float: right; padding-top: 10px; padding-bottom: 10px; margin-right: 20px"><i class="fas fa-angle-double-down"></i> Annuler</a>-->
-                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </fieldset>
+          </div>
+          <div class="card-footer">
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
+              <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button type="submit" name="submit_etat_civil" class="btn btn-primary"
+                  style="background-color: #28a745; color: white;">Enregistrer</button>
+              </div>
+              <div class="btn-group mr-2" role="group" aria-label="Second group">
+                <!--                                                                <a href="liste_personnels.php" class="btn btn-primary" style="float: right; padding-top: 10px; padding-bottom: 10px; margin-right: 20px"><i class="fas fa-angle-double-down"></i> Annuler</a>-->
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card mb-4">
+        <div class="card-header">
+          <svg class="svg-inline--fa fa-scroll fa-w-20 custom-icon" aria-hidden="true" focusable="false"
+            data-prefix="fas" data-icon="scroll" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+            data-fa-i2svg="">
+            <path fill="currentColor"
+              d="M48 0C21.53 0 0 21.53 0 48v64c0 8.84 7.16 16 16 16h80V48C96 21.53 74.47 0 48 0zm208 412.57V352h288V96c0-52.94-43.06-96-96-96H111.59C121.74 13.41 128 29.92 128 48v368c0 38.87 34.65 69.65 74.75 63.12C234.22 474 256 444.46 256 412.57zM288 384v32c0 52.93-43.06 96-96 96h336c61.86 0 112-50.14 112-112 0-8.84-7.16-16-16-16H288z">
+            </path>
+          </svg><!-- <i class="fas fa-scroll"></i> Font Awesome fontawesome.com -->
+          <b>Liste des villes</b>
+        </div>
+        <div class="card-body">
+          <div class="well bs-component">
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="table-responsive">
+
+                  <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                      <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"
+                              aria-controls="dataTable"
+                              class="custom-select custom-select-sm form-control form-control-sm">
+                              <option value="10">10</option>
+                              <option value="25">25</option>
+                              <option value="50">50</option>
+                              <option value="100">100</option>
+                            </select> entries</label></div>
                       </div>
+                      <div class="col-sm-12 col-md-6">
+                        <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
+                              class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                          role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                          <thead>
+                            <tr class="bg-primary" role="row">
+                              <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                aria-sort="ascending" aria-label="NOM DU QUARTIER: activate to sort column descending"
+                                style="width: 242px;">
+                                <p align="center">NOM DU QUARTIER</p>
+                              </th>
+                              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                aria-label="VILLE: activate to sort column ascending" style="width: 96px;">
+                                <p align="center">VILLE</p>
+                              </th>
+                              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                aria-label="Options: activate to sort column ascending" style="width: 108px;">
+                                <p align="center">Options</p>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+
+
+                            <tr role="row" class="odd">
+                              <td align="center" class="sorting_1">MIMBOMAN </td>
+                              <td align="center">
+                                YAOUNDE </td>
+                              <td class="project-actions text-center">
+
+                                <a class="btn btn-danger btn-sm" >
+                                  <!-- (click)="deletePost(projet.id)" -->
+
+                                  <i class="fa-solid fa-trash" (click)="confirmDelete(21)">
+                                  </i>
+                                </a>
+                              </td>
+                            </tr>
+                            <tr role="row" class="even">
+                              <td align="center" class="sorting_1">OMNISPORT </td>
+                              <td align="center">
+                                YAOUNDE </td>
+                              <td class="project-actions text-center">
+
+                                <a class="btn btn-danger btn-sm">
+                                  <!-- (click)="deletePost(projet.id)" -->
+
+                                  <i class="fa-solid fa-trash" (click)="confirmDelete(21)">
+                                  </i>
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot>
+                            <tr class="bg-primary">
+                              <th rowspan="1" colspan="1">
+                                <p align="center">NOM DU QUARTIER</p>
+                              </th>
+                              <th rowspan="1" colspan="1">
+                                <p align="center">VILLE</p>
+                              </th>
+                              <th rowspan="1" colspan="1">
+                                <p align="center">Options</p>
+                              </th>
+                            </tr>
+
+                          </tfoot>
+                          <tbody></tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 2
+                          of 2 entries</div>
+                      </div>
+                      <div class="col-sm-12 col-md-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                          <ul class="pagination">
+                            <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#"
+                                aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                            </li>
+                            <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable"
+                                data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                            <li class="paginate_button page-item next disabled" id="dataTable_next"><a href="#"
+                                aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-              </form>
+
+                </div>
+              </fieldset>
+            </form>
+
           </div>
+        </div>
+        <div class="card-footer">
+
+        </div>
       </div>
-  </div>
-
-  <div class="row">
-      <div class="col-md-12">
-          <hr>
-      </div>
-  </div>
-
-  <div class="row">
-      <div class="col-xl-12">
-          <div class="card mb-4">
-              <div class="card-header">
-                  <svg class="svg-inline--fa fa-scroll fa-w-20 custom-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="scroll" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M48 0C21.53 0 0 21.53 0 48v64c0 8.84 7.16 16 16 16h80V48C96 21.53 74.47 0 48 0zm208 412.57V352h288V96c0-52.94-43.06-96-96-96H111.59C121.74 13.41 128 29.92 128 48v368c0 38.87 34.65 69.65 74.75 63.12C234.22 474 256 444.46 256 412.57zM288 384v32c0 52.93-43.06 96-96 96h336c61.86 0 112-50.14 112-112 0-8.84-7.16-16-16-16H288z"></path></svg><!-- <i class="fas fa-scroll"></i> Font Awesome fontawesome.com -->
-                  <b>Liste des villes</b>
-              </div>
-              <div class="card-body">
-                  <div class="well bs-component">
-                      <form class="form-horizontal">
-                          <fieldset>
-                              <div class="table-responsive">
-
-                                      <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                          <thead>
-                                          <tr class="bg-primary" role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="NOM DU QUARTIER: activate to sort column descending" style="width: 242px;"><p align="center">NOM DU QUARTIER</p></th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="VILLE: activate to sort column ascending" style="width: 96px;"><p align="center">VILLE</p></th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Options: activate to sort column ascending" style="width: 108px;"><p align="center">Options</p></th></tr>
-                                          </thead>
-                                          <tbody>
-
-
-                                                                                  <tr role="row" class="odd">
-                                            <td align="center" class="sorting_1">MIMBOMAN  </td>
-                                              <td align="center">
-                                                  YAOUNDE                                                            </td>
-                                                  <td class="project-actions text-right">
-
-                                                    <a  class="btn btn-danger btn-sm" >
-                                                      <!-- (click)="deletePost(projet.id)" -->
-
-                                                        <i class="fa-solid fa-trash">
-                                                        </i>
-                                                    </a>
-                                                 </td>
-                                                                                                                       </tr><tr role="row" class="even">
-                                            <td align="center" class="sorting_1">OMNISPORT  </td>
-                                              <td align="center">
-                                                  YAOUNDE                                                            </td>
-                                                  <td class="project-actions text-right">
-
-                                                    <a  class="btn btn-danger btn-sm" >
-                                                      <!-- (click)="deletePost(projet.id)" -->
-
-                                                        <i class="fa-solid fa-trash">
-                                                        </i>
-                                                    </a>
-                                                 </td>
-                                                                                                                       </tr></tbody>
-                                          <tfoot>
-                                          <tr class="bg-primary"><th rowspan="1" colspan="1"><p align="center">NOM DU QUARTIER</p></th><th rowspan="1" colspan="1"><p align="center">VILLE</p></th><th rowspan="1" colspan="1"><p align="center">Options</p></th></tr>
-
-                                          </tfoot>
-                                          <tbody></tbody>
-                                      </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 2 of 2 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
-
-                              </div>
-                          </fieldset></form>
-
-                  </div>
-              </div>
-              <div class="card-footer">
-
-              </div>
-          </div>
-      </div>
+    </div>
   </div>
 
 </div>
