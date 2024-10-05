@@ -86,16 +86,28 @@
                 </thead>
                 <tbody>
 
-                  <tr role="row" class="odd">
-                    <td class="sorting_1"><a href="#">N° 0901 / 01 /Pdt/SG/ONIGC/24</a></td>
+                  <tr role="row" class="odd" *ngFor="let attest of attestations">
+                    <td class="sorting_1"><a href="#"></a></td>
                     <!--<td><a href="#"></a></td>-->
-                    <td><a href="#">2024-01-04</a></td>
-                    <td><a href="#">24-3595</a></td>
+                    <td><a href="#">{{attest.created_at | date: 'dd/MM/yyyy'}} </a></td>
+                    <td><a href="#"></a></td>
                     <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">NNOMO AMOUGOU THIERRY FABRICE</a></td>
+                          alt="">{{ getMemberName(attest.memnbre_id) }}</a></td>
 
                     <td>
-                      <a href="modifier_statut_demande_part.php?id=915">Envoyer</a>
+                      <a [routerLink]="['/modifier-statut', attest.id]">
+                        <span class="badge" [ngClass]="{
+                          'badge-success': attest.status === 2,
+                          'badge-warning': attest.status === 1,
+                          'badge-danger': attest.status === 3
+                        }">
+                          {{
+                            attest.status === 1 ? 'Envoyé' :
+                            attest.status === 2 ? 'Approuvé' :
+                            'Rejeté'
+                          }}
+                        </span>
+                      </a>
                     </td>
                     <td align="center"><a href="attestation_part.php?id=915" target="_blank">
                         <svg class="svg-inline--fa fa-print fa-w-16 custom-icon " aria-hidden="true" focusable="false"
@@ -106,74 +118,9 @@
                           </path>
                         </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com -->
                       </a></td>
-                    <td>MONGO SALOMON</td>
+                    <td>{{attest.author}}</td>
                   </tr>
-                  <tr role="row" class="even">
-                    <td class="sorting_1"><a href="#">N° 0902 / 01 /Pdt/SG/ONIGC/24</a></td>
-                    <!--<td><a href="#"></a></td>-->
-                    <td><a href="#">2024-01-04</a></td>
-                    <td><a href="#">24-3595</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">NNOMO AMOUGOU THIERRY FABRICE</a></td>
 
-                    <td>
-                      <a href="modifier_statut_demande_part.php?id=916">Envoyer</a>
-                    </td>
-                    <td align="center"><a href="attestation_part.php?id=916" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16 custom-icon " aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com -->
-                      </a></td>
-                    <td>MONGO SALOMON</td>
-                  </tr>
-                  <tr role="row" class="odd">
-                    <td class="sorting_1"><a href="#">N° 0903 / 01 /Pdt/SG/ONIGC/24</a></td>
-                    <!--<td><a href="#"></a></td>-->
-                    <td><a href="#">2024-01-05</a></td>
-                    <td><a href="#">24- 3596</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">ABADA NGUELE Yann Jeffry</a></td>
-
-                    <td>
-                      <a href="modifier_statut_demande_part.php?id=917">Envoyer</a>
-                    </td>
-                    <td align="center"><a href="attestation_part.php?id=917" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16 custom-icon " aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com -->
-                      </a></td>
-                    <td>NGO NDENGUE VIVIANE</td>
-                  </tr>
-                  <tr role="row" class="even">
-                    <td class="sorting_1"><a href="#">N° 0904 / 01 /Pdt/SG/ONIGC/24</a></td>
-                    <!--<td><a href="#"></a></td>-->
-                    <td><a href="#">2024-01-05</a></td>
-                    <td><a href="#">10- 1157</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">ATANGANA EMBOLO Joseph Marie Benjamin </a></td>
-
-                    <td>
-                      <a href="modifier_statut_demande_part.php?id=918">Envoyer</a>
-                    </td>
-                    <td align="center"><a href="attestation_part.php?id=918" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16 custom-icon " aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com -->
-                      </a></td>
-                    <td>NGO NDENGUE VIVIANE</td>
-                  </tr>
 
 
 

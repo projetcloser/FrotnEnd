@@ -13,7 +13,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './index-pays.component.css'
 })
 export class IndexPaysComponent {
-  pays: Pays[]=[];
+  countries: Pays[]=[];
+  currentPage = 1;
+  pageSize = 5; // Nombre de pays par page
+  totalCountries = 0; // Nombre total de pays (à ajuster selon ta logique)
   // en voyer le loading
   isLoading:boolean = true;
 
@@ -25,18 +28,34 @@ navigateToForm() {
 
 
 ngOnInit(): void{
-  this.paysService.getAll().subscribe(
-    (data:Pays[])=>{
-      this.pays = data;
-      console.log(this.pays);
-
-    },
-    error => {
-      console.error('Error fetching project', error);
-    }
-)
+  this.getCountries();
+}
+getCountries(): void {
+  this.paysService.getAll().subscribe((data) => {
+    this.countries = data;
+    this.totalCountries = data.length; // Mettre à jour cette logique pour obtenir le total depuis le serveur
+  }, error => {
+    console.error('Erreur lors de la récupération des pays', error);
+  });
 }
 
+
+nextPage() {
+  this.currentPage++;
+  this.getCountries();
+}
+
+previousPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.getCountries();
+  }
+}
+
+goToPage(page: number) {
+  this.currentPage = page;
+  this.getCountries();
+}
   /**
  * Write code on Method
  *
@@ -44,7 +63,7 @@ ngOnInit(): void{
  */
   deletePost(id:number){
     this.paysService.delete(id).subscribe(res => {
-         this.pays = this.pays.filter(item => item.id !== id);
+         this.countries = this.countries.filter(item => item.id !== id);
         //  console.log('activites deleted successfully!');
          alert("projt deleted successfully!")
     })

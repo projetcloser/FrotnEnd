@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EntrepriseServiceService } from '../entreprise-service.service';
 import { Router, RouterModule } from '@angular/router';
 import { Entreprise } from '../../../models/entreprise';
@@ -13,43 +13,62 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create-entreprise.component.css'
 })
 export class CreateEntrepriseComponent {
-  form!:FormGroup;
+  entrepriseForm!: FormGroup;
   compagnie: Entreprise[] = [];
+  countries: any[] = [];
+  cities: any[] = []
 
-  constructor(public entrepriseService:EntrepriseServiceService, private router:Router){
+  currentTime = new Date();
+  currentDay = new Date();
+
+  constructor(public entrepriseService:EntrepriseServiceService, private router:Router,private fb: FormBuilder,){
 
   }
 
   ngOnInit():void{
-    this.form = new FormGroup({
-      nom: new FormControl('',[Validators.required]),
-      descrip: new FormControl('',[Validators.required]),
-      dtedebut: new FormControl('',[Validators.required]),
-      dtefin: new FormControl('',[Validators.required]),
-      etat: new FormControl('',[Validators.required]),
-      // contry_id: new FormControl('',[Validators.required]),
+    this.entrepriseForm = this.fb.group({
+      social_reason: ['', Validators.required],
+      author: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: [''],
+      nui: ['', Validators.required],
+      type: ['', Validators.required],
+      country_id: ['', Validators.required],
+      city_id: ['', Validators.required],
+      neighborhood: [''],
+      contact_person: ['', Validators.required],
+      contact_person_phone: ['', Validators.required],
+      status: [],
     });
 
-    // this.projetService.getAll().subscribe({
-    //   next: (projet) => {
-    //     this.projet = projet;
-    //   },
-    //   error: (err) => {
-    //     console.error('Error fetching projet', err);
-    //   }
-    // });
+    this.loadCities();
+    this.loadCountries();
 
+  }
+
+  loadCountries() {
+    this.entrepriseService.getCountries().subscribe((data) => {
+      console.log(data);
+      this.countries = data;
+    });
+  }
+
+  loadCities() {
+    this.entrepriseService.getCities().subscribe((data) => {
+      this.cities = data;
+    });
   }
 
   get f(){
-    return this.form.controls;
+    return this.entrepriseForm.controls;
   }
 
-  submit(){
-    console.log(this.form.value);
-    this.entrepriseService.create(this.form.value).subscribe((res:any)=>{
-      alert('compagnie  created Successfull!!');
-      this.router.navigateByUrl('projet/index');
-    })
+  onSubmit() {
+    if (this.entrepriseForm.valid) {
+      // const caisseData = this.caisseForm.value;
+      this.entrepriseService.create(this.entrepriseForm.value).subscribe(() => {
+        this.router.navigate(['/entreprise']);
+      });
+    }
   }
 }

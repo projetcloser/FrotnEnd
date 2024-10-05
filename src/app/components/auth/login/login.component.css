@@ -1,0 +1,29 @@
+/* login.component.css */
+
+/* Style de fond dégradé */
+.bg-gradient-primary {
+  background: linear-gradient(to right, #007bff, #6f42c1);
+  height: 100vh; /* Prendre toute la hauteur de l'écran */
+}
+
+.slider {
+  height: 100%;
+}
+
+.slider img {
+  height: 100%; /* Assurez-vous que l'image remplit le conteneur */
+  object-fit: cover; /* Gardez le rapport d'aspect */
+}
+
+/* Styles pour le formulaire */
+.card {
+  border-radius: 15px; /* Coins arrondis pour la carte */
+}
+
+.form-control-user {
+  border-radius: 15px; /* Coins arrondis pour les champs de formulaire */
+}
+
+.btn-user {
+  border-radius: 15px; /* Coins arrondis pour les boutons */
+}

@@ -13,6 +13,8 @@ import { PaysModule } from './componnents/pays/pays/pays.module';
 import { CotisationModule } from './componnents/cotisation/cotisation/cotisation.module';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PersonnelModule } from './componnents/personnel/personnel/personnel.module';
+import { AuthService } from './components/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +32,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     QuartierModule,
     PaysModule,
     CotisationModule,
+    PersonnelModule,
 
     NgxPaginationModule
   ],
@@ -42,8 +45,10 @@ export class AppComponent {
 
   routes: Array<any> = routes
 
-  constructor(){
+  constructor(private authService: AuthService) { }
 
+  logout(): void {
+    this.authService.logout();
   }
 
   ngOnInit(){

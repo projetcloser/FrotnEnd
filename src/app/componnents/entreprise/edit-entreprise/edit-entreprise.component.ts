@@ -16,59 +16,58 @@ import { CommonModule } from '@angular/common';
 })
 export class EditEntrepriseComponent {
 
-  id!:number;
-  compagnies!:Entreprise;
-  form!:FormGroup;
-
+  companyForm!: FormGroup;
+  companyId!: number;
+  company!: Entreprise;
   countries: any[] = [];
+  cities: any[] = [];
 
-  constructor( public compagniesService: EntrepriseServiceService, private router:Router, private route:ActivatedRoute,
+  currentTime = new Date();
+  currentDay = new Date();
+
+  constructor( public companyService: EntrepriseServiceService, private router:Router, private route:ActivatedRoute,
     private fb: FormBuilder, private countryService: PaysServiceService, cityService:VilleServiceService
   ){}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    // this.id = this.route.snapshot.params['id'];
+    this.companyId = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.form = new FormGroup({
-      nom: new FormControl('',[Validators.required]),
-      descrip: new FormControl('',[Validators.required]),
-      dtedebut: new FormControl('',[Validators.required]),
-      dtefin: new FormControl('',[Validators.required]),
-      etat: new FormControl('',[Validators.required]),
+   // Charger l'entreprise à mettre à jour
+   this.companyService.find(this.companyId).subscribe((data: Entreprise) => {
+    this.company = data;
+
+    this.companyForm = this.fb.group({
+      name: [this.company.name, Validators.required],
+      author: [this.company.author, Validators.required],
+      phone: [this.company.phone, Validators.required],
+      email: [this.company.email],
+      nui: [this.company.nui, Validators.required],
+      type: [this.company.type, Validators.required],
+      country_id: [this.company.country_id, Validators.required],
+      city_id: [this.company.city_id, Validators.required],
+      neighborhood: [this.company.neighborhood],
+      contact_person: [this.company.contact_person, Validators.required],
+      contact_person_phone: [this.company.contact_person_phone, Validators.required],
+      status: [this.company.status, Validators.required]
+    });
+  });
+
+    // Charger la liste des pays
+    this.companyService.getCountries().subscribe((data: any[]) => {
+      this.countries = data;
     });
 
-    this.compagniesService.find(this.id).subscribe({
-      next: (compagnies) => {
-        this.form.patchValue(compagnies);
-      },
-      error: (err) => {
-        console.error('Error fetching compagnies', err);
-      }
-    });
-
-    this.countryService.getAll().subscribe({
-      next: (countries) => {
-        this.countries = countries;
-      },
-      error: (err) => {
-        console.error('Error fetching countries', err);
-      }
+    // Charger la liste des villes
+    this.companyService.getCities().subscribe((data: any[]) => {
+      this.cities = data;
     });
   }
-
-  get f(){
-    return this.form.controls;
-  }
-  submit(): void {
-    console.log(this.form.value);
-    this.compagniesService.update(this.id, this.form.value).subscribe({
-      next: (res) => {
-        alert('compagnies updated successfully!');
-        this.router.navigateByUrl('compagnies/index');
-      },
-      error: (err) => {
-        console.error('Error updating compagnies', err);
-      }
-    });
+  onSubmit(): void {
+    if (this.companyForm.valid) {
+      this.companyService.update(this.companyId, this.companyForm.value).subscribe(() => {
+        this.router.navigate(['/entreprise']);
+      });
+    }
   }
 }

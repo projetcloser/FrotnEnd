@@ -1,4 +1,4 @@
 export class Pays {
-  nom:String=""
+  name:string=""
   id!:Number
 }

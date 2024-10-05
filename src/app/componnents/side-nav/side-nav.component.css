@@ -1,0 +1,4 @@
+.bg-gradient-green {
+  background-color: #28a745 !important;
+  background-image: none !important; /* Pour s'assurer qu'aucun gradient ne se superpose */
+}

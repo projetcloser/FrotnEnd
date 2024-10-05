@@ -29,8 +29,7 @@
     <h1 class="mt-4">Fiches d'inscription</h1>
     <ol class="breadcrumb mb-4" >
       <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-          Hello M/Mme MONGO SALOMON, il est 11:17 en ce jour
-          du Lundi 29 Juillet 2024.
+          Hello M/Mme MONGO SALOMON, il est {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
       </li>
     </ol>
 
@@ -42,7 +41,7 @@
                       <!-- Nav pills -->
                       <ul class="nav nav-pills" style="float: right;">
                           <li class="nav-item">
-                              <a class="nav-link active" href="liste_personnel.php">
+                              <a class="nav-link active" [routerLink]="['/personnel']" routerLinkActive="router-link-active" >
 
                                   Retour
                               </a>

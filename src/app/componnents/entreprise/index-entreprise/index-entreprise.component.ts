@@ -2,28 +2,39 @@ import { Component } from '@angular/core';
 import { LoadingComponent } from '../../../components/loading/loading.component';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Entreprise } from '../../../models/entreprise';
+
 import { EntrepriseServiceService } from '../entreprise-service.service';
+import { Entreprise } from '../../../models/entreprise';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-index-entreprise',
   standalone: true,
-  imports: [LoadingComponent,RouterModule, RouterLink, CommonModule,],
+  imports: [LoadingComponent,RouterModule, RouterLink, CommonModule,FormsModule,ReactiveFormsModule],
   templateUrl: './index-entreprise.component.html',
   styleUrl: './index-entreprise.component.css'
 })
 export class IndexEntrepriseComponent {
-  entreprise: Entreprise[]=[];
+  entreprises: Entreprise[]=[];
+
   // en voyer le loading
   isLoading:boolean = true;
+  countries: any[] = [];
+  cities: any[] = [];
+
+  currentTime = new Date();
+  currentDay = new Date();
 
 constructor(public entrepriseService: EntrepriseServiceService,private router: Router){}
 
 ngOnInit(): void{
+  this.loadCountries();
+    this.loadCities();
   this.entrepriseService.getAll().subscribe(
     (data:Entreprise[])=>{
-      this.entreprise = data;
-      console.log(this.entreprise);
+      console.log(data);
+      this.entreprises = data;
+
 
     },
     error => {
@@ -32,14 +43,40 @@ ngOnInit(): void{
 )
 }
 
+// Récupérer les pays
+loadCountries(): void {
+  this.entrepriseService.getCountries().subscribe(data => {
+    this.countries = data;
+  });
+}
+
+// Récupérer les villes
+loadCities(): void {
+  this.entrepriseService.getCities().subscribe(data => {
+    this.cities = data;
+  });
+}
+
+// Trouver le nom du pays à partir de l'ID
+getCountryName(country_id: number): string {
+  const country = this.countries.find(c => c.id === country_id);
+  return country ? country.name : 'Non défini';
+}
+
+// Trouver le nom de la ville à partir de l'ID
+getCityName(city_id: number): string {
+  const city = this.cities.find(c => c.id === city_id);
+  return city ? city.name : 'Non défini';
+}
+
   /**
  * Write code on Method
  *
  * @return response()
  */
-  deletePost(id:number){
+  deletePersonnel(id:number){
     this.entrepriseService.delete(id).subscribe(res => {
-         this.entreprise = this.entreprise.filter(item => item.id !== id);
+         this.entreprises = this.entreprises.filter(item => item.id !== id);
         //  console.log('activites deleted successfully!');
          alert("entreprise deleted successfully!")
     })
@@ -57,11 +94,5 @@ ngOnInit(): void{
     }
   }
 
-  // Suppression de la personne avec l'ID donné
-  deletePersonnel(id: number) {
-    // Vous pouvez appeler ici votre service pour la suppression, par exemple :
-    // this.personnelService.deletePersonnel(id).subscribe(response => { ... });
-    console.log('Suppression confirmée pour l\'ID:', id);
-    // Redirection ou autre logique après la suppression
-  }
+
 }

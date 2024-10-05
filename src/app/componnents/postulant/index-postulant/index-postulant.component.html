@@ -100,25 +100,34 @@
                             </thead>
                             <tbody>
 
-                              <tr class="odd">
-                                <td valign="top" colspan="7" class="dataTables_empty">No data available in table</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                              <tr class="odd" *ngFor="let postulant of postulants">
+                                <td >{{postulant.firstname}}</td>
+                                <td>{{postulant.profession}}</td>
+                                <td>{{postulant.neighborhood}}</td>
+                                <td align="center" >{{ getCityName(postulant.city_id) }}</td>
+                                <td>
+                                  <span class="badge"
+                                    [ngClass]="{
+                                      'badge-warning': postulant.status === 1,
+                                      'badge-danger': postulant.status === 0
+                                    }">
+                                      {{postulant.status === 1 ? 'Envoyé' : 'Annulé' }}
+                                  </span>
+
+                                </td>
+                                <td>{{postulant.firstname}}</td>
                                 <td class="project-actions text-right">
                                   <!-- <a class="btn btn-primary btn-sm" > -->
                                     <!--  [routerLink]="[data.i_id,'view']" -->
                                       <!-- <i class="fa-solid fa-eye">
                                       </i> -->
                                   <!-- </a> -->
-                                  <a  class="btn btn-info btn-sm"  routerLinkActive="router-link-active" (click)="navigateToFormEdit()" >
+                                  <a  class="btn btn-info btn-sm"  routerLinkActive="router-link-active" [routerLink]="['/postulant', postulant.id]" >
                                     <!-- [routerLink]="['/projet/',projet.id, 'edit']" [routerLink]="[data.i_id,'edit']" -->
                                       <i class="fa-solid fa-edit">
                                       </i>
                                   </a>
-                                  <a  class="btn btn-danger btn-sm" (click)="confirmDelete(21)">
+                                  <a  class="btn btn-danger btn-sm" (click)="confirmDelete(postulant.id)">
                                     <!-- (click)="deletePost(projet.id)" -->
 
                                       <i class="fa-solid fa-trash">
@@ -128,20 +137,6 @@
                               </tr>
                             </tbody>
 
-
-
-
-                            <!-- <tfoot>
-                                                    <tr class="bg-primary">
-                                                    <th><p align="center">Nom</p></th>
-                                                    <th><p align="center">Profession </p></th>
-                                                    <th><p align="center">Quartier </p></th>
-                                                    <th><p align="center">ville</p></th>
-                                                    <th><p align="center">Transfert</p></th>
-                                                    <th><p align="center">Options</p></th>
-                                                    </tr>
-                                                </tfoot> -->
-                            <tbody></tbody>
                           </table>
                         </div>
                       </div>

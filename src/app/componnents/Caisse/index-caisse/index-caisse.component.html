@@ -3,7 +3,7 @@
   <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active"
       style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-      Hello M/Mme, il est 12:44 en ce jour du Mercredi 31 Juillet 2024 .
+      Hello M/Mme, il est {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
     </li>
   </ol>
   <!--                Main Body-->
@@ -94,74 +94,25 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr role="row" class="odd">
+                            <tr role="row" class="odd" *ngFor="let caisse of caisses">
                               <input name="nom" type="hidden" value="">
-                              <td align="center" class="sorting_1"><b>0000</b></td>
-                              <td align="center"><b>E-banking</b></td>
-                              <td align="center"><b>ONIGC NOCE</b></td>
-                              <td align="center"><b>1,539,000</b></td>
-                              <td align="center"><b>24-01-2022</b></td>
+                              <td align="center" class="sorting_1"><b>{{ caisse.code }}</b></td>
+                              <td align="center"><b>{{ caisse.name }}</b></td>
+                              <td align="center"><b>{{ getPersonnelName(caisse.personnel_id) }}</b></td>
+                              <td align="center"><b>{{ caisse.balance }}</b></td>
+                              <td align="center"><b>{{ caisse.created_at | date: 'yyyy'}}</b></td>
                               <td align="center" style="width:18%">
-                                <a class="btn btn-info btn-sm">
-                                  <!-- [routerLink]="['/projet/',projet.id, 'edit']" [routerLink]="[data.i_id,'edit']" -->
+                                <a class="btn btn-info btn-sm" [routerLink]="['/caisse/edit', caisse.id]">
                                   <i class="fa-solid fa-edit">
                                   </i>
                                 </a>
-                                <a class="btn btn-danger btn-sm" (click)="confirmDelete(21)">
-                                  <!-- (click)="deletePost(projet.id)" -->
-
+                                <a class="btn btn-danger btn-sm" (click)="confirmDelete(caisse.id)">
                                   <i class="fa-solid fa-trash">
                                   </i>
                                 </a>
                               </td>
                             </tr>
-                            <tr role="row" class="even">
-                              <input name="nom" type="hidden" value="">
-                              <td align="center" class="sorting_1"><b>SY001</b></td>
-                              <td align="center"><b>Siege</b></td>
-                              <td align="center"><b>NGO NDENGUE VIVIANE</b></td>
-                              <td align="center"><b>75,120,000</b></td>
-                              <td align="center"><b>07-02-2022</b></td>
-                              <td align="center" style="width:18%">
-                                <a class="btn btn-info btn-sm">
-                                  <!-- [routerLink]="['/projet/',projet.id, 'edit']" [routerLink]="[data.i_id,'edit']" -->
-                                  <i class="fa-solid fa-edit">
-                                  </i>
-                                </a>
-                                <a class="btn btn-danger btn-sm">
-                                  <!-- (click)="deletePost(projet.id)" -->
-
-                                  <i class="fa-solid fa-trash" (click)="confirmDelete(21)">
-                                  </i>
-                                </a>
-
-                              </td>
-                            </tr>
                           </tbody>
-                          <tfoot>
-                            <tr class="bg-primary">
-                              <th rowspan="1" colspan="1">
-                                <p align="center" style="color: white">Code</p>
-                              </th>
-                              <th rowspan="1" colspan="1">
-                                <p align="center" style="color: white">Caisse</p>
-                              </th>
-                              <th rowspan="1" colspan="1">
-                                <p align="center" style="color: white">Responsable</p>
-                              </th>
-                              <th rowspan="1" colspan="1">
-                                <p align="center" style="color: white">Solde</p>
-                              </th>
-                              <th rowspan="1" colspan="1">
-                                <p align="center" style="color: white">Date</p>
-                              </th>
-                              <th rowspan="1" colspan="1">
-                                <p align="center">Options</p>
-                              </th>
-                            </tr>
-
-                          </tfoot>
-
                         </table>
                       </div>
                     </div>

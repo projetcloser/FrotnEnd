@@ -21,7 +21,7 @@
           <b>
             <ul class="nav nav-pills " style="float: right;">
               <li class="nav-item ">
-                <a class="nav-link active btn btn-success" href="liste_evenement.php" style="background-color: #28a745; color: white;">
+                <a class="nav-link active btn btn-success" [routerLink]="['/evenement']" style="background-color: #28a745; color: white;">
                   Retour
                 </a>
               </li>
@@ -76,12 +76,16 @@
 
                         <div class="row">
                           <div class="col-lg-8 offset-lg-2">
-                            <form action="save_evenement.php" method="POST">
+                            <form [formGroup]="evenementForm" (ngSubmit)="onSubmit()">
                               <div class="row">
                                 <div class="col-sm-6">
                                   <div class="form-group">
                                     <label>Titre</label>
                                     <input class="form-control" type="text" name="titre" required="">
+                                  </div>
+                                  <div *ngIf="evenementForm.get('titre')?.invalid && evenementForm.get('titre')?.touched">
+                                    <small *ngIf="evenementForm.get('titre')?.errors?.['required']">Titre est requis.</small>
+                                    <small *ngIf="evenementForm.get('titre')?.errors?.['minlength']">Titre doit avoir au moins 3 caractères.</small>
                                   </div>
                                 </div>
 
@@ -90,17 +94,28 @@
                                     <label>Lieu:<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="lieu" required="">
                                   </div>
+                                  <div *ngIf="evenementForm.get('lieu')?.invalid && evenementForm.get('lieu')?.touched">
+                                    <small *ngIf="evenementForm.get('lieu')?.errors?.['required']">Lieu est requis.</small>
+                                  </div>
                                 </div>
                                 <div class="col-sm-6">
                                   <div class="form-group">
                                     <label> Nombre maximun de participants : <span class="text-danger">*</span></label>
                                     <input type="number" class="form-control" name="nb_part" required="">
                                   </div>
+                                  <div *ngIf="evenementForm.get('participant')?.invalid && evenementForm.get('participant')?.touched">
+                                    <small *ngIf="evenementForm.get('participant')?.errors?.['required']">Nombre de participants est requis.</small>
+                                    <small *ngIf="evenementForm.get('participant')?.errors?.['min']">Nombre de participants doit être au moins 1.</small>
+                                  </div>
                                 </div>
                                 <div class="col-sm-6">
                                   <div class="form-group">
                                     <label>Coût : </label>
                                     <input type="number" class="form-control" name="cout" required="">
+                                  </div>
+                                  <div *ngIf="evenementForm.get('cout')?.invalid && evenementForm.get('cout')?.touched">
+                                    <small *ngIf="evenementForm.get('cout')?.errors?.['required']">Coût est requis.</small>
+                                    <small *ngIf="evenementForm.get('cout')?.errors?.['min']">Coût doit être supérieur ou égal à 0.</small>
                                   </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -109,11 +124,17 @@
                                     <input type="date" class="form-control" value="2024-08-14" name="date_debut"
                                       required="">
                                   </div>
+                                  <div *ngIf="evenementForm.get('date_debut')?.invalid && evenementForm.get('date_debut')?.touched">
+                                    <small *ngIf="evenementForm.get('date_debut')?.errors?.['required']">Date de début est requise.</small>
+                                  </div>
                                 </div>
                                 <div class="col-sm-6">
                                   <div class="form-group">
                                     <label>Date fin:</label>
                                     <input type="date" class="form-control" name="date_fin" required="">
+                                  </div>
+                                  <div *ngIf="evenementForm.get('date_fin')?.invalid && evenementForm.get('date_fin')?.touched">
+                                    <small *ngIf="evenementForm.get('date_fin')?.errors?.['required']">Date de fin est requise.</small>
                                   </div>
                                 </div>
 
@@ -121,7 +142,10 @@
                                   <div class="form-group">
                                     <label>Auteur</label>
                                     <div>
-                                      <input type="text" class="form-control" value="MONGO SALOMON" readonly="">
+                                      <input type="text" class="form-control" value="MONGO SALOMON" >
+                                    </div>
+                                    <div *ngIf="evenementForm.get('author')?.invalid && evenementForm.get('author')?.touched">
+                                      <small *ngIf="evenementForm.get('author')?.errors?.['required']">Auteur est requis.</small>
                                     </div>
                                   </div>
                                 </div>
@@ -132,8 +156,8 @@
 
 
                               <div class="m-t-20 text-center">
-                                <button class="btn btn-success submit-btn">Envoyer</button>
-                                <a href="liste_cachet.php" style=" width:150px;" class="btn btn-danger">
+                                <button class="btn btn-success submit-btn" type="submit" [disabled]="evenementForm.invalid">Envoyer</button>
+                                <a  style=" width:150px;" class="btn btn-danger">
                                   <font>Annuler</font>
                                 </a>
                               </div>

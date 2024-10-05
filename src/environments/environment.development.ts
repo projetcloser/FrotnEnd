@@ -1,4 +1,5 @@
 export const environment = {
   production:false,
-  apiUrl:"https://app.closer.cm/public/"
+  apiUrl:"http://localhost:4000/"
 };
+  

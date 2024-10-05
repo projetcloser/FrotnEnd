@@ -26,50 +26,57 @@
 
                       <div class="row">
                           <div class="col-lg-8 offset-lg-2">
-                              <form action="save_add_caisse.php" method="POST">
-                                  <div class="row">
-
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label> Nom Caisse</label>
-                                              <input class="form-control" type="text" name="caisse">
-                                          </div>
-                                      </div>
-                                      <div class="col-sm-6">
-                                          <div class="form-group">
-                                              <label>Responsable</label>
-                                              <select class="form-control" name="id_personnel">
-                                                  <option value="0" selected="">...</option>
-                                                  <option value="1">MONGO SALOMON</option><option value="2">ADAMOU MBEN</option><option value="3">BABA SOULEY</option><option value="4">ONIGC NOCE</option><option value="5">Test Testeur</option><option value="6">TEST SG SG</option><option value="7">TEST RR</option><option value="8">MANGA MEDZOA ELODIE CHANTAL</option><option value="9">MVOGO ENANI  LEOPOLD</option><option value="10">UM JOHANNA SERENA </option><option value="11">MONGO ESSOMBE  SALOMON</option><option value="12">NGOA MEYONG  KIZITO</option><option value="13">NGO NDENGUE  VIVIANE</option><option value="14">FEUZEU FEUGANG SIMPLICE </option><option value="15">M. BOUBAKAR  TOURE</option><option value="16">M. PEMAN GEOMBANG  Just-Fourier</option><option value="17">M. WAIMO FELTOING</option><option value="18">EKOUTA Dieudonné</option><option value="19">ZOUA Lucas</option><option value="20">M.YEYUNG GHOGOMU MBIMINA</option><option value="21">AMADOU  TEJANI</option><option value="22">NGBWA BITA Victor</option><option value="23">MARIE  LOUISE</option><option value="24">Developpeur Mobile</option>
-                                              </select>
-                                          </div>
-                                      </div>
-
-                                      <div class="col-sm-6">
-                                          <div class="form-group">
-                                              <label>Code:</label>
-                                              <input class="form-control" type="text" name="code">
-                                          </div>
-                                      </div>
-                                      <div class="col-sm-6">
-                                          <div class="form-group">
-                                              <label> Solde</label>
-                                               <input type="hidden" name="somme" value="0">
-                                              <input class="form-control" type="number" value="0" disabled="">
-                                          </div>
-                                      </div>
-                                      <div class="col-sm-6">
-                                          <div class="form-group">
-                                              <label> Date</label>
-                                              <input class="form-control" type="date" name="date_caisse">
-                                          </div>
-                                      </div>
+                            <form [formGroup]="caisseForm" (ngSubmit)="onSubmit()">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Nom Caisse</label>
+                                    <input class="form-control" formControlName="name">
+                                    <div *ngIf="caisseForm.get('name')?.invalid && (caisseForm.get('name')?.touched || caisseForm.get('name')?.dirty)" class="text-danger">
+                                      Nom est requis.
+                                    </div>
                                   </div>
-                                  <div class="m-t-20 text-center">
-                                      <button class="btn  submit-btn" style="background-color: #28a745; color: white;">Enregistrer</button>
-                                      <a routerLink="['/caisse']"  style=" width:150px;" class="btn btn-danger"><font>Annuler</font></a>
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label>Responsable</label>
+                                    <select class="form-control" formControlName="personnel_id">
+                                      <option value="" selected>...</option>
+                                      <option *ngFor="let personnel of personnels" [value]="personnel.id">{{ personnel.firstname }}</option>
+                                    </select>
+                                    <div *ngIf="caisseForm.get('personnel_id')?.invalid && (caisseForm.get('personnel_id')?.touched || caisseForm.get('personnel_id')?.dirty)" class="text-danger">
+                                      Responsable est requis.
+                                    </div>
                                   </div>
-                              </form>
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label>Code</label>
+                                    <input class="form-control" formControlName="code">
+                                    <div *ngIf="caisseForm.get('code')?.invalid && (caisseForm.get('code')?.touched || caisseForm.get('code')?.dirty)" class="text-danger">
+                                      Code est requis.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label>Solde</label>
+                                    <input class="form-control" type="number" formControlName="balance">
+                                  </div>
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label>Date</label>
+                                    <input class="form-control" type="date" formControlName="created_at">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="m-t-20 text-center">
+                                <button class="btn submit-btn" style="background-color: #28a745; color: white;">Enregistrer</button>
+                                <a routerLink="/caisse" style="width:150px;" class="btn btn-danger">Annuler</a>
+                              </div>
+                            </form>
+
                           </div>
                       </div>
 

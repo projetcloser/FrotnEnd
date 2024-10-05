@@ -6,3 +6,6 @@
 
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css");
 @import url("https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css");
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

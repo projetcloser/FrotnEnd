@@ -1,27 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+
+
+import { PersonnelService } from '../personnel.service';
+import { Personnel } from '../personnel';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @Component({
   selector: 'app-indexpersonnel',
   standalone: true,
   imports: [FormsModule,
-    CommonModule,ReactiveFormsModule
+    CommonModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    RouterModule
+
   ],
   templateUrl: './indexpersonnel.component.html',
   styleUrl: './indexpersonnel.component.css'
 })
-export class IndexpersonnelComponent {
+export class IndexpersonnelComponent implements OnInit {
 
-  constructor(private router: Router) {}
 
-  navigateToForm() {
-    this.router.navigate(['/nouvelle-personne']);
+
+  personnels: Personnel[] = [];
+
+  currentTime = new Date();
+  currentDay = new Date();
+
+  constructor(private router: Router,private personnelService:PersonnelService) {}
+
+  ngOnInit(): void {
+    this.getAllPersonnels();
   }
 
-  navigateToFormEdit() {
+  // Récupérer la liste des personnels
+  getAllPersonnels(): void {
+    this.personnelService.getAll().subscribe(
+      (data: Personnel[]) => {
+        console.log('Données récupérées :', data); // Vérifiez ce qui est renvoyé
+        this.personnels = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des personnels', error);
+      }
+    );
+  }
+
+  // Méthode pour naviguer vers les détails
+  viewPersonnel(id: number): void {
+    this.router.navigate(['/personnel-details', id]);
+  }
+
+  navigateToForm() {
+    this.router.navigate(['/Closer/nouvelle-personne']);
+  }
+
+  navigateToFormEdit(id: number) {
     this.router.navigate(['/modifier-personne']);
   }
 
@@ -33,31 +72,25 @@ export class IndexpersonnelComponent {
     }
   }
 
-  // Suppression de la personne avec l'ID donné
-  deletePersonnel(id: number) {
-    // Vous pouvez appeler ici votre service pour la suppression, par exemple :
-    // this.personnelService.deletePersonnel(id).subscribe(response => { ... });
-    console.log('Suppression confirmée pour l\'ID:', id);
-    // Redirection ou autre logique après la suppression
+
+
+  deletePersonnel(id:number){
+    this.personnelService.delete(id).subscribe(res => {
+         this.personnels = this.personnels.filter(item => item.id !== id);
+        //  console.log('activites deleted successfully!');
+         alert("personnels deleted successfully!")
+    })
   }
 
-  currentStep: number = 1;
-
-  nextStep() {
-    if (this.currentStep < 4) {
-      this.currentStep++;
-    }
-  }
-
-  previousStep() {
-    if (this.currentStep > 1) {
-      this.currentStep--;
-    }
-  }
 
   submit() {
     // Logic for final submission
     console.log('Final submission');
   }
+
+
+
+
+
 
 }

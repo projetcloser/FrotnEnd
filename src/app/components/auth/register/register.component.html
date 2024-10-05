@@ -1,0 +1,96 @@
+<div class="register-form">
+  <h2>Inscription</h2>
+  <form (ngSubmit)="register()">
+    <div>
+      <label for="name">Nom</label>
+      <input [(ngModel)]="name" type="text" id="name" name="name" required />
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input [(ngModel)]="email" type="email" id="email" name="email" required />
+    </div>
+    <div>
+      <label for="password">Mot de passe</label>
+      <input [(ngModel)]="password" type="password" id="password" name="password" required />
+    </div>
+    <button type="submit">Inscription</button>
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+</div>
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto" id="con" background="bdLIS.jpeg">
+  <div class="card card0 border-0">
+      <div class="row d-flex">
+          <div class="col-lg-6">
+              <div class="card1 pb-5">
+                  <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+                      <img src="../../assets/image/logo.jpg" class="image">
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="card2 card border-0 px-4 py-5">
+                  <div class="row mb-4 px-3">
+                      <div class="text-center">
+                       <h1 class="h4 text-gray-900 mb-4">PlateForme Web de Gestion du Personnel - Life 's simple</h1>
+                      </div>
+                  </div>
+                  <form class="user" role="form" action="processlogin.php" method="post" #f="ngForm" >
+                      <!-- utulisateur -->
+                      <!-- <div class="form-group">
+                          <input class="form-control form-control-user" placeholder="UTILISATEUR" name="user" type="text" autofocus required [(ngModel)]="user.name" #u="ngModel"
+                          pattern="[A-Z]+[a-z]+ [a-z]+">
+                          <div *ngIf="u.invalid">
+                              <div class="alert alert-danger" *ngIf="u.errors?.['pattern']">le champ utulisateur doit commencer par une lettre majuscule </div>
+                              <div class="alert alert-danger" *ngIf="u.errors?.['required']">le champ utulisateur doit etre renseigner</div>
+                            </div>
+                      </div> -->
+
+                      <!-- password -->
+                      <div class="form-group">
+                          <input class="form-control form-control-user" placeholder="MOT DE PASSE" name="password" type="password" value="" required >
+                          <!-- <div *ngIf="p.invalid">
+                              <div class="alert alert-danger" *ngIf="p.errors?.['pattern']">le champ password doit etre </div>
+                              <div class="alert alert-danger" *ngIf="p.errors?.['required']">le champ password doit etre renseigner</div>
+                            </div> -->
+                      </div>
+
+
+                      <!-- email -->
+                      <div class="form-group">
+                        <input class="form-control form-control-user" placeholder="EMAIL" name="email" type="email" value="" required 
+                        pattern="">
+                        <!-- <div *ngIf="e.invalid">
+                          <div class="alert alert-danger" *ngIf="e.errors?.['pattern']">le champ email doit etre </div>
+                          <div class="alert alert-danger" *ngIf="e.errors?.['required']">le champ email doit etre renseigner</div>
+                        </div> -->
+                      </div><br>
+
+                      <!-- chekbox --><!-- boutton -->
+                      <div class="form-group">
+                          <table border="1px" cellspacing="2px" cellpadding="5px">
+                              <tr>
+                                  <td>
+                                      <div class="custom-control custom-checkbox small">
+                                          <input type="radio" class="custom-control-input" id="customCheck">
+                                          <label class="custom-control-label" for="customCheck">SE RAPPELER ?</label>
+                                        </div>
+                                  </td>
+                                  <td>
+                                      <button class="btn btn-warning btn-user btn-block" type="submit" name="btnlogin"   routerLink="/LIS/dashboard">ME CONNECTER</button>
+                                  </td>
+                                  <td>
+                                      <div class="text-center">
+                                          <a class="small" href="register.php">Create an Account!</a>
+                                    </div>
+                                  </td>
+                              </tr>
+                          </table>
+                      </div>
+                  </form>
+
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>

@@ -75,46 +75,13 @@
                             </thead>
                             <tbody>
 
-                              <tr role="row" class="odd">
-                                <input name="nom" type="hidden" value="Afrique du Sud">
-                                <td align="center" class="sorting_1"><b>AFRIQUE DU SUD</b></td>
+                              <tr role="row" class="odd"  *ngFor="let country of countries">
+                                <!-- <input name="nom" type="hidden" value="Afrique du Sud"> -->
+                                <td align="center" class="sorting_1"><b>{{ country.name }}</b></td>
                               </tr>
-                              <tr role="row" class="even">
-                                <input name="nom" type="hidden" value="Algerie">
-                                <td align="center" class="sorting_1"><b>ALGERIE</b></td>
-                              </tr>
-                              <tr role="row" class="odd">
-                                <input name="nom" type="hidden" value="Angola">
-                                <td align="center" class="sorting_1"><b>ANGOLA</b></td>
-                              </tr>
-                              <tr role="row" class="even">
-                                <input name="nom" type="hidden" value="Benin">
-                                <td align="center" class="sorting_1"><b>BENIN</b></td>
-                              </tr>
-                              <tr role="row" class="odd">
-                                <input name="nom" type="hidden" value="Botswana">
-                                <td align="center" class="sorting_1"><b>BOTSWANA</b></td>
-                              </tr>
-                              <tr role="row" class="even">
-                                <input name="nom" type="hidden" value="Burkina Faso">
-                                <td align="center" class="sorting_1"><b>BURKINA FASO</b></td>
-                              </tr>
-                              <tr role="row" class="odd">
-                                <input name="nom" type="hidden" value="Burundi">
-                                <td align="center" class="sorting_1"><b>BURUNDI</b></td>
-                              </tr>
-                              <tr role="row" class="even">
-                                <input name="nom" type="hidden" value="Cameroun">
-                                <td align="center" class="sorting_1"><b>CAMEROUN</b></td>
-                              </tr>
-                              <tr role="row" class="odd">
-                                <input name="nom" type="hidden" value="Comores">
-                                <td align="center" class="sorting_1"><b>COMORES</b></td>
-                              </tr>
-                              <tr role="row" class="even">
-                                <input name="nom" type="hidden" value="Cote ivoire">
-                                <td align="center" class="sorting_1"><b>COTE IVOIRE</b></td>
-                              </tr>
+
+
+
                             </tbody>
                             <tfoot>
                               <tr class="bg-primary" style="background-color: #28a745; color: white;">

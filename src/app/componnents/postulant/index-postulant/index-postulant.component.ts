@@ -1,21 +1,83 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { Postulant } from '../../../models/postulant';
+import { PostulantServiceService } from '../postulant-service.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-index-postulant',
   standalone: true,
-  imports: [],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterLink,RouterModule],
   templateUrl: './index-postulant.component.html',
   styleUrl: './index-postulant.component.css'
 })
 export class IndexPostulantComponent {
-  constructor(private router: Router) {}
-  navigateToForm() {
-    this.router.navigate(['/nouveau-postulant']);
+  postulants: Postulant[]=[];
+
+  // en voyer le loading
+  isLoading:boolean = true;
+  countries: any[] = [];
+  cities: any[] = [];
+
+constructor(public postulantsService: PostulantServiceService,private router: Router){}
+
+ngOnInit(): void{
+  this.loadCountries();
+    this.loadCities();
+  this.postulantsService.getAll().subscribe(
+    (data:Postulant[])=>{
+      console.log(data);
+      this.postulants = data;
+
+
+    },
+    error => {
+      console.error('Error fetching compagnies', error);
+    }
+)
+}
+
+// Récupérer les pays
+loadCountries(): void {
+  this.postulantsService.getCountries().subscribe(data => {
+    this.countries = data;
+  });
+}
+
+// Récupérer les villes
+loadCities(): void {
+  this.postulantsService.getCities().subscribe(data => {
+    this.cities = data;
+  });
+}
+
+// Trouver le nom du pays à partir de l'ID
+getCountryName(country_id: number): string {
+  const country = this.countries.find(c => c.id === country_id);
+  return country ? country.name : 'Non défini';
+}
+
+// Trouver le nom de la ville à partir de l'ID
+getCityName(city_id: number): string {
+  const city = this.cities.find(c => c.id === city_id);
+  return city ? city.name : 'Non défini';
+}
+
+  /**
+ * Write code on Method
+ *
+ * @return response()
+ */
+  deletePersonnel(id:number){
+    this.postulantsService.delete(id).subscribe(res => {
+         this.postulants = this.postulants.filter(item => item.id !== id);
+        //  console.log('activites deleted successfully!');
+         alert("entreprise deleted successfully!")
+    })
   }
-  navigateToFormEdit() {
-    this.router.navigate(['/modifier-postulant']);
-  }
+
+
 
    // Méthode de confirmation avant la suppression
    confirmDelete(id: number) {
@@ -25,12 +87,12 @@ export class IndexPostulantComponent {
     }
   }
 
-  // Suppression de la personne avec l'ID donné
-  deletePersonnel(id: number) {
-    // Vous pouvez appeler ici votre service pour la suppression, par exemple :
-    // this.personnelService.deletePersonnel(id).subscribe(response => { ... });
-    console.log('Suppression confirmée pour l\'ID:', id);
-    // Redirection ou autre logique après la suppression
+  navigateToForm() {
+    this.router.navigate(['/nouveau-postulant']);
   }
+  navigateToFormEdit() {
+    this.router.navigate(['/modifier-postulant']);
+  }
+
 
 }

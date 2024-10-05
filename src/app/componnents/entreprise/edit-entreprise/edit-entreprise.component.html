@@ -4,156 +4,124 @@
     <h1 class="mt-4 ">Modifier Entreprise</h1>
     <ol class="breadcrumb mb-4 text-center">
       <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-        Hello M/Mme MONGO SALOMON, il est 11:17 en ce jour
-        du Lundi 29 Juillet 2024.
+        Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
       </li>
     </ol>
     <div class="row justify-content-center">
       <!-- Horizontal Form -->
       <div class="card card-info col-md-8">
         <!-- form start -->
-        <form class="form-horizontal" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="card">
+          <div class="card-header">
+            <h2>Mettre à jour l'entreprise</h2>
+          </div>
           <div class="card-body">
-            <div class="form-group row justify-content-center">
-              <span for="nom" class="col-sm-3 col-form-label text-right">Nom Entreprise <span style="color: red;">*</span></span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="nom" placeholder="Nom Entreprise" formControlName="nom_entreprise">
-                <div class="alert alert-danger mt-2" *ngIf="f['nom_entreprise'].touched && f['nom_entreprise'].invalid">
-                  <div *ngIf="f['nom_entreprise'].errors?.['required']">
-                    Le nom de l'entreprise est requis.
+            <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name">Nom de l'Entreprise</label>
+                    <input id="name" formControlName="name" class="form-control" type="text" />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="author">Auteur</label>
+                    <input id="author" formControlName="author" class="form-control" type="text" />
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="form-group row justify-content-center">
-              <span for="auteur" class="col-sm-3 col-form-label text-right">Auteur <span style="color: red;">*</span></span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="auteur" placeholder="Auteur" formControlName="author">
-                <div class="alert alert-danger mt-2" *ngIf="f['author'].touched && f['author'].invalid">
-                  <div *ngIf="f['author'].errors?.['required']">
-                    L'auteur est requis.
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input id="phone" formControlName="phone" class="form-control" type="text" />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" formControlName="email" class="form-control" type="email" />
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="form-group row justify-content-center">
-              <span for="company_type" class="col-sm-3 col-form-label text-right">Type Entreprise <span style="color: red;">*</span></span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="company_type" placeholder="Type Entreprise" formControlName="company_type">
-                <div class="alert alert-danger mt-2" *ngIf="f['company_type'].touched && f['company_type'].invalid">
-                  <div *ngIf="f['company_type'].errors?.['required']">
-                    Le type de l'entreprise est requis.
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="nui">NUI</label>
+                    <input id="nui" formControlName="nui" class="form-control" type="text" />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="type">Type</label>
+                    <input id="type" formControlName="type" class="form-control" type="text" />
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="form-group row justify-content-center">
-              <span for="email" class="col-sm-3 col-form-label text-right">Email</span>
-              <div class="col-sm-6">
-                <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
-                <div class="alert alert-danger mt-2" *ngIf="f['email'].touched && f['email'].invalid">
-                  <div *ngIf="f['email'].errors?.['required']">
-                    L'email est requis.
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="country_id">Pays</label>
+                    <select id="country_id" formControlName="country_id" class="form-control">
+                      <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="city_id">Ville</label>
+                    <select id="city_id" formControlName="city_id" class="form-control">
+                      <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+                    </select>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="form-group row justify-content-center">
-              <span for="phone" class="col-sm-3 col-form-label text-right">Tel <span style="color: red;">*</span></span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="phone" placeholder="Téléphone" formControlName="phone">
-                <div class="alert alert-danger mt-2" *ngIf="f['phone'].touched && f['phone'].invalid">
-                  <div *ngIf="f['phone'].errors?.['required']">
-                    Le téléphone est requis.
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="neighborhood">Quartier</label>
+                    <input id="neighborhood" formControlName="neighborhood" class="form-control" type="text" />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="contact_person">Personne de contact</label>
+                    <input id="contact_person" formControlName="contact_person" class="form-control" type="text" />
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="form-group row justify-content-center">
-              <span for="contact_person_phone" class="col-sm-3 col-form-label text-right">Personne à contacter</span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="contact_person_phone" placeholder="Téléphone de la personne à contacter" formControlName="contact_person_phone">
-                <div class="alert alert-danger mt-2" *ngIf="f['contact_person_phone'].touched && f['contact_person_phone'].invalid">
-                  <div *ngIf="f['contact_person_phone'].errors?.['required']">
-                    Le téléphone de la personne à contacter est requis.
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="contact_person_phone">Téléphone de la personne de contact</label>
+                    <input id="contact_person_phone" formControlName="contact_person_phone" class="form-control" type="text" />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="status">Statut</label>
+                    <input id="status" formControlName="status" class="form-control" type="number" />
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="form-group row justify-content-center">
-              <span for="contact_person" class="col-sm-3 col-form-label text-right">Tel contact <span style="color: red;">*</span></span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="contact_person" placeholder="Téléphone contact" formControlName="contact_person">
-                <div class="alert alert-danger mt-2" *ngIf="f['contact_person'].touched && f['contact_person'].invalid">
-                  <div *ngIf="f['contact_person'].errors?.['required']">
-                    Le téléphone du contact est requis.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row justify-content-center">
-              <span for="country_id" class="col-sm-3 col-form-label text-right">Pays <span style="color: red;">*</span></span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="country_id" placeholder="Pays" formControlName="country_id">
-                <div class="alert alert-danger mt-2" *ngIf="f['country_id'].touched && f['country_id'].invalid">
-                  <div *ngIf="f['country_id'].errors?.['required']">
-                    Le Pays est requise.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row justify-content-center">
-              <span for="city" class="col-sm-3 col-form-label text-right">Ville <span style="color: red;">*</span></span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="city" placeholder="Ville" formControlName="city">
-                <div class="alert alert-danger mt-2" *ngIf="f['city'].touched && f['city'].invalid">
-                  <div *ngIf="f['city'].errors?.['required']">
-                    La Ville est requise.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row justify-content-center">
-              <span for="quarter" class="col-sm-3 col-form-label text-right">Quartier <span style="color: red;">*</span></span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="quarter" placeholder="Quartier" formControlName="quarter">
-                <div class="alert alert-danger mt-2" *ngIf="f['quarter'].touched && f['quarter'].invalid">
-                  <div *ngIf="f['quarter'].errors?.['required']">
-                    Le Quartier est requise.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row justify-content-center">
-              <span for="nui" class="col-sm-3 col-form-label text-right">NUI <span style="color: red;">*</span></span>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="nui" placeholder="NUI" formControlName="nui">
-                <div class="alert alert-danger mt-2" *ngIf="f['nui'].touched && f['nui'].invalid">
-                  <div *ngIf="f['nui'].errors?.['required']">
-                    Le NUI est requis.
-                  </div>
-                </div>
-              </div>
-            </div>
-
+              <button type="submit" class="btn btn-primary">Mettre à jour</button>
+            </form>
           </div>
-          <!-- /.card-body -->
-          <div class="card-footer text-center">
-            <button type="submit" class="btn btn-info" [disabled]="!form.valid">Submit</button>
-            <a routerLink="/entreprise" class="btn btn-danger ml-2">Cancel</a>
-          </div>
-          <!-- /.card-footer -->
-        </form>
+        </div>
+
       </div>
       <!-- /.card -->
     </div>

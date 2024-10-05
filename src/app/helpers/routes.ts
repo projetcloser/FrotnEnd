@@ -1,17 +1,17 @@
 
 export const routes = [
   {
-    path:"/caisse",
+    path:"/Closer/caisse",
     name:"Caisses",
     single:"Caisse"
    },
    {
-    path:"/profession",
+    path:"/Closer/profession",
     name:"Professions",
     single:"Profession"
    },
    {
-    path:"/poste",
+    path:"/Closer/poste",
     name:"Postes",
     single:"Poste"
    },
@@ -28,17 +28,17 @@ export const routes = [
   //   single:"Entreprise"
   //  },
    {
-    path:"/pays",
+    path:"/Closer/pays",
     name:"pays",
     single:"pays"
    },
    {
-    path:"/ville",
+    path:"/Closer/ville",
     name:"Villes",
     single:"Ville"
    },
    {
-    path:"/quartier",
+    path:"/Closer/quartier",
     name:"Quartiers",
     single:"Quartier"
    },

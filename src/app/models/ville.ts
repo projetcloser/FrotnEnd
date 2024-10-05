@@ -1,3 +1,5 @@
 export class Ville {
-  nom:String=""
+  id!:number;
+  name:string=""
+  country_id!:number
 }

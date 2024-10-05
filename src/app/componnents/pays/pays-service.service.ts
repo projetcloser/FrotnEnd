@@ -10,7 +10,7 @@ import { Pays } from '../../models/pays';
 export class PaysServiceService {
 
 
-  private apiURL = environment.apiUrl+"pays";
+  private apiURL = environment.apiUrl+"country";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,15 +21,18 @@ export class PaysServiceService {
   constructor(private httpclient: HttpClient) { }
 
   getAll(): Observable<Pays[]> {
-    return this.httpclient.get<any>(this.apiURL)
+    return this.httpclient.get<Pays[]>(this.apiURL)
       .pipe(
-        map(response=> response.body.data),
+        // map(response=> response.data),
         catchError(this.errorHandler)
       );
   }
+  getCountryById(id: number): Observable<any> {
+    return this.httpclient.get<any>(`${this.apiURL}/${id}`);
+  }
 
-  create(activite: Pays): Observable<any> {
-    return this.httpclient.post(this.apiURL , JSON.stringify(activite), this.httpOptions)
+  create(country: Pays): Observable<any> {
+    return this.httpclient.post(this.apiURL , JSON.stringify(country), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
@@ -42,8 +45,8 @@ export class PaysServiceService {
       );
   }
 
-  update(id: number, activite: Pays): Observable<any> {
-    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(activite), this.httpOptions)
+  update(id: number, country: Pays): Observable<any> {
+    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(country), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );

@@ -1,3 +1,4 @@
 export class Quartier {
-  nom:String=""
+  id!:number;
+  name:String=""
 }

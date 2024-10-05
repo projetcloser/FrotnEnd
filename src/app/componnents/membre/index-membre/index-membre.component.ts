@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Membre } from '../../../models/membre';
 import { MembreServiceService } from '../membre-service.service';
 import { LoadingComponent } from '../../../components/loading/loading.component';
@@ -12,8 +12,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './index-membre.component.html',
   styleUrl: './index-membre.component.css'
 })
-export class IndexMembreComponent {
-  membre: Membre[]=[];
+export class IndexMembreComponent implements OnInit{
+  membres: Membre[]=[];
     // en voyer le loading
     isLoading:boolean = true;
 
@@ -22,8 +22,8 @@ export class IndexMembreComponent {
   navigateToForm() {
     this.router.navigate(['/nouveau-membre']);
   }
-  navigateToFormEdit(){
-    this.router.navigate(['/modifier-membre']);
+  navigateToFormEdit(id: number): void{
+    this.router.navigate(['/membre/edit', id]);
   }
 
    // Méthode de confirmation avant la suppression
@@ -41,30 +41,32 @@ export class IndexMembreComponent {
     console.log('Suppression confirmée pour l\'ID:', id);
     // Redirection ou autre logique après la suppression
   }
-  
-  ngOnInit(): void{
-    this.membreService.getAll().subscribe(
-      (data:Membre[])=>{
-        this.membre = data;
-        console.log(this.membre);
 
-      },
-      error => {
-        console.error('Error fetching project', error);
-      }
-  )
+  ngOnInit(): void{
+    this.getmember();
   }
 
+  getmember():void{
+    this.membreService.getAll().subscribe(
+      (data) => {
+        console.log(data);
+
+        this.membres = data; // Assigner directement les données au tableau de villes
+      },
+      error => {
+        console.error('Erreur lors de la récupération des membres :', error);
+      }
+
+  )
+  }
     /**
    * Write code on Method
    *
    * @return response()
    */
-    deletePost(id:number){
-      this.membreService.delete(id).subscribe(res => {
-           this.membre = this.membre.filter(item => item.id !== id);
-          //  console.log('activites deleted successfully!');
-           alert("projt deleted successfully!")
-      })
+    deleteMembre(id: number): void {
+      this.membreService.delete(id).subscribe(() => {
+        this.membres = this.membres.filter(m => m.id !== id);
+      });
     }
 }

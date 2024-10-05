@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Membre } from '../../../models/membre';
 import { MembreServiceService } from '../membre-service.service';
 import { Router } from '@angular/router';
@@ -15,32 +15,42 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create-membre.component.css'
 })
 export class CreateMembreComponent {
-  form!:FormGroup;
+   membreForm!: FormGroup;
+  selectedPhoto!: File | null;
+  selectedCase!: File | null;
   membre: Membre[] = [];
   country:any;
   city:any;
 
+  currentTime = new Date();
+  currentDay = new Date();
+
   constructor(public membreService:MembreServiceService, private router:Router,private countryService:PaysServiceService,
+     private fb: FormBuilder,
     private cityService:VilleServiceService
   ){
 
   }
 
   ngOnInit():void{
-    this.form = new FormGroup({
-      social_reason: new FormControl('',[Validators.required]),
-      author: new FormControl('',[Validators.required]),
-      phone: new FormControl('',[Validators.required]),
-      email: new FormControl('',[Validators.required]),
-      nui: new FormControl('',[Validators.required]),
-      type: new FormControl('',[Validators.required]),
-      country_id: new FormControl('',[Validators.required]),
-      city_id: new FormControl('',[Validators.required]),
-      neighborhoodp: new FormControl('',[Validators.required]),
-      contact_person: new FormControl('',[Validators.required]),
-      contact_person_phone: new FormControl('',[Validators.required]),
-      status: new FormControl('',[Validators.required]),
+     // Utilisez this.fb.group pour créer le formulaire réactif correctement
+     this.membreForm = this.fb.group({
+      matricule: this.fb.control('', [Validators.required]),
+      lastname: this.fb.control('', [Validators.required]),
+      firstname: this.fb.control('', [Validators.required]),
+      email: this.fb.control('', [Validators.required, Validators.email]),
+      photo: this.fb.control(null, Validators.required),
+      phone: this.fb.control('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      phone2: this.fb.control(''),
+      author: this.fb.control('', Validators.required),
+      gender: this.fb.control('', Validators.required),
+      status: this.fb.control(1, Validators.required),
+      city_id: this.fb.control(1, Validators.required),
+      case: this.fb.control(null, Validators.required),
+      created_at: this.fb.control(new Date(), Validators.required)
     });
+
+
 
     this.countryService.getAll().subscribe({
       next: (country) => {
@@ -64,14 +74,51 @@ export class CreateMembreComponent {
 
 
   get f(){
-    return this.form.controls;
+    return this.membreForm.controls;
   }
 
-  submit(){
-    console.log(this.form.value);
-    this.membreService.create(this.form.value).subscribe((res:any)=>{
-      alert('members  created Successfull!!');
-      this.router.navigateByUrl('membre/index');
-    })
+  // Méthode pour gérer le fichier de la photo
+  onPhotoSelected(event: any): void {
+    this.selectedPhoto = event.target.files[0];
   }
+
+  // Méthode pour gérer le fichier de case
+  onCaseSelected(event: any): void {
+    this.selectedCase = event.target.files[0];
+  }
+
+  onSubmit(): void {
+    if (this.membreForm.valid) {
+      const formData = new FormData();
+      formData.append('matricule', this.membreForm.get('matricule')?.value);
+      formData.append('lastname', this.membreForm.get('lastname')?.value);
+      formData.append('firstname', this.membreForm.get('firstname')?.value);
+      formData.append('email', this.membreForm.get('email')?.value);
+      formData.append('phone', this.membreForm.get('phone')?.value);
+      formData.append('phone2', this.membreForm.get('phone2')?.value);
+      formData.append('author', this.membreForm.get('author')?.value);
+      formData.append('gender', this.membreForm.get('gender')?.value);
+      formData.append('status', this.membreForm.get('status')?.value);
+      formData.append('created_at', this.membreForm.get('created_at')?.value.toISOString());
+
+      // Ajout des fichiers photo et case
+      if (this.selectedPhoto) {
+        formData.append('photo', this.selectedPhoto);
+      }
+      if (this.selectedCase) {
+        formData.append('case', this.selectedCase);
+      }
+
+      // Envoi du formulaire au service
+      this.membreService.create(formData).subscribe(response => {
+        console.log('Membre ajouté avec succès');
+        this.router.navigate(['/membres']);  // Redirection après l'ajout
+      }, error => {
+        console.error('Erreur lors de l\'ajout du membre', error);
+      });
+    } else {
+      console.error('Formulaire invalide');
+    }
+  }
+
 }

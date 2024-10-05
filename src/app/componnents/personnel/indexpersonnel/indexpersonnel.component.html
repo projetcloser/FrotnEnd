@@ -13,7 +13,7 @@
     <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item active"
         style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-        Hello M/Mme, il est 12:32 en ce jour du Lundi 16 Septembre 2024 .
+        Hello M/Mme, il est {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
 
       </li>
     </ol>
@@ -73,9 +73,8 @@
                   role="grid" aria-describedby="dataTable_info">
                   <thead>
                     <tr align="center" style="background-color: #dde9dd" role="row">
-                      <th style="width: 168.281px;" class="sorting_asc" tabindex="0" aria-controls="dataTable"
-                        rowspan="1" colspan="1" aria-sort="ascending"
-                        aria-label="Nom: activate to sort column descending">Nom</th>
+                      <th style="width: 168.281px;" class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1"
+                        colspan="1" aria-sort="ascending" aria-label="Nom: activate to sort column descending">Nom</th>
                       <th style="width: 116.109px;" class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                         colspan="1" aria-label="Poste: activate to sort column ascending">Poste</th>
                       <th style="width: 127.906px;" class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -89,9 +88,9 @@
                       <th style="width: 48.4219px; align-content: center;" class="sorting" tabindex="0"
                         aria-controls="dataTable" rowspan="1" colspan="1"
                         aria-label=" Font Awesome fontawesome.com -->: activate to sort column ascending"><svg
-                          class="svg-inline--fa fa-bars fa-w-14 small-icon" aria-hidden="true" focusable="false" data-prefix="fas"
-                          data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                          data-fa-i2svg="">
+                          class="svg-inline--fa fa-bars fa-w-14 small-icon" aria-hidden="true" focusable="false"
+                          data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512" data-fa-i2svg="">
                           <path fill="currentColor"
                             d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z">
                           </path>
@@ -100,31 +99,23 @@
                   </thead>
                   <tbody>
 
-                    <tr role="row" class="odd">
-                      <input name="id" type="hidden" value="21">
+                    <tr role="row" class="odd" *ngFor="let personnel of personnels">
+                      <!-- <input name="id" type="hidden" value="21"> -->
                       <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=21" title="AMADOU "
-                          style="color: black">AMADOU TEJANI</a>
+                          class="rounded-circle m-r-5" alt="">{{ personnel.firstname }}
                       </td>
-                      <td align="center"><a href="details_personnel.php?id=21" title="REPRESENTANT REGIONAL"
-                          style="color: black">REPRESENTANT REGIONAL</a></td>
-                      <td align="center"><a href="details_personnel.php?id=21" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
+                      <td align="center">{{ personnel.position }}</td>
+                      <td align="center">{{ personnel.statut }}
                       </td>
-                      <td align="center"><a href="details_personnel.php?id=21" title="699822859"
-                          style="color: black">699822859 </a>
+                      <td align="center">{{ personnel.phone }}
                       </td>
-
-
-                      <td align="center"><a href="details_personnel.php?id=21" title="tejamadou-yahoo.fr"
-                          style="color: black">tejamadou-yahoo.fr</a></td>
-                      <td>N/A</td>
+                      <td align="center">{{ personnel.email }}</td>
+                      <td></td>
                       <td align="center">
 
 
                         <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
+                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg
                               class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true"
                               focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
                               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
@@ -133,7 +124,7 @@
                               </path>
                             </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
                           <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" (click)="navigateToFormEdit()"><svg
+                            <a class="dropdown-item" [routerLink]="['/Closer/modifier-personnel/',personnel.id]"><svg
                                 class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton" aria-hidden="true"
                                 focusable="false" data-prefix="fas" data-icon="pen" role="img"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
@@ -142,539 +133,26 @@
                                 </path>
                               </svg> Edit</a>
 
-                              <a class="dropdown-item" (click)="confirmDelete(21)">
-                                <svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                      focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                      <path fill="currentColor"
-                                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                      </path>
-                                </svg>
-                                Delete
-                              </a>
-
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    <tr role="row" class="even">
-                      <input name="id" type="hidden" value="24">
-                      <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=24" title="Developpeur"
-                          style="color: black">Developpeur Mobile</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=24" title="N/A" style="color: black">N/A</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=24" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=24" title="" style="color: black"> </a>
-                      </td>
-
-
-                      <td align="center"><a href="details_personnel.php?id=24" title="" style="color: black"></a></td>
-                      <td>MONGO SALOMON</td>
-                      <td align="center">
-
-
-                        <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
-                              class="svg-inline--fa fa-ellipsis-v fa-w-6  custom-iconbuttonmenu " aria-hidden="true"
-                              focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                              </path>
-                            </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item"><svg class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton"
-                                aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                                </path>
-                              </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-
-                            <a class="dropdown-item" onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
+                            <a class="dropdown-item" (click)="confirmDelete(personnel.id)">
+                              <svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
                                 focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                                 <path fill="currentColor"
                                   d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
                                 </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
-
+                              </svg>
+                              Delete
+                            </a>
+                            <a href="" class="dropdown-item" [routerLink]="['/Closer/personnel-details/',personnel.id]" routerLinkActive="router-link-active" >
+                              <i class="fa-solid fa-eye">
+                            </i>View</a>
                           </div>
                         </div>
 
                       </td>
                     </tr>
-                    <tr role="row" class="odd">
-                      <input name="id" type="hidden" value="18">
-                      <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=18" title="EKOUTA"
-                          style="color: black">EKOUTA Dieudonné</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=18" title="REPRESENTANT REGIONAL"
-                          style="color: black">REPRESENTANT REGIONAL</a></td>
-                      <td align="center"><a href="details_personnel.php?id=18" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=18" title="699999652"
-                          style="color: black">699999652 </a>
-                      </td>
 
 
-                      <td align="center"><a href="details_personnel.php?id=18" title="d_ekouta-yahoo.fr"
-                          style="color: black">d_ekouta-yahoo.fr</a></td>
-                      <td>N/A</td>
-                      <td align="center">
-
-
-                        <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
-                              class="svg-inline--fa fa-ellipsis-v fa-w-6  custom-iconbuttonmenu " aria-hidden="true"
-                              focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                              </path>
-                            </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="modifier_personnel.php?id=18"><svg
-                                class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                                </path>
-                              </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-
-                            <a class="dropdown-item" href="delete_personnel.php?id=18"
-                              onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
-
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    <tr role="row" class="even">
-                      <input name="id" type="hidden" value="14">
-                      <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=14"
-                          title="FEUZEU FEUGANG" style="color: black">FEUZEU FEUGANG SIMPLICE </a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=14" title="REPRESENTANT REGIONAL"
-                          style="color: black">REPRESENTANT REGIONAL</a></td>
-                      <td align="center"><a href="details_personnel.php?id=14" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=14" title="676806484"
-                          style="color: black">676806484 </a>
-                      </td>
-
-
-                      <td align="center"><a href="details_personnel.php?id=14" title="tsfeuzeu2000-yahoo.fr"
-                          style="color: black">tsfeuzeu2000-yahoo.fr</a></td>
-                      <td>N/A</td>
-                      <td align="center">
-
-
-                        <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
-                              class="svg-inline--fa fa-ellipsis-v fa-w-6  custom-iconbuttonmenu " aria-hidden="true"
-                              focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                              </path>
-                            </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="modifier_personnel.php?id=14"><svg
-                                class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                                </path>
-                              </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-
-                            <a class="dropdown-item" href="delete_personnel.php?id=14"
-                              onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
-
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    <tr role="row" class="odd">
-                      <input name="id" type="hidden" value="15">
-                      <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=15" title="M. BOUBAKAR "
-                          style="color: black">M. BOUBAKAR TOURE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=15" title="REPRESENTANT REGIONAL"
-                          style="color: black">REPRESENTANT REGIONAL</a></td>
-                      <td align="center"><a href="details_personnel.php?id=15" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=15" title="699817274"
-                          style="color: black">699817274 </a>
-                      </td>
-
-
-                      <td align="center"><a href="details_personnel.php?id=15" title="petiasse-yahoo.fr"
-                          style="color: black">petiasse-yahoo.fr</a></td>
-                      <td>N/A</td>
-                      <td align="center">
-
-
-                        <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
-                              class="svg-inline--fa fa-ellipsis-v fa-w-6  custom-iconbuttonmenu " aria-hidden="true"
-                              focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                              </path>
-                            </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="modifier_personnel.php?id=15"><svg
-                                class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                                </path>
-                              </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-
-                            <a class="dropdown-item" href="delete_personnel.php?id=15"
-                              onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
-
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    <tr role="row" class="even">
-                      <input name="id" type="hidden" value="16">
-                      <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=16"
-                          title="M. PEMAN GEOMBANG " style="color: black">M. PEMAN GEOMBANG Just-Fourier</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=16" title="REPRESENTANT REGIONAL"
-                          style="color: black">REPRESENTANT REGIONAL</a></td>
-                      <td align="center"><a href="details_personnel.php?id=16" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=16" title="658507478"
-                          style="color: black">658507478 </a>
-                      </td>
-
-
-                      <td align="center"><a href="details_personnel.php?id=16" title="mufunyanga-yahoo.fr"
-                          style="color: black">mufunyanga-yahoo.fr</a></td>
-                      <td>N/A</td>
-                      <td align="center">
-
-
-                        <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
-                              class="svg-inline--fa fa-ellipsis-v fa-w-6  custom-iconbuttonmenu " aria-hidden="true"
-                              focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                              </path>
-                            </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="modifier_personnel.php?id=16"><svg
-                                class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                                </path>
-                              </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-
-                            <a class="dropdown-item" href="delete_personnel.php?id=16"
-                              onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
-
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    <tr role="row" class="odd">
-                      <input name="id" type="hidden" value="17">
-                      <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=17" title="M. WAIMO"
-                          style="color: black">M. WAIMO FELTOING</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=17" title="REPRESENTANT REGIONAL"
-                          style="color: black">REPRESENTANT REGIONAL</a></td>
-                      <td align="center"><a href="details_personnel.php?id=17" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=17" title="699582038"
-                          style="color: black">699582038 </a>
-                      </td>
-
-
-                      <td align="center"><a href="details_personnel.php?id=17" title="waimofeltoing110-gmail.com"
-                          style="color: black">waimofeltoing110-gmail.com</a></td>
-                      <td>N/A</td>
-                      <td align="center">
-
-
-                        <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
-                              class="svg-inline--fa fa-ellipsis-v fa-w-6  custom-iconbuttonmenu " aria-hidden="true"
-                              focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                              </path>
-                            </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="modifier_personnel.php?id=17"><svg
-                                class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                                </path>
-                              </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-
-                            <a class="dropdown-item" href="delete_personnel.php?id=17"
-                              onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
-
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    <tr role="row" class="even">
-                      <input name="id" type="hidden" value="20">
-                      <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=20"
-                          title="M.YEYUNG GHOGOMU" style="color: black">M.YEYUNG GHOGOMU MBIMINA</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=20" title="REPRESENTANT REGIONAL"
-                          style="color: black">REPRESENTANT REGIONAL</a></td>
-                      <td align="center"><a href="details_personnel.php?id=20" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=20" title="677622199"
-                          style="color: black">677622199 </a>
-                      </td>
-
-
-                      <td align="center"><a href="details_personnel.php?id=20" title="yeyungmb-yahoo.co.uk"
-                          style="color: black">yeyungmb-yahoo.co.uk</a></td>
-                      <td>N/A</td>
-                      <td align="center">
-
-
-                        <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
-                              class="svg-inline--fa fa-ellipsis-v fa-w-6  custom-iconbuttonmenu " aria-hidden="true"
-                              focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                              </path>
-                            </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="modifier_personnel.php?id=20"><svg
-                                class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                                </path>
-                              </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-
-                            <a class="dropdown-item" href="delete_personnel.php?id=20"
-                              onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
-
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    <tr role="row" class="odd">
-                      <input name="id" type="hidden" value="8">
-                      <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=8" title="MANGA MEDZOA"
-                          style="color: black">MANGA MEDZOA ELODIE CHANTAL</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=8" title="ASSISTANTE ADMINISTRATIVE"
-                          style="color: black">ASSISTANTE ADMINISTRATIVE</a></td>
-                      <td align="center"><a href="details_personnel.php?id=8" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=8" title="698206743"
-                          style="color: black">698206743 </a>
-                      </td>
-
-
-                      <td align="center"><a href="details_personnel.php?id=8" title="elodiemanga987-gmail.com"
-                          style="color: black">elodiemanga987-gmail.com</a></td>
-                      <td>N/A</td>
-                      <td align="center">
-
-
-                        <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
-                              class="svg-inline--fa fa-ellipsis-v fa-w-6  custom-iconbuttonmenu " aria-hidden="true"
-                              focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                              </path>
-                            </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="modifier_personnel.php?id=8"><svg
-                                class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                                </path>
-                              </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-
-                            <a class="dropdown-item" href="delete_personnel.php?id=8"
-                              onclick="Supp(this.href); return(false);"><svg
-                                class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                </path>
-                              </svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                              Delete</a>
-
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    <tr role="row" class="even">
-                      <input name="id" type="hidden" value="23">
-                      <td class="sorting_1"><img width="28" height="28" src="assetss/img/user.jpg"
-                          class="rounded-circle m-r-5" alt=""><a href="details_personnel.php?id=23" title="MARIE "
-                          style="color: black">MARIE LOUISE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=23" title="N/A" style="color: black">N/A</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=23" title="EMPLOYE"
-                          style="color: black">EMPLOYE</a>
-                      </td>
-                      <td align="center"><a href="details_personnel.php?id=23" title="" style="color: black"> </a>
-                      </td>
-
-
-                      <td align="center"><a href="details_personnel.php?id=23" title="" style="color: black"></a></td>
-                      <td>MONGO SALOMON</td>
-                      <td align="center">
-
-
-                        <div class="dropdown dropdown-action">
-                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false"><svg
-                              class="svg-inline--fa fa-ellipsis-v fa-w-6  custom-iconbuttonmenu " aria-hidden="true"
-                              focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                              </path>
-                            </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                          <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="modifier_personnel.php?id=23"><svg
-                                class="svg-inline--fa fa-pen fa-w-16  custom-iconbutton" aria-hidden="true"
-                                focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor"
-                                  d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                                </path>
-                              </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-
-                              <a class="dropdown-item" (click)="confirmDelete(21)">
-                                <svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                      focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                      <path fill="currentColor"
-                                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                      </path>
-                                </svg>
-                                Delete
-                              </a>
-
-
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -704,6 +182,9 @@
       </div>
     </div>
     <!--                End Body              -->
+
+
+
 
     <div class="row">
       <div class="col-md-12">

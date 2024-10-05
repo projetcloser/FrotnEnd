@@ -58,10 +58,27 @@ import { IndexNonPayeComponent } from './componnents/attestation/nonPaye/index-n
 import { EditNonPayeComponent } from './componnents/attestation/nonPaye/edit-non-paye/edit-non-paye.component';
 import { CreateProfessionComponent } from './componnents/profession/create-profession/create-profession.component';
 import { CreatePosteComponent } from './componnents/poste/create-poste/create-poste.component';
+import { DetailsComponent } from './componnents/personnel/details/details.component';
+import { EditCaisseComponent } from './componnents/Caisse/edit-caisse/edit-caisse.component';
+import { DetailsEntrepriseComponent } from './componnents/entreprise/details-entreprise/details-entreprise.component';
+import { DetailsPostulantComponent } from './componnents/postulant/details-postulant/details-postulant.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { FpwComponent } from './components/auth/fpw/fpw.component';
+import { AuthGuard } from './auth.guard';
+import { EvenementDetailsComponent } from './componnents/evenement/evenement-details/evenement-details.component';
+import { SideNavComponent } from './componnents/side-nav/side-nav.component';
 
 export const routes: Routes = [
-  {
-    path: "",
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent },
+  { path: 'forgot-password', component: FpwComponent },
+
+  {path:'Closer',component:SideNavComponent,
+    children:[
+       {
+    path: "dashboard",
     component:DashboardComponent
   },
   // personnels
@@ -74,9 +91,10 @@ export const routes: Routes = [
     component:PersonnelCreateComponent
   },
   {
-    path: "modifier-personne",
+    path: "modifier-personnel/:id",
     component:EditperssonnelComponent
   },
+  { path: 'personnel-details/:id', component: DetailsComponent },
 
   // postulant
   {
@@ -88,8 +106,12 @@ export const routes: Routes = [
     component:CreatePostulantComponent
   },
   {
-    path: "modifier-postulant",
+    path: "modifier-postulant/:id",
     component:EditPostulantComponent
+  },
+  {
+    path: "postulant/:id",
+    component:DetailsPostulantComponent
   },
   // membre
   {
@@ -102,7 +124,7 @@ export const routes: Routes = [
   },
   {
     // path: "membre/edit/:id",
-    path:"modifier-membre",
+    path:'membre/edit/:id',
     component:EditMembreComponent
   },
   // entreprise
@@ -115,8 +137,12 @@ export const routes: Routes = [
     component:CreateEntrepriseComponent
   },
   {
-    path: "modifier-entreprise",
+    path: "modifier-entreprise/:id",
     component:EditEntrepriseComponent
+  },
+  {
+    path: "entreprise-details/:id",
+    component:DetailsEntrepriseComponent
   },
    {
     path: "entreprise",
@@ -170,6 +196,7 @@ export const routes: Routes = [
     path: "nouvelle-caisse",
     component:CreateCaisseComponent
   },
+  { path: 'caisse/edit/:id', component: EditCaisseComponent },
   {
     path: "entity/:id/:action",
     component:DataManagerComponent
@@ -202,9 +229,10 @@ export const routes: Routes = [
       component:CreateEvenementComponent
     },
     {
-      path: "modifier-evenement",
+      path: 'evenement/edit/:id',
       component:UpdateEvenementComponent
     },
+    { path: 'evenement/details/:id', component: EvenementDetailsComponent },
     // tresorerie
     {
       path: "tresorerie",
@@ -267,7 +295,7 @@ export const routes: Routes = [
         component:CreateAttestPersonnelComponent
       },
       {
-        path: "modifier-attestPersonnel",
+        path: 'modifier-statut/:id',
         component:UpdateAttestPersonnelComponent
       },
 
@@ -317,6 +345,9 @@ export const routes: Routes = [
     path: "**",
     component:Error404Component
   },
+    ]
+  }
+
 
 
 ];

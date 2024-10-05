@@ -26,3 +26,10 @@ a
  width: 1em;
  height: 1em;
 }
+.badge-success {
+  background-color: #28a745;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+}

@@ -15,7 +15,7 @@
                   <b>
                   <ul class="nav nav-pills" style="float: right;">
                       <li class="nav-item">
-                          <a class="nav-link active" href="liste_postulant.php">
+                          <a class="nav-link active" [routerLink]="['/postulant']" routerLinkActive="router-link-active" >
                               Retour
                           </a>
                       </li>
@@ -67,7 +67,7 @@
                       <div class="row">
                           <div class="col-xl-12">
                               <div class="card mb-4">
-                                  <form class="form-horizontal" action="save_post.php" method="POST">
+                                  <form class="form-horizontal" [formGroup]="postulantForm" (ngSubmit)="onSubmit()">
                                       <div class="card-header">
 
                                       </div>
@@ -81,11 +81,15 @@
                                                           <td>
                                                               <span class="help-block small-font">Auteur:</span>
                                                               <div class="col">
-                                                                  <input style="width:75%;border-top: 0;
-                                                                  border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="auteur" value="MONGO SALOMON" disabled="">
+                                                                <input style="width:75%;border-top: 0;
+                                                                border-left: 0;
+                                                                border-right: 0;
+                                                                background: transparent;" formControlName="author" >
+                                                            </div>
+                                                              <div *ngIf="postulantForm.controls['author'].invalid && postulantForm.controls['author'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['author'].hasError('required')">Raison sociale est requise.</small>
                                                               </div>
+                                                           
                                                           </td>
                                                       </tr>
                                                                                                                           <tr>
@@ -96,7 +100,10 @@
                                                                   <input style="width:75%;border-top: 0;
                                                                   border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" name="nom">
+                                                                  background: transparent;"  formControlName="firstname">
+                                                              </div>
+                                                              <div *ngIf="postulantForm.controls['firstname'].invalid && postulantForm.controls['firstname'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['firstname'].hasError('required')">nom est requise.</small>
                                                               </div>
                                                           </td>
                                                           <td>
@@ -105,7 +112,10 @@
                                                                   <input style="width:75%;border-top: 0;
                                                                   border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" name="prenom">
+                                                                  background: transparent;" formControlName="lastname">
+                                                              </div>
+                                                              <div *ngIf="postulantForm.controls['lastname'].invalid && postulantForm.controls['lastname'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['lastname'].hasError('required')">prenom est requise.</small>
                                                               </div>
                                                           </td>
                                                       </tr>
@@ -117,7 +127,10 @@
                                                                   border-top: 0;
                                                                    border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" name="id_card_number">
+                                                                  background: transparent;" formControlName="nui">
+                                                              </div>
+                                                              <div *ngIf="postulantForm.controls['nui'].invalid && postulantForm.controls['nui'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['nui'].hasError('required')">N° CNI ou Passport est requise.</small>
                                                               </div>
                                                           </td>
                                                           <td>
@@ -125,7 +138,10 @@
                                                               <div class="col">
                                                                   <input type="date" style="width:75%;border-top: 0; border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" name="id_card_validity">
+                                                                  background: transparent;" formControlName="date_card_validity">
+                                                              </div>
+                                                              <div *ngIf="postulantForm.controls['date_card_validity'].invalid && postulantForm.controls['date_card_validity'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['date_card_validity'].hasError('required')">Date D'expiration CNI est requise.</small>
                                                               </div>
                                                           </td>
                                                       </tr>
@@ -136,7 +152,10 @@
                                                                   <input style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" name="tel">
+                                                                  background: transparent;" formControlName="phone">
+                                                              </div>
+                                                              <div *ngIf="postulantForm.controls['phone'].invalid && postulantForm.controls['phone'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['phone'].hasError('required')">Tel est requise.</small>
                                                               </div>
                                                           </td>
                                                           <td>
@@ -145,7 +164,10 @@
                                                                   <input style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" type="email" name="email">
+                                                                  background: transparent;" type="email" formControlName="email">
+                                                              </div>
+                                                              <div *ngIf="postulantForm.controls['email'].invalid && postulantForm.controls['email'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['email'].hasError('required')">email est requise.</small>
                                                               </div>
                                                           </td>
                                                       </tr>
@@ -156,7 +178,10 @@
                                                                   <input type="date" style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" name="date_naissance">
+                                                                  background: transparent;" formControlName="date_naiss">
+                                                              </div>
+                                                              <div *ngIf="postulantForm.controls['date_naiss'].invalid && postulantForm.controls['date_naiss'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['date_naiss'].hasError('required')">Date de Naissance est requise.</small>
                                                               </div>
                                                           </td>
                                                           <td>
@@ -165,7 +190,10 @@
                                                                   <input style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" name="lieu_naissance">
+                                                                  background: transparent;" formControlName="lieuNaiss">
+                                                              </div>
+                                                              <div *ngIf="postulantForm.controls['lieuNaiss'].invalid && postulantForm.controls['lieuNaiss'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['lieuNaiss'].hasError('required')">LIEU DE NAISSANCE est requise.</small>
                                                               </div>
                                                           </td>
                                                       </tr>
@@ -173,23 +201,33 @@
                                                            <td>
                                                           <span class="help-block small-font">Ville</span>
                                                               <div class="col">
-                                                                  <select name="id_ville" style="width:75%;
+                                                                  <select formControlName="city_id" style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
                                                                   background: transparent;">
-                                                                      <option value="0" selected="">...</option>
-                                                                      <option value="1">YAOUNDE</option><option value="3">BAMENDA</option><option value="4">DOUALA</option><option value="7">BERTOUA</option><option value="8">KRIBI</option><option value="9">BAFOUSSAM</option><option value="10">MAROUA</option><option value="11">GAROUA</option><option value="12">NGAOUNDERE</option><option value="13">EBOLOWA</option><option value="14">MBOUDA</option><option value="15">EDEA</option><option value="16">KUMBA</option><option value="17">BATCHENGA</option><option value="18">LIMBE</option><option value="19">MAROUA</option><option value="20">TOUBORO</option><option value="21">MEIGANGA</option><option value="22">MOKOLO</option><option value="23">DSCHANG</option><option value="24">DSCHANG</option><option value="25">FUNDONG</option><option value="26">BATOURI</option><option value="27">BUEA</option><option value="28">TIBATI</option><option value="29">MENGONG</option><option value="30">KAELE</option>
-
+                                                                      <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
                                                                   </select>
+                                                                  <div *ngIf="postulantForm.controls['city_id'].invalid && postulantForm.controls['city_id'].touched" class="text-danger">
+                                                                    <small *ngIf="postulantForm.controls['city_id'].hasError('required')">Ville est requise.</small>
+                                                                  </div>
                                                                  <button type="button" data-toggle="modal" style="background-color: transparent; border-radius: 20px; border-color: black; border-bottom-color: yellow; border-top-color: red;
                                                       border-right-color: blue;
-                                                      border-left-color: orange;"><a href="liste_ville.php"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> Font Awesome fontawesome.com --></a></button>
+                                                      border-left-color: orange;"><a ><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> Font Awesome fontawesome.com --></a></button>
                                                               </div>
                                                           </td>
                                                           <td>
                                                              <span class="help-block small-font">Quartier</span>
                                                               <div class="col">
-                                                                  <select name="id_quartier" style="width:75%;
+                                                                <input style="width:75%;
+                                                                border-top: 0; border-left: 0;
+                                                                border-right: 0;
+                                                                background: transparent;" formControlName="neighborhood">
+                                                              </div>
+                                                              <div *ngIf="postulantForm.controls['neighborhood'].invalid && postulantForm.controls['neighborhood'].touched" class="text-danger">
+                                                                <small *ngIf="postulantForm.controls['neighborhood'].hasError('required')">Quartier est requise.</small>
+                                                              </div>
+                                                              <!-- <div class="col">
+                                                                  <select formControlName="id_quartier" style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
                                                                   background: transparent;">
@@ -199,8 +237,9 @@
                                                                   </select>
                                                                  <button type="button" data-toggle="modal" style="background-color: transparent; border-radius: 20px; border-color: black; border-bottom-color: yellow; border-top-color: red;
                                                       border-right-color: blue;
-                                                      border-left-color: orange;"><a href="liste_quartier.php"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> Font Awesome fontawesome.com --></a></button>
-                                                              </div>
+                                                      border-left-color: orange;"><a href="liste_quartier.php"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> Font Awesome fontawesome.com -->
+                                                      <!-- </a></button> -->
+                                                              <!-- </div> --> 
                                                           </td>
 
                                                       </tr>
@@ -211,14 +250,17 @@
                                                                   <input style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" name="profession">
+                                                                  background: transparent;" formControlName="profession">
                                                               </div>
+                                                              <div *ngIf="postulantForm.controls['profession'].invalid && postulantForm.controls['profession'].touched" class="text-danger">
+                                                              <small *ngIf="postulantForm.controls['profession'].hasError('required')">Profession est requise.</small>
+                                                            </div>
                                                           </td>
                                                           <td>
                                                               <span class="help-block small-font">Situation matrimoniale</span>
 
                                                               <div class="col">
-                                                                  <select name="situation_matrimoniale" style="width:75%;
+                                                                  <select formControlName="marital_status" style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
                                                                   background: transparent;" required="">
@@ -240,13 +282,16 @@
                                                                   <input style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" value="0" name="nombre_enfants">
+                                                                  background: transparent;" bytes="number" formControlName="child">
                                                               </div>
+                                                              <div *ngIf="postulantForm.controls['child'].invalid && postulantForm.controls['child'].touched" class="text-danger">
+                                                              <small *ngIf="postulantForm.controls['child'].hasError('required')">Raison sociale est requise.</small>
+                                                             </div>
                                                           </td>
                                                           <td>
                                                               <span class="help-block small-font">Genre</span>
                                                               <div class="col">
-                                                                  <select name="genre" style="width:75%;
+                                                                  <select formControlName="genre" style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
                                                                   background: transparent;">
@@ -263,10 +308,10 @@
                                                               <div class="col">
 
 
-                                                                  <select name="year" style="width:75%;
+                                                                  <select formControlName="year" style="width:75%;
                                                                   border-top: 0; border-left: 0;
                                                                   border-right: 0;
-                                                                  background: transparent;" disabled="">
+                                                                  background: transparent;" >
                                                               <option selected="" value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option>
                                                               </select>
                                                               </div>
@@ -281,13 +326,13 @@
                                       <div class="card-footer">
                                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
                                             <div class="btn-group mr-2 nav-pills" role="group" aria-label="First group">
-                                                <h5 class="bg-warning nav-link">
+                                                <!-- <h5 class="bg-warning nav-link">
                                                   <svg class="svg-inline--fa fa-warning fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="warning" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><g><path fill="currentColor" d="M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z"></path><circle fill="currentColor" cx="256" cy="364" r="28"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="r" values="28;14;28;28;14;28;"></animate><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;1;1;0;1;"></animate></circle><path fill="currentColor" opacity="1" d="M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;0;0;0;1;"></animate></path><path fill="currentColor" opacity="0" d="M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="0;0;1;1;0;0;"></animate></path></g></svg><!-- <i class="fas fa-warning"></i> Font Awesome fontawesome.com -->
-                                                    <b><u>NB:</u></b> Veillez enregistrer avant de
-                                                    passer à l'étape suivante ! </h5>
+                                                    <!-- <b><u>NB:</u></b> Veillez enregistrer avant de
+                                                    passer à l'étape suivante ! </h5> --> 
                                             </div>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button type="submit" name="submit_etat_scolaire" class="btn btn-success">Enregistrer
+                                                <button type="submit"  class="btn btn-success">Enregistrer
                                                 </button>
                                             </div>
                                             <div class="btn-group mr-2" role="group" aria-label="Second group">
@@ -775,13 +820,6 @@
 </div>
 
   <!--                Main Body-->
-
-
-
-
-
-
-
 
 </div>
               </div>

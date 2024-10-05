@@ -13,3 +13,8 @@
   background-color: green;
   color: white;
 }
+.regex-error {
+  color: red;
+  font-size: 12px; /* Diminuer la taille du texte */
+  font-weight: bold;
+}

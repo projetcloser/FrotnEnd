@@ -1,1 +1,15 @@
-<p>update-attest-personnel works!</p>
+<div class="container">
+  <h3>Modifier le statut de l'attestation</h3>
+  <p>ID de l'attestation : {{ attestationId }}</p>
+  
+  <div>
+    <label for="status">Choisir un nouveau statut :</label>
+    <select id="status" [(ngModel)]="newStatus">
+      <option value="1">Envoyé</option>
+      <option value="2">Approuvé</option>
+      <option value="3">Rejeté</option>
+    </select>
+  </div>
+  
+  <button (click)="modifierStatut(newStatus)" class="btn btn-primary mt-3">Modifier le statut</button>
+</div>

@@ -4,15 +4,14 @@
     <h1 class="mt-4 ">Nouvelle Entreprises</h1>
     <ol class="breadcrumb mb-4 text-center">
       <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-        Hello M/Mme MONGO SALOMON, il est 11:17 en ce jour
-        du Lundi 29 Juillet 2024.
+        Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
       </li>
     </ol>
     <div class="row justify-content-center">
       <!-- Horizontal Form -->
       <div class="card card-info col-md-8">
         <!-- form start -->
-        <form class="form-horizontal" [formGroup]="form" (ngSubmit)="submit()">
+        <!-- <form class="form-horizontal">
           <div class="card-body">
             <div class="form-group row justify-content-center">
               <span for="nom" class="col-sm-3 col-form-label text-right">Nom Entreprise <span style="color: red;">*</span></span>
@@ -147,13 +146,153 @@
             </div>
 
           </div>
-          <!-- /.card-body -->
+
           <div class="card-footer text-center">
             <button type="submit" class="btn btn-info" [disabled]="!form.valid">Submit</button>
             <a routerLink="/entreprise" class="btn btn-danger ml-2">Cancel</a>
           </div>
-          <!-- /.card-footer -->
-        </form>
+
+        </form> -->
+
+        <div class="container mt-5">
+          <div class="card">
+            <div class="card-header">
+              <h4>Créer une nouvelle entreprise</h4>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="entrepriseForm" (ngSubmit)="onSubmit()">
+                <div class="row mb-3">
+                  <!-- Social Reason -->
+                  <div class="col-md-6">
+                    <span>Raison sociale</span>
+                    <input type="text" formControlName="social_reason" class="form-control" />
+                    <div *ngIf="entrepriseForm.controls['social_reason'].invalid && entrepriseForm.controls['social_reason'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['social_reason'].hasError('required')">Raison sociale est requise.</small>
+                    </div>
+                  </div>
+
+                  <!-- Author -->
+                  <div class="col-md-6">
+                    <span>Auteur</span>
+                    <input type="text" formControlName="author" class="form-control" />
+                    <div *ngIf="entrepriseForm.controls['author'].invalid && entrepriseForm.controls['author'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['author'].hasError('required')">Auteur est requis.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <!-- Phone -->
+                  <div class="col-md-6">
+                    <span>Téléphone</span>
+                    <input type="text" formControlName="phone" class="form-control" />
+                    <div *ngIf="entrepriseForm.controls['phone'].invalid && entrepriseForm.controls['phone'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['phone'].hasError('required')">Téléphone est requis.</small>
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="col-md-6">
+                    <span>Email</span>
+                    <input type="email" formControlName="email" class="form-control" />
+                    <div *ngIf="entrepriseForm.controls['email'].invalid && entrepriseForm.controls['email'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['email'].hasError('email')">Email invalide.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <!-- NUI -->
+                  <div class="col-md-6">
+                    <span>NUI</span>
+                    <input type="text" formControlName="nui" class="form-control" />
+                    <div *ngIf="entrepriseForm.controls['nui'].invalid && entrepriseForm.controls['nui'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['nui'].hasError('required')">NUI est requis.</small>
+                    </div>
+                  </div>
+
+                  <!-- Type -->
+                  <div class="col-md-6">
+                    <span>Type</span>
+                    <input type="text" formControlName="type" class="form-control" />
+                    <div *ngIf="entrepriseForm.controls['type'].invalid && entrepriseForm.controls['type'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['type'].hasError('required')">Type est requis.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <!-- Country -->
+                  <div class="col-md-6">
+                    <span>Pays</span>
+                    <select formControlName="country_id" class="form-control">
+                      <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+                    </select>
+                    <div *ngIf="entrepriseForm.controls['country_id'].invalid && entrepriseForm.controls['country_id'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['country_id'].hasError('required')">Pays est requis.</small>
+                    </div>
+                  </div>
+
+                  <!-- City -->
+                  <div class="col-md-6">
+                    <span>Ville</span>
+                    <select formControlName="city_id" class="form-control">
+                      <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+                    </select>
+                    <div *ngIf="entrepriseForm.controls['city_id'].invalid && entrepriseForm.controls['city_id'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['city_id'].hasError('required')">Ville est requise.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <!-- Contact Person -->
+                  <div class="col-md-6">
+                    <span>Personne de contact</span>
+                    <input type="text" formControlName="contact_person" class="form-control" />
+                    <div *ngIf="entrepriseForm.controls['contact_person'].invalid && entrepriseForm.controls['contact_person'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['contact_person'].hasError('required')">Personne de contact est requise.</small>
+                    </div>
+                  </div>
+
+                  <!-- Contact Person Phone -->
+                  <div class="col-md-6">
+                    <span>Téléphone de la personne de contact</span>
+                    <input type="text" formControlName="contact_person_phone" class="form-control" />
+                    <div *ngIf="entrepriseForm.controls['contact_person_phone'].invalid && entrepriseForm.controls['contact_person_phone'].touched" class="text-danger">
+                      <small *ngIf="entrepriseForm.controls['contact_person_phone'].hasError('required')">Téléphone de contact est requis.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <!-- Status -->
+                  <div class="col-md-6">
+                    <span>Statut</span>
+                    <select formControlName="status" class="form-control">
+                      <option value="1">Active</option>
+                      <option value="0">Annulé</option>
+                    </select>
+                  </div>
+
+                  <!-- Neighborhood -->
+                  <div class="col-md-6">
+                    <span>Quartier</span>
+                    <input type="text" formControlName="neighborhood" class="form-control" />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <!-- Submit Button -->
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-block">Créer l'entreprise</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
       </div>
       <!-- /.card -->
     </div>

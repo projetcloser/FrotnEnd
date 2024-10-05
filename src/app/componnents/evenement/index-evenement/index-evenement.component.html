@@ -101,20 +101,14 @@
                           </thead>
                           <tbody>
 
+                            <tr role="row" class="odd" *ngFor="let evenement of evenements">
+                              <td align="center" class="sorting_1">{{evenement.titre}} Titre</td>
+                              <td align="center">{{evenement.lieu}} </td>
+                              <td align="center">{{evenement.participant}} </td>
+                              <td align="center">{{evenement.cout}} </td>
 
-
-
-
-
-
-                            <tr role="row" class="odd">
-                              <td align="center" class="sorting_1"> Titre</td>
-                              <td align="center">Lieu </td>
-                              <td align="center">1 </td>
-                              <td align="center">100 </td>
-
-                              <td align="center">2023-12-15 </td>
-                              <td align="center"> 2023-12-15 </td>
+                              <td align="center">{{evenement.date_debut}} </td>
+                              <td align="center">{{evenement.date_fin}}</td>
 
                               <td>
 
@@ -124,18 +118,18 @@
 
                               <td align="center" style="width: 18%">
 
-                                <a class="btn btn-primary btn-sm">
-                                  <!--  [routerLink]="[data.i_id,'view']" -->
+                                <a class="btn btn-primary btn-sm" [routerLink]="['/evenement/details', evenement.id]">
+                                  
                                   <i class="fa-solid fa-eye">
                                   </i>
                                 </a>
-                                <a class="btn btn-info btn-sm" (click)="navigateToFormEdit()">
-                                  <!-- [routerLink]="['/projet/',projet.id, 'edit']" [routerLink]="[data.i_id,'edit']" -->
+                                <a class="btn btn-info btn-sm"  [routerLink]="['/evenement/edit', evenement.id]">
+                                  
                                   <i class="fa-solid fa-edit">
                                   </i>
                                 </a>
-                                <a class="btn btn-danger btn-sm" (click)="confirmDelete(21)">
-                                  <!-- (click)="deletePost(projet.id)" -->
+                                <a class="btn btn-danger btn-sm" (click)="confirmDelete(evenement.id)">
+                                  
 
                                   <i class="fa-solid fa-trash">
                                   </i>
@@ -143,42 +137,7 @@
 
 
                             </tr>
-                            <tr role="row" class="even">
-                              <td align="center" class="sorting_1"> Titrezdz</td>
-                              <td align="center">dsd </td>
-                              <td align="center">0 </td>
-                              <td align="center">0 </td>
-
-                              <td align="center">2023-12-19 </td>
-                              <td align="center"> 2023-12-29 </td>
-
-                              <td>
-
-                                <a href="modifier_evenement.php?id=2" style=" width:200px;" class="btn btn-warning">En
-                                  cours</a>
-                              </td>
-
-                              <td align="center" style="width: 18%">
-
-                                <a class="btn btn-primary btn-sm">
-                                  <!--  [routerLink]="[data.i_id,'view']" -->
-                                  <i class="fa-solid fa-eye">
-                                  </i>
-                                </a>
-                                <a class="btn btn-info btn-sm">
-                                  <!-- [routerLink]="['/projet/',projet.id, 'edit']" [routerLink]="[data.i_id,'edit']" -->
-                                  <i class="fa-solid fa-edit">
-                                  </i>
-                                </a>
-                                <a class="btn btn-danger btn-sm" (click)="confirmDelete(21)">
-                                  <!-- (click)="deletePost(projet.id)" -->
-
-                                  <i class="fa-solid fa-trash">
-                                  </i>
-                                </a>
-                              </td>
-
-                            </tr>
+                         
                           </tbody>
 
 

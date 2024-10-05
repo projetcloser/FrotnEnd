@@ -13,6 +13,8 @@ export class EntrepriseServiceService {
 
 
   private apiURL = environment.apiUrl+"companies";
+  private countriesUrl = environment.apiUrl+'country';
+  private citiesUrl = environment.apiUrl+'city';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,15 +25,15 @@ export class EntrepriseServiceService {
   constructor(private httpclient: HttpClient) { }
 
   getAll(): Observable<Entreprise[]> {
-    return this.httpclient.get<any>(this.apiURL)
+    return this.httpclient.get<Entreprise[]>(this.apiURL)
       .pipe(
-        map(response=> response.body.data),
+        // map(response=> response.body.data),
         catchError(this.errorHandler)
       );
   }
 
-  create(activite: Entreprise): Observable<any> {
-    return this.httpclient.post(this.apiURL , JSON.stringify(activite), this.httpOptions)
+  create(entreprise: Entreprise): Observable<any> {
+    return this.httpclient.post(this.apiURL , JSON.stringify(entreprise), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
@@ -44,8 +46,8 @@ export class EntrepriseServiceService {
       );
   }
 
-  update(id: number, activite: Entreprise): Observable<any> {
-    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(activite), this.httpOptions)
+  update(id: number, entreprise: Entreprise): Observable<any> {
+    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(entreprise), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
@@ -65,5 +67,13 @@ export class EntrepriseServiceService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
+  }
+
+  getCountries(): Observable<any[]> {
+    return this.httpclient.get<any[]>(this.countriesUrl);
+  }
+
+  getCities(): Observable<any[]> {
+    return this.httpclient.get<any[]>(this.citiesUrl);
   }
 }

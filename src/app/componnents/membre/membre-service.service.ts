@@ -25,17 +25,23 @@ export class MembreServiceService {
   getAll(): Observable<Membre[]> {
     return this.httpclient.get<any>(this.apiURL)
       .pipe(
-        map(response=> response.body.data),
+        map(response=> response),
         catchError(this.errorHandler)
       );
   }
 
-  create(activite: Membre): Observable<any> {
-    return this.httpclient.post(this.apiURL , JSON.stringify(activite), this.httpOptions)
-      .pipe(
-        catchError(this.errorHandler)
-      );
+  // create(data: Membre): Observable<any> {
+  //   return this.httpclient.post(this.apiURL , JSON.stringify(data), this.httpOptions)
+  //     .pipe(
+  //       catchError(this.errorHandler)
+  //     );
+  // }
+
+  create(membre: FormData): Observable<any> {
+    return this.httpclient.post(`${this.apiURL}/members`, membre)
+      .pipe(catchError(this.errorHandler));
   }
+
 
   find(id: number): Observable<any> {
     return this.httpclient.get(this.apiURL +'/' + id)
@@ -44,8 +50,8 @@ export class MembreServiceService {
       );
   }
 
-  update(id: number, activite: Membre): Observable<any> {
-    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(activite), this.httpOptions)
+  update(id: number, data: Membre): Observable<any> {
+    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );

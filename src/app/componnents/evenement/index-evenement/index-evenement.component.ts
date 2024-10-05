@@ -1,15 +1,38 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Evenement } from '../evenement';
+import { EvenementService } from '../evenement.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-index-evenement',
   standalone: true,
-  imports: [],
+  imports: [CommonModule,
+    RouterModule,ReactiveFormsModule,FormsModule],
   templateUrl: './index-evenement.component.html',
   styleUrl: './index-evenement.component.css'
 })
 export class IndexEvenementComponent {
-  constructor(private router: Router) {}
+  evenements: Evenement[] = [];
+
+  constructor(private evenementService: EvenementService,private router:Router) {}
+
+  ngOnInit(): void {
+    this.loadEvenements();
+  }
+
+  loadEvenements() {
+    this.evenementService.getEvenements().subscribe((data: Evenement[]) => {
+      this.evenements = data;
+    });
+  }
+
+  deleteEvenement(id: number) {
+    this.evenementService.deleteEvenement(id).subscribe(() => {
+      this.loadEvenements();
+    });
+  }
 
   navigateToForm() {
     this.router.navigate(['/nouveau-evenement']);
