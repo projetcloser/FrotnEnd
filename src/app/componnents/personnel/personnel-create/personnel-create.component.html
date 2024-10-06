@@ -1,13 +1,12 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <h1 class="mt-4 ">Nouvelle Entreprises</h1>
-    <ol class="breadcrumb mb-4 text-center">
-      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
+    <!-- <h1 class="mt-4 ">Nouvelle Personne</h1> -->
+    <ol class="breadcrumb mb-4 text-center ">
+      <li class="breadcrumb-item active " style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
         Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
       </li>
-	    currentTime = new Date();
-        currentDay = new Date();
+
     </ol>
     <div class="row justify-content-center">
       <!-- Horizontal Form -->
@@ -19,7 +18,7 @@
         <div class="container mt-5">
           <div class="card">
             <div class="card-header">
-              <h4>Créer une nouvelle entreprise</h4>
+              <h4>Créer une nouvelle Personne</h4>
             </div>
             <div class="card-body">
               <form [formGroup]="personnelForm" (ngSubmit)="onSubmit()">
@@ -86,13 +85,15 @@
                 <div class="row mb-3">
                   <!-- Country -->
                   <div class="col-md-6">
-                    <span>Pays</span>
-                    <select formControlName="country_id" class="form-control">
-                      <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+                    <span>Quartier</span>
+                    <select formControlName="id_quartier" class="form-control">
+                      <option value="0" selected="">...
+                      </option>
+                      <!-- <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option> -->
                     </select>
-                    <div *ngIf="personnelForm.controls['country_id'].invalid && personnelForm.controls['country_id'].touched" class="text-danger">
+                    <!-- <div *ngIf="personnelForm.controls['country_id'].invalid && personnelForm.controls['country_id'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['country_id'].hasError('required')">Pays est requis.</small>
-                    </div>
+                    </div> -->
                   </div>
 
                   <!-- City -->
@@ -141,6 +142,18 @@
                     <input type="text" formControlName="mother_name" class="form-control" />
                   </div>
                 </div>
+                <div class="row mb-3">
+                  <!-- profession -->
+                  <div class="col-md-6">
+                    <span>Profession</span>
+                    <input type="text" formControlName="profession" class="form-control" />
+                  </div>
+                   <!--Nombre D'enfants -->
+                   <div class="col-md-6">
+                    <span>Nombre D'enfants</span>
+                    <input type="text" formControlName="num_children" class="form-control" />
+                  </div>
+                </div>
 
                 <div class="row mb-3">
                   <!-- Date de Naissance -->
@@ -158,6 +171,60 @@
                     <input type="text" formControlName="place_birth" class="form-control" />
                     <div *ngIf="personnelForm.controls['place_birth'].invalid && personnelForm.controls['place_birth'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['place_birth'].hasError('required')">Lieu de Naissance est requis.</small>
+                    </div>
+                  </div>
+                </div>
+
+                 <div class="row mb-3">
+                  <!-- genre -->
+                  <div class="col-md-6">
+                    <span>Genre</span>
+                    <select formControlName="genre" class="form-control">
+                      <option value="N/A" selected="">
+                        ...
+                      </option>
+                      <option value="MASCULIN">
+                          MASCULIN
+                      </option>
+                      <option value="FEMININ">
+                          FEMININ
+                      </option>
+                    </select>
+
+                  </div>
+
+                  <!-- marital_status -->
+                  <div class="col-md-6">
+                    <span>Situation Matrimoniale</span>
+                    <select formControlName="marital_status" class="form-control">
+                      <option value="N/A" selected="">
+                        ...
+                      </option>
+                      <option value="CELIBATAIRE">
+                          CELIBATAIRE
+                      </option>
+                      <option value="MARIÉ(E)">
+                          MARIÉ(E)
+                      </option>
+                      <option value="VEUF(VE)">
+                          VEUF(VE)
+                      </option>
+                    </select>
+                    <!-- <div *ngIf="personnelForm.controls['city_id'].invalid && personnelForm.controls['city_id'].touched" class="text-danger">
+                      <small *ngIf="personnelForm.controls['city_id'].hasError('required')">Ville est requise.</small>
+                    </div> -->
+                  </div>
+
+                  <div class="row mb-3">
+                    <!-- Piece jointe -->
+                    <div class="col-md-6">
+                      <span>Piece jointe</span>
+                      <input type="file" formControlName="attachment" (change)="onFileSelected($event)" class="form-control" multiple />
+                    </div>
+                     <!--Nombre D'enfants -->
+                     <div class="col-md-6">
+                      <!-- Zone d'affichage des erreurs globales -->
+                      <div *ngIf="errorMessage">{{ errorMessage }}</div>
                     </div>
                   </div>
                 </div>

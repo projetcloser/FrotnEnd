@@ -1,950 +1,269 @@
-
-<!-- /* Main content */ -->
+<!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <h1 class="mt-4">Modifier Un Membre</h1>
-    <ol class="breadcrumb mb-4" >
-      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-          Hello M/Mme MONGO SALOMON, il est 11:17 en ce jour
-          du Lundi 29 Juillet 2024.
+    <!-- <h1 class="mt-4 ">Nouvelle Personne</h1> -->
+    <ol class="breadcrumb mb-4 text-center ">
+      <li class="breadcrumb-item active " style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
+        Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
       </li>
+
     </ol>
-
-    <div class="row">
-      <div class="col-xl-12">
-          <div class="card mb-4">
-              <div class="card-header">
-                  <b>
-                      <!-- Nav pills -->
-                      <ul class="nav nav-pills" style="float: right;">
-                          <li class="nav-item">
-                              <a class="nav-link active" href="liste_personnel.php">
-
-                                  Retour
-                              </a>
-                          </li>
-                      </ul>
-                      <!-- Nav pills -->
-
-                  <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="pill" href="#home">
-                            <svg class="svg-inline--fa fa-cubes fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cubes" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M488.6 250.2L392 214V105.5c0-15-9.3-28.4-23.4-33.7l-100-37.5c-8.1-3.1-17.1-3.1-25.3 0l-100 37.5c-14.1 5.3-23.4 18.7-23.4 33.7V214l-96.6 36.2C9.3 255.5 0 268.9 0 283.9V394c0 13.6 7.7 26.1 19.9 32.2l100 50c10.1 5.1 22.1 5.1 32.2 0l103.9-52 103.9 52c10.1 5.1 22.1 5.1 32.2 0l100-50c12.2-6.1 19.9-18.6 19.9-32.2V283.9c0-15-9.3-28.4-23.4-33.7zM358 214.8l-85 31.9v-68.2l85-37v73.3zM154 104.1l102-38.2 102 38.2v.6l-102 41.4-102-41.4v-.6zm84 291.1l-85 42.5v-79.1l85-38.8v75.4zm0-112l-102 41.4-102-41.4v-.6l102-38.2 102 38.2v.6zm240 112l-85 42.5v-79.1l85-38.8v75.4zm0-112l-102 41.4-102-41.4v-.6l102-38.2 102 38.2v.6z"></path></svg>
-                            Etat Civile
-                        </a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" data-toggle="pill" href="#menu1">
-                            <svg class="svg-inline--fa fa-university fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="university" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M496 128v16a8 8 0 0 1-8 8h-24v12c0 6.627-5.373 12-12 12H60c-6.627 0-12-5.373-12-12v-12H24a8 8 0 0 1-8-8v-16a8 8 0 0 1 4.941-7.392l232-88a7.996 7.996 0 0 1 6.118 0l232 88A8 8 0 0 1 496 128zm-24 304H40c-13.255 0-24 10.745-24 24v16a8 8 0 0 0 8 8h464a8 8 0 0 0 8-8v-16c0-13.255-10.745-24-24-24zM96 192v192H60c-6.627 0-12 5.373-12 12v20h416v-20c0-6.627-5.373-12-12-12h-36V192h-64v192h-64V192h-64v192h-64V192H96z"></path></svg>
-                            Etat Academique
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="pill" href="#menu2">
-                            <svg class="svg-inline--fa fa-envelope fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
-                            Etat Professionnel
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="pill" href="#menu3">
-                            <svg class="svg-inline--fa fa-envelope fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
-                            Dossiers du Postulant
-                        </a>
-                    </li> -->
-                 </ul>
-                  </b>
-              </div>
-
-              <div class="card-body">
-                  <!-- Tab panes -->
-                  <div class="tab-content">
-                      <!-- Etat Civile-->
-                      <div class="tab-pane container active" id="home">
-                          <!-- infos civile-->
-
-                          <h5><b><u>NB:</u></b> Veillez saisir vos informations d'état civil comme sur vos
-                              pièces d'identité</h5>
-
-                          <div class="row">
-                              <hr>
-                          </div>
-
-                          <div class="row">
-                              <div class="col-xl-12">
-                                  <div class="card mb-4">
-                                      <form class="form-horizontal" action="save_civil_pers.php" method="POST">
-                                          <div class="card-header">
-
-                                          </div>
-                                          <div class="card-body">
-                                              <fieldset>
-                                                  <div class="table-responsive">
-                                                      <table class="table  table-hover table-condensed" id="myTable">
-                                                          <tbody>
-                                                                                                                                      <tr>
-
-                                                              <td style="width:50%">
-                                                                  <span class="help-block small-font">Auteur</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;border-top: 0;
-                                                                  border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="auteur" value="MONGO SALOMON" disabled="">
-                                                                  </div>
-
-                                                              </td>
-
-                                                              <td style="width:50%">
-                                                                <span class="help-block small-font">Matricule</span>
-                                                                <div class="col">
-                                                                    <input style="width:75%;border-top: 0;
-                                                                border-left: 0;
-                                                                border-right: 0;
-                                                                background: transparent;" name="matricule" required="">
-                                                                </div>
-
-                                                             </td>
-                                                          </tr>
-                                                                   <tr>
-
-                                                              <td style="width:50%">
-                                                                  <span class="help-block small-font">Nom</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;border-top: 0;
-                                                                  border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="nom" required="">
-                                                                  </div>
-
-                                                              </td>
-                                                              <td>
-                                                                  <span class="help-block small-font">Prénom</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;border-top: 0;
-                                                                  border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="prenom" required="">
-                                                                  </div>
-                                                              </td>
-                                                          </tr>
-                                                          <!-- <tr>
-                                                              <td>
-                                                                  <span class="help-block small-font">N° CNI ou Passport</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;
-                                                                  border-top: 0;
-                                                                   border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="id_card_number">
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                  <span class="help-block small-font">Date D'expiration CNI</span>
-                                                                  <div class="col">
-                                                                      <input type="date" style="width:75%;border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="id_card_validity">
-                                                                  </div>
-                                                              </td>
-                                                          </tr> -->
-                                                          <tr>
-                                                              <td>
-                                                                  <span class="help-block small-font">Tel1</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="tel">
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                  <span class="help-block small-font">Email</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" type="email" name="email">
-                                                                  </div>
-                                                              </td>
-                                                          </tr>
-                                                          <!-- <tr>
-                                                              <td>
-                                                                  <span class="help-block small-font">Nom du Père</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;border-top: 0;
-                                                                  border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="nom_pere">
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                  <span class="help-block small-font">Nom de la mère</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="nom_mere">
-                                                                  </div>
-                                                              </td>
-                                                          </tr> -->
-                                                          <!-- <tr>
-                                                              <td>
-                                                                  <span class="help-block small-font">Date de Naissance</span>
-                                                                  <div class="col">
-                                                                      <input type="date" style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="date_naissance">
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                  <span class="help-block small-font">Lieu de Naissance</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="lieu_naissance">
-                                                                  </div>
-                                                              </td>
-                                                          </tr> -->
-                                                          <tr>
-                                                              <td>
-                                                                  <span class="help-block small-font">Ville</span>
-                                                                  <div class="col">
-                                                                      <select name="id_ville" style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;">
-                                                                          <option value="0" selected="">...
-                                                                          </option>
-                                                                          <option value="1">YAOUNDE</option><option value="3">BAMENDA</option><option value="4">DOUALA</option><option value="7">BERTOUA</option><option value="8">KRIBI</option><option value="9">BAFOUSSAM</option><option value="10">MAROUA</option><option value="11">GAROUA</option><option value="12">NGAOUNDERE</option><option value="13">EBOLOWA</option><option value="14">MBOUDA</option><option value="15">EDEA</option><option value="16">KUMBA</option><option value="17">BATCHENGA</option><option value="18">LIMBE</option><option value="19">MAROUA</option><option value="20">TOUBORO</option><option value="21">MEIGANGA</option><option value="22">MOKOLO</option><option value="23">DSCHANG</option><option value="24">DSCHANG</option><option value="25">FUNDONG</option><option value="26">BATOURI</option><option value="27">BUEA</option><option value="28">TIBATI</option><option value="29">MENGONG</option><option value="30">KAELE</option>
-
-                                                                      </select>
-                                                                      <button type="button" data-toggle="modal" style="background-color: transparent; border-radius: 20px; border-color: black; border-bottom-color: yellow; border-top-color: red;
-                                                      border-right-color: blue;
-                                                      border-left-color: orange;">
-                                                                          <a href="liste_ville.php"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> Font Awesome fontawesome.com --></a>
-                                                                      </button>
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                <span class="help-block small-font">Genre</span>
-                                                                <div class="col">
-                                                                    <select name="genre" style="width:75%;
-                                                                border-top: 0; border-left: 0;
-                                                                border-right: 0;
-                                                                background: transparent;" required="">
-                                                                        <option value="N/A" selected="">
-                                                                            ...
-                                                                        </option>
-                                                                        <option value="MASCULIN">
-                                                                            MASCULIN
-                                                                        </option>
-                                                                        <option value="FEMININ">
-                                                                            FEMININ
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </td>
-
-                                                          </tr>
-
-                                                          <tr>
-                                                            <td>
-                                                              <span class="help-block small-font">Tel2</span>
-                                                              <div class="col">
-                                                                  <input style="width:75%;
-                                                              border-top: 0; border-left: 0;
-                                                              border-right: 0;
-                                                              background: transparent;" name="tel">
-                                                              </div>
-                                                           </td>
-                                                           <td>
-                                                            <span class="help-block small-font">Annee</span>
-                                                            <div class="col">
-                                                                <input style="width:75%;
-                                                            border-top: 0; border-left: 0;
-                                                            border-right: 0;
-                                                            background: transparent;" name="Annee">
-                                                            </div>
-                                                         </td>
-
-                                                          </tr>
-                                                          <tr>
-
-                                                           <td>
-                                                            <span class="help-block small-font">Dossier</span>
-                                                            <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                            </td>
-                                                            <td>
-                                                              <span class="help-block small-font">Photo</span>
-                                                              <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          </tbody>
-                                                      </table>
-                                                  </div>
-                                              </fieldset>
-                                          </div>
-                                          <div class="card-footer">
-                                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
-                                                <div class="btn-group mr-2 nav-pills" role="group" aria-label="First group">
-                                                    <h5 class="bg-warning nav-link">
-                                                      <svg class="svg-inline--fa fa-warning fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="warning" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><g><path fill="currentColor" d="M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z"></path><circle fill="currentColor" cx="256" cy="364" r="28"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="r" values="28;14;28;28;14;28;"></animate><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;1;1;0;1;"></animate></circle><path fill="currentColor" opacity="1" d="M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;0;0;0;1;"></animate></path><path fill="currentColor" opacity="0" d="M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="0;0;1;1;0;0;"></animate></path></g></svg><!-- <i class="fas fa-warning"></i> Font Awesome fontawesome.com -->
-                                                        <b><u>NB:</u></b> Veillez enregistrer avant de
-                                                        passer à l'étape suivante ! </h5>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                    <button type="submit" name="submit_etat_scolaire" class="btn btn-success">Enregistrer
-                                                    </button>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                                    <!-- <a href="liste_personnels.php" class="btn btn-primary" style="float: right; padding-top: 10px; padding-bottom: 10px; margin-right: 20px"><i class="fas fa-angle-double-down"></i> Annuler</a>-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                      </form>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!--ETAT ACADEMIQUE -->
-                      <div class="tab-pane container" id="menu1">
-                          <!-- infos civile-->
-
-                          <h5><b><u>NB:</u></b> Veillez saisir vos informations consernant vos 5 dernieres
-                              années d'études</h5>
-
-                          <div class="row">
-                              <hr>
-                          </div>
-
-                          <div class="row">
-                              <div class="col-xl-12">
-                                  <div class="card mb-4">
-                                      <form class="form-horizontal" action="save_personnel_school.php" method="POST" enctype="multipart/form-data">
-                                          <div class="card-header">
-                                              <input type="hidden" name="id_personnel" value="24">
-                                          </div>
-                                          <div class="card-body">
-                                              <fieldset>
-                                                  <div class="table-responsive">
-                                                      <table class="table table-bordered" width="100%" cellspacing="0">
-                                                          <thead>
-                                                          <tr class="bg-primary">
-                                                              <th>Dilplôme</th>
-                                                              <th>Session</th>
-                                                              <th>École</th>
-                                                              <th>Mention</th>
-                                                              <th>PJ (scan du diplome)</th>
-                                                          </tr>
-                                                          </thead>
-                                                          <tfoot>
-                                                          <tr class="bg-primary">
-                                                              <th>Dilplôme</th>
-                                                              <th>Session</th>
-                                                              <th>École</th>
-                                                              <th>Mention</th>
-                                                              <th>PJ (scan du diplome)</th>
-                                                          </tr>
-                                                          </tfoot>
-                                                          <tbody>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="diplome[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="month" name="session[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="ecole[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="mention[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="diplome[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="month" name="session[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="ecole[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="mention[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="diplome[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="month" name="session[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="ecole[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="mention[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="diplome[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="month" name="session[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="ecole[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="mention[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="diplome[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="month" name="session[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="ecole[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="mention[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          </tbody>
-                                                      </table>
-                                                  </div>
-                                              </fieldset>
-                                          </div>
-                                          <div class="card-footer">
-                                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
-                                                <div class="btn-group mr-2 nav-pills" role="group" aria-label="First group">
-                                                    <h5 class="bg-warning nav-link">
-                                                      <svg class="svg-inline--fa fa-warning fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="warning" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><g><path fill="currentColor" d="M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z"></path><circle fill="currentColor" cx="256" cy="364" r="28"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="r" values="28;14;28;28;14;28;"></animate><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;1;1;0;1;"></animate></circle><path fill="currentColor" opacity="1" d="M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;0;0;0;1;"></animate></path><path fill="currentColor" opacity="0" d="M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="0;0;1;1;0;0;"></animate></path></g></svg><!-- <i class="fas fa-warning"></i> Font Awesome fontawesome.com -->
-                                                        <b><u>NB:</u></b> Veillez enregistrer avant de
-                                                        passer à l'étape suivante ! </h5>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                    <button type="submit" name="submit_etat_scolaire" class="btn btn-success">Enregistrer
-                                                    </button>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                                    <!-- <a href="liste_personnels.php" class="btn btn-primary" style="float: right; padding-top: 10px; padding-bottom: 10px; margin-right: 20px"><i class="fas fa-angle-double-down"></i> Annuler</a>-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                      </form>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!--                                    Courrier-->
-                      <div class="tab-pane container" id="menu2">
-                          <!-- infos civile-->
-
-                          <h5><b><u>NB:</u></b> Veillez saisir vos informations consernant vos 5 dernieres
-                              années profession </h5>
-
-                          <div class="row">
-                              <hr>
-                          </div>
-
-                          <div class="row">
-                              <div class="col-xl-12">
-                                  <div class="card mb-4">
-                                      <form class="form-horizontal" action="save_personnel_background.php" method="POST" enctype="multipart/form-data">
-                                          <div class="card-header">
-                                              <input type="hidden" name="id_personnel" value="24">
-                                          </div>
-                                          <div class="card-body">
-                                              <fieldset>
-                                                  <div class="table-responsive">
-                                                      <table class="table table-bordered" width="100%" cellspacing="0">
-                                                          <thead>
-                                                          <tr class="bg-primary">
-                                                              <th>Entreprises</th>
-                                                              <th>Reférences <br> "Nom (Téléphone) du
-                                                                  responsable"
-                                                              </th>
-                                                              <th>Fonction</th>
-                                                              <th>Date d'arrivé</th>
-                                                              <th>Date de départ</th>
-                                                              <th>Attestation de travail ou Autres</th>
-                                                          </tr>
-                                                          </thead>
-                                                          <tfoot>
-                                                          <tr class="bg-primary">
-                                                              <th>Entreprises</th>
-                                                              <th>Reférences <br> "Nom (Téléphone) du
-                                                                  responsable"
-                                                              </th>
-                                                              <th>Fonction</th>
-                                                              <th>Date d'arrivé</th>
-                                                              <th>Date de départ</th>
-
-                                                              <th>Attestation de travail ou Autres</th>
-                                                          </tr>
-                                                          </tfoot>
-                                                          <tbody>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="entreprise[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="reference[]" style="width:100%" class="form-control" placeholder="Nom (Numéro) d'un responsable">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="fonction[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_arrive[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_depart[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="entreprise[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="reference[]" style="width:100%" class="form-control" placeholder="Nom (Numéro) d'un responsable">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="fonction[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_arrive[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_depart[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="entreprise[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="reference[]" style="width:100%" class="form-control" placeholder="Nom (Numéro) d'un responsable">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="fonction[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_arrive[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_depart[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="entreprise[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="reference[]" style="width:100%" class="form-control" placeholder="Nom (Numéro) d'un responsable">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="fonction[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_arrive[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_depart[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>
-                                                                  <input name="entreprise[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="reference[]" style="width:100%" class="form-control" placeholder="Nom (Numéro) d'un responsable">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="fonction[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_arrive[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input name="date_depart[]" type="date" style="width:100%" class="form-control">
-                                                              </td>
-                                                              <td>
-                                                                  <input type="file" name="fichier[]" style="width:100%" class="form-control">
-                                                              </td>
-                                                          </tr>
-                                                          </tbody>
-                                                      </table>
-                                                  </div>
-                                              </fieldset>
-                                          </div>
-                                          <div class="card-footer">
-                                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
-                                                <div class="btn-group mr-2 nav-pills" role="group" aria-label="First group">
-                                                    <h5 class="bg-warning nav-link">
-                                                      <svg class="svg-inline--fa fa-warning fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="warning" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><g><path fill="currentColor" d="M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z"></path><circle fill="currentColor" cx="256" cy="364" r="28"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="r" values="28;14;28;28;14;28;"></animate><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;1;1;0;1;"></animate></circle><path fill="currentColor" opacity="1" d="M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;0;0;0;1;"></animate></path><path fill="currentColor" opacity="0" d="M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="0;0;1;1;0;0;"></animate></path></g></svg><!-- <i class="fas fa-warning"></i> Font Awesome fontawesome.com -->
-                                                        <b><u>NB:</u></b> Veillez enregistrer avant de
-                                                        passer à l'étape suivante ! </h5>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                    <button type="submit" name="submit_etat_scolaire" class="btn btn-success">Enregistrer
-                                                    </button>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                                    <!-- <a href="liste_personnels.php" class="btn btn-primary" style="float: right; padding-top: 10px; padding-bottom: 10px; margin-right: 20px"><i class="fas fa-angle-double-down"></i> Annuler</a>-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                      </form>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <!-- information RH -->
-                      <div class="tab-pane container" id="menu3">
-                          <!-- infos civile-->
-
-                          <h5><b><u>NB:</u></b> Veillez saisir vos informations concernant le traitement
-                              de ressource humaine</h5>
-
-                          <div class="row">
-                              <hr>
-                          </div>
-
-                          <div class="row">
-                              <div class="col-xl-12">
-                                  <div class="card mb-4">
-                                      <form class="form-horizontal" action="save_infos_pers.php" method="POST">
-                                          <div class="card-header">
-
-                                          </div>
-                                          <input type="hidden" name="id_personnel" value="24">
-                                          <div class="card-body">
-                                              <fieldset>
-                                                  <div class="table-responsive">
-                                                      <table class="table  table-hover table-condensed" id="myTable">
-                                                          <tbody>
-                                                          <tr>
-                                                              <td style="width:50%">
-                                                                  <span class="help-block small-font">Poste</span>
-
-                                                                  <div class="col">
-                                                                      <select name="poste" style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" required="">
-                                                                          <option value="" selected="">
-                                                                              ...
-                                                                          </option>
-                                                                          <option value="AGENT DE LIAISON">AGENT DE LIAISON</option><option value="ASSISTANTE ADMINISTRATIVE">ASSISTANTE ADMINISTRATIVE</option><option value="CHARGEE DE COMMUNICATION">CHARGEE DE COMMUNICATION</option><option value="PRESEIDENT">PRESEIDENT</option><option value="RECEPTIONISTE ">RECEPTIONISTE </option><option value="REPRESENTANT REGIONAL">REPRESENTANT REGIONAL</option><option value="SECRETAIRE ADMINISTRATIF">SECRETAIRE ADMINISTRATIF</option><option value="SECRETAIRE GENERAL">SECRETAIRE GENERAL</option>                                                                                    </select>
-                                                                      <button type="button" style="background-color: transparent; border-radius: 20px; border-color: black; border-bottom-color: yellow; border-top-color: red;
-                                                      border-right-color: blue;
-                                                      border-left-color: orange;">
-                                                                          <a href="liste_poste.php"><svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus"></i> Font Awesome fontawesome.com --></a>
-                                                                      </button>
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                  <span class="help-block small-font">Date D'embauche</span>
-                                                                  <div class="col">
-                                                                      <input type="date" style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="date_embauche">
-                                                                  </div>
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>
-                                                                  <span class="help-block small-font">Type de Contrat</span>
-
-                                                                  <div class="col">
-                                                                      <select name="type_contrat" style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;">
-                                                                          <option value="CDI">CDI</option>
-                                                                          <option value="CDD">CDD</option>
-                                                                          <option value="N/A">N/A</option>
-                                                                      </select>
-                                                                      <!--    <button type="button" data-toggle="modal" data-target="#ajouterCc"  style="background-color: transparent">
-                                                                         <i class="fas fa-plus"></i>
-                                                                     </button> -->
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                  <span class="help-block small-font">Statut</span>
-
-                                                                  <div class="col">
-                                                                      <select name="statut" style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" required="">
-                                                                          <option value="0" selected="">
-                                                                              ...
-                                                                          </option>
-                                                                          <option value="STAGIAIRE">
-                                                                              STAGIAIRE
-                                                                          </option>
-                                                                          <option value="EMPLOYE">
-                                                                              EMPLOYÉ
-                                                                          </option>
-                                                                      </select>
-                                                                      <!-- <button type="button" data-toggle="modal" data-target="#ajouterStatut"  style="background-color: transparent">
-                                                                      <i class="fas fa-plus"></i>
-                                                                  </button> -->
-                                                                  </div>
-                                                              </td>
-                                                          </tr>
-
-                                                          <tr>
-                                                              <td>
-                                                                  <span class="help-block small-font">Matricule</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="matricule" required="">
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                  <span class="help-block small-font">N° CNPS:</span>
-                                                                  <div class="col">
-                                                                      <input type="text" style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="number_cnps" required="">
-                                                                  </div>
-                                                              </td>
-
-                                                          </tr>
-                                                           <tr>
-                                                              <td>
-                                                                  <span class="help-block small-font">Salaire</span>
-                                                                  <div class="col">
-                                                                      <input type="number" style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="cout_h_sup" value="0">
-                                                                  </div>
-                                                              </td>
-                                                          <!--    <td>
-                                                                  <span class="help-block small-font">Coût Horaire</span>
-                                                                  <div class="col">
-                                                                      <input type="number" style="width:75%;border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;"
-                                                                             name="cout_horaire" value="0"
-                                                                             required>
-                                                                  </div>
-                                                              </td>-->
-                                                          </tr>
-                                                          <!-- <tr>
-                                                              <td>
-                                                                  <span class="help-block small-font">Nom de la Banque</span>
-                                                                  <div class="col">
-                                                                      <input style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;"
-                                                                             name="nom_banque" required>
-                                                                  </div>
-                                                              </td>
-                                                              <td>
-                                                                  <span class="help-block small-font">N° Compte Bancaire:</span>
-                                                                  <div class="col">
-                                                                      <input type="text" style="width:75%;
-                                                                  border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;"
-                                                                             name="number_card_bancaire"
-                                                                             required>
-                                                                  </div>
-                                                              </td>
-
-                                                          </tr> -->
-                                                          </tbody>
-                                                      </table>
-                                                      <table class="table  table-hover table-condensed" id="myTable">
-                                                          <tbody>
-                                                          <tr>
-
-                                                              <td>
-                                                                  <span class="help-block small-font">Anciennete</span>
-                                                                  <div class="col">
-                                                                      <label>jour(s)</label>
-                                                                      <input type="number" style="width:10%;
-                                                                      border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="day_anciennete" placeholder="jour(s)" value="0">
-                                                                      <label>mois</label>
-                                                                      <input type="number" style="width:10%;
-                                                                      border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="month_anciennete" placeholder="mois" value="0">
-                                                                      <label>année(s)</label>
-                                                                      <input type="number" style="width:10%;
-                                                                      border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="year_anciennete" placeholder="année(s)" value="0">
-                                                                  </div>
-                                                              </td>
-
-                                                          </tr>
-                                                          </tbody>
-                                                      </table>
-                                                  </div>
-                                              </fieldset>
-                                          </div>
-                                          <div class="card-footer">
-                                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
-                                                <div class="btn-group mr-2 nav-pills" role="group" aria-label="First group">
-                                                    <h5 class="bg-warning nav-link">
-                                                      <svg class="svg-inline--fa fa-warning fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="warning" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><g><path fill="currentColor" d="M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z"></path><circle fill="currentColor" cx="256" cy="364" r="28"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="r" values="28;14;28;28;14;28;"></animate><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;1;1;0;1;"></animate></circle><path fill="currentColor" opacity="1" d="M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;0;0;0;1;"></animate></path><path fill="currentColor" opacity="0" d="M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="0;0;1;1;0;0;"></animate></path></g></svg><!-- <i class="fas fa-warning"></i> Font Awesome fontawesome.com -->
-                                                        <b><u>NB:</u></b> Veillez enregistrer avant de
-                                                        passer à l'étape suivante ! </h5>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                    <button type="submit" name="submit_etat_scolaire" class="btn btn-success">Enregistrer
-                                                    </button>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                                    <!-- <a href="liste_personnels.php" class="btn btn-primary" style="float: right; padding-top: 10px; padding-bottom: 10px; margin-right: 20px"><i class="fas fa-angle-double-down"></i> Annuler</a>-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                      </form>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+    <div class="row justify-content-center">
+      <!-- Horizontal Form -->
+      <div class="card card-info col-md-8">
+        <!-- form start -->
 
 
-                      <!-- infos Paie -->
-                      <div class="tab-pane container" id="menu4">
-                          <!-- infos bulletin conge-->
 
-                          <h5><b><u>NB:</u></b> Veillez saisir vos informations concernant les primes.
-                          </h5>
+        <div class="container mt-5">
+          <div class="card">
+            <div class="card-header">
+              <h4>Editer un nouveau Membre</h4>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="membreForm">
+                <!-- (ngSubmit)="onSubmit()" -->
+                <div class="row mb-3">
+                  <!-- firstname -->
+                  <div class="col-md-6">
+                    <span>Nom</span>
+                    <input type="text" formControlName="firstname" class="form-control" />
+                    <div *ngIf="membreForm.controls['firstname'].invalid && membreForm.controls['firstname'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['firstname'].hasError('required')">Raison sociale est requise.</small>
+                    </div>
+                  </div>
 
-                          <div class="row">
-                              <hr>
-                          </div>
+                  <!-- Author -->
+                  <div class="col-md-6">
+                    <span>Auteur</span>
+                    <input type="text" formControlName="author" class="form-control" />
+                    <div *ngIf="membreForm.controls['author'].invalid && membreForm.controls['author'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['author'].hasError('required')">Auteur est requis.</small>
+                    </div>
+                  </div>
+                </div>
 
-                          <div class="row">
-                              <div class="col-xl-12">
-                                  <div class="card mb-4">
-                                      <form class="form-horizontal" action="save_prime_pers.php" method="POST">
-                                          <div class="card-header">
+                <div class="row mb-3">
+                  <!-- Prénom -->
+                  <div class="col-md-6">
+                    <span>Prénom</span>
+                    <input type="text" formControlName="lastname" class="form-control" />
+                    <div *ngIf="membreForm.controls['lastname'].invalid && membreForm.controls['lastname'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['lastname'].hasError('required')">Télélastname est requis.</small>
+                    </div>
+                  </div>
 
-                                              <input type="hidden" name="id_personnel" value="24">
-                                          </div>
-                                          <div class="card-body">
-                                              <fieldset>
-                                                  <div class="table-responsive">
-                                                      <table class="table  table-hover table-condensed" id="myTable">
-                                                          <tbody>
-                                                          <tr>
-                                                              <td>
-                                                                                                                                                  <span class="help-block small-font">PRIME:</span>
+                  <!-- N° CNI ou Passport -->
+                  <div class="col-md-6">
+                    <span>N° CNI ou Passport</span>
+                    <input type="id_card_number" formControlName="id_card_number" class="form-control" />
+                    <div *ngIf="membreForm.controls['id_card_number'].invalid && membreForm.controls['id_card_number'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['id_card_number'].hasError('id_card_number')">id_card_number invalide.</small>
+                    </div>
+                  </div>
+                </div>
 
-                                                                  <div class="col">
-                                                                      <input type="number" style="width:75%;border-top: 0; border-left: 0;
-                                                                  border-right: 0;
-                                                                  background: transparent;" name="prime">
-                                                                  </div>
-                                                              </td>
-                                                          </tr>
-                                                          </tbody>
-                                                      </table>
+                <div class="row mb-3">
+                  <!-- Tel1 -->
+                  <div class="col-md-6">
+                    <span>Tel1</span>
+                    <input type="text" formControlName="phone" class="form-control" />
+                    <div *ngIf="membreForm.controls['phone'].invalid && membreForm.controls['phone'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['phone'].hasError('required')">Personne de contact est requise.</small>
+                    </div>
+                  </div>
 
-                                                  </div>
-                                              </fieldset>
-                                          </div>
-                                          <div class="card-footer">
-                                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
-                                                <div class="btn-group mr-2 nav-pills" role="group" aria-label="First group">
-                                                    <h5 class="bg-warning nav-link">
-                                                      <svg class="svg-inline--fa fa-warning fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="warning" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><g><path fill="currentColor" d="M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z"></path><circle fill="currentColor" cx="256" cy="364" r="28"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="r" values="28;14;28;28;14;28;"></animate><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;1;1;0;1;"></animate></circle><path fill="currentColor" opacity="1" d="M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;0;0;0;1;"></animate></path><path fill="currentColor" opacity="0" d="M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="0;0;1;1;0;0;"></animate></path></g></svg><!-- <i class="fas fa-warning"></i> Font Awesome fontawesome.com -->
-                                                        <b><u>NB:</u></b> Veillez enregistrer avant de
-                                                        passer à l'étape suivante ! </h5>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                    <button type="submit" name="submit_etat_scolaire" class="btn btn-success">Enregistrer
-                                                    </button>
-                                                </div>
-                                                <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                                    <!-- <a href="liste_personnels.php" class="btn btn-primary" style="float: right; padding-top: 10px; padding-bottom: 10px; margin-right: 20px"><i class="fas fa-angle-double-down"></i> Annuler</a>-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                      </form>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                  <!-- Matricule -->
+                  <div class="col-md-6">
+                    <span>Matricule</span>
+                    <input type="matricule" formControlName="matricule" class="form-control" />
+                    <div *ngIf="membreForm.controls['matricule'].invalid && membreForm.controls['matricule'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['matricule'].hasError('matricule')">matricule invalide.</small>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row mb-3">
+                  <!-- Country -->
+                  <!-- <div class="col-md-6">
+                    <span>Quartier</span>
+                    <select formControlName="id_quartier" class="form-control">
+                      <option value="0" selected="">...
+                      </option>
+                      <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+                    </select>
+                    <div *ngIf="membreForm.controls['country_id'].invalid && membreForm.controls['country_id'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['country_id'].hasError('required')">Pays est requis.</small>
+                    </div>
+                  </div> -->
+
+                  <!-- City -->
+                  <div class="col-md-6">
+                    <span>Ville</span>
+                    <select formControlName="city_id" class="form-control">
+                      <!-- <option *ngFor="let city of city" [value]="city.id">{{ city.name }}</option> -->
+                    </select>
+                    <div *ngIf="membreForm.controls['city_id'].invalid && membreForm.controls['city_id'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['city_id'].hasError('required')">Ville est requise.</small>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <span>Annee</span>
+                    <select formControlName="city_id" class="form-control">
+                      <!-- <option *ngFor="let city of city" [value]="city.id">{{ city.name }}</option> -->
+                    </select>
+                    <div *ngIf="membreForm.controls['city_id'].invalid && membreForm.controls['city_id'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['city_id'].hasError('required')">Ville est requise.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <!-- Tel -->
+                  <div class="col-md-6">
+                    <span>Tel2</span>
+                    <input type="text" formControlName="phone" class="form-control" />
+                    <div *ngIf="membreForm.controls['phone'].invalid && membreForm.controls['phone'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['phone'].hasError('required')">Personne de contact est requise.</small>
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="col-md-6">
+                    <span>Email</span>
+                    <input type="text" formControlName="email" class="form-control" />
+                    <div *ngIf="membreForm.controls['email'].invalid && membreForm.controls['email'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['email'].hasError('required')">Télélastname de contact est requis.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+
+
+                  <!-- father_name -->
+                  <div class="col-md-6">
+                    <span>Nom du Père</span>
+                    <input type="text" formControlName="father_name" class="form-control" />
+                  </div>
+                   <!-- mother_name -->
+                   <div class="col-md-6">
+                    <span>Nom de la mère</span>
+                    <input type="text" formControlName="mother_name" class="form-control" />
+                  </div>
+                </div>
+                <!-- <div class="row mb-3"> -->
+                  <!-- profession -->
+                  <!-- <div class="col-md-6">
+                    <span>Profession</span>
+                    <input type="text" formControlName="profession" class="form-control" />
+                  </div> -->
+                   <!--Nombre D'enfants -->
+                   <!-- <div class="col-md-6"> -->
+                    <!-- <span>Nombre D'enfants</span>
+                    <input type="text" formControlName="num_children" class="form-control" />
+                  </div>
+                </div> -->
+
+                <div class="row mb-3">
+                  <!-- Date de Naissance -->
+                  <div class="col-md-6">
+                    <span>Date de Naissance</span>
+                    <input type="date" formControlName="birthday" class="form-control" />
+                    <div *ngIf="membreForm.controls['birthday'].invalid && membreForm.controls['birthday'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['birthday'].hasError('required')">Personne de contact est requise.</small>
+                    </div>
+                  </div>
+
+                  <!-- Lieu de Naissance -->
+                  <div class="col-md-6">
+                    <span>Lieu de Naissance</span>
+                    <input type="text" formControlName="place_birth" class="form-control" />
+                    <div *ngIf="membreForm.controls['place_birth'].invalid && membreForm.controls['place_birth'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['place_birth'].hasError('required')">Lieu de Naissance est requis.</small>
+                    </div>
+                  </div>
+                </div>
+
+                 <div class="row mb-3">
+                  <!-- genre -->
+                  <div class="col-md-6">
+                    <span>Genre</span>
+                    <select formControlName="genre" class="form-control">
+                      <option value="N/A" selected="">
+                        ...
+                      </option>
+                      <option value="MASCULIN">
+                          MASCULIN
+                      </option>
+                      <option value="FEMININ">
+                          FEMININ
+                      </option>
+                    </select>
 
                   </div>
-              </div>
-              <div class="card-footer">
 
-              </div>
+                  <!-- marital_status -->
+                  <!-- <div class="col-md-6">
+                    <span>Situation Matrimoniale</span>
+                    <select formControlName="marital_status" class="form-control">
+                      <option value="N/A" selected="">
+                        ...
+                      </option>
+                      <option value="CELIBATAIRE">
+                          CELIBATAIRE
+                      </option>
+                      <option value="MARIÉ(E)">
+                          MARIÉ(E)
+                      </option>
+                      <option value="VEUF(VE)">
+                          VEUF(VE)
+                      </option>
+                    </select>
+                    <div *ngIf="membreForm.controls['city_id'].invalid && membreForm.controls['city_id'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['city_id'].hasError('required')">Ville est requise.</small>
+                    </div>
+                  </div> -->
+
+                  <div class="row mb-3">
+                    <!-- Piece jointe -->
+                    <div class="col-md-6">
+                      <span>Piece jointe</span>
+                      <input type="file" formControlName="attachment"  class="form-control" multiple />
+                      <!-- (change)="onCaseSelected($event)" -->
+                    </div>
+                     <!--Nombre D'enfants -->
+                     <div class="col-md-6">
+                      <div class="col-md-6">
+                        <span>Photo</span>
+                        <input type="file" formControlName="attachment"  class="form-control" multiple />
+                        <!-- (change)="onCaseSelected($event)" -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <!-- Submit Button -->
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-block">Editer le membre</button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
+        </div>
+
       </div>
-  </div>
-   </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
 </section>
+<!-- /.content -->
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<style>
 
-<script>
-  $(document).ready(function() {
-    $('#example1').DataTable();
-    $('#example2').DataTable();
-  });
-</script>
-
-
+</style>

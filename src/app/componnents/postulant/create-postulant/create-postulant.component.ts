@@ -18,6 +18,8 @@ export class CreatePostulantComponent {
   countries: any[] = [];
   cities: any[] = []
 
+  currentTime = new Date();
+  currentDay = new Date();
   constructor(public postulantService:PostulantServiceService, private router:Router,private fb: FormBuilder,){
 
   }

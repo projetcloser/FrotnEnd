@@ -20,10 +20,10 @@ export class IndexMembreComponent implements OnInit{
   constructor(public membreService: MembreServiceService,private router: Router){}
 
   navigateToForm() {
-    this.router.navigate(['/nouveau-membre']);
+    this.router.navigate(['/Closer/nouveau-membre']);
   }
   navigateToFormEdit(id: number): void{
-    this.router.navigate(['/membre/edit', id]);
+    this.router.navigate(['/Closer/membre/edit', id]);
   }
 
    // Méthode de confirmation avant la suppression

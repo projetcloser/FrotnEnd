@@ -88,10 +88,10 @@ getCityName(city_id: number): string {
   }
 
   navigateToForm() {
-    this.router.navigate(['/nouveau-postulant']);
+    this.router.navigate(['/Closer/nouveau-postulant']);
   }
   navigateToFormEdit() {
-    this.router.navigate(['/modifier-postulant']);
+    this.router.navigate(['/Closer/modifier-postulant']);
   }
 
 
