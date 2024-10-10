@@ -1,0 +1,11 @@
+{
+  "MENU": "Menu",
+  "PRODUCTS": "Products",
+  "NAME": "Name",
+  "DESCRIPTION": "Description",
+  "PRICE": "Price",
+  "ADD": "Add",
+  "UPDATE": "Update",
+  "EDIT": "Edit",
+  "DELETE": "Delete"
+}

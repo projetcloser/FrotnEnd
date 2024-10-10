@@ -69,6 +69,9 @@ import { AuthGuard } from './auth.guard';
 import { EvenementDetailsComponent } from './componnents/evenement/evenement-details/evenement-details.component';
 import { SideNavComponent } from './componnents/side-nav/side-nav.component';
 
+
+
+
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },

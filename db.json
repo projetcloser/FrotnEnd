@@ -17,6 +17,16 @@
       "name": "kevin",
       "email": "kev@gmail.com",
       "password": "kev1234"
+    },
+    {
+      "id": "4dc4",
+      "email": "john.doe@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "d35d",
+      "email": "john.doe@example.com",
+      "password": "123456"
     }
   ],
   "evenement": [

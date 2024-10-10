@@ -21,16 +21,16 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    this.authService.login(this.email, this.password).subscribe(user => {
-      if (user) {
-        // Connecté avec succès
-        localStorage.setItem('user', JSON.stringify(user));
-        this.router.navigate(['/Closer/dashboard']);
-      } else {
-        // Si les informations sont incorrectes
-        this.errorMessage = "Email ou mot de passe incorrect";
+    this.authService.login(this.email, this.password).subscribe(
+      (response: any) => {
+        localStorage.setItem('token', response.token);// Stocker le token
+        this.router.navigate(['/Closer/dashboard']);// Rediriger vers le dashboard
+      },
+      error => {
+        this.errorMessage = 'Login failed';
+        console.error('Login failed', error);
       }
-    });
+    );
   }
 
 }

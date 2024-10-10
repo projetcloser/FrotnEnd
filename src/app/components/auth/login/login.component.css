@@ -1,10 +1,10 @@
 /* login.component.css */
 
 /* Style de fond dégradé */
-.bg-gradient-primary {
+/* .bg-gradient-primary {
   background: linear-gradient(to right, #007bff, #6f42c1);
   height: 100vh; /* Prendre toute la hauteur de l'écran */
-}
+/* } */ 
 
 .slider {
   height: 100%;
@@ -26,4 +26,23 @@
 
 .btn-user {
   border-radius: 15px; /* Coins arrondis pour les boutons */
+}
+
+/* Ajout de la couleur d'arrière-plan */
+.bg-gradient-primary {
+  background-color: #dde9dd;
+}
+
+/* Assurez-vous que le carousel occupe tout l'espace de la colonne */
+.carousel {
+  height: 100%;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
 }

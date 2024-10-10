@@ -12,6 +12,10 @@ import { environment } from '../../../environments/environment';
 export class EntrepriseServiceService {
 
 
+  // private apiURL = environment.apiUrl+"companies";
+  // private countriesUrl = environment.apiUrl+'country';
+  // private citiesUrl = environment.apiUrl+'city';
+
   private apiURL = environment.apiUrl+"companies";
   private countriesUrl = environment.apiUrl+'country';
   private citiesUrl = environment.apiUrl+'city';

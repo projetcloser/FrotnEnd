@@ -16,19 +16,19 @@ export class RegisterComponent {
   name: string = '';
   email: string = '';
   password: string = '';
+  password_confirmation: string = '';
   errorMessage: string = '';
-
 
   constructor(private authService: AuthService, private router: Router) {}
 
   register() {
-    const newUser: User = { name: this.name, email: this.email, password: this.password };
-    this.authService.register(newUser).subscribe(
-      () => {
-        this.router.navigate(['/Closer/login']);
+    this.authService.register(this.name, this.email, this.password, this.password_confirmation).subscribe(
+      (response: any) => {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/dashboard']);
       },
       error => {
-        this.errorMessage = 'Erreur lors de l\'inscription';
+        this.errorMessage = 'Registration failed';
       }
     );
   }

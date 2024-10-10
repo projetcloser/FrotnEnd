@@ -1,0 +1,7 @@
+{
+  "/public": {
+    "target": "https://app.closercm.net",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

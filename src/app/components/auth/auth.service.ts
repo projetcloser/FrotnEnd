@@ -14,7 +14,7 @@ export class AuthService {
     public currentUser: Observable<User | null>;
 
     private loggedIn: boolean = false;
-  
+
     constructor(private http: HttpClient, private router: Router) {
       this.currentUserSubject = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem('currentUser')!));
       this.currentUser = this.currentUserSubject.asObservable();
@@ -25,45 +25,35 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-    // Méthode pour vérifier si l'utilisateur est authentifié
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, { email, password });
+  }
+
+  register(name: string, email: string, password: string, password_confirmation: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, { name, email, password, password_confirmation });
+  }
+
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/forgot-password`, { email });
+  }
+
+   // Stocker le token dans le localStorage
+   saveToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
+   // Récupérer le token depuis le localStorage
+   getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  logout(): void {
+    localStorage.removeItem('token'); // Supprimer le token lors de la déconnexion
+    this.router.navigate(['/login']);
+  }
+
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
 
 
-  // Méthode pour se connecter
-  login(email: string, password: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}?email=${email}&password=${password}`)
-      .pipe(
-        tap((users: User[]) => {
-          if (users.length > 0) {
-            localStorage.setItem('token', users[0].token??'');  // Stocker le token
-            this.router.navigate(['/dashboard']);  // Rediriger après connexion
-          } else {
-            alert('Email ou mot de passe incorrect');
-          }
-        })
-      );
-  }
-
-
-
-  // Register
-  register(user: User): Observable<User> {
-    return this.http.post<User>(this.apiUrl, user);
-  }
-
-  
-    // Forget Password (you would implement a logic here to search by email)
-    forgotPassword(email: string): Observable<any> {
-      return this.http.get<any[]>(`${this.apiUrl}?email=${email}`);
-    }
-
-     // Logout
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-  }
-
-  
 }
