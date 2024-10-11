@@ -47,6 +47,26 @@
       "id": "ce44",
       "email": "kev@gmail.com",
       "password": "kev1234"
+    },
+    {
+      "id": "3a07",
+      "email": "kev@gmail.com",
+      "password": "kev1234"
+    },
+    {
+      "id": "6d3f",
+      "email": "kev@gmail.com",
+      "password": "kev1234"
+    },
+    {
+      "id": "eb8b",
+      "email": "kev@gmail.com",
+      "password": "kev1234"
+    },
+    {
+      "id": "a9cd",
+      "email": "kev@gmail.com",
+      "password": "kev1234"
     }
   ],
   "evenement": [
@@ -67,7 +87,7 @@
   ],
   "annonces": [
     {
-      "id": 1,
+      "id": "1",
       "object": "Nouvelle mise à jour",
       "auteur": "Admin",
       "contenu": "La plateforme a été mise à jour avec de nouvelles fonctionnalités.",
@@ -78,7 +98,7 @@
       "created_at": "2023-10-10T08:30:00"
     },
     {
-      "id": 2,
+      "id": "2",
       "object": "Nouvelle mise à jour",
       "auteur": "Admin",
       "contenu": "La plateforme a été mise à jour avec de nouvelles fonctionnalités.",
@@ -89,7 +109,7 @@
       "created_at": "2023-10-10T08:30:00"
     },
     {
-      "id": 3,
+      "id": "3",
       "object": "Nouvelle mise à jour",
       "auteur": "Admin",
       "contenu": "La plateforme a été mise à jour avec de nouvelles fonctionnalités.",
@@ -100,7 +120,7 @@
       "created_at": "2023-10-10T08:30:00"
     },
     {
-      "id": 4,
+      "id": "4",
       "object": "Nouvelle mise à jour",
       "auteur": "Admin",
       "contenu": "La plateforme a été mise à jour avec de nouvelles fonctionnalités.",
