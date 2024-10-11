@@ -68,6 +68,8 @@ import { FpwComponent } from './components/auth/fpw/fpw.component';
 import { AuthGuard } from './auth.guard';
 import { EvenementDetailsComponent } from './componnents/evenement/evenement-details/evenement-details.component';
 import { SideNavComponent } from './componnents/side-nav/side-nav.component';
+import { ListAnnonceComponent } from './componnents/annonce/list-annonce/list-annonce.component';
+import { CreateAnnonceComponent } from './componnents/annonce/create-annonce/create-annonce.component';
 
 
 
@@ -84,6 +86,9 @@ export const routes: Routes = [
     path: "dashboard",
     component:DashboardComponent
   },
+  // anonce
+  { path: 'annonces', component: ListAnnonceComponent },
+  { path: 'annonces/new', component: CreateAnnonceComponent },
   // personnels
   {
     path: "personnel",

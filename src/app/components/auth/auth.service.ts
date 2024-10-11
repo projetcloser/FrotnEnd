@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
     private apiUrl = 'http://localhost:3000/users'; // URL du serveur JSON
+    
     private currentUserSubject: BehaviorSubject<User | null>;
     public currentUser: Observable<User | null>;
 
@@ -21,9 +22,9 @@ export class AuthService {
     }
 
      // Getter pour accéder à l'utilisateur connecté
-  public get currentUserValue(): User | null {
-    return this.currentUserSubject.value;
-  }
+    public get currentUserValue(): User | null {
+      return this.currentUserSubject.value;
+    }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}`, { email, password });
@@ -55,5 +56,8 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
+  getUser(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
 
 }

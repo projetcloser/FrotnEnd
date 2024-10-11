@@ -4,7 +4,7 @@
 /* .bg-gradient-primary {
   background: linear-gradient(to right, #007bff, #6f42c1);
   height: 100vh; /* Prendre toute la hauteur de l'écran */
-/* } */ 
+/* } */
 
 .slider {
   height: 100%;
@@ -42,7 +42,19 @@
   height: 100%;
 }
 
+
+
+/* Container holding the carousel */
+.carousel-container {
+  display: flex;
+  justify-content: center; /* Centre le carousel horizontalement */
+  align-items: center; /* Centre le carousel verticalement */
+  height: 100%; /* Assure que le conteneur prend toute la hauteur disponible */
+}
+
+/* Ajustement de la taille des images du carousel */
 .carousel-item img {
-  height: 100%;
-  object-fit: cover;
+  max-height: 300px; /* Ajuste la hauteur maximale de l'image */
+  object-fit: cover; /* Garde l'image proportionnelle */
+  margin: 0 auto; /* Centre horizontalement l'image dans son conteneur */
 }

@@ -1,0 +1,18 @@
+<form [formGroup]="annonceForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="object">Object</label>
+    <input formControlName="object" id="object" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="contenu">Contenu</label>
+    <textarea formControlName="contenu" id="contenu" class="form-control"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="fichiers">Joindre des fichiers</label>
+    <input type="file" id="fichiers" (change)="onFileChange($event)" multiple />
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="annonceForm.invalid">Enregistrer</button>
+</form>

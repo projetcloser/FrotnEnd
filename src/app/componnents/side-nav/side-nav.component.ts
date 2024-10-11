@@ -62,19 +62,32 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 })
 export class SideNavComponent implements OnInit{
   currentLang = 'fr'; // Langue par défaut
+  user: any = {};
 
   routes: Array<any> = routes
-  constructor(private authService: AuthService,private translate: TranslateService) { }
+  constructor(private authService: AuthService,) { }
+  // ,private translate: TranslateService)
 
   logout(): void {
     this.authService.logout();
   }
 
   ngOnInit(): void {
-    this.currentLang = this.translate.getDefaultLang(); // Assurez-vous que la langue par défaut est bien chargée
+    // this.currentLang = this.translate.getDefaultLang(); // Assurez-vous que la langue par défaut est bien chargée
+
+    this.authService.getUser().subscribe(
+      (data) => {
+        this.user = data;
+        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des informations utilisateur', error);
+      }
+    );
   }
 
+
   changeLanguage(lang: string): void {
-    this.translate.use(lang);
+    // this.translate.use(lang);
   }
 }

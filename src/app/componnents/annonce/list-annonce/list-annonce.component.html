@@ -1,0 +1,65 @@
+<div class="container mt-5">
+  <!-- Section pour créer une nouvelle annonce -->
+  <div class="d-flex justify-content-end mb-4">
+    <button class="btn btn-primary shadow" (click)="goToCreateAnnonce()">
+      <i class="fas fa-plus mr-2"></i> Créer une nouvelle annonce
+    </button>
+  </div>
+
+  <!-- Titre principal -->
+  <h2 class="text-center mb-4">Liste des annonces</h2>
+
+  <div class="row">
+    <!-- Boucle pour chaque annonce -->
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let annonce of annonces">
+      <div class="card shadow-sm h-100 border-0 rounded-lg">
+        <div class="card-body">
+          <!-- Titre de l'annonce -->
+          <h5 class="card-title font-weight-bold text-primary">
+            {{ annonce.object }}
+          </h5>
+
+          <!-- Contenu de l'annonce -->
+          <p class="card-text text-muted">{{ annonce.contenu | slice: 0:100 }}...</p>
+
+          <!-- Informations supplémentaires -->
+          <div class="d-flex justify-content-between">
+            <span class="badge badge-secondary">
+              <i class="fas fa-user mr-1"></i> Auteur: {{ annonce.auteur }}
+            </span>
+            <span class="badge badge-info">
+              <i class="fas fa-calendar-alt mr-1"></i> {{ annonce.created_at | date }}
+            </span>
+          </div>
+
+          <!-- Fichiers joints si disponibles -->
+          <div *ngIf="annonce.fichiers?.length" class="mt-3">
+            <h6 class="text-info">Fichiers joints :</h6>
+            <ul class="list-unstyled">
+              <!-- Chaque fichier devient un lien de téléchargement -->
+              <li *ngFor="let fichier of annonce.fichiers">
+                <i class="fas fa-paperclip mr-2 text-muted"></i>
+                <a [href]="fichier" download class="text-decoration-none">
+                  <i class="fas fa-download"></i>  {{ fichier | slice: fichier.lastIndexOf('/') + 1 }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Boutons d'actions (Détails, Éditer, Supprimer) -->
+        <div class="card-footer bg-white d-flex justify-content-between">
+          <button class="btn btn-outline-primary btn-sm" (click)="viewDetails(annonce.id)">
+            <i class="fas fa-info-circle"></i> Détails
+          </button>
+          <button class="btn btn-outline-warning btn-sm" (click)="editAnnonce(annonce.id)">
+            <i class="fas fa-edit"></i> Éditer
+          </button>
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteAnnonce(annonce.id)">
+            <i class="fas fa-trash"></i> Supprimer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

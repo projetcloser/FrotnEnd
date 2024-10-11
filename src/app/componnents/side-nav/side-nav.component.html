@@ -161,6 +161,13 @@
         </a>
         </li>
 
+        <li class="nav-item active">
+          <a class="nav-link collapsed" routerLink="/Closer/annonces" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+            <i class="fa-sharp fa-thin fa-code-pull-request-draft"></i>
+            <span>Annonces</span>
+          </a>
+        </li>
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -231,12 +238,12 @@
 
 
                         <!-- Nav Item - Messages -->
-                        
+
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" style="color: white;"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-white-600 small" >Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-white-600 small" >{{ user.name }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>

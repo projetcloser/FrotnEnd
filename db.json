@@ -27,6 +27,26 @@
       "id": "d35d",
       "email": "john.doe@example.com",
       "password": "123456"
+    },
+    {
+      "id": "7eec",
+      "email": "john.doe@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "52ac",
+      "email": "kev@gmail.com",
+      "password": "kev1234"
+    },
+    {
+      "id": "3c7b",
+      "email": "john.doe@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "ce44",
+      "email": "kev@gmail.com",
+      "password": "kev1234"
     }
   ],
   "evenement": [
@@ -43,6 +63,72 @@
       "status": 1,
       "created_at": "2024-09-19T21:28:32.000000Z",
       "updated_at": "2024-09-19T21:28:32.000000Z"
+    }
+  ],
+  "annonces": [
+    {
+      "id": 1,
+      "object": "Nouvelle mise à jour",
+      "auteur": "Admin",
+      "contenu": "La plateforme a été mise à jour avec de nouvelles fonctionnalités.",
+      "fichiers": [
+        "document1.pdf",
+        "image1.png"
+      ],
+      "created_at": "2023-10-10T08:30:00"
+    },
+    {
+      "id": 2,
+      "object": "Nouvelle mise à jour",
+      "auteur": "Admin",
+      "contenu": "La plateforme a été mise à jour avec de nouvelles fonctionnalités.",
+      "fichiers": [
+        "document1.pdf",
+        "image1.png"
+      ],
+      "created_at": "2023-10-10T08:30:00"
+    },
+    {
+      "id": 3,
+      "object": "Nouvelle mise à jour",
+      "auteur": "Admin",
+      "contenu": "La plateforme a été mise à jour avec de nouvelles fonctionnalités.",
+      "fichiers": [
+        "document1.pdf",
+        "image1.png"
+      ],
+      "created_at": "2023-10-10T08:30:00"
+    },
+    {
+      "id": 4,
+      "object": "Nouvelle mise à jour",
+      "auteur": "Admin",
+      "contenu": "La plateforme a été mise à jour avec de nouvelles fonctionnalités.",
+      "fichiers": [
+        "document1.pdf",
+        "image1.png"
+      ],
+      "created_at": "2023-10-10T08:30:00"
+    },
+    {
+      "id": "7345",
+      "object": "aaaaaaaaaaa",
+      "contenu": "aaaaaaaaaaaaaaaa",
+      "fichiers": [
+        "Page_de_couverture_WALLET.pdf"
+      ],
+      "auteur": "Utilisateur connecté"
+    },
+    {
+      "id": "dc10",
+      "object": "test",
+      "contenu": "test",
+      "fichiers": [
+        "wallet_rapport_taffoKevin.pdf",
+        "Page_de_couverture_WALLET.pdf",
+        "wallet_rapport (2).pdf"
+      ],
+      "auteur": "Utilisateur connecté"
     }
   ],
   "companies": [

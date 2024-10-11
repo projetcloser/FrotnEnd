@@ -1,0 +1,58 @@
+/* Marges et espace entre les cartes */
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-footer {
+  padding: 10px 20px;
+}
+
+button i {
+  margin-right: 5px;
+}
+
+/* Style des badges */
+.badge {
+  font-size: 0.85em;
+  padding: 0.5em 0.75em;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.text-info {
+  color: #17a2b8 !important;
+}
+
+.list-unstyled li {
+  margin-bottom: 0.5em;
+}
+
+/* Ajout d'une transition sur les boutons pour une meilleure UX */
+button {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
