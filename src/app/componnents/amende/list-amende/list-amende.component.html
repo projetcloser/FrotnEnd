@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title">Liste des Amendes</h4>
+      <button class="btn btn-primary" [routerLink]="['/Closer/amendes/new']">Ajouter une Amende</button>
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-striped table-hover">
+        <thead class="table">
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">Date</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Objet</th>
+            <th scope="col">Montant</th>
+            <th scope="col">Membre</th>
+            <th scope="col" class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let amende of amendes">
+            <!-- <th scope="row">{{ amende.id }}</th> -->
+            <td>{{ amende.date }}</td>
+            <td>{{ amende.auteur }}</td>
+            <td>{{ amende.objet }}</td>
+            <td>{{ amende.montant | currency }} FCFA</td>
+            <td>{{ getMembreName(amende.membre_id) }}</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-outline-info me-2" [routerLink]="['/Closer/amendes/edit', amende.id]"><i class="fas fa-edit"></i>Éditer</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteAmende(amende.id)"><i class="fas fa-trash"></i>Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

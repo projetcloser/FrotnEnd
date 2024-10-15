@@ -10,7 +10,8 @@ import { Membre } from '../../../models/membre';
 })
 export class AttestPersonnelService {
   // private apiUrl = 'http://localhost:3000/';
-  private apiUrl = environment.apiUrl+"attestations_companies";
+  // private apiUrl = environment.apiUrl+"attestations_companies";
+  private apiUrl = environment.apiUrl+"personal-certificates";
   private countryApiURL  = environment.apiUrl+"members";
   constructor(private http: HttpClient) {}
 

@@ -4,14 +4,18 @@ export class Membre {
   lastname: string = "";
   firstname: string = "";
   email:string ="";
-  photo: string = "";
+  order_number:string =""
+  picture?: string = "";
+  folder?: File[];
+  debt: string = "";
   phone: string = "";
-  phone2: string = "";
+  phone_2: string = "";
   author: string = "";
   gender: string = "";
-  status!: number;
-  case:string = "";
-  city_id!:number;
+  status?: number;
+  open_close?:boolean;
+  city_id?:number;
+  country_id?:number;
   created_at!: Date;
 }
 

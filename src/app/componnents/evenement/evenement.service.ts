@@ -2,14 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Evenement } from './evenement';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EvenementService {
 
-  
-  private apiUrl = 'http://localhost:3000/evenement'; // URL du JSON Server
+
+  // private apiUrl = 'http://localhost:3000/evenement'; // URL du JSON Server
+  private apiUrl = environment.apiUrl+"events";
 
   constructor(private http: HttpClient) {}
 

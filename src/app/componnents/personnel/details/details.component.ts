@@ -21,6 +21,9 @@ export class DetailsComponent implements OnInit{
   cityName: string = '';
   countryName: string = '';
 
+  countries: any[] = [];
+  cities: any[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private personnelService: PersonnelService,
@@ -31,6 +34,9 @@ export class DetailsComponent implements OnInit{
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id')!;
     this.loadPersonnelDetails(id);
+
+    this.loadCountries();
+    this.loadCities();
   }
 
   loadPersonnelDetails(id: number): void {
@@ -40,19 +46,51 @@ export class DetailsComponent implements OnInit{
       this.personnel = data;
 
       // Charger la ville
-      this.cityService.getCityById(this.personnel.city_id).subscribe(city => {
-        this.cityName = city.name;
-        console.log(city.name);
+      // this.cityService.getCityById(this.personnel.city_id).subscribe(city => {
+      //   this.cityName = city.name;
+      //   console.log(city.name);
 
-      });
+      // });
 
       // Charger le pays
-      this.countryService.getCountryById(this.personnel.country_id).subscribe(country => {
-        this.countryName = country.name;
-        console.log( country.name);
+  //     this.countryService.getCountryById(this.personnel.country_id).subscribe(country => {
+  //       this.countryName = country.name;
+  //       console.log( country.name);
 
-      });
+  //     });
+  //   });
+  // }
+
+   // Récupérer les pays
+  //  loadCountries(): void {
+  //   this.entrepriseService.getCountries().subscribe(data => {
+  //     this.countries = data;
     });
+  }
+
+    // Récupérer les pays
+    loadCountries(): void {
+      this.personnelService.getCountries().subscribe(data => {
+        this.countries = data;
+      });
+    }
+  // Récupérer les villes
+  loadCities(): void {
+    this.personnelService.getCities().subscribe(data => {
+      this.cities = data;
+    });
+  }
+
+  // Trouver le nom du pays à partir de l'ID
+  getCountryName(country_id: number): string {
+    const country = this.countries.find(c => c.id === country_id);
+    return country ? country.name : 'Non défini';
+  }
+
+  // Trouver le nom de la ville à partir de l'ID
+  getCityName(city_id: number): string {
+    const city = this.cities.find(c => c.id === city_id);
+    return city ? city.name : 'Non défini';
   }
 
 }

@@ -53,27 +53,42 @@
                   </div>
 
                   <!-- N° CNI ou Passport -->
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     <span>N° CNI ou Passport</span>
                     <input type="id_card_number" formControlName="id_card_number" class="form-control" />
                     <div *ngIf="membreForm.controls['id_card_number'].invalid && membreForm.controls['id_card_number'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['id_card_number'].hasError('id_card_number')">id_card_number invalide.</small>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
 
                 <div class="row mb-3">
                   <!-- Tel1 -->
                   <div class="col-md-6">
-                    <span>Tel1</span>
+                    <span>Téléphone 1</span>
                     <input type="text" formControlName="phone" class="form-control" />
                     <div *ngIf="membreForm.controls['phone'].invalid && membreForm.controls['phone'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['phone'].hasError('required')">Personne de contact est requise.</small>
                     </div>
                   </div>
 
-                  <!-- Matricule -->
-                  <div class="col-md-6">
+                   <!-- Tel -->
+                   <div class="col-md-6">
+                    <span>Téléphone 2</span>
+                    <input type="text" formControlName="phone_2" class="form-control" />
+                    <div *ngIf="membreForm.controls['phone_2'].invalid && membreForm.controls['phone_2'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['phone_2'].hasError('required')">Personne de contact est requise.</small>
+                    </div>
+                  </div>
+
+
+
+                </div>
+
+                <div class="row mb-3">
+
+                   <!-- Matricule -->
+                   <div class="col-md-6">
                     <span>Matricule</span>
                     <input type="matricule" formControlName="matricule" class="form-control" />
                     <div *ngIf="membreForm.controls['matricule'].invalid && membreForm.controls['matricule'].touched" class="text-danger">
@@ -81,6 +96,14 @@
                     </div>
                   </div>
 
+                  <!-- Email -->
+                  <div class="col-md-6">
+                    <span>Email</span>
+                    <input type="text" formControlName="email" class="form-control" />
+                    <div *ngIf="membreForm.controls['email'].invalid && membreForm.controls['email'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['email'].hasError('required')">Télélastname de contact est requis.</small>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="row mb-3">
@@ -99,6 +122,16 @@
 
                   <!-- City -->
                   <div class="col-md-6">
+                    <span>Pays</span>
+                    <select formControlName="city_id" class="form-control">
+                      <option *ngFor="let country of country" [value]="country.id">{{ country.name }}</option>
+                    </select>
+                    <div *ngIf="membreForm.controls['country_id'].invalid && membreForm.controls['country_id'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['country_id'].hasError('required')">Ville est requise.</small>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
                     <span>Ville</span>
                     <select formControlName="city_id" class="form-control">
                       <option *ngFor="let city of city" [value]="city.id">{{ city.name }}</option>
@@ -107,52 +140,11 @@
                       <small *ngIf="membreForm.controls['city_id'].hasError('required')">Ville est requise.</small>
                     </div>
                   </div>
-
-                  <div class="col-md-6">
-                    <span>Annee</span>
-                    <select formControlName="city_id" class="form-control">
-                      <option *ngFor="let city of city" [value]="city.id">{{ city.name }}</option>
-                    </select>
-                    <div *ngIf="membreForm.controls['city_id'].invalid && membreForm.controls['city_id'].touched" class="text-danger">
-                      <small *ngIf="membreForm.controls['city_id'].hasError('required')">Ville est requise.</small>
-                    </div>
-                  </div>
                 </div>
 
-                <div class="row mb-3">
-                  <!-- Tel -->
-                  <div class="col-md-6">
-                    <span>Tel2</span>
-                    <input type="text" formControlName="phone" class="form-control" />
-                    <div *ngIf="membreForm.controls['phone'].invalid && membreForm.controls['phone'].touched" class="text-danger">
-                      <small *ngIf="membreForm.controls['phone'].hasError('required')">Personne de contact est requise.</small>
-                    </div>
-                  </div>
-
-                  <!-- Email -->
-                  <div class="col-md-6">
-                    <span>Email</span>
-                    <input type="text" formControlName="email" class="form-control" />
-                    <div *ngIf="membreForm.controls['email'].invalid && membreForm.controls['email'].touched" class="text-danger">
-                      <small *ngIf="membreForm.controls['email'].hasError('required')">Télélastname de contact est requis.</small>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
 
 
-                  <!-- father_name -->
-                  <div class="col-md-6">
-                    <span>Nom du Père</span>
-                    <input type="text" formControlName="father_name" class="form-control" />
-                  </div>
-                   <!-- mother_name -->
-                   <div class="col-md-6">
-                    <span>Nom de la mère</span>
-                    <input type="text" formControlName="mother_name" class="form-control" />
-                  </div>
-                </div>
+                <!-- <div c/ -->
                 <!-- <div class="row mb-3"> -->
                   <!-- profession -->
                   <!-- <div class="col-md-6">
@@ -166,29 +158,29 @@
                   </div>
                 </div> -->
 
-                <div class="row mb-3">
+                <!-- <div class="row mb-3"> -->
                   <!-- Date de Naissance -->
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     <span>Date de Naissance</span>
                     <input type="date" formControlName="birthday" class="form-control" />
                     <div *ngIf="membreForm.controls['birthday'].invalid && membreForm.controls['birthday'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['birthday'].hasError('required')">Personne de contact est requise.</small>
                     </div>
-                  </div>
+                  </div> -->
 
                   <!-- Lieu de Naissance -->
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     <span>Lieu de Naissance</span>
                     <input type="text" formControlName="place_birth" class="form-control" />
                     <div *ngIf="membreForm.controls['place_birth'].invalid && membreForm.controls['place_birth'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['place_birth'].hasError('required')">Lieu de Naissance est requis.</small>
                     </div>
-                  </div>
-                </div>
+                  </div> -->
+                <!-- </div> -->
 
                  <div class="row mb-3">
                   <!-- genre -->
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     <span>Genre</span>
                     <select formControlName="genre" class="form-control">
                       <option value="N/A" selected="">
@@ -202,7 +194,7 @@
                       </option>
                     </select>
 
-                  </div>
+                  </div> -->
 
                   <!-- marital_status -->
                   <!-- <div class="col-md-6">
@@ -229,18 +221,18 @@
                   <div class="row mb-3">
                     <!-- Piece jointe -->
                     <div class="col-md-6">
-                      <span>Piece jointe</span>
-                      <input type="file" formControlName="attachment" (change)="onCaseSelected($event)" class="form-control" multiple />
+                      <span>Pièce jointe</span>
+                      <input type="file" formControlName="folder" (change)="onFolderSelected($event)" class="form-control" multiple />
                     </div>
                      <!--Nombre D'enfants -->
-                     <div class="col-md-6">
+
                       <div class="col-md-6">
                         <span>Photo</span>
-                        <input type="file" formControlName="attachment" (change)="onCaseSelected($event)" class="form-control" multiple />
+                        <input type="file" formControlName="picture" (change)="onPictureSelected($event)" class="form-control" multiple />
                       </div>
-                    </div>
                   </div>
-                </div>
+                  </div>
+
 
                 <div class="row mb-3">
                   <!-- Submit Button -->

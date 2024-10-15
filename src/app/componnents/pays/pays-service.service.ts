@@ -10,7 +10,8 @@ import { Pays } from '../../models/pays';
 export class PaysServiceService {
 
 
-  private apiURL = environment.apiUrl+"country";
+  // private apiURL = environment.apiUrl+"country";
+  private apiURL = environment.apiUrl+"location/countries";
 
   httpOptions = {
     headers: new HttpHeaders({

@@ -16,8 +16,8 @@ import { CommonModule } from '@angular/common';
 })
 export class CreateMembreComponent {
    membreForm!: FormGroup;
-  selectedPhoto!: File | null;
-  selectedCase!: File | null;
+   pictureFile!: File; // Pour gérer le téléchargement de la photo
+  folderFiles: File[] = []; // Pour gérer les fichiers du dossier
   membre: Membre[] = [];
   country:any;
   city:any;
@@ -33,23 +33,7 @@ export class CreateMembreComponent {
   }
 
   ngOnInit():void{
-     // Utilisez this.fb.group pour créer le formulaire réactif correctement
-     this.membreForm = this.fb.group({
-      matricule: this.fb.control('', [Validators.required]),
-      lastname: this.fb.control('', [Validators.required]),
-      firstname: this.fb.control('', [Validators.required]),
-      email: this.fb.control('', [Validators.required, Validators.email]),
-      photo: this.fb.control(null, Validators.required),
-      phone: this.fb.control('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-      phone2: this.fb.control(''),
-      author: this.fb.control('', Validators.required),
-      gender: this.fb.control('', Validators.required),
-      status: this.fb.control(1, Validators.required),
-      city_id: this.fb.control(1, Validators.required),
-      case: this.fb.control(null, Validators.required),
-      created_at: this.fb.control(new Date(), Validators.required)
-    });
-
+    this.initForm();
 
 
     this.countryService.getAll().subscribe({
@@ -72,53 +56,72 @@ export class CreateMembreComponent {
 
   }
 
-
-  get f(){
-    return this.membreForm.controls;
+  initForm() {
+    this.membreForm = this.fb.group({
+      matricule: [''],
+      lastname: [''],
+      firstname: [''],
+      email: ['', [Validators.required, Validators.email]],
+      order_number: [''],
+      debt: [''],
+      phone: [''],
+      phone_2: [''],
+      author: [{ value: 'MONGO SALOMON', disabled: true }],
+      status: [0],
+      open_close: [false],
+      city_id: [null],
+      country_id:[],
+      created_at: [new Date()],
+      picture: [''],
+      folder: ['']
+    });
   }
 
-  // Méthode pour gérer le fichier de la photo
-  onPhotoSelected(event: any): void {
-    this.selectedPhoto = event.target.files[0];
+  onPictureSelected(event: any) {
+    this.pictureFile = event.target.files[0];
   }
 
-  // Méthode pour gérer le fichier de case
-  onCaseSelected(event: any): void {
-    this.selectedCase = event.target.files[0];
+  onFolderSelected(event: any) {
+    this.folderFiles = Array.from(event.target.files);
   }
 
-  onSubmit(): void {
-    if (this.membreForm.valid) {
-      const formData = new FormData();
-      formData.append('matricule', this.membreForm.get('matricule')?.value);
-      formData.append('lastname', this.membreForm.get('lastname')?.value);
-      formData.append('firstname', this.membreForm.get('firstname')?.value);
-      formData.append('email', this.membreForm.get('email')?.value);
-      formData.append('phone', this.membreForm.get('phone')?.value);
-      formData.append('phone2', this.membreForm.get('phone2')?.value);
-      formData.append('author', this.membreForm.get('author')?.value);
-      formData.append('gender', this.membreForm.get('gender')?.value);
-      formData.append('status', this.membreForm.get('status')?.value);
-      formData.append('created_at', this.membreForm.get('created_at')?.value.toISOString());
-
-      // Ajout des fichiers photo et case
-      if (this.selectedPhoto) {
-        formData.append('photo', this.selectedPhoto);
-      }
-      if (this.selectedCase) {
-        formData.append('case', this.selectedCase);
-      }
-
-      // Envoi du formulaire au service
-      this.membreService.create(formData).subscribe(response => {
-        console.log('Membre ajouté avec succès');
-        this.router.navigate(['/membres']);  // Redirection après l'ajout
-      }, error => {
-        console.error('Erreur lors de l\'ajout du membre', error);
-      });
-    } else {
-      console.error('Formulaire invalide');
+  onSubmit() {
+    if (this.membreForm.invalid) {
+      return;
     }
+
+    const formData = new FormData();
+    const membre: Membre = this.membreForm.value;
+    membre.author = 'MONGO SALOMON'; // L'auteur assigné manuellement
+
+    formData.append('matricule', membre.matricule);
+    formData.append('lastname', membre.lastname);
+    formData.append('firstname', membre.firstname);
+    formData.append('email', membre.email);
+    formData.append('order_number', membre.order_number);
+    formData.append('debt', membre.debt);
+    formData.append('phone', membre.phone);
+    formData.append('phone_2', membre.phone_2);
+    formData.append('author', membre.author);
+    formData.append('status', String(membre.status || 0));
+    formData.append('open_close', String(membre.open_close || false));
+    formData.append('city_id', String(membre.city_id || 0));
+    formData.append('country_id', String(membre.country_id || 0));
+    formData.append('created_at', membre.created_at.toISOString());
+
+    if (this.pictureFile) {
+      formData.append('picture', this.pictureFile, this.pictureFile.name);
+    }
+
+    if (this.folderFiles.length > 0) {
+      this.folderFiles.forEach((file, index) => {
+        formData.append(`folder[${index}]`, file, file.name);
+      });
+    }
+
+    this.membreService.create(formData).subscribe(() => {
+      this.router.navigate(['/membres']);
+    });
   }
 
 }

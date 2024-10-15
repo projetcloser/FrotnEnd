@@ -18,7 +18,7 @@
              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                  aria-labelledby="dropdownMenuLink">
                  <div class="dropdown-header">Action:</div>
-                 <a class="dropdown-item" [routerLink]="['/entreprise']" routerLinkActive="router-link-active" >Retour</a>
+                 <a class="dropdown-item" [routerLink]="['/Closer/entreprise']" routerLinkActive="router-link-active" >Retour</a>
                  <!-- <a class="dropdown-item" href="#">Another action</a>
                  <div class="dropdown-divider"></div>
                  <a class="dropdown-item" href="#">Something else here</a> -->
@@ -27,14 +27,14 @@
      </div>
      <!-- Card Body -->
      <div class="card-body" *ngIf="entreprise">
-      <!-- <p><strong>ID:</strong> {{ entreprise.id }}</p> -->
+      <p><strong>NOM:</strong> {{ entreprise.company_name }}</p>
       <p><strong>Raison sociale:</strong> {{ entreprise.social_reason }}</p>
       <p><strong>Auteur:</strong> {{ entreprise.author }}</p>
       <p><strong>Contact:</strong> {{ entreprise.contact_person }} - {{ entreprise.contact_person_phone }}</p>
-      <p><strong>Type:</strong> {{ entreprise.type }}</p>
+      <p><strong>Type:</strong> {{ entreprise.company_type }}</p>
       <p><strong>NUI:</strong> {{ entreprise.nui }}</p>
-      <p><strong>Pays:</strong> loadCountryName({{ entreprise.country_id }})</p>
-      <p><strong>Ville:</strong> loadCityName({{ entreprise.city_id }})</p>
+      <p><strong>Pays:</strong> {{ getCityName(entreprise.country_id) }}</p>
+      <p><strong>Ville:</strong> {{ getCityName(entreprise.city_id) }}</p>
       <p><strong>Status:</strong>
         <span class="badge"
               [ngClass]="{

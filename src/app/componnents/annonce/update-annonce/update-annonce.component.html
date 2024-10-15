@@ -1,1 +1,43 @@
-<p>update-annonce works!</p>
+<div class="container mt-5" style="max-width: 600px;">
+  <h2 class="text-center mb-4">Modifier l'annonce</h2>
+
+  <form [formGroup]="annonceForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row">
+      <!-- Champ Object -->
+      <div class="col-md-12 mb-3">
+        <label for="object" class="form-label font-weight-bold">Objet <span class="text-danger">*</span></label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
+          </div>
+          <input type="text" id="object" formControlName="object" class="form-control" placeholder="Titre de l'annonce">
+        </div>
+      </div>
+
+      <!-- Champ Contenu -->
+      <div class="col-md-12 mb-3">
+        <label for="contenu" class="form-label font-weight-bold">Contenu <span class="text-danger">*</span></label>
+        <textarea id="contenu" formControlName="contenu" rows="5" class="form-control" placeholder="Écrire le contenu de l'annonce"></textarea>
+      </div>
+
+
+
+      <!-- Champ pour ajouter de nouveaux fichiers -->
+      <div class="col-md-12 mb-3">
+        <label for="fichiers" class="form-label font-weight-bold">Modifier les fichiers joints</label>
+        <div class="custom-file">
+          <input type="file" id="fichiers" (change)="onFileChange($event)" class="custom-file-input" multiple>
+          <label class="custom-file-label" for="fichiers">Choisissez de nouveaux fichiers</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boutons d'action -->
+    <div class="d-flex justify-content-between mt-4">
+      <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">Annuler</button>
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i> Mettre à jour l'annonce
+      </button>
+    </div>
+  </form>
+</div>

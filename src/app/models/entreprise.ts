@@ -1,8 +1,8 @@
 export class Entreprise {
   id!:number;
-  name:string="";
+  company_name:string="";
   author: string ="";
-  type: string ="";
+  company_type: string ="";
   email:string="";
   nui:string="";
   country_id!:number;

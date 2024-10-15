@@ -10,8 +10,10 @@ import { Pays } from '../../models/pays';
 })
 export class VilleServiceService {
 
-  private apiURL = environment.apiUrl+"city";
-  private countryApiURL  = environment.apiUrl+"country";
+  // private apiURL = environment.apiUrl+"city";
+  // private countryApiURL  = environment.apiUrl+"country";
+  private apiURL = environment.apiUrl+"location/cities";
+  private countryApiURL  = environment.apiUrl+"location/countries";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -40,7 +42,7 @@ export class VilleServiceService {
       );
   }
 
-  
+
 
   find(id: number): Observable<any> {
     return this.httpclient.get(this.apiURL +'/' + id)

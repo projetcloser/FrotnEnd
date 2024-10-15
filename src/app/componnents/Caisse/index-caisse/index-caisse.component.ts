@@ -54,7 +54,7 @@ export class IndexCaisseComponent implements OnInit{
 
 
   navigateToForm() {
-    this.router.navigate(['/nouvelle-caisse']);
+    this.router.navigate(['/Closer/nouvelle-caisse']);
   }
     // Méthode de confirmation avant la suppression
   confirmDelete(id: number) {

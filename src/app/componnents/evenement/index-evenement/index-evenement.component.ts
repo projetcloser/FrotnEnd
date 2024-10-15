@@ -35,11 +35,11 @@ export class IndexEvenementComponent {
   }
 
   navigateToForm() {
-    this.router.navigate(['/nouveau-evenement']);
+    this.router.navigate(['/Closer/nouveau-evenement']);
   }
 
   navigateToFormEdit() {
-    this.router.navigate(['/modifier-evenement']);
+    this.router.navigate(['/Closer/modifier-evenement']);
   }
 
    // Méthode de confirmation avant la suppression

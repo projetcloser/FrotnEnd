@@ -1,18 +1,49 @@
-<form [formGroup]="annonceForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="object">Object</label>
-    <input formControlName="object" id="object" class="form-control" />
-  </div>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Créer une  annonce</h2>
 
-  <div class="form-group">
-    <label for="contenu">Contenu</label>
-    <textarea formControlName="contenu" id="contenu" class="form-control"></textarea>
-  </div>
+  <form [formGroup]="annonceForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row">
+      <!-- Champ Object -->
+      <div class="col-md-12 mb-3">
+        <label for="object" class="form-label font-weight-bold">Objet <span class="text-danger">*</span></label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
+          </div>
+          <input type="text" id="object" formControlName="object" class="form-control" placeholder="Titre de l'annonce" >
+          <!-- [ngClass]="{ 'is-invalid': submitted && f.object.errors }" -->
+          <!-- <div *ngIf="submitted && f.object.errors" class="invalid-feedback">
+            <div *ngIf="f.object.errors.required">Objet est requis.</div>
+          </div> -->
+        </div>
+      </div>
 
-  <div class="form-group">
-    <label for="fichiers">Joindre des fichiers</label>
-    <input type="file" id="fichiers" (change)="onFileChange($event)" multiple />
-  </div>
+      <!-- Champ Contenu -->
+      <div class="col-md-12 mb-3">
+        <label for="contenu" class="form-label font-weight-bold">Contenu <span class="text-danger">*</span></label>
+        <textarea id="contenu" formControlName="contenu" rows="5" class="form-control" placeholder="Écrire le contenu de l'annonce" ></textarea>
+        <!-- [ngClass]="{ 'is-invalid': submitted && f.contenu.errors }" -->
+        <!-- <div *ngIf="submitted && f.contenu.errors" class="invalid-feedback">
+          <div *ngIf="f.contenu.errors.required">Le contenu est requis.</div>
+        </div> -->
+      </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="annonceForm.invalid">Enregistrer</button>
-</form>
+      <!-- Upload des fichiers joints -->
+      <div class="col-md-12 mb-3">
+        <label for="fichiers" class="form-label font-weight-bold">Joindre des fichiers</label>
+        <div class="custom-file">
+          <input type="file" id="fichiers" formControlName="fichiers" class="custom-file-input" multiple>
+          <label class="custom-file-label" for="fichiers">Choisissez des fichiers</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boutons d'action -->
+    <div class="d-flex justify-content-between mt-4">
+      <button type="button" class="btn btn-outline-secondary"  >Annuler</button>
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i> Enregistrer l'annonce
+      </button>
+    </div>
+  </form>
+</div>

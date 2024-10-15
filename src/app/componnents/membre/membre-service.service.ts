@@ -14,6 +14,8 @@ export class MembreServiceService {
 
   private apiURL = environment.apiUrl+"members";
 
+
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -38,7 +40,7 @@ export class MembreServiceService {
   // }
 
   create(membre: FormData): Observable<any> {
-    return this.httpclient.post(`${this.apiURL}/members`, membre)
+    return this.httpclient.post(`${this.apiURL}/member`, membre)
       .pipe(catchError(this.errorHandler));
   }
 

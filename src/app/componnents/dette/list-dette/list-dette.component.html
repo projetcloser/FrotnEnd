@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Liste des Dettes</h2>
+
+  <div class="d-flex justify-content-between mb-3">
+    <input type="text" [(ngModel)]="searchTerm" (input)="filterDettes()" class="form-control w-50" placeholder="Rechercher par nom ou montant...">
+    <!-- <button [routerLink]="['/Closer/dettes/new']" routerLinkActive="router-link-active"  class="btn btn-primary">Ajouter une Dette <i class="fas fa-plus"></i></button> -->
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <!-- <th>ID</th> -->
+        <th>Nom du Membre</th>
+        <th>Montant</th>
+        <th>Date d'Échéance</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dette of filteredDettes">
+        <!-- <td>{{ dette.id }}</td>       -->
+        <td>{{ getMembreNom(dette.membre_id) }}</td>
+        <td>{{ dette.montant | currency:'XAF':'symbol' }}</td>
+        <td>{{ dette.date_echeance | date }}</td>
+        <td>
+          <span class="bg-badge" [ngClass]="{'bg-success': dette.statut === 'Payé', 'bg-danger': dette.statut === 'Non payé'}">
+            {{ dette.statut }}
+          </span>
+        </td>
+        <td>
+          <button (click)="viewDetails(dette.id)" class="btn btn-outline-info btn-sm">
+            <i class="fas fa-eye"></i> Détails
+          </button>
+          <button (click)="editDette(dette.id)" class="btn btn-outline-warning btn-sm">
+            <i class="fas fa-pencil-alt"></i> Modifier
+          </button>
+          <button (click)="deleteDette(dette.id)" class="btn btn-outline-danger btn-sm">
+            <i class="fas fa-trash"></i> Supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

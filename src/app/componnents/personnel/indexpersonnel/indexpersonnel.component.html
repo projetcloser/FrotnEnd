@@ -105,7 +105,19 @@
                           class="rounded-circle m-r-5" alt="">{{ personnel.firstname }}
                       </td>
                       <td align="center">{{ personnel.position }}</td>
-                      <td align="center">{{ personnel.statut }}
+                      <td align="center">
+                        <span class="badge" [ngClass]="{
+                          'badge-success': personnel.statut === 0,
+                          'badge-warning': personnel.statut === 1,
+                          'badge-danger': personnel.statut === 3
+                        }">
+                          {{
+                            personnel.statut === 1 ? 'ACTIF ' :
+                            personnel.statut === 0 ? 'ANCIEN' :
+                            'RAS'
+                          }}
+                        </span>
+                        <!-- {{ personnel.statut }} -->
                       </td>
                       <td align="center">{{ personnel.phone }}
                       </td>
