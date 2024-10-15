@@ -38,12 +38,12 @@ export class EditEntrepriseComponent {
     this.company = data;
 
     this.companyForm = this.fb.group({
-      name: [this.company.name, Validators.required],
+      name: [this.company.company_name, Validators.required],
       author: [this.company.author, Validators.required],
       phone: [this.company.phone, Validators.required],
       email: [this.company.email],
       nui: [this.company.nui, Validators.required],
-      type: [this.company.type, Validators.required],
+      type: [this.company.company_type, Validators.required],
       country_id: [this.company.country_id, Validators.required],
       city_id: [this.company.city_id, Validators.required],
       neighborhood: [this.company.neighborhood],
@@ -66,7 +66,7 @@ export class EditEntrepriseComponent {
   onSubmit(): void {
     if (this.companyForm.valid) {
       this.companyService.update(this.companyId, this.companyForm.value).subscribe(() => {
-        this.router.navigate(['/entreprise']);
+        this.router.navigate(['/Closer/entreprise']);
       });
     }
   }

@@ -1,6 +1,6 @@
 export class Personnel {
   id!: number;
-  statut: string = ''; // 'married' or 'celibataire'
+  statut!: number; // 'married' or 'celibataire'
   lastname: string = '';
   firstname: string = '';
   email: string = '';
@@ -12,7 +12,7 @@ export class Personnel {
   birthday: string = ''; // Date format: 'YYYY-MM-DD'
   place_birth: string = '';
   profession: string = '';
-  genre: string = ''; // 'male' or 'female'
+  gender: string = ''; // 'male' or 'female'
   contract_type: string = '';
   marital_status: string = ''; // married or celibataire
   position: string = '';

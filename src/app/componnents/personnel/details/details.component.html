@@ -1,49 +1,43 @@
+<div class="container mt-5">
+  <div class="card shadow mb-4 border-left-primary">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #4e73df; color: white;">
+      <h6 class="m-0 font-weight-bold">Détails personnels</h6>
+      <div class="dropdown no-arrow">
+        <a class="dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-header">Action:</div>
+          <a class="dropdown-item" [routerLink]="['/Closer/personnel']" routerLinkActive="router-link-active">Retour</a>
+        </div>
+      </div>
+    </div>
 
+    <!-- Card Body -->
+    <div class="card-body" *ngIf="personnel">
+      <div class="row">
+        <!-- Column 1 -->
+        <div class="col-md-6">
+          <p><i class="fas fa-user text-primary"></i> <strong class="text-dark">Nom:</strong> <span class="text-secondary">{{ personnel.lastname }}</span></p>
+          <p><i class="fas fa-user text-primary"></i> <strong class="text-dark">Prénom:</strong> <span class="text-secondary">{{ personnel.firstname }}</span></p>
+          <p><i class="fas fa-envelope text-success"></i> <strong class="text-dark">Email:</strong> <span class="text-secondary">{{ personnel.email }}</span></p>
+          <p><i class="fas fa-phone text-warning"></i> <strong class="text-dark">Téléphone:</strong> <span class="text-secondary">{{ personnel.phone }}</span></p>
+          <p><i class="fas fa-briefcase text-info"></i> <strong class="text-dark">Profession:</strong> <span class="text-secondary">{{ personnel.profession }}</span></p>
+          <p><i class="fas fa-user-friends text-danger"></i> <strong class="text-dark">Statut marital:</strong> <span class="text-secondary">{{ personnel.marital_status }}</span></p>
+          <p><i class="fas fa-user-tie text-purple"></i> <strong class="text-dark">Position:</strong> <span class="text-secondary">{{ personnel.position }}</span></p>
+        </div>
 
-<div class="container">
-
-<div class="card shadow mb-4">
-  <!-- Dropdown Card Example -->
-  <div class="card shadow mb-4">
-   <!-- Card Header - Dropdown -->
-   <div
-       class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-       <h6 class="m-0 font-weight-bold text-primary">Details personnels</h6>
-       <div class="dropdown no-arrow">
-           <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-           </a>
-           <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-               aria-labelledby="dropdownMenuLink">
-               <div class="dropdown-header">Action:</div>
-               <a class="dropdown-item" [routerLink]="['/personnel']" routerLinkActive="router-link-active" >Retour</a>
-               <!-- <a class="dropdown-item" href="#">Another action</a>
-               <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="#">Something else here</a> -->
-           </div>
-       </div>
-   </div>
-   <!-- Card Body -->
-   <div class="card-body" *ngIf="personnel">
-     <p><strong>Nom:</strong> {{ personnel.lastname }}</p>
-     <p><strong>Prénom:</strong> {{ personnel.firstname }}</p>
-     <p><strong>Email:</strong> {{ personnel.email }}</p>
-     <p><strong>Téléphone:</strong> {{ personnel.phone }}</p>
-     <p><strong>Profession:</strong> {{ personnel.profession }}</p>
-     <p><strong>Genre:</strong> {{ personnel.genre }}</p>
-     <p><strong>Statut marital:</strong> {{ personnel.marital_status }}</p>
-     <p><strong>Position:</strong> {{ personnel.position }}</p>
-     <p><strong>Ville:</strong> {{ cityName }}</p>
-     <p><strong>Pays:</strong> {{ countryName }}</p>
-     <p><strong>Nom de la mere :</strong> {{ personnel.father_name }}</p>
-     <p><strong>Nom du pere:</strong> {{ personnel.mother_name }}</p>
-     <p><strong>Sexe:</strong> {{ personnel.genre }}</p>
-     <p><strong>Type de contrat:</strong> {{ personnel.contract_type }}</p>
-     <p><strong>Position:</strong> {{ personnel.position }}</p>
-     <p><strong>Nombre d'enfant:</strong> {{ personnel.num_children }}</p>
-
-   </div>
-</div>
-</div>
+        <!-- Column 2 -->
+        <div class="col-md-6">
+          <p><i class="fas fa-map-marker-alt text-danger"></i> <strong class="text-dark">Pays:</strong> <span class="text-secondary">{{ getCityName(personnel.country_id) }}</span></p>
+          <p><i class="fas fa-city text-primary"></i> <strong class="text-dark">Ville:</strong> <span class="text-secondary">{{ getCityName(personnel.city_id) }}</span></p>
+          <p><i class="fas fa-users text-success"></i> <strong class="text-dark">Nom de la mère:</strong> <span class="text-secondary">{{ personnel.mother_name }}</span></p>
+          <p><i class="fas fa-user text-warning"></i> <strong class="text-dark">Nom du père:</strong> <span class="text-secondary">{{ personnel.father_name }}</span></p>
+          <p><i class="fas fa-venus-mars text-pink"></i> <strong class="text-dark">Sexe:</strong> <span class="text-secondary">{{ personnel.gender }}</span></p>
+          <p><i class="fas fa-file-contract text-info"></i> <strong class="text-dark">Type de contrat:</strong> <span class="text-secondary">{{ personnel.contract_type }}</span></p>
+          <p><i class="fas fa-child text-purple"></i> <strong class="text-dark">Nombre d'enfants:</strong> <span class="text-secondary">{{ personnel.num_children }}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

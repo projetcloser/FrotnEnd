@@ -20,6 +20,8 @@ export class DetailsEntrepriseComponent implements OnInit{
 
   currentTime = new Date();
   currentDay = new Date();
+  countries: any[] = [];
+  cities: any[] = [];
 
   constructor(
     private entrepriseService: EntrepriseServiceService,
@@ -29,30 +31,65 @@ export class DetailsEntrepriseComponent implements OnInit{
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id')!;
     this.loadEntreprise(id);
+    this.loadCountries();
+    this.loadCities();
   }
 
   loadEntreprise(id: number) {
     this.entrepriseService.find(id).subscribe((data) => {
       this.entreprise = data;
-      this.loadCountryName(this.entreprise.country_id);
-      this.loadCityName(this.entreprise.city_id);
+      // this.loadCountryName(this.entreprise.country_id);
+      // this.loadCityName(this.entreprise.city_id);
     });
   }
 
-  loadCountryName(countryId: number) {
-    this.entrepriseService.getCountries().subscribe((data) => {
-      const country = data.find((c) => c.id === countryId);
-      if (country) this.countryName = country.name;
-      console.log( country.name);
+  // loadCountryName(countryId: number) {
+  //   this.entrepriseService.getCountries().subscribe((data) => {
+  //     const country = data.find((c) => c.id === countryId);
+  //     if (country) this.countryName = country.name;
+  //     console.log( country.name);
 
+  //   });
+  // }
+
+  // loadCityName(cityId: number) {
+  //   this.entrepriseService.getCities().subscribe((data) => {
+  //     const city = data.find((c) => c.id === cityId);
+  //     if (city) this.cityName = city.name;
+  //   });
+  // }
+
+  // Récupérer les pays
+  // loadCountries(): void {
+  //   this.entrepriseService.getCountries().subscribe(data => {
+  //     this.countries = data;
+  //   });
+  // }
+
+  // Récupérer les pays
+  loadCountries(): void {
+    this.entrepriseService.getCountries().subscribe(data => {
+      this.countries = data;
     });
   }
 
-  loadCityName(cityId: number) {
-    this.entrepriseService.getCities().subscribe((data) => {
-      const city = data.find((c) => c.id === cityId);
-      if (city) this.cityName = city.name;
+  // Récupérer les villes
+  loadCities(): void {
+    this.entrepriseService.getCities().subscribe(data => {
+      this.cities = data;
     });
+  }
+
+  // Trouver le nom du pays à partir de l'ID
+  getCountryName(country_id: number): string {
+    const country = this.countries.find(c => c.id === country_id);
+    return country ? country.name : 'Non défini';
+  }
+
+  // Trouver le nom de la ville à partir de l'ID
+  getCityName(city_id: number): string {
+    const city = this.cities.find(c => c.id === city_id);
+    return city ? city.name : 'Non défini';
   }
 
 }

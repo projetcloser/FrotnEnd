@@ -49,6 +49,14 @@
       "password": "kev1234"
     },
     {
+<<<<<<< HEAD
+      "id": "ba11",
+      "email": "john.doe@example.com\"",
+      "password": "123456"
+    },
+    {
+      "id": "afef",
+=======
       "id": "3a07",
       "email": "kev@gmail.com",
       "password": "kev1234"
@@ -65,6 +73,7 @@
     },
     {
       "id": "a9cd",
+>>>>>>> 437a8aafd0356e7b0fc245cfe03129985f405f96
       "email": "kev@gmail.com",
       "password": "kev1234"
     },
@@ -115,6 +124,56 @@
       "updated_at": "2024-09-19T21:28:32.000000Z"
     }
   ],
+  "amendes": [
+    {
+      "id": "1",
+      "date": "2024-01-01",
+      "auteur": "Admin",
+      "objet": "Non-participation",
+      "montant": 50,
+      "membre_id": 3
+    },
+    {
+      "id": "2",
+      "date": "2024-01-02",
+      "auteur": "Admin",
+      "objet": "Retard au rendez-vous",
+      "montant": 30,
+      "membre_id": 4
+    },
+    {
+      "id": "3",
+      "date": "2024-01-03",
+      "auteur": "Admin",
+      "objet": "Absence injustifiée",
+      "montant": 40,
+      "membre_id": 5
+    },
+    {
+      "id": "6",
+      "date": "10/12/2024",
+      "auteur": "Auteur Inconnu",
+      "objet": "aaaaaaa",
+      "montant": 23333,
+      "membre_id": "201"
+    }
+  ],
+  "dettes": [
+    {
+      "membre_id": 4,
+      "montant": 5000000,
+      "date_echeance": "2024-12-31",
+      "id": "1"
+    },
+    {
+      "id": "6",
+      "membre_id": 101,
+      "montant": 20000,
+      "date_echeance": "2024-12-31",
+      "statut": "non payé",
+      "created_at": "2023-01-01"
+    }
+  ],
   "annonces": [
     {
       "id": "1",
@@ -161,23 +220,17 @@
       "created_at": "2023-10-10T08:30:00"
     },
     {
-      "id": "7345",
-      "object": "aaaaaaaaaaa",
-      "contenu": "aaaaaaaaaaaaaaaa",
-      "fichiers": [
-        "Page_de_couverture_WALLET.pdf"
-      ],
+      "id": "4662",
+      "object": "cotisation annuel",
+      "contenu": "les membre doivent cotiser une somme de 60 000fcfa",
+      "fichiers": "C:\\fakepath\\Page_de_couverture_WALLET.pdf",
       "auteur": "Utilisateur connecté"
     },
     {
-      "id": "dc10",
-      "object": "test",
-      "contenu": "test",
-      "fichiers": [
-        "wallet_rapport_taffoKevin.pdf",
-        "Page_de_couverture_WALLET.pdf",
-        "wallet_rapport (2).pdf"
-      ],
+      "id": "a337",
+      "object": "test2",
+      "contenu": "cccccccccccc",
+      "fichiers": "C:\\fakepath\\lettre_motivation.pdf",
       "auteur": "Utilisateur connecté"
     }
   ],

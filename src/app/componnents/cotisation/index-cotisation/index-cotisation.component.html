@@ -40,346 +40,64 @@
                   <tr style="background-color: #dde9dd" role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Ref_cotisation: activate to sort column descending" style="width: 105.594px;">Ref_cotisation</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Caisse: activate to sort column ascending" style="width: 45.875px;">Caisse</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Année d'inscription: activate to sort column ascending" style="width: 115.844px;">Année d'inscription</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ingénieur: activate to sort column ascending" style="width: 205.047px;">Ingénieur</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Payer: activate to sort column ascending" style="width: 41.5156px;">Payer</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Reste: activate to sort column ascending" style="width: 40.5625px;">Reste</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Statut: activate to sort column ascending" style="width: 73px;">Statut</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Auteur: activate to sort column ascending" style="width: 90.5312px;">Auteur</th><th class="text-right sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label=" Font Awesome fontawesome.com -->: activate to sort column ascending" style="width: 14.0312px;"><svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com --></th></tr>
                   </thead>
                   <tbody>
-
-                                                  <tr role="row" class="odd">
-                                                   <input name="id" type="hidden" value="3049">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=3049" title="REF_100736" style="color: black">REF_100736</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3049" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3049" title="2024-01-24" style="color: black">2024-01-24</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=3049" title="ALIOUM Oumarou " style="color: black">ALIOUM Oumarou </a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3049" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=3049" title="0" style="color: black">0</a></td>
+                        <tr role="row" class="odd" *ngFor="let cotisation of cotisations">
+                          <!-- <input name="id" type="hidden" value="3049"> -->
+                          <td class="sorting_1"><a href="#" title="" style="color: black">{{cotisation.ref_ing_cost}}</a>
+                          </td>
+                          <td><a href="" title="Siege" style="color: black">{{getCaissesName(cotisation.cashflow_id)}}</a>
+                          </td>
+                          <td><a href="" title="2024-01-24" style="color: black">{{cotisation.created_at}} </a></td>
+                          <td><a href="" title="ALIOUM Oumarou " style="color: black">{{getmembresName(cotisation.member_id)}} </a>
+                          </td>
+                          <td><a href="" title="60,000" style="color: black">{{cotisation.amount}}</a>
+                          </td>
 
 
-                                                  <td>
+                          <td><a href="" title="0" style="color: black">{{cotisation.pay}}</a></td>
 
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right" style="">
-                                      <a class="dropdown-item" (click)="navigateToFormEdit() "><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" (click)="confirmDelete(21)">
-                                        <svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
-                                              focusable="false" data-prefix="fas" data-icon="trash" role="img"
-                                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                              <path fill="currentColor"
-                                                    d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
-                                              </path>
-                                        </svg>
-                                        Delete
-                                      </a>
-                                  </div>
+
+                          <td>
+
+                            <span class="custom-badge status-green">{{cotisation.status}}</span>
+                          </td>
+                          <td>
+                            {{cotisation.author}}
+                          </td>
+                          <td>
+
+                            <div class="dropdown dropdown-action">
+                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg
+                                  class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false"
+                                  data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                                  data-fa-i2svg="">
+                                  <path fill="currentColor"
+                                    d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                                  </path>
+                                </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
+                              <div class="dropdown-menu dropdown-menu-right" >
+                                <a class="dropdown-item" [routerLink]="['/Closer/modifier-cotisation',cotisation.id]" routerLinkActive="router-link-active" ><svg
+                                    class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false"
+                                    data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                    data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                      d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                                    </path>
+                                  </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
+                                <a class="dropdown-item" (click)="confirmDelete(cotisation.id)">
+                                  <svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true" focusable="false"
+                                    data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path fill="currentColor"
+                                      d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                                    </path>
+                                  </svg>
+                                  Delete
+                                </a>
                               </div>
+                            </div>
 
-                                                                      </td>
-                      </tr><tr role="row" class="even">
-                         <input name="id" type="hidden" value="3275">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=3275" title="REF_101100" style="color: black">REF_101100</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3275" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3275" title="2024-02-14" style="color: black">2024-02-14</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=3275" title="ARREY Daniel EGBE " style="color: black">ARREY Daniel EGBE </a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3275" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=3275" title="0" style="color: black">0</a></td>
-
-
-                                                  <td>
-
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="modifier_cotisation.php?id=3275"><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                                          Delete</a>
-                                  </div>
-                              </div>
-
-                                                                      </td>
-                      </tr><tr role="row" class="odd">
-                         <input name="id" type="hidden" value="2908">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=2908" title="REF_101848" style="color: black">REF_101848</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=2908" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=2908" title="2024-01-18" style="color: black">2024-01-18</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=2908" title="ABUHNGIENDO Rolland TUM " style="color: black">ABUHNGIENDO Rolland TUM </a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=2908" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=2908" title="0" style="color: black">0</a></td>
-
-
-                                                  <td>
-
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="modifier_cotisation.php?id=2908"><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                                          Delete</a>
-                                  </div>
-                              </div>
-
-                                                                      </td>
-                      </tr><tr role="row" class="even">
-                         <input name="id" type="hidden" value="3752">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=3752" title="REF_103561" style="color: black">REF_103561</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3752" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3752" title="2024-04-26" style="color: black">2024-04-26</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=3752" title="MBELLA Marcel Blaise " style="color: black">MBELLA Marcel Blaise </a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3752" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=3752" title="0" style="color: black">0</a></td>
-
-
-                                                  <td>
-
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="modifier_cotisation.php?id=3752"><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                                          Delete</a>
-                                  </div>
-                              </div>
-
-                                                                      </td>
-                      </tr><tr role="row" class="odd">
-                         <input name="id" type="hidden" value="3598">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=3598" title="REF_103924" style="color: black">REF_103924</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3598" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3598" title="2024-03-28" style="color: black">2024-03-28</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=3598" title="TABOU MAHAMA " style="color: black">TABOU MAHAMA </a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3598" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=3598" title="0" style="color: black">0</a></td>
-
-
-                                                  <td>
-
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="modifier_cotisation.php?id=3598"><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                                          Delete</a>
-                                  </div>
-                              </div>
-
-                                                                      </td>
-                      </tr><tr role="row" class="even">
-                         <input name="id" type="hidden" value="3555">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=3555" title="REF_104053" style="color: black">REF_104053</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3555" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3555" title="2024-03-21" style="color: black">2024-03-21</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=3555" title="MBOUATY Guy " style="color: black">MBOUATY Guy </a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3555" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=3555" title="0" style="color: black">0</a></td>
-
-
-                                                  <td>
-
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="modifier_cotisation.php?id=3555"><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                                          Delete</a>
-                                  </div>
-                              </div>
-
-                                                                      </td>
-                      </tr><tr role="row" class="odd">
-                         <input name="id" type="hidden" value="3843">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=3843" title="REF_105805" style="color: black">REF_105805</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3843" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3843" title="2024-05-15" style="color: black">2024-05-15</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=3843" title="ESSAM MFOMBEUTH  Sosthène" style="color: black">ESSAM MFOMBEUTH  Sosthène</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3843" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=3843" title="0" style="color: black">0</a></td>
-
-
-                                                  <td>
-
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="modifier_cotisation.php?id=3843"><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                                          Delete</a>
-                                  </div>
-                              </div>
-
-                                                                      </td>
-                      </tr><tr role="row" class="even">
-                         <input name="id" type="hidden" value="3784">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=3784" title="REF_106464" style="color: black">REF_106464</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3784" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3784" title="2024-04-30" style="color: black">2024-04-30</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=3784" title="NENDOBE NDAOWA Gérard " style="color: black">NENDOBE NDAOWA Gérard </a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3784" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=3784" title="0" style="color: black">0</a></td>
-
-
-                                                  <td>
-
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="modifier_cotisation.php?id=3784"><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                                          Delete</a>
-                                  </div>
-                              </div>
-
-                                                                      </td>
-                      </tr><tr role="row" class="odd">
-                         <input name="id" type="hidden" value="3643">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=3643" title="REF_106509" style="color: black">REF_106509</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3643" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3643" title="2024-04-08" style="color: black">2024-04-08</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=3643" title="KAMGO Dieudonné " style="color: black">KAMGO Dieudonné </a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3643" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=3643" title="0" style="color: black">0</a></td>
-
-
-                                                  <td>
-
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="modifier_cotisation.php?id=3643"><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                                          Delete</a>
-                                  </div>
-                              </div>
-
-                                                                      </td>
-                      </tr><tr role="row" class="even">
-                         <input name="id" type="hidden" value="3587">
-                                                   <td class="sorting_1"><a href="modifier_cotisation.php?id=3587" title="REF_107073" style="color: black">REF_107073</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3587" title="Siege" style="color: black">Siege</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3587" title="2024-03-27" style="color: black">2024-03-27</a></td>
-                                                  <td><a href="modifier_cotisation.php?id=3587" title="KWEGANG CHIMI  Eric" style="color: black">KWEGANG CHIMI  Eric</a>
-                                                  </td>
-                                                  <td><a href="modifier_cotisation.php?id=3587" title="60,000" style="color: black">60,000 </a>
-                                                  </td>
-
-
-                                                  <td><a href="modifier_cotisation.php?id=3587" title="0" style="color: black">0</a></td>
-
-
-                                                  <td>
-
-                                              <span class="custom-badge status-green">SUCCESS</span>
-                                                          </td>
-                                                  <td>
-                                                      NGO NDENGUE  VIVIANE                                                                </td>
-                                                  <td>
-                                                                                                  <div class="dropdown dropdown-action">
-                                  <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a class="dropdown-item" href="modifier_cotisation.php?id=3587"><svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton " aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg><!-- <i class="fas fa-trash"></i> Font Awesome fontawesome.com -->
-                                          Delete</a>
-                                  </div>
-                              </div>
-
-                                                                      </td>
-                      </tr></tbody>
+                          </td>
+                        </tr>
+                  </tbody>
               </table></div></div>
              <app-pagination ></app-pagination>
 

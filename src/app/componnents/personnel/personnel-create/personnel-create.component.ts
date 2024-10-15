@@ -30,35 +30,37 @@ export class PersonnelCreateComponent implements OnInit{
 
   personnelForm: FormGroup;
   selectedFiles: File[] = [];
-  cities: Ville[] = [];
-  countries: Pays[] = [];
-  companies: Entreprise[] = [];
+
+  countries: any[] = [];
+  cities: any[] = []
   errorMessage: string = ''; // Variable pour stocker les erreurs globales
 
   constructor(private fb: FormBuilder, private personnelService: PersonnelService, private router: Router,private cityService: VilleServiceService,
     private countryService: PaysServiceService) {
-    this.personnelForm = this.fb.group({
-      lastname: ['', Validators.required],
-      firstname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      date_card_validity: ['', Validators.required],
-      phone: ['', Validators.required],
-      father_name: [''],
-      father_phone: [''],
-      mother_name: [''],
-      birthday: ['', Validators.required],
-      place_birth: [''],
-      profession: [''],
-      genre: ['', Validators.required],
-      contract_type: [''],
-      marital_status: ['', Validators.required],
-      position: [''],
-      num_children: [0],
-      open_close: [false],
-      city_id: [null, Validators.required],
-      // country_id: [null, Validators.required],
-      attachment: [null], // For file upload
-    });
+      this.personnelForm = this.fb.group({
+        statut: ['', ], // 'married' or 'celibataire'
+        lastname: ['', ],
+        firstname: ['', ],
+        email: ['', [, Validators.email]],
+        date_card_validity: ['', ],
+        phone: ['', ],
+        father_name: ['', ],
+        father_phone: ['', ],
+        mother_name: ['', ],
+        birthday: ['', ], // Format: 'YYYY-MM-DD'
+        place_birth: ['', ],
+        profession: ['', ],
+        gender: ['', ], // 'male' or 'female'
+        contract_type: ['', ],
+        marital_status: ['', ], // 'married' or 'celibataire'
+        position: ['', ],
+        author:[],
+        num_children: [0],
+        open_close: [false],
+        city_id: [ ], // Foreign key
+        country_id: [ ], // Foreign key
+        attachment: [null]
+      });
   }
   ngOnInit(): void {
     this.loadCities();
@@ -66,26 +68,18 @@ export class PersonnelCreateComponent implements OnInit{
     // this.loadCompanies();
   }
 
-  loadCities(): void {
-    this.cityService.getAll().subscribe(
-      (data) => {
-        this.cities = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des villes', error);
-      }
-    );
+  loadCountries() {
+    this.personnelService.getCountries().subscribe((data) => {
+      console.log(data);
+      this.countries = data;
+    });
   }
 
-  loadCountries(): void {
-    this.countryService.getAll().subscribe(
-      (data) => {
-        this.countries = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des pays', error);
-      }
-    );
+  loadCities() {
+    this.personnelService.getCities().subscribe((data) => {
+      console.log(data);
+      this.cities = data;
+    });
   }
 
   // loadCompanies(): void {
@@ -98,60 +92,36 @@ export class PersonnelCreateComponent implements OnInit{
   //     }
   //   );
   // }
+  handleFileInput(event: any): void {
+    this.selectedFiles = event.target.files as File[];
+  }
+
   onSubmit(): void {
     if (this.personnelForm.valid) {
       const formData = new FormData();
-      // Ajouter les champs de formulaire
-    formData.append('statut', this.personnelForm.get('statut')?.value);
-    formData.append('lastname', this.personnelForm.get('lastname')?.value);
-    formData.append('firstname', this.personnelForm.get('firstname')?.value);
-    formData.append('email', this.personnelForm.get('email')?.value);
-    formData.append('date_card_validity', this.personnelForm.get('date_card_validity')?.value);
-    formData.append('phone', this.personnelForm.get('phone')?.value);
-    formData.append('father_name', this.personnelForm.get('father_name')?.value);
-    formData.append('father_phone', this.personnelForm.get('father_phone')?.value);
-    formData.append('mother_name', this.personnelForm.get('mother_name')?.value);
-    formData.append('birthday', this.personnelForm.get('birthday')?.value);
-    formData.append('place_birth', this.personnelForm.get('place_birth')?.value);
-    formData.append('profession', this.personnelForm.get('profession')?.value);
-    formData.append('genre', this.personnelForm.get('genre')?.value);
-    formData.append('contract_type', this.personnelForm.get('contract_type')?.value);
-    formData.append('marital_status', this.personnelForm.get('marital_status')?.value);
-    formData.append('position', this.personnelForm.get('position')?.value);
-    formData.append('num_children', this.personnelForm.get('num_children')?.value);
-    formData.append('open_close', this.personnelForm.get('open_close')?.value);
-    formData.append('city_id', this.personnelForm.get('city_id')?.value);
-    formData.append('country_id', this.personnelForm.get('country_id')?.value);
+      Object.keys(this.personnelForm.controls).forEach(key => {
+        formData.append(key, this.personnelForm.get(key)?.value);
+      });
 
-
-      // Ajouter plusieurs fichiers à FormData
+      // Ajouter les fichiers si attachés
       if (this.selectedFiles.length > 0) {
-        this.selectedFiles.forEach((file, index) => {
-          formData.append('attachments[]', file, file.name);
+        this.selectedFiles.forEach(file => {
+          formData.append('attachment', file, file.name);
         });
       }
 
-      this.personnelService.create(formData).subscribe({
-        next: response => {
-
-          console.log('Personnel ajouté avec succès', response);
-          this.errorMessage = ''; // Réinitialiser le message d'erreur
+      this.personnelService.create(formData).subscribe(
+        response => {
+          console.log('Personnel added successfully!', response);
+          this.router.navigate(['/Closer/personnel']); // Redirection après succès
         },
-        error: err => {
-          console.error('Erreur lors de l\'ajout du personnel', err);
-          this.errorMessage = 'Une erreur est survenue lors de l\'ajout du personnel. Veuillez réessayer.';
+        error => {
+          console.error('Error while adding personnel', error);
         }
-      });
+      );
     } else {
-      this.errorMessage = 'Le formulaire est invalide. Veuillez vérifier les champs.';
+      console.error('Form is invalid');
     }
-  }
-
-
-  // Gérer la sélection de plusieurs fichiers
-  onFileSelected(event: any): void {
-    const files = event.target.files;
-    this.selectedFiles = Array.from(files); // Convertir en tableau de fichiers
   }
 
 }

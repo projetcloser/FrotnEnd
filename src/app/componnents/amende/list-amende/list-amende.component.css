@@ -1,0 +1,37 @@
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.card-header {
+  padding: 20px;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+}
+
+.table thead th {
+  border-bottom: 2px solid #dee2e6;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.table tbody tr td {
+  vertical-align: middle;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  border-radius: 8px;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  border-radius: 8px;
+}
+
+.btn-light {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}

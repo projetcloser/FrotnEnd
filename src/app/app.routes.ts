@@ -70,6 +70,16 @@ import { EvenementDetailsComponent } from './componnents/evenement/evenement-det
 import { SideNavComponent } from './componnents/side-nav/side-nav.component';
 import { ListAnnonceComponent } from './componnents/annonce/list-annonce/list-annonce.component';
 import { CreateAnnonceComponent } from './componnents/annonce/create-annonce/create-annonce.component';
+import { UpdateAnnonceComponent } from './componnents/annonce/update-annonce/update-annonce.component';
+import { DetailsAnnonceComponent } from './componnents/annonce/details-annonce/details-annonce.component';
+import { ListAmendeComponent } from './componnents/amende/list-amende/list-amende.component';
+import { CreateAmendeComponent } from './componnents/amende/create-amende/create-amende.component';
+import { UpdateAmendeComponent } from './componnents/amende/update-amende/update-amende.component';
+import { DetailsAmendeComponent } from './componnents/amende/details-amende/details-amende.component';
+import { ListDetteComponent } from './componnents/dette/list-dette/list-dette.component';
+import { CreateDetteComponent } from './componnents/dette/create-dette/create-dette.component';
+import { UpdateDetteComponent } from './componnents/dette/update-dette/update-dette.component';
+import { DetailsDetteComponent } from './componnents/dette/details-dette/details-dette.component';
 
 
 
@@ -89,6 +99,19 @@ export const routes: Routes = [
   // anonce
   { path: 'annonces', component: ListAnnonceComponent },
   { path: 'annonces/new', component: CreateAnnonceComponent },
+  { path: 'annonces/edit/:id', component: UpdateAnnonceComponent },
+  { path: 'annonces/details/:id', component: DetailsAnnonceComponent },
+  // amende
+  { path: 'amendes', component: ListAmendeComponent },
+  { path: 'amendes/new', component: CreateAmendeComponent },
+  { path: 'amendes/edit/:id', component: UpdateAmendeComponent },
+  { path: 'amendes/details/:id', component: DetailsAmendeComponent },
+
+  // dettes
+  { path: 'dettes', component: ListDetteComponent },
+  { path: 'dettes/new', component: CreateDetteComponent },
+  { path: 'dettes/edit/:id', component: UpdateDetteComponent },
+  { path: 'dettes/details/:id', component: DetailsDetteComponent },
   // personnels
   {
     path: "personnel",
@@ -277,7 +300,7 @@ export const routes: Routes = [
       component:CreateCotisationComponent
     },
     {
-      path: "modifier-cotisation",
+      path: "modifier-cotisation/:id",
       component:UpdateCotisationComponent
     },
      // requette

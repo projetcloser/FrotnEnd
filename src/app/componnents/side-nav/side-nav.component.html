@@ -60,19 +60,102 @@
 
 
 
+
+            <li class="nav-item active">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTw"
+                  aria-expanded="true" aria-controls="collapseTw" >
+                  <i class="fa-solid fa-ticket"></i>
+                  <span>Attestation entreprise</span>
+              </a>
+              <div id="collapseTw" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                  <div class="bg-gradient-green py-2 collapse-inner rounded">
+
+                      <li >
+                        <a class="collapse-item" routerLink="/Closer/attestation-non_paye"  style="color: white;">
+                          <i class="fa-solid fa-ticket"></i>
+                          Nom paye
+                        </a>
+                      </li>
+                      <li >
+                        <a class="collapse-item" routerLink="/Closer/attestation-paye"  style="color: white;">
+                          <i class="fa-solid fa-ticket"></i>
+                          Paye
+                        </a>
+                      </li>
+                      <li >
+                        <a class="collapse-item" routerLink="/Closer/attestation-initied"  style="color: white;">
+                          <i class="fa-solid fa-ticket"></i>
+                          Statut Initiated
+                          <!-- json-server --watch db.json -->
+
+                        </a>
+                      </li>
+
+
+                  </div>
+              </div>
+          </li>
+            <li class="nav-item active">
+              <a class="nav-link collapsed" routerLink="/Closer/attestPersonnel" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+                <i class="fa-solid fa-ticket"></i>
+                <span>Attestation Personnel</span>
+            </a>
+          </li>
+
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/Closer/personnel" routerLinkActive="active"
-          aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-          <i class="fa fa-users"></i>
-          <span>Personnels</span>
+          <a class="nav-link collapsed" routerLink="/Closer/annonces" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+            <i class="fa-sharp fa-thin fa-code-pull-request-draft"></i>
+            <span>Annonces</span>
+          </a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link collapsed" routerLink="/Closer/amendes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+            <i class="fa-sharp fa-thin fa-code-pull-request-draft"></i>
+            <span>Amendes</span>
           </a>
         </li>
         <li class="nav-item active">
+          <a class="nav-link collapsed" routerLink="/Closer/cotisation" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+            <i class="fa fa-dollar"></i>
+            <span>Cotisations</span>
+        </a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link collapsed" routerLink="/Closer/dettes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+            <i class="fa-sharp fa-thin fa-code-pull-request-draft"></i>
+            <span>Dettes</span>
+          </a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link collapsed" routerLink="/Closer/cachet" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+            <i class="fa-sharp-duotone fa-solid fa-file-certificate"></i>
+            <span>Demande de cachet</span>
+        </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link collapsed" routerLink="/Closer/evenement" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+            <i class="fa fa-list-alt" aria-hidden="true"></i>
+            <span>Evènements</span>
+        </a>
+        </li>
+        <!-- <li class="nav-item active">
+          <a class="nav-link collapsed" routerLink="/Closer/frais-etude" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+            <i class="fa fa-dollar"></i>
+            <span>Frais d'etude</span>
+        </a> -->
+        <!-- Nav Item - Pages Collapse Menu -->
+
+
+
+        <!-- <li class="nav-item active">
           <a class="nav-link" routerLink="/Closer/postulant" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fa fa-users"></i>
           <span>Postulants</span>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item active">
 
           <a class="nav-link collapsed" routerLink="/Closer/membre" routerLinkActive="active"  aria-controls="collapseTwo" style="color: white;">
@@ -86,87 +169,33 @@
             <span>Entreprises</span>
             </a>
         </li>
-        <li class="nav-item active">
+        <!-- kevin -->
+        <!-- <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/tresorerie" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fa fa-dollar" ></i>
               <span>Tresoreries</span>
           </a>
-        </li>
+        </li> -->
+
         <li class="nav-item active">
-          <a class="nav-link collapsed" routerLink="/Closer/cotisation" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-            <i class="fa fa-dollar"></i>
-            <span>Frais de Cotisation</span>
-        </a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link collapsed" routerLink="/Closer/evenement" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-            <i class="fa fa-list-alt" aria-hidden="true"></i>
-            <span>Evenements</span>
-        </a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link collapsed" routerLink="/Closer/frais-etude" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-            <i class="fa fa-dollar"></i>
-            <span>Frais d'etude</span>
-        </a>
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTw"
-              aria-expanded="true" aria-controls="collapseTw" >
-              <i class="fa-solid fa-ticket"></i>
-              <span>Attestation entreprise</span>
+          <a class="nav-link" routerLink="/Closer/personnel" routerLinkActive="active"
+          aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+          <i class="fa fa-users"></i>
+          <span>Personnels</span>
           </a>
-          <div id="collapseTw" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-              <div class="bg-gradient-green py-2 collapse-inner rounded">
-
-                  <li >
-                    <a class="collapse-item" routerLink="/Closer/attestation-non_paye"  style="color: white;">
-                      <i class="fa-solid fa-ticket"></i>
-                      Nom paye
-                    </a>
-                  </li>
-                  <li >
-                    <a class="collapse-item" routerLink="/Closer/attestation-paye"  style="color: white;">
-                      <i class="fa-solid fa-ticket"></i>
-                      Paye
-                    </a>
-                  </li>
-                  <li >
-                    <a class="collapse-item" routerLink="/Closer/attestation-initied"  style="color: white;">
-                      <i class="fa-solid fa-ticket"></i>
-                      Statut Initiated
-                    </a>
-                  </li>
-
-
-              </div>
-          </div>
-      </li>
-        <li class="nav-item active">
-          <a class="nav-link collapsed" routerLink="/Closer/attestPersonnel" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-            <i class="fa-solid fa-ticket"></i>
-            <span>Attestation Personnel</span>
-        </a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link collapsed" routerLink="/Closer/cachet" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-            <i class="fa-sharp-duotone fa-solid fa-file-certificate"></i>
-            <span>Demande de cachet</span>
-        </a>
-        </li>
-        <li class="nav-item active">
+
+        <!-- <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/requette" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fa-sharp fa-thin fa-code-pull-request-draft"></i>
             <span>Requettes</span>
         </a>
-        </li>
+        </li> -->
 
-        <li class="nav-item active">
-          <a class="nav-link collapsed" routerLink="/Closer/annonces" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-            <i class="fa-sharp fa-thin fa-code-pull-request-draft"></i>
-            <span>Annonces</span>
-          </a>
-        </li>
+
+
+
+
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
@@ -287,7 +316,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Onigc 2024</span>
                     </div>
                 </div>
             </footer>

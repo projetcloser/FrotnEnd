@@ -214,7 +214,7 @@
                   <!-- Type -->
                   <div class="col-md-6">
                     <span>Type</span>
-                    <input type="text" formControlName="type" class="form-control" />
+                    <input type="text" formControlName="type" class="form-control" placeholder="ETS, SARL... " />
                     <div *ngIf="entrepriseForm.controls['type'].invalid && entrepriseForm.controls['type'].touched" class="text-danger">
                       <small *ngIf="entrepriseForm.controls['type'].hasError('required')">Type est requis.</small>
                     </div>

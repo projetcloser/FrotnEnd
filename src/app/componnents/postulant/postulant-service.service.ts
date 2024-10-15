@@ -9,6 +9,10 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class PostulantServiceService {
 
+  // private apiURL = environment.apiUrl+"postulant";
+  // private countriesUrl = environment.apiUrl+'country';
+  // private citiesUrl = environment.apiUrl+'city';
+
   private apiURL = environment.apiUrl+"postulant";
   private countriesUrl = environment.apiUrl+'country';
   private citiesUrl = environment.apiUrl+'city';

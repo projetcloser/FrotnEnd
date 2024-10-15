@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <h2 class="text-center text-primary">Détails de la Dette</h2>
+
+  <div class="debt-details card border-0 rounded shadow-sm mb-4">
+    <div class="card-body">
+      <h4 class="card-title text-muted">Informations sur la Dette</h4>
+      <!-- <p><strong>ID de la Dette :</strong> <span class="text-dark">{{ debt.id }}</span></p> -->
+      <p><strong>ID du Membre :</strong> <span class="text-dark">{{ debt.membre_id }}</span></p>
+      <p><strong>Montant :</strong> <span class="text-dark">{{ debt.montant | currency }}</span></p>
+      <p><strong>Date d'Échéance :</strong> <span class="text-dark">{{ debt.date_echeance | date }}</span></p>
+      <p>
+        <strong>Statut :</strong>
+        <span
+          [ngClass]="{'text-success': debt.statut === 'Payé', 'text-danger': debt.statut === 'Payé'}"
+          class="badge rounded-pill"
+          style="background-color: rgba(0, 128, 0, 0.1);">
+          {{ debt.statut === 'Payé' ? 'Payé' : 'Non Payé' }}
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <div class="member-details card border-0 rounded shadow-sm mb-4">
+    <div class="card-body">
+      <h4 class="card-title text-muted">Informations du Membre</h4>
+      <p><strong>Nom :</strong> <span class="text-dark">{{ member.lastname }} {{ member.firstname }}</span></p>
+      <p><strong>Email :</strong> <span class="text-dark">{{ member.email }}</span></p>
+      <p><strong>Téléphone :</strong> <span class="text-dark">{{ member.phone }}</span></p>
+      <!-- Ajoutez d'autres détails pertinents du membre ici -->
+    </div>
+  </div>
+
+  <div class="text-center">
+    <a [routerLink]="['/Closer/dettes']" class="btn btn-primary mt-3 rounded-pill">Retour à la liste des dettes</a>
+  </div>
+</div>

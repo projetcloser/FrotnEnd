@@ -14,7 +14,10 @@ import { Entreprise } from '../../models/entreprise';
 export class PersonnelService {
 
   private apiRecup =  environment.apiUrl
-  private apiURL = environment.apiUrl+"personnels";
+  // private apiURL = environment.apiUrl+"personnels";
+  private apiURL = environment.apiUrl+"staff";
+  private countriesUrl = environment.apiUrl+'location/countries';
+  private citiesUrl = environment.apiUrl+'location/cities';
 
 
   httpOptions = {
@@ -33,13 +36,14 @@ export class PersonnelService {
       );
   }
 
-  getCities(): Observable<Ville[]> {
-    return this.httpclient.get<Ville[]>(`${this.apiRecup}/city`);
+  getCountries(): Observable<any[]> {
+    return this.httpclient.get<any[]>(this.countriesUrl);
   }
 
-  getCountries(): Observable<Pays[]> {
-    return this.httpclient.get<Pays[]>(`${this.apiRecup}/country`);
+  getCities(): Observable<any[]> {
+    return this.httpclient.get<any[]>(this.citiesUrl);
   }
+
   getCompanies(): Observable<Entreprise[]> {
     return this.httpclient.get<Entreprise[]>(`${this.apiRecup}/companies`);
   }
@@ -57,12 +61,15 @@ export class PersonnelService {
         catchError(this.errorHandler)
       );
   }
+ // Méthode pour récupérer un personnel par ID
+  // Méthode pour récupérer un personnel par ID
+  getPersonnelById(id: number): Observable<Personnel> {
+    return this.httpclient.get<Personnel>(`${this.apiURL}/${id}`);
+  }
 
-  update(id: number, data: Personnel): Observable<any> {
-    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(data), this.httpOptions)
-      .pipe(
-        catchError(this.errorHandler)
-      );
+  // Méthode pour mettre à jour un personnel
+  updatePersonnel(id: number, personnel: FormData): Observable<any> {
+    return this.httpclient.put(`${this.apiURL}/${id}`, personnel);
   }
 
   delete(id: number) {

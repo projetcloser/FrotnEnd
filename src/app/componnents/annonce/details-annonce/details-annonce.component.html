@@ -1,1 +1,21 @@
-<p>details-annonce works!</p>
+<div class="container mt-5">
+  <!-- <h2 class="text-center">{{ annonce?.object }}</h2>
+  <p><strong>Auteur :</strong> {{ annonce?.auteur }}</p>
+  <p><strong>Contenu :</strong> {{ annonce?.contenu }}</p> -->
+
+  <!-- Fichier Joint Existant -->
+  <div *ngIf="annonce && annonce.fichiers && annonce.fichiers.length > 0" class="col-md-12 mb-3">
+    <label class="form-label font-weight-bold">Fichier(s) joint(s) actuel(s) :</label>
+    <ul>
+      <li *ngFor="let fichier of annonce.fichiers">
+        <!-- <a [href]="fichier.url" download>{{ fichier.nom}}</a> -->
+        <!-- <i class="fas fa-download" [title]="'Télécharger ' + (fichier.url | extractFileName)"></i> -->
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="text-center">
+    <a routerLink="/annonces" class="btn btn-secondary">Retour à la liste des annonces</a>
+  </div>
+</div>

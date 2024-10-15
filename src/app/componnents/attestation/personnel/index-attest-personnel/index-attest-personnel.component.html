@@ -87,7 +87,7 @@
                 <tbody>
 
                   <tr role="row" class="odd" *ngFor="let attest of attestations">
-                    <td class="sorting_1"><a href="#"></a></td>
+                    <td class="sorting_1"><a href="#">{{attest.ref_dem_part}}</a></td>
                     <!--<td><a href="#"></a></td>-->
                     <td><a href="#">{{attest.created_at | date: 'dd/MM/yyyy'}} </a></td>
                     <td><a href="#"></a></td>
@@ -95,7 +95,7 @@
                           alt="">{{ getMemberName(attest.memnbre_id) }}</a></td>
 
                     <td>
-                      <a [routerLink]="['/modifier-statut', attest.id]">
+                      <a [routerLink]="['/Closerifier-statut', attest.id]">
                         <span class="badge" [ngClass]="{
                           'badge-success': attest.status === 2,
                           'badge-warning': attest.status === 1,

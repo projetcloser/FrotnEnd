@@ -67,7 +67,7 @@ export class CreateEntrepriseComponent {
     if (this.entrepriseForm.valid) {
       // const caisseData = this.caisseForm.value;
       this.entrepriseService.create(this.entrepriseForm.value).subscribe(() => {
-        this.router.navigate(['/entreprise']);
+        this.router.navigate(['/Closer/entreprise']);
       });
     }
   }

@@ -17,8 +17,10 @@ export class EntrepriseServiceService {
   // private citiesUrl = environment.apiUrl+'city';
 
   private apiURL = environment.apiUrl+"companies";
-  private countriesUrl = environment.apiUrl+'country';
-  private citiesUrl = environment.apiUrl+'city';
+  private countriesUrl = environment.apiUrl+'location/countries';
+  private citiesUrl = environment.apiUrl+'location/cities';
+  private detailsUrl = environment.apiUrl+"companies/company";
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -37,14 +39,14 @@ export class EntrepriseServiceService {
   }
 
   create(entreprise: Entreprise): Observable<any> {
-    return this.httpclient.post(this.apiURL , JSON.stringify(entreprise), this.httpOptions)
+    return this.httpclient.post(this.detailsUrl , JSON.stringify(entreprise), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   find(id: number): Observable<any> {
-    return this.httpclient.get(this.apiURL +'/' + id)
+    return this.httpclient.get(this.detailsUrl +'/' + id)
       .pipe(
         catchError(this.errorHandler)
       );

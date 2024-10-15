@@ -1,0 +1,36 @@
+.container {
+  max-width: 800px; /* Limiter la largeur pour un meilleur affichage */
+  margin: 0 auto; /* Centrer le contenu */
+  background-color: #f8f9fa; /* Fond doux */
+  border-radius: 10px; /* Coins arrondis */
+  padding: 20px; /* Espacement à l'intérieur du conteneur */
+}
+
+.card {
+  border-radius: 15px; /* Coins arrondis pour les cartes */
+}
+
+.card-body {
+  padding: 20px; /* Espacement à l'intérieur de la carte */
+}
+
+.card-title {
+  font-size: 1.4rem; /* Taille de la police pour le titre de la carte */
+  margin-bottom: 15px; /* Espacement inférieur */
+}
+
+.badge {
+  padding: 8px 12px; /* Espacement intérieur pour le badge */
+  border-radius: 20px; /* Coins arrondis pour le badge */
+  font-size: 0.9rem; /* Taille de la police pour le badge */
+}
+
+.text-dark {
+  color: #343a40; /* Couleur sombre pour le texte */
+}
+
+.btn {
+  padding: 10px 20px; /* Espacement pour le bouton */
+  font-size: 1rem; /* Taille de la police pour le bouton */
+  border-radius: 25px; /* Coins arrondis pour le bouton */
+}
