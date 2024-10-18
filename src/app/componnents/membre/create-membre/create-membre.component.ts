@@ -58,22 +58,22 @@ export class CreateMembreComponent {
 
   initForm() {
     this.membreForm = this.fb.group({
-      matricule: [''],
-      lastname: [''],
-      firstname: [''],
-      email: ['', [Validators.required, Validators.email]],
-      order_number: [''],
-      debt: [''],
-      phone: [''],
-      phone_2: [''],
+      matricule: [],
+      lastname: [],
+      firstname: [],
+      email: [],
+      order_number: [],
+      debt: [],
+      phone: [],
+      phone_2: [],
       author: [{ value: 'MONGO SALOMON', disabled: true }],
       status: [0],
       open_close: [false],
       city_id: [null],
       country_id:[],
       created_at: [new Date()],
-      picture: [''],
-      folder: ['']
+      picture: [],
+      folder: []
     });
   }
 
@@ -98,13 +98,13 @@ export class CreateMembreComponent {
     formData.append('lastname', membre.lastname);
     formData.append('firstname', membre.firstname);
     formData.append('email', membre.email);
-    formData.append('order_number', membre.order_number);
-    formData.append('debt', membre.debt);
+    // formData.append('order_number', membre.order_number);
+    // formData.append('debt', membre.debt);
     formData.append('phone', membre.phone);
     formData.append('phone_2', membre.phone_2);
     formData.append('author', membre.author);
-    formData.append('status', String(membre.status || 0));
-    formData.append('open_close', String(membre.open_close || false));
+    // formData.append('status', String(membre.status || 0));
+    // formData.append('open_close', String(membre.open_close || false));
     formData.append('city_id', String(membre.city_id || 0));
     formData.append('country_id', String(membre.country_id || 0));
     formData.append('created_at', membre.created_at.toISOString());
@@ -120,7 +120,7 @@ export class CreateMembreComponent {
     }
 
     this.membreService.create(formData).subscribe(() => {
-      this.router.navigate(['/membres']);
+      this.router.navigate(['/Closer/membre']);
     });
   }
 

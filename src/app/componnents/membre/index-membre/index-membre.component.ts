@@ -4,6 +4,8 @@ import { MembreServiceService } from '../membre-service.service';
 import { LoadingComponent } from '../../../components/loading/loading.component';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-index-membre',
@@ -69,4 +71,24 @@ export class IndexMembreComponent implements OnInit{
         this.membres = this.membres.filter(m => m.id !== id);
       });
     }
+
+    exportToExcel(): void {
+      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.membres);
+      const workbook: XLSX.WorkBook = {
+        Sheets: { 'Liste des membres': worksheet },
+        SheetNames: ['Liste des membres']
+      };
+
+      // Générer le fichier Excel en binaire
+      const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+      // Appeler la méthode pour sauvegarder le fichier
+      this.saveAsExcelFile(excelBuffer, 'Liste_Membres');
+    }
+
+    saveAsExcelFile(buffer: any, fileName: string): void {
+      const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
+      saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
+    }
 }
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

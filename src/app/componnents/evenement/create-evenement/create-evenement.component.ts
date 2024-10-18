@@ -15,21 +15,24 @@ import { CommonModule } from '@angular/common';
 export class CreateEvenementComponent {
   evenementForm: FormGroup;
 
+  currentTime = new Date();
+  currentDay = new Date();
+
   constructor(
     private fb: FormBuilder,
     private evenementService: EvenementService,
     private router: Router
   ) {
     this.evenementForm = this.fb.group({
-      titre: ['', [Validators.required, Validators.minLength(3)]],
-      author: ['', Validators.required],
-      lieu: ['', Validators.required],
-      cout: [0, [Validators.required, Validators.min(0)]],
-      participant: [0, [Validators.required, Validators.min(1)]],
-      neighborhood: [''],
-      date_debut: ['', Validators.required],
-      date_fin: ['', Validators.required],
-      status: [1, Validators.required]
+      title: [''],
+      author: [''],
+      place: [''],
+      price: [0],
+      participants: [0],
+      // neighborhood: [''],
+      start_date: [''],
+      end_date: [''],
+      // status: [1, Validators.required]
     });
   }
   get f() {
@@ -39,7 +42,7 @@ export class CreateEvenementComponent {
     if (this.evenementForm.valid) {
       const newEvenement: Evenement = this.evenementForm.value;
       this.evenementService.createEvenement(newEvenement).subscribe(() => {
-        this.router.navigate(['/evenement']);
+        this.router.navigate(['/Closer/evenement']);
       });
     }
   }

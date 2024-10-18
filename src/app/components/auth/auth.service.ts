@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { User } from './model/user';
@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-    private apiUrl = 'http://localhost:3000/users'; // URL du serveur JSON
-    
+    // private apiUrl = 'http://localhost:3000/users'; // URL du serveur JSON
+    private apiUrl = 'https://preprod.closercm.net/api';
     private currentUserSubject: BehaviorSubject<User | null>;
     public currentUser: Observable<User | null>;
 
@@ -26,38 +26,51 @@ export class AuthService {
       return this.currentUserSubject.value;
     }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, { email, password });
-  }
+ // Enregistrement (register)
+ register(data: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/register`, data);
+}
 
-  register(name: string, email: string, password: string, password_confirmation: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, { name, email, password, password_confirmation });
-  }
+// Connexion (login)
+login(data: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/login`, data);
+}
 
-  forgotPassword(email: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/forgot-password`, { email });
-  }
+// Déconnexion (logout)
+logout(): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+  });
 
-   // Stocker le token dans le localStorage
-   saveToken(token: string): void {
-    localStorage.setItem('token', token);
-  }
-   // Récupérer le token depuis le localStorage
-   getToken(): string | null {
-    return localStorage.getItem('token');
-  }
+  return this.http.post(`${this.apiUrl}/logout`, {}, { headers });
+}
 
-  logout(): void {
-    localStorage.removeItem('token'); // Supprimer le token lors de la déconnexion
-    this.router.navigate(['/login']);
-  }
+// Enregistrer le token dans le localStorage après connexion
+setToken(token: string) {
+  localStorage.setItem('access_token', token);
+}
 
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
-  }
+// Récupérer le token
+getToken(): string | null {
+  return localStorage.getItem('access_token');
+}
 
-  getUser(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
-  }
+forgotPassword(email: string): Observable<any> {
+  return this.http.post(`${this.apiUrl}/forgot-password`, { email });
+}
+
+// Vérifier si l'utilisateur est connecté
+isLoggedIn(): boolean {
+  return this.getToken() !== null;
+}
+
+getUser(): Observable<any> {
+  return this.http.get<any>(this.apiUrl);
+}
+
+// Supprimer le token lors de la déconnexion
+clearToken() {
+  localStorage.removeItem('access_token');
+}
 
 }

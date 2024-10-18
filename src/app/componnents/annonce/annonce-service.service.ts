@@ -9,8 +9,8 @@ import { environment } from '../../../environments/environment';
 })
 export class AnnonceServiceService {
 
-  private apiUrl = 'http://localhost:3000/annonces'; // URL du serveur JSON
-  // private apiUrl = environment.apiUrl+"announcements";
+  // private apiUrl = 'http://localhost:3000/annonces'; // URL du serveur JSON
+  private apiUrl = environment.apiUrl+"announcements";
 
   constructor(private http: HttpClient) {}
 

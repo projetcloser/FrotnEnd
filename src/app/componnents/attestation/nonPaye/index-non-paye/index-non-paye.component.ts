@@ -1,22 +1,43 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { NonPayeService } from '../non-paye.service';
+import { NonPaye } from '../non-paye';
 
 @Component({
   selector: 'app-index-non-paye',
   standalone: true,
-  imports: [],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
   templateUrl: './index-non-paye.component.html',
   styleUrl: './index-non-paye.component.css'
 })
 export class IndexNonPayeComponent {
-  constructor(private router: Router) {}
+  attestations: NonPaye[] = [];
+  constructor(private router: Router,private attestationService: NonPayeService) {}
+
+  ngOnInit(): void {
+    this.loadAttestations();
+  }
+
+  loadAttestations(): void {
+    this.attestationService.getAttestations().subscribe(data => {
+      this.attestations = data;
+    });
+  }
+
+  deleteAttestation(id: number): void {
+    this.attestationService.deleteAttestation(id).subscribe(() => {
+      this.loadAttestations();
+    });
+  }
 
   navigateToForm() {
-    this.router.navigate(['/nouvelle-attestation-non_paye']);
+    this.router.navigate(['/Closer/nouvelle-attestation-non_paye']);
   }
 
   navigateToFormEdit() {
-    this.router.navigate(['/modifier-attestation-non_paye']);
+    this.router.navigate(['/Closer/modifier-attestation-non_paye']);
   }
 
    // Méthode de confirmation avant la suppression

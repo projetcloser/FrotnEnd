@@ -1,12 +1,12 @@
 <div class="container-fluid">
-  <h1 class="mt-4"><svg class="svg-inline--fa fa-building fa-w-14 custom-icon" style="color: silver;" aria-hidden="true"
+  <h4 class="mt-4"><svg class="svg-inline--fa fa-building fa-w-14 custom-icon" style="color: silver;" aria-hidden="true"
       focusable="false" data-prefix="fas" data-icon="building" role="img" xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512" data-fa-i2svg="">
       <path fill="currentColor"
         d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z">
       </path>
     </svg><!-- <i class="fas fa-building" style="color: silver"></i> Font Awesome fontawesome.com --> Liste des Cachets
-  </h1>
+  </h4>
   <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active"  style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
       Hello M/Mme, il est 12:23 en ce jour du Mardi 6 Aout 2024 .
@@ -35,7 +35,7 @@
         </ul>
         <ul class="nav nav-pills" style="float: right;">
           <li class="nav-item">
-            <a class="nav-link active btn btn-success" href="etat_cachet_livre.php"  style="background-color: #28a745; color: white;margin-right: 20px " target="blank"
+            <a class="nav-link active btn btn-success" (click)="exportCachetsByStatus(4)"  style="background-color: #28a745; color: white;margin-right: 20px " target="blank"
              ><svg class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true"
                 focusable="false" data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512" data-fa-i2svg="">
@@ -48,7 +48,7 @@
         </ul>
         <ul class="nav nav-pills" style="float: right;">
           <li class="nav-item">
-            <a class="nav-link active btn btn-success" href="etat_cachet_disponible.php" target="blank"  style="background-color: #28a745;color: white;margin-right: 20px "><svg class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true"
+            <a class="nav-link active btn btn-success"  target="blank" (click)="exportCachetsByStatus(2)"  style="background-color: #28a745;color: white;margin-right: 20px "><svg class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true"
                 focusable="false" data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512" data-fa-i2svg="">
                 <path fill="currentColor"
@@ -60,7 +60,7 @@
         </ul>
         <ul class="nav nav-pills" style="float: right;">
           <li class="nav-item">
-            <a class="nav-link active btn btn-success" href="etat_cachet_envoye.php" target="blank"  style="background-color: #28a745; color: white;margin-right: 20px"
+            <a class="nav-link active btn btn-success" (click)="exportCachetsByStatus(3)" target="blank"  style="background-color: #28a745; color: white;margin-right: 20px"
             ><svg class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true"
                 focusable="false" data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512" data-fa-i2svg="">
@@ -73,7 +73,7 @@
         </ul>
         <ul class="nav nav-pills" style="float: right;">
           <li class="nav-item">
-            <a class="nav-link active btn btn-success" href="etat_cachet_fabrication.php" target="blank"  style="background-color: #28a745; color: white;margin-right: 20px"
+            <a class="nav-link active btn btn-success"  target="blank" (click)="exportCachetsByStatus(1)" style="background-color: #28a745; color: white;margin-right: 20px"
              ><svg class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true"
                 focusable="false" data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512" data-fa-i2svg="">
@@ -151,34 +151,49 @@
                 <tbody>
 
 
-                  <tr align="center" role="row" class="odd">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=1045" style="color: black">02- 0088</a></td>
-                    <td><a href="modifier_cachet.php?id=1045" style="color: black">TCHOMGUEU Omer Magloire</a></td>
-                    <td><a href="modifier_cachet.php?id=1045" style="color: black">699319725</a></td>
-                    <td>699319725</td>
-                    <td>DOUALA</td>
+                  <tr align="center" role="row" class="odd" *ngFor="let cachet of cachets">
+                    <td class="sorting_1"><a href="" style="color: black">{{getMembersmatrivule(cachet.member_id)}}</a></td>
+                    <td><a href="" style="color: black">{{getMembersName(cachet.member_id) }}</a></td>
+                    <td><a href="" style="color: black">{{getMembersphone(cachet.member_id) }}</a></td>
+                    <td>{{cachet.receipt_number}}</td>
+                    <td>{{ getCityName(cachet.city_id) }}</td>
 
                     <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=1045" style=" width:200px;" class="btn btn-success">Cachet
-                        disponible</a>
+                      <span
+                      class="badge"
+                      [ngClass]="{
+                        'badge-warning': cachet.status === 1,
+                        'badge-info': cachet.status === 2,
+                        'badge-primary': cachet.status === 3,
+                        'badge-success': cachet.status === 4
+                      }"
+                    >
+                      {{ cachet.status === 1 ? 'En cours de fabrication' :
+                         cachet.status === 2 ? 'Disponible' :
+                         cachet.status === 3 ? 'Envoyée' :
+                         cachet.status === 4 ? 'Livrée' :
+                         'Inconnu' }}
+                    </span>
+                      <!-- <a href="" style=" width:200px;" class="btn btn-success">{{cachet.status}} -->
+                      <!-- </a> -->
                     </td>
-                    <td><a href="modifier_cachet.php?id=1045" style="color: black">2024-03-07</a></td>
-                    <td>TCHOMGUEU Omer Magloire</td>
+                    <td><a href="" style="color: black">2024-03-07</a></td>
+                    <td>{{cachet.author}}</td>
                     <td class="text-right">
                       <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu "
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><svg
+                            class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu " aria-hidden="true" focusable="false"
+                            data-prefix="fa" data-icon="ellipsis-v" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                            data-fa-i2svg="">
                             <path fill="currentColor"
                               d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
                             </path>
                           </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
                         <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" (click)="navigateToFormEdit()">
-                            <svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                          <a class="dropdown-item" [routerLink]="['/Closer/modifier-cachet', cachet.id]" >
+                            <svg class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true" focusable="false"
+                              data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                              data-fa-i2svg="">
                               <path fill="currentColor"
                                 d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
                               </path>
@@ -188,339 +203,8 @@
 
                     </td>
                   </tr>
-                  <tr align="center" role="row" class="even">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=1046" style="color: black">02- 0099</a></td>
-                    <td><a href="modifier_cachet.php?id=1046" style="color: black">TCHOKOGOUE Vincent</a></td>
-                    <td><a href="modifier_cachet.php?id=1046" style="color: black">699415130</a></td>
-                    <td>699415130</td>
-                    <td>Yaoundé</td>
 
-                    <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=1046" style=" width:200px;" class="btn btn-secondary">Cachet
-                        Livré</a>
-                    </td>
-                    <td><a href="modifier_cachet.php?id=1046" style="color: black">2024-03-07</a></td>
-                    <td>TCHOKOGOUE Vincent</td>
-                    <td class="text-right">
-                      <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu "
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                            </path>
-                          </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="modifier_cachet.php?id=1046"><svg
-                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                              </path>
-                            </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                        </div>
-                      </div>
 
-                    </td>
-                  </tr>
-                  <tr align="center" role="row" class="odd">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=1069" style="color: black">02- 0184</a></td>
-                    <td><a href="modifier_cachet.php?id=1069" style="color: black">SIPEHOU TEKAM Guy Constantin</a></td>
-                    <td><a href="modifier_cachet.php?id=1069" style="color: black">699851233</a></td>
-                    <td>699851233</td>
-                    <td>Yaooundé</td>
-
-                    <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=1069" style=" width:200px;" class="btn btn-success">Cachet
-                        disponible</a>
-                    </td>
-                    <td><a href="modifier_cachet.php?id=1069" style="color: black">2024-04-23</a></td>
-                    <td>SIPEHOU TEKAM Guy Constantin</td>
-                    <td class="text-right">
-                      <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu"
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                            </path>
-                          </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="modifier_cachet.php?id=1069"><svg
-                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton " aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                              </path>
-                            </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                        </div>
-                      </div>
-
-                    </td>
-                  </tr>
-                  <tr align="center" role="row" class="even">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=1044" style="color: black">02- 0265</a></td>
-                    <td><a href="modifier_cachet.php?id=1044" style="color: black">SIMEU Paul </a></td>
-                    <td><a href="modifier_cachet.php?id=1044" style="color: black">699554741</a></td>
-                    <td>699554741</td>
-                    <td>Douala</td>
-
-                    <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=1044" style=" width:200px;" class="btn btn-secondary">Cachet
-                        Livré</a>
-                    </td>
-                    <td><a href="modifier_cachet.php?id=1044" style="color: black">2024-03-06</a></td>
-                    <td>SIMEU Paul </td>
-                    <td class="text-right">
-                      <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu"
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                            </path>
-                          </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="modifier_cachet.php?id=1044"><svg
-                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                              </path>
-                            </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                        </div>
-                      </div>
-
-                    </td>
-                  </tr>
-                  <tr align="center" role="row" class="odd">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=1096" style="color: black">02- 0488</a></td>
-                    <td><a href="modifier_cachet.php?id=1096" style="color: black">TCHUMTCHOUA TOHOUO Valère </a></td>
-                    <td><a href="modifier_cachet.php?id=1096" style="color: black">677484848</a></td>
-                    <td>677484848</td>
-                    <td>DOUALA</td>
-
-                    <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=1096" style=" width:200px;" class="btn btn-success">Cachet
-                        disponible</a>
-                    </td>
-                    <td><a href="modifier_cachet.php?id=1096" style="color: black">2024-06-26</a></td>
-                    <td>TCHUMTCHOUA TOHOUO Valère </td>
-                    <td class="text-right">
-                      <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu"
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                            </path>
-                          </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="modifier_cachet.php?id=1096"><svg
-                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                              </path>
-                            </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                        </div>
-                      </div>
-
-                    </td>
-                  </tr>
-                  <tr align="center" role="row" class="even">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=994" style="color: black">03- 0600</a></td>
-                    <td><a href="modifier_cachet.php?id=994" style="color: black">OTTOU Jean Marie Aimé </a></td>
-                    <td><a href="modifier_cachet.php?id=994" style="color: black">699912802</a></td>
-                    <td>699912802</td>
-                    <td>Yaoundé</td>
-
-                    <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=994" style=" width:200px;" class="btn btn-secondary">Cachet
-                        Livré</a>
-                    </td>
-                    <td><a href="modifier_cachet.php?id=994" style="color: black">2024-01-05</a></td>
-                    <td>OTTOU Jean Marie Aimé </td>
-                    <td class="text-right">
-                      <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu"
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                            </path>
-                          </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="modifier_cachet.php?id=994"><svg
-                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                              </path>
-                            </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                        </div>
-                      </div>
-
-                    </td>
-                  </tr>
-                  <tr align="center" role="row" class="odd">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=1043" style="color: black">07- 0929</a></td>
-                    <td><a href="modifier_cachet.php?id=1043" style="color: black">YOMB Alex Yves </a></td>
-                    <td><a href="modifier_cachet.php?id=1043" style="color: black">696569506</a></td>
-                    <td>696569506</td>
-                    <td>Douala</td>
-
-                    <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=1043" style=" width:200px;" class="btn btn-secondary">Cachet
-                        Livré</a>
-                    </td>
-                    <td><a href="modifier_cachet.php?id=1043" style="color: black">2024-03-06</a></td>
-                    <td>YOMB Alex Yves </td>
-                    <td class="text-right">
-                      <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu"
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                            </path>
-                          </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="modifier_cachet.php?id=1043"><svg
-                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                              </path>
-                            </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                        </div>
-                      </div>
-
-                    </td>
-                  </tr>
-                  <tr align="center" role="row" class="even">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=1103" style="color: black">08- 1029</a></td>
-                    <td><a href="modifier_cachet.php?id=1103" style="color: black">BAANA ABOUAR </a></td>
-                    <td><a href="modifier_cachet.php?id=1103" style="color: black">699696230</a></td>
-                    <td>1835</td>
-                    <td>Maroua</td>
-
-                    <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=1103" style=" width:200px;" class="btn btn-primary">Demande
-                        envoyée</a>
-                    </td>
-                    <td><a href="modifier_cachet.php?id=1103" style="color: black">2024-07-31</a></td>
-                    <td>BAANA ABOUAR </td>
-                    <td class="text-right">
-                      <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu"
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                            </path>
-                          </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="modifier_cachet.php?id=1103"><svg
-                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                              </path>
-                            </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                        </div>
-                      </div>
-
-                    </td>
-                  </tr>
-                  <tr align="center" role="row" class="odd">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=1060" style="color: black">08- 1034</a></td>
-                    <td><a href="modifier_cachet.php?id=1060" style="color: black">ALLARAMADJI Aimé </a></td>
-                    <td><a href="modifier_cachet.php?id=1060" style="color: black">699691194</a></td>
-                    <td>699691194</td>
-                    <td>DSCHANG</td>
-
-                    <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=1060" style=" width:200px;" class="btn btn-success">Cachet
-                        disponible</a>
-                    </td>
-                    <td><a href="modifier_cachet.php?id=1060" style="color: black">2024-04-05</a></td>
-                    <td>ALLARAMADJI Aimé </td>
-                    <td class="text-right">
-                      <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu"
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                            </path>
-                          </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="modifier_cachet.php?id=1060"><svg
-                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                              </path>
-                            </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                        </div>
-                      </div>
-
-                    </td>
-                  </tr>
-                  <tr align="center" role="row" class="even">
-                    <td class="sorting_1"><a href="modifier_cachet.php?id=1091" style="color: black">08- 1040</a></td>
-                    <td><a href="modifier_cachet.php?id=1091" style="color: black">DJIFACK Jean Sineral </a></td>
-                    <td><a href="modifier_cachet.php?id=1091" style="color: black">696458248</a></td>
-                    <td>696458248</td>
-                    <td>DOUALA</td>
-
-                    <td style="width: 20%;">
-                      <a href="modifier_cachet.php?id=1091" style=" width:200px;" class="btn btn-secondary">Cachet
-                        Livré</a>
-                    </td>
-                    <td><a href="modifier_cachet.php?id=1091" style="color: black">2024-06-05</a></td>
-                    <td>DJIFACK Jean Sineral </td>
-                    <td class="text-right">
-                      <div class="dropdown dropdown-action">
-                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu"
-                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
-                            </path>
-                          </svg><!-- <i class="fa fa-ellipsis-v"></i> Font Awesome fontawesome.com --></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="modifier_cachet.php?id=1091"><svg
-                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true"
-                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
-                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                              <path fill="currentColor"
-                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
-                              </path>
-                            </svg><!-- <i class="fas fa-pen"></i> Font Awesome fontawesome.com --> Edit</a>
-                        </div>
-                      </div>
-
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>

@@ -62,4 +62,9 @@ export class AttestPersonnelService {
     return throwError(errorMessage);
   }
 
+   // Méthode pour récupérer l'utilisateur connecté (simulée ici)
+   getCurrentUser(): string {
+    // Vous pouvez récupérer les infos depuis un service d'authentification ou localStorage
+    return localStorage.getItem('name') || 'Auteur Inconnu'; // Par exemple
+  }
 }

@@ -49,14 +49,11 @@
       "password": "kev1234"
     },
     {
-<<<<<<< HEAD
       "id": "ba11",
-      "email": "john.doe@example.com\"",
+      "email": "john.doe@example.com",
       "password": "123456"
     },
     {
-      "id": "afef",
-=======
       "id": "3a07",
       "email": "kev@gmail.com",
       "password": "kev1234"
@@ -73,25 +70,82 @@
     },
     {
       "id": "a9cd",
->>>>>>> 437a8aafd0356e7b0fc245cfe03129985f405f96
       "email": "kev@gmail.com",
       "password": "kev1234"
     }
   ],
+  "cachets": [
+    {
+      "id": 1,
+      "member_id": 101,
+      "receipt_number": "REC-2023001",
+      "status": 1,
+      "city_id": 10,
+      "phone": "+237612345678",
+      "year": 2023,
+      "author": "Admin"
+    },
+    {
+      "id": 2,
+      "member_id": 102,
+      "receipt_number": "REC-2023002",
+      "status": 2,
+      "city_id": 11,
+      "phone": "+237676543210",
+      "year": 2023,
+      "author": "Admin"
+    }
+  ],
   "evenement": [
     {
-      "id": "1",
-      "titre": "Dibbert LLC",
-      "author": "Candido Medhurst",
-      "lieu": "Yaounde",
-      "cout": 10000,
-      "participant": 143,
-      "neighborhood": null,
-      "date-debut": "2024-09-19",
-      "date_fin": "2024-09-19",
-      "status": 1,
-      "created_at": "2024-09-19T21:28:32.000000Z",
-      "updated_at": "2024-09-19T21:28:32.000000Z"
+      "id": 1,
+      "title": "Conférence sur les technologies web",
+      "place": "Yaoundé",
+      "participants": 150,
+      "price": 5000,
+      "start_date": "2024-11-01",
+      "end_date": "2024-11-03",
+      "author": "John Doe"
+    },
+    {
+      "id": 2,
+      "title": "Atelier Angular avancé",
+      "place": "Douala",
+      "participants": 60,
+      "price": 15000,
+      "start_date": "2024-10-20",
+      "end_date": "2024-10-22",
+      "author": "Jane Smith"
+    },
+    {
+      "id": 3,
+      "title": "Séminaire sur l'intelligence artificielle",
+      "place": "Bafoussam",
+      "participants": 100,
+      "price": 10000,
+      "start_date": "2024-12-05",
+      "end_date": "2024-12-07",
+      "author": "Ali Kone"
+    },
+    {
+      "id": 4,
+      "title": "Conférence sur la cybersécurité",
+      "place": "Yaoundé",
+      "participants": 200,
+      "price": 8000,
+      "start_date": "2024-11-15",
+      "end_date": "2024-11-17",
+      "author": "Marie Dupont"
+    },
+    {
+      "id": 5,
+      "title": "Formation sur DevOps",
+      "place": "Garoua",
+      "participants": 80,
+      "price": 12000,
+      "start_date": "2024-12-10",
+      "end_date": "2024-12-12",
+      "author": "Marc Tchouta"
     }
   ],
   "amendes": [
@@ -194,13 +248,6 @@
       "object": "cotisation annuel",
       "contenu": "les membre doivent cotiser une somme de 60 000fcfa",
       "fichiers": "C:\\fakepath\\Page_de_couverture_WALLET.pdf",
-      "auteur": "Utilisateur connecté"
-    },
-    {
-      "id": "a337",
-      "object": "test2",
-      "contenu": "cccccccccccc",
-      "fichiers": "C:\\fakepath\\lettre_motivation.pdf",
       "auteur": "Utilisateur connecté"
     }
   ],
@@ -319,21 +366,6 @@
       "status": 1,
       "created_at": "2024-09-19T21:28:32.000000Z",
       "updated_at": "2024-09-19T21:28:32.000000Z"
-    },
-    {
-      "id": "4cc9",
-      "social_reason": "fffff",
-      "author": "ffffffffffffffff",
-      "phone": "66666666",
-      "email": "g@gmail.com",
-      "nui": "4444444444",
-      "type": "jjjjjjjjjjj",
-      "country_id": "0",
-      "city_id": "5",
-      "neighborhood": "jjjjjjj",
-      "contact_person": "jjjjjjjjjjjjj",
-      "contact_person_phone": "jjjjjjjjjjjj",
-      "status": "1"
     }
   ],
   "postulant": [

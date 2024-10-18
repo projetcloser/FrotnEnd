@@ -3,14 +3,14 @@
 
   <main>
     <div class="container-fluid">
-      <h1 class="mt-4"><svg class="svg-inline--fa fa-building fa-w-14 small-icon" style="color: silver;" aria-hidden="true"
+      <h4 class="mt-4"><svg class="svg-inline--fa fa-building fa-w-14 small-icon" style="color: silver;" aria-hidden="true"
           focusable="false" data-prefix="fas" data-icon="building" role="img" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512" data-fa-i2svg="">
           <path fill="currentColor"
             d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z">
           </path>
         </svg> Liste des
-        Entreprises</h1>
+        Entreprises</h4>
       <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
           Hello M/Mme, il est {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }} .
@@ -39,7 +39,7 @@
             </ul>
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item">
-                <a class="nav-link active" href="etat_liste_entreprise.php" target="blank" style="background-color: #28a745; color: white;margin-right: 20px"
+                <a class="nav-link active" (click)="exportToExcel()" target="blank" style="background-color: #28a745; color: white;margin-right: 20px"
                   ><svg class="svg-inline--fa fa-download fa-w-16 small-button" aria-hidden="true"
                     focusable="false" data-prefix="fas" data-icon="download" role="img"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">

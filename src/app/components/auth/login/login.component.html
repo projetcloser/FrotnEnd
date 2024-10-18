@@ -40,15 +40,15 @@
                           <div class="col-lg-6">
                               <div class="p-5">
 
-                                  <form class="user" (ngSubmit)="login()">
+                                  <form class="user" (ngSubmit)="onLogin()">
                                       <div class="form-group">
-                                          <input class="form-control form-control-user" [(ngModel)]="email" type="email" id="email" name="email" required
-                                               aria-describedby="emailHelp" placeholder="Matricule">
+                                          <input class="form-control form-control-user" [(ngModel)]="password" type="password" id="password" name="password" required
+                                               aria-describedby="emailHelp" placeholder="password">
                                       </div>
                                       <div class="form-group">
-                                          <input type="password" class="form-control form-control-user"
-                                          [(ngModel)]="password" id="password" name="password" required
-                                              placeholder="Mot de passe">
+                                          <input type="text" class="form-control form-control-user"
+                                          [(ngModel)]="matricule" id="matricule " name="matricule" required
+                                              placeholder="matricule">
                                       </div>
                                       <!-- <div class="form-group">
                                           <div class="custom-control custom-checkbox small">
@@ -62,10 +62,10 @@
                                   </form>
                                   <hr>
                                   <div class="text-center">
-                                      <a class="small" href="forgot-password.html">Mot de passe oublié?</a>
+                                      <a class="small" href="">Mot de passe oublié?</a>
                                   </div>
                                   <div class="text-center">
-                                      <a class="small" [routerLink]="['/Closer/entreprise/create']" routerLinkActive="router-link-active"  href="register.html">Enregistrer votre entreprise</a>
+                                      <a class="small" [routerLink]="['/Closer/entreprise/create']" routerLinkActive="router-link-active"  >Enregistrer votre entreprise</a>
                                   </div>
                               </div>
                           </div>

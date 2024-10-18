@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Dette } from './model/dette';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetteServiceService {
 
-  private apiUrl = 'http://localhost:3000/dettes';  // URL du serveur JSON
-
+  // private apiUrl = 'http://localhost:3000/dettes';  // URL du serveur JSON
+  private apiUrl = environment.apiUrl+"debts";
   constructor(private http: HttpClient) {}
 
   getDettes(): Observable<Dette[]> {

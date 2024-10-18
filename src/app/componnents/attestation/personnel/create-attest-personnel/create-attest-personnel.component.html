@@ -1,116 +1,52 @@
-<div class="container-fluid">
-  <h1 class="mt-4">Nouvelle demande d'attestation à usage personnel</h1>
-  <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-      Hello M/Mme XXX, il est 8:22 en ce jour du Mardi 17 Septembre 2024 .
-    </li>
-  </ol>
-  <!--                Main Body-->
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="card mb-4">
-        <div class="card-header">
-          <b>
-            <!-- Nav pills -->
-            <ul class="nav nav-pills">
+<div class="container mt-5">
+  <div class="card shadow-lg p-4 border-0">
+    <h3 class="card-title text-center text-primary">Ajouter une Attestation</h3>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
 
-            </ul>
-          </b>
-        </div>
-
-        <div class="card-body">
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <!-- Etat Civile-->
-
-
-            <div class="row">
-              <div class="col-lg-8 offset-lg-2">
-                <form action="save_demande_particulier.php" method="POST">
-                  <div class="row">
-
-                    <input type="hidden" name="id_personnel" value="4">
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Date</label>
-
-                        <!--<input type="date" class="form-control" name="date_dem_part">-->
-                        <input type="date" class="form-control" value="2024-09-17" disabled="">
-                        <input type="hidden" class="form-control" name="date_dem_part" value="2024-09-17">
-
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Caisse</label>
-                        <select class="form-control" name="id_caisse">
-                          <option value="0" selected="">....</option>
-                          <option value="3">E-banking</option>
-                          <option value="6">Siege</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Membre</label>
-                        <input type="search" class="form-control" placeholder="barre de recherche..."
-                          id="searchBoxDems">
-                        <select id="countriesDems" class="form-control" name="id_ing">
-                          <option value="0" selected="">....</option>
-                         
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Objet</label>
-                        <input class="form-control" type="text" name="objet" value="usage personnel" readonly="">
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="row">
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Auteur</label>
-                        <div>
-                          <input type="text" class="form-control" value="MONGO SALOMON" readonly="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-                  <div class="m-t-20 text-center">
-                    <button class="btn  submit-btn" style="background-color: #28a745; color: white;">générez votre attestation</button>
-                    <a href="liste_demande_particulier.php" style=" width:150px;" class="btn btn-danger">
-                      <font>Annuler</font>
-                    </a>
-                  </div>
-                </form>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-        <div class="card-footer">
-
-        </div>
+      <!-- Champ pour la date (readonly) avec icône -->
+      <div class="form-group mb-4">
+        <label for="date" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Date</label>
+        <input type="text" id="date" class="form-control border-0 bg-light" formControlName="date" readonly>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <hr>
-    </div>
-  </div>
+      <!-- Champ pour l'auteur (readonly) avec icône -->
+      <div class="form-group mb-4">
+        <label for="auteur" class="form-label"><i class="fas fa-user me-2"></i>Auteur</label>
+        <input type="text" id="auteur" class="form-control border-0 bg-light" formControlName="auteur" readonly>
+      </div>
 
+      <!-- Champ pour l'objet avec icône -->
+      <div class="form-group mb-4">
+        <label for="objet" class="form-label"><i class="fas fa-info-circle me-2"></i>Objet</label>
+        <textarea id="object" class="form-control" formControlName="object" rows="3" placeholder="Décrivez l'objet de l'attestation"></textarea>
+      </div>
+
+      <!-- Champ pour le montant avec icône -->
+      <!-- <div class="form-group mb-4">
+        <label for="montant" class="form-label"><i class="fas fa-dollar-sign me-2"></i>Montant</label>
+        <input type="number" id="montant" class="form-control" formControlName="montant" placeholder="Entrez le montant">
+      </div> -->
+
+      <!-- Champ pour la sélection du membre avec icône -->
+      <div class="form-group mb-4">
+        <label for="membre" class="form-label"><i class="fas fa-user-friends me-2"></i>Membre</label>
+        <select id="membre" class="form-select" formControlName="membre_id">
+          <option value="" disabled>Sélectionnez un membre</option>
+          <option *ngFor="let membre of membres" [value]="membre.id">
+            {{ membre.firstname }} {{ membre.lastname }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Boutons Enregistrer et Annuler -->
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary px-5 me-3">
+          <i class="fas fa-save me-2"></i>Enregistrer
+        </button>
+        <button type="button" class="btn btn-secondary px-4" (click)="cancel()">
+          <i class="fas fa-times me-2"></i>Annuler
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

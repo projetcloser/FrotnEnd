@@ -58,4 +58,10 @@ export class ListAnnonceComponent implements OnInit {
       URL.revokeObjectURL(objectUrl);
     });
   }
+
+  getFileName(fichier: string): string {
+    // Gérer à la fois la barre oblique '/' et la barre oblique inverse '\\'
+    const fileName = fichier.split(/(\\|\/)/g).pop();
+    return fileName || fichier;
+  }
 }

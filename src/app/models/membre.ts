@@ -5,7 +5,7 @@ export class Membre {
   firstname: string = "";
   email:string ="";
   order_number:string =""
-  picture?: string = "";
+  picture?: File[];
   folder?: File[];
   debt: string = "";
   phone: string = "";

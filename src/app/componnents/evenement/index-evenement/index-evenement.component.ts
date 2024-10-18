@@ -52,9 +52,10 @@ export class IndexEvenementComponent {
 
   // Suppression de la personne avec l'ID donné
   deletePersonnel(id: number) {
-    // Vous pouvez appeler ici votre service pour la suppression, par exemple :
-    // this.personnelService.deletePersonnel(id).subscribe(response => { ... });
-    console.log('Suppression confirmée pour l\'ID:', id);
-    // Redirection ou autre logique après la suppression
+    this.evenementService.deleteEvenement(id).subscribe(res => {
+      this.evenements = this.evenements.filter(item => item.id !== id);
+     //  console.log('activites deleted successfully!');
+      alert("evenements deleted successfully!")
+ })
   }
 }

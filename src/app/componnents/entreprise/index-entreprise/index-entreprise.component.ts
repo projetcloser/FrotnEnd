@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { EntrepriseServiceService } from '../entreprise-service.service';
 import { Entreprise } from '../../../models/entreprise';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-index-entreprise',
@@ -94,5 +96,26 @@ getCityName(city_id: number): string {
     }
   }
 
+  exportToExcel(): void {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.entreprises);
+    const workbook: XLSX.WorkBook = {
+      Sheets: { 'Liste des personnelles': worksheet },
+      SheetNames: ['Liste des personnelles']
+    };
+
+    // Générer le fichier Excel en binaire
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Appeler la méthode pour sauvegarder le fichier
+    this.saveAsExcelFile(excelBuffer, 'Liste_Membres');
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
+    saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
+  }
+
+
 
 }
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

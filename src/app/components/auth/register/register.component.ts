@@ -21,15 +21,15 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  register() {
-    this.authService.register(this.name, this.email, this.password, this.password_confirmation).subscribe(
-      (response: any) => {
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['/dashboard']);
-      },
-      error => {
-        this.errorMessage = 'Registration failed';
-      }
-    );
-  }
+  // register() {
+  //   this.authService.register(this.name, this.email, this.password, this.password_confirmation).subscribe(
+  //     (response: any) => {
+  //       localStorage.setItem('token', response.token);
+  //       this.router.navigate(['/dashboard']);
+  //     },
+  //     error => {
+  //       this.errorMessage = 'Registration failed';
+  //     }
+  //   );
+  // }
 }

@@ -2,13 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Amende } from './model/amende';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AmendeServiceService {
 
-  private apiUrl = 'http://localhost:3000/amendes'; // URL de votre serveur JSON
+  // private apiUrl = 'http://localhost:3000/amendes'; // URL de votre serveur JSON
+  private apiUrl = environment.apiUrl+"fines";
 
   constructor(private http: HttpClient) { }
 

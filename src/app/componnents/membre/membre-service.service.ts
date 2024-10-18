@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 
 import { Membre } from '../../models/membre';
-import { environment } from '../../../environments/environment';
+
 import { Observable, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,12 @@ export class MembreServiceService {
   //     );
   // }
 
+  // create(membre: FormData): Observable<any> {
+  //   return this.httpclient.post(`${this.apiURL}/member`, membre)
+  //     .pipe(catchError(this.errorHandler));
+  // }
   create(membre: FormData): Observable<any> {
-    return this.httpclient.post(`${this.apiURL}/member`, membre)
+    return this.httpclient.post(`${this.apiURL}`, membre)
       .pipe(catchError(this.errorHandler));
   }
 

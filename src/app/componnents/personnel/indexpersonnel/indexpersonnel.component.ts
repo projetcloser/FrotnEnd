@@ -8,6 +8,8 @@ import { Router, RouterModule } from '@angular/router';
 import { PersonnelService } from '../personnel.service';
 import { Personnel } from '../personnel';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -89,8 +91,26 @@ export class IndexpersonnelComponent implements OnInit {
   }
 
 
+  exportToExcel(): void {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.personnels);
+    const workbook: XLSX.WorkBook = {
+      Sheets: { 'Liste des personnelles': worksheet },
+      SheetNames: ['Liste des personnelles']
+    };
 
+    // Générer le fichier Excel en binaire
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Appeler la méthode pour sauvegarder le fichier
+    this.saveAsExcelFile(excelBuffer, 'Liste_Membres');
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
+    saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
+  }
 
 
 
 }
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

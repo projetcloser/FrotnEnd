@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 export class EvenementService {
 
 
-  // private apiUrl = 'http://localhost:3000/evenement'; // URL du JSON Server
+  // private apiUrl = environment.apiUrl+'evenement'; // URL du JSON Server
   private apiUrl = environment.apiUrl+"events";
 
   constructor(private http: HttpClient) {}
@@ -24,6 +24,7 @@ export class EvenementService {
   getEvenementById(id: number): Observable<Evenement> {
     return this.http.get<Evenement>(`${this.apiUrl}/${id}`);
   }
+
 
   // Créer un nouvel événement
   createEvenement(evenement: Evenement): Observable<Evenement> {

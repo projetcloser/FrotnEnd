@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AttestPersonnelService } from '../attest-personnel.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MembreServiceService } from '../../../membre/membre-service.service';
 
 @Component({
   selector: 'app-create-attest-personnel',
@@ -13,25 +14,27 @@ import { CommonModule } from '@angular/common';
 })
 export class CreateAttestPersonnelComponent {
   addForm: FormGroup;
+  membres: any[] = []; // Liste des membres
 
   constructor(
     private formBuilder: FormBuilder,
     private attestPersonnelService: AttestPersonnelService,
-    private router: Router
+    private router: Router,
+    private membreService: MembreServiceService
   ) {
     this.addForm = this.formBuilder.group({
-      social_reason: ['', Validators.required],
-      author: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.email],
-      nui: ['', Validators.required],
-      type: ['', Validators.required],
-      country_id: ['', Validators.required],
-      city_id: ['', Validators.required],
-      contact_person: ['', Validators.required],
-      contact_person_phone: ['', Validators.required],
-      status: [1],
-      neighborhood: [''],
+      // social_reason: ['', Validators.required],
+      author: [{ value: '', disabled: true }],
+      object: [{ value: 'usage personnel', disabled: true }],
+      member_id: [''],
+      // nui: ['', Validators.required],
+      // type: ['', Validators.required],
+      // country_id: ['', Validators.required],
+      // city_id: ['', Validators.required],
+      // contact_person: ['', Validators.required],
+      // contact_person_phone: ['', Validators.required],
+      // status: [1],
+      // neighborhood: [''],
       created_at: [new Date()],
     });
   }
@@ -43,4 +46,24 @@ export class CreateAttestPersonnelComponent {
       });
     }
   }
+
+  ngOnInit() {
+    // Récupérer la liste des membres
+    this.membreService.getAll().subscribe(data => {
+      this.membres = data;
+    });
+
+    // Récupérer l'auteur (utilisateur connecté) et la date
+    this.addForm.patchValue({
+      date: new Date().toLocaleDateString(), // Date actuelle formatée
+      auteur: this.attestPersonnelService.getCurrentUser() // Auteur connecté
+    });
+
+
+  }
+
+  cancel() {
+    this.router.navigate(['/Closer/attestPersonnel']);
+  }
+
 }

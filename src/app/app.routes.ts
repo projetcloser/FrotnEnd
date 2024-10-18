@@ -287,7 +287,7 @@ export const routes: Routes = [
       component:CreateCachetComponent
     },
     {
-      path: "modifier-cachet",
+      path: "modifier-cachet/:id",
       component:UpdateCachetComponent
     },
     // cotisation

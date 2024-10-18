@@ -1,11 +1,32 @@
-<h2>Détails de l'événement</h2>
-<div *ngIf="evenement">
-  <p><strong>ID:</strong> {{ evenement.id }}</p>
-  <p><strong>Titre:</strong> {{ evenement.titre }}</p>
-  <p><strong>Auteur:</strong> {{ evenement.author }}</p>
-  <p><strong>Lieu:</strong> {{ evenement.lieu }}</p>
-  <p><strong>Coût:</strong> {{ evenement.cout }}</p>
-  <p><strong>Date début:</strong> {{ evenement.date_debut }}</p>
-  <p><strong>Date fin:</strong> {{ evenement.date_fin }}</p>
-  <p><strong>Status:</strong> {{ evenement.status }}</p>
+
+<div class="container mt-5">
+  <h2 class="text-center text-primary">Détails d'événement</h2>
+
+  <div class="debt-details card border-0 rounded shadow-sm mb-4">
+    <div class="card-body" *ngIf="event">
+      <h4 class="card-title text-muted">Informations sur l'événement </h4>
+      <p><strong>Titre :</strong> <span class="text-dark">{{ event.title }}</span></p>
+      <p><strong>Membre :</strong> <span class="text-dark">{{ event.author }}</span></p>
+      <p><strong>place :</strong> <span class="text-dark">{{ event.place }}</span></p>
+      <p><strong>Nombre de participants :</strong> <span class="text-dark">{{ event.participants }}</span></p>
+      <p><strong>Montant :</strong> <span class="text-dark">{{ event.price  | currency }}</span></p>
+      <p><strong>debut :</strong> <span class="text-dark">{{ event.start_date | date }}</span></p>
+      <p><strong>fin :</strong> <span class="text-dark">{{ event.end_date | date }}</span></p>
+      <!-- <p>
+        <strong>Statut :</strong>
+        <span
+          [ngClass]="{'text-success': debt.statut === 'Payé', 'text-danger': debt.statut === 'Payé'}"
+          class="badge rounded-pill"
+          style="background-color: rgba(0, 128, 0, 0.1);">
+          {{ debt.statut === 'Payé' ? 'Payé' : 'Non Payé' }}
+        </span>
+      </p> -->
+    </div>
+  </div>
+
+
+
+  <div class="text-center">
+    <a [routerLink]="['/Closer/evenement']" class="btn btn-primary mt-3 rounded-pill">Retour à la liste des evenements</a>
+  </div>
 </div>

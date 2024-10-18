@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { EvenementService } from '../evenement.service';
 import { Evenement } from '../evenement';
 import { CommonModule } from '@angular/common';
@@ -8,21 +8,41 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-evenement-details',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
   templateUrl: './evenement-details.component.html',
   styleUrl: './evenement-details.component.css'
 })
 export class EvenementDetailsComponent implements OnInit {
-  evenement: Evenement | undefined;
+  eventId!: number;
+  event!: Evenement;
+  // member!: Membre;
+
   constructor(
     private route: ActivatedRoute,
-    private evenementService: EvenementService
+    private eventService: EvenementService,
+    // private memberService: MembreServiceService
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.evenementService.getEvenementById(id).subscribe((data: Evenement) => {
-      this.evenement = data;
+    this.eventId = Number(this.route.snapshot.paramMap.get('id'));
+    this.geteventDetails();
+    // this.getMemberDetails(memberId);
+  }
+
+  geteventDetails(): void {
+    this.eventService.getEvenementById(this.eventId).subscribe((data: Evenement) => {
+      this.event = data;
+      console.log('evenement', event);
+
+      // this.getMemberDetails(event.membre_id); // Récupérer les détails du membre
     });
   }
+
+  // getMemberDetails(memberId: number): void {
+  //   this.memberService.find(memberId).subscribe((data: Membre) => {
+  //     this.member = data;
+  //     console.log('Détails du membre:', this.member);
+
+  //   });
 }
+

@@ -13,9 +13,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './update-evenement.component.css'
 })
 export class UpdateEvenementComponent implements OnInit {
-  evenementForm: FormGroup; // Déclarez le formulaire
+  evenementForm!: FormGroup; // Déclarez le formulaire
   evenement!: Evenement;
   evenementId!: number;
+
+  currentTime = new Date();
+  currentDay = new Date();
 
   constructor(
     private fb: FormBuilder,
@@ -23,18 +26,7 @@ export class UpdateEvenementComponent implements OnInit {
     private evenementService: EvenementService,
     private router: Router
   ) {
-    // Initialisez le formulaire ici
-    this.evenementForm = this.fb.group({
-      titre: ['', Validators.required],
-      author: ['', Validators.required],
-      lieu: ['', Validators.required],
-      cout: [0, [Validators.required, Validators.min(0)]],
-      participant: [1, [Validators.required, Validators.min(1)]],
-      neighborhood: [''],
-      date_debut: ['', Validators.required],
-      date_fin: ['', Validators.required],
-      status: [1, Validators.required]
-    });
+
   }
 
   ngOnInit(): void {
@@ -44,22 +36,22 @@ export class UpdateEvenementComponent implements OnInit {
     this.evenementService.getEvenementById(this.evenementId).subscribe((data: Evenement) => {
       this.evenement = data;
 
-      if (this.evenement) {
-        // Remplissez le formulaire avec les données de l'événement
-        this.evenementForm.patchValue({
-          titre: this.evenement.titre,
-          author: this.evenement.author,
-          lieu: this.evenement.lieu,
-          cout: this.evenement.cout,
-          participant: this.evenement.participant,
-          // neighborhood: this.evenement.neighborhood,
-          date_debut: this.evenement.date_debut,
-          date_fin: this.evenement.date_fin,
-          status: this.evenement.status
-        });
-      } else {
-        console.error('Événement non trouvé ou indéfini');
-      }
+      console.log(data);
+
+
+       // Initialisez le formulaire ici
+      this.evenementForm = this.fb.group({
+        title: [this.evenement.title],
+        author: [this.evenement.author],
+        place: [ this.evenement.place],
+        price: [this.evenement.price],
+        participants: [this.evenement.participants],
+        // neighborhood: [''],
+        start_date: [this.evenement.start_date],
+        end_date: [this.evenement.end_date],
+      });
+
+
     });
   }
 
@@ -67,7 +59,8 @@ export class UpdateEvenementComponent implements OnInit {
     if (this.evenementForm.valid) {
       this.evenementService.updateEvenement(this.evenementId, this.evenementForm.value).subscribe(() => {
         // Rediriger après la mise à jour ou afficher un message de succès
-        this.router.navigate(['/evenements']);
+        this.router.navigate(['/Closer/evenements']);
+        alert('modifier')
       });
     } else {
       console.error('Le formulaire est invalide');
