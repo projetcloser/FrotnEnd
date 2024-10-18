@@ -1,9 +1,9 @@
 <div class="register-form">
   <h2>Inscription</h2>
-  <form (ngSubmit)="register()">
+  <form (ngSubmit)="onRegister()">
     <div>
-      <label for="name">Nom</label>
-      <input [(ngModel)]="name" type="text" id="name" name="name" required />
+      <label for="matricule">Nom</label>
+      <input [(ngModel)]="matricule" type="text" id="matricule" name="matricule" required />
     </div>
     <div>
       <label for="email">Email</label>
@@ -57,7 +57,7 @@
 
                       <!-- email -->
                       <div class="form-group">
-                        <input class="form-control form-control-user" placeholder="EMAIL" name="email" type="email" value="" required 
+                        <input class="form-control form-control-user" placeholder="EMAIL" name="email" type="email" value="" required
                         pattern="">
                         <!-- <div *ngIf="e.invalid">
                           <div class="alert alert-danger" *ngIf="e.errors?.['pattern']">le champ email doit etre </div>

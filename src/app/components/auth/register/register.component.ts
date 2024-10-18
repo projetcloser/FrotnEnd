@@ -13,22 +13,30 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  name: string = '';
+  matricule: string = '';
   email: string = '';
   password: string = '';
-  password_confirmation: string = '';
+  persoId: number | null = null;
+  roleId: number | null = null;
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  register() {
-    this.authService.register(this.name, this.email, this.password, this.password_confirmation).subscribe(
+  onRegister() {
+    const registerData = {
+      matricule: this.matricule,
+      email: this.email,
+      password: this.password,
+      persoId: this.persoId,
+      roleId: this.roleId,
+    };
+
+    this.authService.register(registerData).subscribe(
       (response: any) => {
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/login']); // Redirige vers la page de connexion après enregistrement
       },
-      error => {
-        this.errorMessage = 'Registration failed';
+      (error) => {
+        this.errorMessage = 'Registration failed. Please try again.';
       }
     );
   }

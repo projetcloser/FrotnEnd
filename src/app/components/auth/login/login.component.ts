@@ -14,21 +14,25 @@ import * as $ from 'jquery';
 })
 export class LoginComponent {
 
-  email: string = '';
+  matricule: string = '';
   password: string = '';
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login() {
-    this.authService.login(this.email, this.password).subscribe(
+  onLogin() {
+    const loginData = {
+      matricule: this.matricule,
+      password: this.password,
+    };
+
+    this.authService.login(loginData).subscribe(
       (response: any) => {
-        localStorage.setItem('token', response.token);// Stocker le token
-        this.router.navigate(['/Closer/dashboard']);// Rediriger vers le dashboard
+        this.authService.setToken(response.token);  // Enregistre le token
+        this.router.navigate(['/Closer/dashboard']);       // Redirige après connexion
       },
-      error => {
-        this.errorMessage = 'Login failed';
-        console.error('Login failed', error);
+      (error) => {
+        this.errorMessage = 'Login failed. Please check your credentials.';
       }
     );
   }

@@ -49,14 +49,6 @@
       "password": "kev1234"
     },
     {
-<<<<<<< HEAD
-      "id": "ba11",
-      "email": "john.doe@example.com\"",
-      "password": "123456"
-    },
-    {
-      "id": "afef",
-=======
       "id": "3a07",
       "email": "kev@gmail.com",
       "password": "kev1234"
@@ -73,7 +65,6 @@
     },
     {
       "id": "a9cd",
->>>>>>> 437a8aafd0356e7b0fc245cfe03129985f405f96
       "email": "kev@gmail.com",
       "password": "kev1234"
     },
