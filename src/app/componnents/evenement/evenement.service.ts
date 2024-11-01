@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Evenement } from './evenement';
 import { Observable } from 'rxjs';
@@ -28,16 +28,34 @@ export class EvenementService {
 
   // Créer un nouvel événement
   createEvenement(evenement: Evenement): Observable<Evenement> {
-    return this.http.post<Evenement>(this.apiUrl, evenement);
+
+  const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    'Content-Type': 'application/json'
+  });
+    return this.http.post<Evenement>(this.apiUrl, evenement,  { headers });
   }
 
   // Mettre à jour un événement
   updateEvenement(id: number, evenement: Evenement): Observable<Evenement> {
-    return this.http.put<Evenement>(`${this.apiUrl}/${id}`, evenement);
+
+  const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    'Content-Type': 'application/json'
+  });
+    return this.http.put<Evenement>(`${this.apiUrl}/${id}`, evenement,  { headers });
   }
 
   // Supprimer un événement
   deleteEvenement(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.http.delete<void>(`${this.apiUrl}/${id}`,  { headers });
   }
 }

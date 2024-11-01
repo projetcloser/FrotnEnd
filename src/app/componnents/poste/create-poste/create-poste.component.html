@@ -1,27 +1,52 @@
-<div class="modal-content">
-  <div class="modal-header" style="padding:20px 50px;">
-      <h3 align="center"><svg class="svg-inline--fa fa-bars fa-w-14 small-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com -->   <b>Nouveau Poste</b></h3>
+<div class="container mt-5">
+  <div class="card shadow-lg p-4 border-0">
+    <h3 class="card-title text-center text-primary">Ajouter un Groupe</h3>
+    <form [formGroup]="amendeForm" (ngSubmit)="onSubmit()">
 
+      <!-- Champ pour la date (readonly) avec icône -->
+      <!-- <div class="form-group mb-4">
+        <label for="date" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Date</label>
+        <input type="text" id="date" class="form-control border-0 bg-light" formControlName="date" readonly>
+      </div> -->
+
+      <!-- Champ pour l'auteur (readonly) avec icône -->
+      <div class="form-group mb-4">
+        <label for="label" class="form-label"><i class="fas fa-user me-2"></i>Label</label>
+        <input type="text" id="label" class="form-control border-0 bg-light"  formControlName="label" >
+      </div>
+
+      <!-- Champ pour l'objet avec icône -->
+      <!-- <div class="form-group mb-4">
+        <label for="objet" class="form-label"><i class="fas fa-info-circle me-2"></i>Objet</label>
+        <textarea id="objet" class="form-control" formControlName="objet" rows="3" placeholder="Décrivez l'objet de l'amende"></textarea>
+      </div> -->
+
+      <!-- Champ pour le montant avec icône -->
+      <!-- <div class="form-group mb-4">
+        <label for="montant" class="form-label"><i class="fas fa-dollar-sign me-2"></i>Montant</label>
+        <input type="number" id="montant" class="form-control" formControlName="montant" placeholder="Entrez le montant">
+      </div> -->
+
+      <!-- Champ pour la sélection du membre avec icône -->
+      <!-- <div class="form-group mb-4">
+        <label for="membre" class="form-label"><i class="fas fa-user-friends me-2"></i>Membre</label>
+        <select id="membre" class="form-select" formControlName="membre_id">
+          <option value="" disabled>Sélectionnez un membre</option>
+          <option *ngFor="let membre of membres" [value]="membre.id">
+            {{ membre.firstname }} {{ membre.lastname }}
+          </option>
+        </select>
+      </div> -->
+
+      <!-- Boutons Enregistrer et Annuler -->
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary px-5 me-3">
+          <i class="fas fa-save me-2"></i>Enregistrer
+        </button>
+        <button type="button" class="btn btn-secondary px-4" (click)="cancel()">
+          <i class="fas fa-times me-2"></i>Annuler
+        </button>
+      </div>
+    </form>
   </div>
-  <fieldset>
-    <div class="container" style="padding:40px 50px;">
-      <form class="form-horizontal" action="save_profession.php" name="form" method="post">
-          <div class="form-group">
-              <label>Intitulé:</label>
-              <div class="col-sm-12">
-                  <input type="text" name="nom" class="form-control">
-              </div>
-          </div>
-          <div class="form-group">
-              <div class="col-sm-12" style="align-items: center;">
-
-                  <input type="submit" style="background-color: #28a745; color: white; width:25%" name="submit_cs" class="btn small-button" value="Créer">
-
-                        <input type="reset" data-dismiss="modal" style=" width:25% " class="btn btn-danger small-button" value="Annuler">
-              </div>
-          </div>
-      </form>
-  </div>
-  </fieldset>
-
 </div>

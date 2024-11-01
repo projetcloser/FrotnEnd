@@ -32,7 +32,12 @@ export class CaisseServiceService {
   }
 
   create(data: Caisse): Observable<any> {
-    return this.httpclient.post(this.apiURL , JSON.stringify(data), this.httpOptions)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.post(this.apiURL , JSON.stringify(data),  { headers })
       .pipe(
         catchError(this.errorHandler)
       );
@@ -52,14 +57,23 @@ export class CaisseServiceService {
   //     );
   // }
   update(caisse: Caisse): Observable<Caisse> {
-    return this.httpclient.put<Caisse>(`${this.apiURL}/${caisse.id}`, caisse);
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.put<Caisse>(`${this.apiURL}/${caisse.id}`, caisse, { headers });
   }
 
   delete(id: number) {
-    return this.httpclient.delete(this.apiURL +'/'+ id, this.httpOptions)
-      .pipe(
-        catchError(this.errorHandler)
-      );
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.httpclient.delete(this.apiURL +'/'+ id, { headers });
+      // .pipe(
+      //   catchError(this.errorHandler)
+      // );
   }
   errorHandler(error: any) {
     let errorMessage = '';

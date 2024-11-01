@@ -46,7 +46,9 @@ export class ListAmendeComponent {
 
   deleteAmende(id: number) {
     this.amendeService.deleteAmende(id).subscribe(() => {
-      this.loadAmendes();
+      this.amendes = this.amendes.filter(item => item.id !== id);
+        //  console.log('activites deleted successfully!');
+         alert("amendes deleted successfully!")
     });
   }
 

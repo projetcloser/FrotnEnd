@@ -9,6 +9,9 @@ import { Membre } from '../../../models/membre';
 import { Caisse } from '../../../models/caisse';
 import { MembreServiceService } from '../../membre/membre-service.service';
 import { CaisseServiceService } from '../../Caisse/caisse-service.service';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+import { ExcelService } from '../../../services/excel.service';
 
 @Component({
   selector: 'app-index-cotisation',
@@ -19,11 +22,14 @@ import { CaisseServiceService } from '../../Caisse/caisse-service.service';
 })
 export class IndexCotisationComponent {
 
-  constructor(private router: Router,private cotisationService: CotisationService,
+  constructor(private excelService: ExcelService,private router: Router,private cotisationService: CotisationService,
     private membersService: MembreServiceService,private caisseService: CaisseServiceService) {}
   cotisations: Cotisation[] = [];
   membres: Membre[]=[];
   caisses: Caisse[]=[];
+
+  countries: any[] = [];
+  cities: any[] = [];
 
   ngOnInit(): void {
     this.loadcotisations();
@@ -91,4 +97,83 @@ export class IndexCotisationComponent {
  })
   }
 
+
+// exportation excel
+ exportToExcel(): void {
+      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.cotisations);
+      const workbook: XLSX.WorkBook = {
+        Sheets: { 'Liste des cotisations': worksheet },
+        SheetNames: ['Liste des cotisations']
+      };
+
+      // Générer le fichier Excel en binaire
+      const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+      // Appeler la méthode pour sauvegarder le fichier
+      this.saveAsExcelFile(excelBuffer, 'Liste_Cotisations');
+    }
+
+    saveAsExcelFile(buffer: any, fileName: string): void {
+      const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
+      saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
+    }
+
+    // Récupérer les pays
+    loadCountries(): void {
+      this.cotisationService.getCountries().subscribe(data => {
+        this.countries = data;
+      });
+    }
+
+    // Récupérer les villes
+    loadCities(): void {
+      this.cotisationService.getCities().subscribe(data => {
+        this.cities = data;
+      });
+    }
+
+    // / Trouver le nom du pays à partir de l'ID
+    getCountryName(country_id: number): string {
+      const country = this.countries.find(c => c.id === country_id);
+      return country ? country.name : 'Non défini';
+    }
+
+    // Trouver le nom de la ville à partir de l'ID
+    getCityName(city_id: number): string {
+      const city = this.cities.find(c => c.id === city_id);
+      return city ? city.name : 'Non défini';
+    }
+
+
+    // Méthode pour obtenir le libellé du statut
+  getStatusLabel(status: number): string {
+    switch (status) {
+      case 1:
+        return 'En cours de fabrication';
+      case 2:
+        return 'Disponible';
+      case 3:
+        return 'Envoyée';
+      case 4:
+        return 'Livrée';
+      default:
+        return 'Inconnu';
+    }}
+
+    exportToExcelByStatus(status: number): void {
+    // Filtrer les cachets par statut
+    const filteredCachets = this.membres
+      .filter(membre => membre.status === status)
+      .map(membre => ({
+        ...membre,
+        status: this.getStatusLabel(membre.status), // Remplacer le statut numérique par le libellé
+        city: this.getCityName(membre.city_id), // Remplacer city_id par le nom de la ville
+        country: this.getCityName(membre.country_id), // Remplacer city_id par le nom de la ville
+        // member: this.getMembersName(cachet.member_id) // Remplacer member_id par le nom du membre
+      }));
+
+    // Exporter les cachets filtrés en fichier Excel
+    this.excelService.exportAsExcelFile(filteredCachets, 'Cotisations_Status_' + status);
+  }
 }
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

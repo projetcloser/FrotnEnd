@@ -49,7 +49,13 @@ export class PersonnelService {
   }
 
   create(data: FormData): Observable<any> {
-    return this.httpclient.post(this.apiURL , JSON.stringify(data), this.httpOptions)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.post(this.apiURL , JSON.stringify(data), { headers })
       .pipe(
         catchError(this.errorHandler)
       );
@@ -69,11 +75,21 @@ export class PersonnelService {
 
   // Méthode pour mettre à jour un personnel
   updatePersonnel(id: number, personnel: FormData): Observable<any> {
-    return this.httpclient.put(`${this.apiURL}/${id}`, personnel);
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.put(`${this.apiURL}/${id}`, personnel,  { headers });
   }
 
   delete(id: number) {
-    return this.httpclient.delete(this.apiURL +'/'+ id, this.httpOptions)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.httpclient.delete(this.apiURL +'/'+ id,  { headers })
       .pipe(
         catchError(this.errorHandler)
       );

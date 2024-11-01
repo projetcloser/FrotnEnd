@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Annonce } from './model/annonce';
 import { Observable } from 'rxjs';
@@ -24,10 +24,27 @@ export class AnnonceServiceService {
     return this.http.get<Annonce>(`${this.apiUrl}/${id}`);
   }
 
-  // Créer une nouvelle annonce
-  createAnnonce(annonce: Annonce): Observable<Annonce> {
-    return this.http.post<Annonce>(this.apiUrl, annonce);
+   // Modifiez la signature de la méthode pour accepter FormData
+   createAnnonce(annonce: FormData): Observable<Annonce> {
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<Annonce>(this.apiUrl, annonce, { headers });
   }
+  // Créer une nouvelle annonce
+  // createAnnonce(annonce: Annonce): Observable<Annonce> {
+
+  //   const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+  //     'Content-Type': 'application/json'
+  //   });
+  //   return this.http.post<Annonce>(this.apiUrl, annonce, { headers });
+  // }
 
   getAnnonceById(id: number): Observable<Annonce> {
     return this.http.get<Annonce>(`${this.apiUrl}/${id}`);
@@ -40,13 +57,23 @@ export class AnnonceServiceService {
   //   return this.http.put<Annonce>(`${this.apiUrl}/${annonce.id}`, annonce);
   // }
   updateAnnonce(id: number, formData: FormData) {
-    return this.http.put(`${this.apiUrl}/annonces/${id}`, formData);
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.put(`${this.apiUrl}/annonces/${id}`, formData, { headers });
   }
 
 
   // Supprimer une annonce
   deleteAnnonce(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers });
   }
 
     // Méthode pour télécharger un fichier

@@ -1,5 +1,5 @@
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -12,6 +12,8 @@ export class CotisationService {
 
  // private apiUrl = 'http://localhost:3000/Cotisation'; // URL du JSON Server
  private apiUrl = environment.apiUrl+"cotisations";
+ private countriesUrl = environment.apiUrl+'location/countries';
+    private citiesUrl = environment.apiUrl+'location/cities';
 
  constructor(private http: HttpClient) {}
 
@@ -27,16 +29,43 @@ export class CotisationService {
 
  // Créer un nouvel événement
  createCotisation(Cotisation: Cotisation): Observable<Cotisation> {
-   return this.http.post<Cotisation>(this.apiUrl, Cotisation);
+
+  const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    'Content-Type': 'application/json'
+  });
+   return this.http.post<Cotisation>(this.apiUrl, Cotisation, { headers });
  }
 
  // Mettre à jour un événement
  updateCotisation(id: number, Cotisation: Cotisation): Observable<Cotisation> {
-   return this.http.put<Cotisation>(`${this.apiUrl}/${id}`, Cotisation);
+
+  const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    'Content-Type': 'application/json'
+  });
+   return this.http.put<Cotisation>(`${this.apiUrl}/${id}`, Cotisation, { headers });
  }
 
  // Supprimer un événement
  deleteCotisation(id: number): Observable<void> {
-   return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+  });
+   return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers });
  }
+
+
+ getCountries(): Observable<any[]> {
+  return this.http.get<any[]>(this.countriesUrl);
+}
+
+getCities(): Observable<any[]> {
+  return this.http.get<any[]>(this.citiesUrl);
+}
 }

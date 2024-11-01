@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cachet } from './cachet';
 import { catchError, Observable } from 'rxjs';
@@ -45,14 +45,32 @@ export class CachetService {
   }
 
   addCachet(cachet: Cachet): Observable<Cachet> {
-    return this.http.post<Cachet>(this.caheturl, cachet);
+
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<Cachet>(this.caheturl, cachet, { headers });
   }
 
   updateCachet(id: number, cachet: Cachet): Observable<Cachet> {
-    return this.http.put<Cachet>(`${this.caheturl}/${id}`, cachet);
+
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.put<Cachet>(`${this.caheturl}/${id}`, cachet, { headers });
   }
 
   deleteCachet(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.caheturl}/${id}`);
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.http.delete<void>(`${this.caheturl}/${id}`, { headers });
   }
 }

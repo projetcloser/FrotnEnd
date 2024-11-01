@@ -1,152 +1,37 @@
-<div class="container-fluid">
-  <h1 class="mt-4">Liste des Postes</h1>
-  <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-          Hello M/Mme XXX, il est 13:00 en ce jour du Mercredi 31 Juillet 2024.
-      </li>
-  </ol>
-  <!--                Main Body-->
-                  <div class="row">
-          <div class="col-xl-12">
-              <div class="card mb-4">
-                  <div class="card-header">
-
-                      <!-- Nav pills -->
-
-                  <b>
-
-                    <ul class="nav nav-pills" style="float: right;">
-                      <li class="nav-item">
-                          <a class="nav-link active custom-button btn btn-success" (click)=" navigateToForm()" style="background-color: #28a745; color: white;">
-                              <svg class="svg-inline--fa fa-cubes fa-w-16 custom-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cubes" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                  <path fill="currentColor" d="M488.6 250.2L392 214V105.5c0-15-9.3-28.4-23.4-33.7l-100-37.5c-8.1-3.1-17.1-3.1-25.3 0l-100 37.5c-14.1 5.3-23.4 18.7-23.4 33.7V214l-96.6 36.2C9.3 255.5 0 268.9 0 283.9V394c0 13.6 7.7 26.1 19.9 32.2l100 50c10.1 5.1 22.1 5.1 32.2 0l103.9-52 103.9 52c10.1 5.1 22.1 5.1 32.2 0l100-50c12.2-6.1 19.9-18.6 19.9-32.2V283.9c0-15-9.3-28.4-23.4-33.7zM358
-                                   214.8l-85 31.9v-68.2l85-37v73.3zM154 104.1l102-38.2 102 38.2v.6l-102 41.4-102-41.4v-.6zm84 291.1l-85 42.5v-79.1l85-38.8v75.4zm0-112l-102 41.4-102-41.4v-.6l102-38.2 102 38.2v.6zm240 112l-85 42.5v-79.1l85-38.8v75.4zm0-112l-102 41.4-102-41.4v-.6l102-38.2 102 38.2v.6z"></path>
-                              </svg>
-                              <!-- <i class="fas fa-cubes"></i> Font Awesome fontawesome.com -->
-                              Nouveau Poste
-                          </a>
-                      </li>
-                  </ul>
-                  </b>
-                  </div>
-                  <div class="card-body">
-                      <div class="well bs-component">
-                          <form class="form-horizontal">
-                              <fieldset>
-                                  <div class="table-responsive">
-
-                                          <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered table-hover dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                              <thead >
-                                              <tr class="bg-success" role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Postes: activate to sort column descending" style="width: 359px; "><p align="center" > Postes</p></th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Options: activate to sort column ascending" style="width: 130px;"><p align="center" >Options</p></th></tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr role="row" class="odd">
-                                                      <input name="nom" type="hidden" value="AGENT DE LIAISON">
-                                                      <td align="center" class="sorting_1"><b>AGENT DE LIAISON</b></td>
-                                                      <td align="center">
-                                                        <a  class="btn btn-danger btn-sm" (click)="confirmDelete(21)">
-                                                          <!-- (click)="deletePost(projet.id)" -->
-
-                                                            <i class="fa-solid fa-trash">
-                                                            </i>
-                                                        </a>
-                                                     </td>
-
-
-                                                  </tr><tr role="row" class="even">
-                                                      <input name="nom" type="hidden" value="ASSISTANTE ADMINISTRATIVE">
-                                                      <td align="center" class="sorting_1"><b>ASSISTANTE ADMINISTRATIVE</b></td>
-                                                      <td align="center">
-                                                        <a  class="btn btn-danger btn-sm" (click)="confirmDelete(21)" >
-                                                          <!-- (click)="deletePost(projet.id)" -->
-
-                                                            <i class="fa-solid fa-trash">
-                                                            </i>
-                                                        </a>
-                                              </td>
-
-
-                                                  </tr><tr role="row" class="odd">
-                                                      <input name="nom" type="hidden" value="CHARGEE DE COMMUNICATION">
-                                                      <td align="center" class="sorting_1"><b>CHARGEE DE COMMUNICATION</b></td>
-                                                      <td align="center">
-                                                        <a  class="btn btn-danger btn-sm" >
-                                                          <!-- (click)="deletePost(projet.id)" -->
-
-                                                            <i class="fa-solid fa-trash">
-                                                            </i>
-                                                        </a>
-                                              </td>
-
-
-                                                  </tr><tr role="row" class="even">
-                                                      <input name="nom" type="hidden" value="PRESEIDENT">
-                                                      <td align="center" class="sorting_1"><b>PRESEIDENT</b></td>
-                                                      <td align="center">
-                                                        <a  class="btn btn-danger btn-sm" >
-                                                          <!-- (click)="deletePost(projet.id)" -->
-
-                                                            <i class="fa-solid fa-trash">
-                                                            </i>
-                                                        </a>
-                                                      </td>
-
-
-                                                  </tr><tr role="row" class="odd">
-                                                      <input name="nom" type="hidden" value="RECEPTIONISTE ">
-                                                      <td align="center" class="sorting_1"><b>RECEPTIONISTE </b></td>
-                                                      <td align="center"><a class="btn btn-danger" href="delete_poste.php?id=4" onclick="(this.href); return(false);" title="rimer" style="background-color: transparent">
-                                              </a></td>
-
-
-                                                  </tr><tr role="row" class="even">
-                                                      <input name="nom" type="hidden" value="REPRESENTANT REGIONAL">
-                                                      <td align="center" class="sorting_1"><b>REPRESENTANT REGIONAL</b></td>
-                                                      <td align="center">
-                                                        <a  class="btn btn-danger btn-sm" >
-                                                          <!-- (click)="deletePost(projet.id)" -->
-
-                                                            <i class="fa-solid fa-trash">
-                                                            </i>
-                                                        </a></td>
-
-
-                                                  </tr><tr role="row" class="odd">
-                                                      <input name="nom" type="hidden" value="SECRETAIRE ADMINISTRATIF">
-                                                      <td align="center" class="sorting_1"><b>SECRETAIRE ADMINISTRATIF</b></td>
-                                                      <td align="center">
-                                                        <a  class="btn btn-danger btn-sm" >
-                                                          <!-- (click)="deletePost(projet.id)" -->
-
-                                                            <i class="fa-solid fa-trash">
-                                                            </i>
-                                                        </a>
-                                                      </td>
-
-
-                                              </tbody>
-                                              <tfoot>
-                                                  <tr class="bg-primary"><th rowspan="1" colspan="1"><p align="center" style="color: white"> Postes</p></th><th rowspan="1" colspan="1"><p align="center" style="color: white">Options</p></th></tr>
-                                              </tfoot>
-
-                                          </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 8 of 8 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
-
-                                  </div>
-                              </fieldset></form>
-
-                      </div>
-                  </div>
-                  <div class="card-footer">
-
-                  </div>
-              </div>
-          </div>
-      </div>
-  <div class="row">
-      <div class="col-md-12">
-          <hr>
-      </div>
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title">Liste des groupes</h4>
+      <button class="btn btn-primary" [routerLink]="['/Closer/nouveau-groupe']">Ajouter un Groupe</button>
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-striped table-hover">
+        <thead class="table">
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">label</th>
+            <!-- <th scope="col">Auteur</th>
+            <th scope="col">Objet</th>
+            <th scope="col">Montant</th>
+            <th scope="col">Membre</th> -->
+            <th scope="col" class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let amende of groups">
+            <!-- <th scope="row">{{ amende.id }}</th> -->
+            <td>{{ amende.label }}</td>
+            <!-- <td>{{ amende.auteur }}</td>
+            <td>{{ amende.objet }}</td>
+            <td>{{ amende.montant | currency }} FCFA</td>
+            <td>{{ getMembreName(amende.membre_id) }}</td> -->
+            <td class="text-center">
+              <!-- <button class="btn btn-sm btn-outline-info me-2" [routerLink]="['/Closer/postes/edit', amende.id]"><i class="fas fa-edit"></i>Éditer</button> -->
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteAmende(amende.id)"><i class="fas fa-trash"></i>Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
 </div>

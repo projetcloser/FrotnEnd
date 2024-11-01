@@ -5,26 +5,26 @@
 
       <!-- Champ pour la date (readonly) avec icône -->
       <div class="form-group mb-4">
-        <label for="date" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Date</label>
-        <input type="text" id="date" class="form-control border-0 bg-light" formControlName="date" readonly>
+        <label for="fine_date" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Date</label>
+        <input type="text" id="fine_date" class="form-control border-0 bg-light" formControlName="fine_date" readonly>
       </div>
 
       <!-- Champ pour l'auteur (readonly) avec icône -->
       <div class="form-group mb-4">
-        <label for="auteur" class="form-label"><i class="fas fa-user me-2"></i>Auteur</label>
-        <input type="text" id="auteur" class="form-control border-0 bg-light" formControlName="auteur" readonly>
+        <label for="author" class="form-label"><i class="fas fa-user me-2"></i>Auteur</label>
+        <input type="text" id="author" class="form-control border-0 bg-light" formControlName="author" value="{{user.name}}" readonly>
       </div>
 
       <!-- Champ pour l'objet avec icône -->
       <div class="form-group mb-4">
-        <label for="objet" class="form-label"><i class="fas fa-info-circle me-2"></i>Objet</label>
-        <textarea id="objet" class="form-control" formControlName="objet" rows="3" placeholder="Décrivez l'objet de l'amende"></textarea>
+        <label for="object" class="form-label"><i class="fas fa-info-circle me-2"></i>Objet</label>
+        <textarea id="object" class="form-control" formControlName="object" rows="3" placeholder="Décrivez l'objet de l'amende"></textarea>
       </div>
 
       <!-- Champ pour le montant avec icône -->
       <div class="form-group mb-4">
-        <label for="montant" class="form-label"><i class="fas fa-dollar-sign me-2"></i>Montant</label>
-        <input type="number" id="montant" class="form-control" formControlName="montant" placeholder="Entrez le montant">
+        <label for="amount" class="form-label"><i class="fas fa-dollar-sign me-2"></i>Montant</label>
+        <input type="number" id="amount" class="form-control" formControlName="amount" placeholder="Entrez le montant">
       </div>
 
       <!-- Champ pour la sélection du membre avec icône -->

@@ -1,40 +1,51 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { PosteService } from '../poste.service';
 
 @Component({
   selector: 'app-index-poste',
   standalone: true,
   imports: [FormsModule,
-    CommonModule,ReactiveFormsModule],
+    CommonModule,ReactiveFormsModule,RouterModule],
   templateUrl: './index-poste.component.html',
   styleUrl: './index-poste.component.css'
 })
 export class IndexPosteComponent {
-  constructor(private router: Router) {}
+  groups: any[] = [];
+  membres: any[] = []; // Liste des membres
 
-  navigateToForm() {
-    this.router.navigate(['/nouveau-poste']);
+  constructor(
+    private amendeService: PosteService,
+    // private membreService: MembreServiceService   // Injecter le service des membres
+  ) {}
+
+  ngOnInit(): void {
+    // this.loadMembres();
+    this.loadAmendes();
   }
 
-  navigateToFormEdit() {
-    this.router.navigate(['/modifier-personne']);
+  // loadMembres() {
+  //   this.membreService.getAll().subscribe(data => {
+  //     this.membres = data;
+  //   });
+  // }
 
-}
- // Méthode de confirmation avant la suppression
- confirmDelete(id: number) {
-  const confirmed = confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
-  if (confirmed) {
-    this.deletePersonnel(id);
+  loadAmendes() {
+    this.amendeService.getAmendes().subscribe(data => {
+      this.groups = data;
+    });
   }
-}
 
-// Suppression de la personne avec l'ID donné
-deletePersonnel(id: number) {
-  // Vous pouvez appeler ici votre service pour la suppression, par exemple :
-  // this.personnelService.deletePersonnel(id).subscribe(response => { ... });
-  console.log('Suppression confirmée pour l\'ID:', id);
-  // Redirection ou autre logique après la suppression
-}
+  getMembreName(membreId: number): string {
+    const membre = this.membres.find(m => m.id === membreId);
+    return membre ? membre.firstname : 'Inconnu'; // Remplacez 'name' par le champ approprié dans votre modèle
+  }
+
+  deleteAmende(id: number) {
+    this.amendeService.deleteAmende(id).subscribe(() => {
+      this.loadAmendes();
+    });
+  }
 }

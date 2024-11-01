@@ -38,7 +38,7 @@ export class EditEntrepriseComponent {
     this.company = data;
 
     this.companyForm = this.fb.group({
-      name: [this.company.company_name, Validators.required],
+      name: [this.company.social_reason, Validators.required],
       author: [this.company.author, Validators.required],
       phone: [this.company.phone, Validators.required],
       email: [this.company.email],
@@ -49,7 +49,7 @@ export class EditEntrepriseComponent {
       neighborhood: [this.company.neighborhood],
       contact_person: [this.company.contact_person, Validators.required],
       contact_person_phone: [this.company.contact_person_phone, Validators.required],
-      status: [this.company.status, Validators.required]
+      // status: [this.company.status, Validators.required]
     });
   });
 

@@ -48,7 +48,7 @@ export class UpdateAnnonceComponent implements OnInit {
   initForm() {
     this.annonceForm = this.fb.group({
       object: [this.annonce?.object || '', Validators.required],
-      contenu: [this.annonce?.contenu || '', Validators.required]
+      contenu: [this.annonce?.body || '', Validators.required]
     });
   }
 

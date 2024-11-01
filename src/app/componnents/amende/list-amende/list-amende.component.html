@@ -20,11 +20,11 @@
         <tbody>
           <tr *ngFor="let amende of amendes">
             <!-- <th scope="row">{{ amende.id }}</th> -->
-            <td>{{ amende.date }}</td>
-            <td>{{ amende.auteur }}</td>
-            <td>{{ amende.objet }}</td>
-            <td>{{ amende.montant | currency }} FCFA</td>
-            <td>{{ getMembreName(amende.membre_id) }}</td>
+            <td>{{ amende.fine_date }}</td>
+            <td>{{ amende.author }}</td>
+            <td>{{ amende.object }}</td>
+            <td>{{ amende.amount | currency }} FCFA</td>
+            <td>{{ getMembreName(amende.member_id) }}</td>
             <td class="text-center">
               <button class="btn btn-sm btn-outline-info me-2" [routerLink]="['/Closer/amendes/edit', amende.id]"><i class="fas fa-edit"></i>Éditer</button>
               <button class="btn btn-sm btn-outline-danger" (click)="deleteAmende(amende.id)"><i class="fas fa-trash"></i>Supprimer</button>

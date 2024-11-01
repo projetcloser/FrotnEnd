@@ -3,12 +3,12 @@ export class AttestPersonnel {
   id!:number
   author: string ="";
   ref_dem_part: string ="";
-  certification_date!: Date;
+  date_certification!: Date;
   amount!: number;
   open_close!:boolean;
   status?:number;
   object :string="usage personnel";
-  memnbre_id!:number;
+  member_id!:number;
   cashflow_id!:number;
   staff_id!:number;
   created_at?:Date;

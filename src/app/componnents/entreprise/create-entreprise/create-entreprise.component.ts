@@ -4,6 +4,7 @@ import { EntrepriseServiceService } from '../entreprise-service.service';
 import { Router, RouterModule } from '@angular/router';
 import { Entreprise } from '../../../models/entreprise';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../components/auth/auth.service';
 
 @Component({
   selector: 'app-create-entreprise',
@@ -17,32 +18,50 @@ export class CreateEntrepriseComponent {
   compagnie: Entreprise[] = [];
   countries: any[] = [];
   cities: any[] = []
+  user: any = {};
 
   currentTime = new Date();
   currentDay = new Date();
 
-  constructor(public entrepriseService:EntrepriseServiceService, private router:Router,private fb: FormBuilder,){
+  constructor(public entrepriseService:EntrepriseServiceService, private router:Router,private fb: FormBuilder,
+    private authService: AuthService,
+  ){
 
   }
 
   ngOnInit():void{
     this.entrepriseForm = this.fb.group({
-      social_reason: ['', Validators.required],
-      author: ['', Validators.required],
-      phone: ['', Validators.required],
+      social_reason: [''],
+      author: [{ value: '', disabled: true }],
+      phone: [''],
       email: [''],
-      nui: ['', Validators.required],
-      type: ['', Validators.required],
-      country_id: ['', Validators.required],
-      city_id: ['', Validators.required],
+      nui: [''],
+      company_type: [''],
+      country_id: [],
+      city_id: [],
       neighborhood: [''],
-      contact_person: ['', Validators.required],
-      contact_person_phone: ['', Validators.required],
-      status: [],
+      contact_person: [''],
+      contact_person_phone: [''],
+      // status: [],
     });
 
     this.loadCities();
     this.loadCountries();
+
+     // Récupérer l'auteur (utilisateur connecté) et la date
+     this.entrepriseForm.patchValue({
+      date: new Date().toLocaleDateString(), // Date actuelle formatée
+      auteur:  this.authService.getUserProfile().subscribe(
+        (response: any) => {
+          this.user = response;
+          console.log('Utilisateur compagnie connecté:', this.user);  // Vérifie les données ici
+
+        },
+        (error) => {
+            console.error('Erreur lors de la récupération du profil compagnie:', error);
+        }
+    ) // Auteur connecté
+    });
 
   }
 

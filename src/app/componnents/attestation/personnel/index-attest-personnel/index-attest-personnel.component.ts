@@ -24,7 +24,8 @@ export class IndexAttestPersonnelComponent implements OnInit{
   membres:Membre[]=[]
 
    // Image de la signature (fichier PNG dans le dossier assets)
-   signatureImage = 'assets/signature.png';
+   signatureImage = 'assets/img/1.jpg';
+   qrCodeImage = 'assets/img/2.jpg';
 
   ngOnInit(): void {
     this.getAttestations();
@@ -69,59 +70,83 @@ export class IndexAttestPersonnelComponent implements OnInit{
   }
 
    // Méthode pour générer un PDF pour l'attestation
-   generatePdf(attest: AttestPersonnel) {
-    const doc = new jsPDF('landscape');
+   generatePdf(attest: AttestPersonnel): void {
+    const doc = new jsPDF('portrait');
 
-    // En-tête
-    doc.setFontSize(12);
-    doc.text('République du Cameroun', 10, 10);
-    doc.text('Republic of Cameroon', 230, 10);
-    doc.text('Paix - Travail - Patrie', 10, 20);
-    doc.text('Peace - Work - Fatherland', 230, 20);
-
-    doc.setFontSize(14);
-    doc.text('Ordre National des Ingénieurs de Génie Civil', 100, 30);
-    doc.text('National Order of Civil Engineers', 105, 40);
-
-    doc.setLineWidth(0.5);
-    doc.line(10, 50, 290, 50); // Ligne sous l'en-tête
-
-    // Contenu central
-    doc.setFontSize(16);
-    doc.text('A T T E S T A T I O N', 120, 60);
-
-    doc.setFontSize(12);
-    doc.text(`Le Président de l'Ordre`, 10, 80);
-    doc.text('atteste que', 10, 90);
-
-    doc.setFontSize(14);
-    doc.text(`${this.getMemberName(attest.memnbre_id)}`, 10, 100);
-    doc.text('est bien inscrit au Tableau de l’Ordre pour l’année 2024', 10, 110);
-    doc.text(`sous le matricule: ${this.getmemberMatricule(attest.memnbre_id)}`, 10, 120);
-
-    doc.text('A ce titre, il est autorisé à exercer la profession', 10, 130);
-    doc.text('d’Ingénieur de Génie Civil pour la période allant', 10, 140);
-    doc.text('du 1er janvier 2024 au 31 décembre 2024', 10, 150);
-    doc.text('et à faire prévaloir la présente attestation', 10, 160);
-
-    doc.text('pour usage personnel.', 10, 170);
-
-    doc.text('Fait à Yaoundé, le 04 Janvier 2024', 10, 180);
-    doc.text('pour servir et valoir ce que de droit.', 10, 190);
-
-    doc.text('Le Président de l\'Ordre', 200, 200);
-
-    // Footer avec QR code et coordonnées (à générer avec html2canvas ou insérer comme image)
-    html2canvas(document.querySelector("#qrcode") as HTMLElement).then((canvas: HTMLCanvasElement) => {
-      const imgData = canvas.toDataURL('image/png');
-      doc.addImage(imgData, 'PNG', 230, 220, 50, 50);
-
-      // Ajouter l'image de la signature numérique
-      doc.addImage(this.signatureImage, 'PNG', 70, 120, 50, 50); // Positionner la signature numérique
-
-      doc.save('attestation.pdf');
+    // Récupérer la date du jour
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('fr-FR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
     });
 
+    // En-tête bilingue
+    doc.setFontSize(12);
+    doc.text('République du Cameroun', 20, 20);
+    doc.text('Republic of Cameroon', 140, 20);
+    doc.text('Paix - Travail - Patrie', 20, 30);
+    doc.text('Peace - Work - Fatherland', 140, 30);
+
+    doc.setFontSize(14);
+    doc.text('Ordre National des Ingénieurs de Génie Civil', 60, 50);
+    doc.text('National Order of Civil Engineers', 65, 60);
+
+    // Numéro de référence
+    doc.setFontSize(12);
+    doc.text('N° 0901 / 01 /Pdt/SG/ONIGC/24', 80, 80);
+
+    // Titre central - ATTESTATION
+    doc.setFontSize(18);
+    doc.text('A T T E S T A T I O N', 75, 100);
+
+    // Corps du texte
+    doc.setFontSize(14);
+    doc.text('Le Président de l’Ordre', 20, 120);
+    doc.text('atteste que', 20, 130);
+
+    // Nom de l'ingénieur et matricule
+    doc.setFontSize(16);
+    doc.text('l’Ingénieur NNOMO AMOUGOU THIERRY FABRICE', 20, 140);
+    doc.text('est bien inscrit au Tableau de l’Ordre pour l’année 2024', 20, 150);
+    doc.text(`sous le matricule: ${this.getmemberMatricule(attest.member_id)}`, 20, 160);
+
+    // Texte relatif à l'exercice de la profession
+    doc.setFontSize(14);
+    doc.text('A ce titre, il est autorisé à exercer la profession', 20, 170);
+    doc.text('d’Ingénieur de Génie Civil pour la période allant', 20, 180);
+    doc.text('du 1er janvier 2024 au 31 décembre 2024', 20, 190);
+    doc.text('et à faire prévaloir la présente attestation', 20, 200);
+    doc.text('pour usage personnel.', 20, 210);
+
+    // Date et signature
+    doc.text(`Fait à Yaoundé, le ${formattedDate}`, 20, 220);
+    doc.text('pour servir et valoir ce que de droit.', 20, 230);
+    doc.text('Le Président de l\'Ordre', 140, 250);
+
+    // Footer avec QR code et coordonnées
+    const qrCodeImg = new Image();
+    qrCodeImg.src = 'assets/img/1.jpg'; // Chemin vers l'image du QR code
+    qrCodeImg.onload = () => {
+      doc.addImage(qrCodeImg, 'PNG', 150, 260, 40, 40); // Position du QR code
+
+      const signatureImg = new Image();
+      signatureImg.src = 'assets/img/2.jpg'; // Chemin vers l'image de la signature numérique
+      signatureImg.onload = () => {
+        doc.addImage(signatureImg, 'PNG', 30, 260, 40, 40); // Position de la signature numérique
+
+        // Ajouter le texte du footer
+        doc.setFontSize(10);
+        doc.text('Ce document est généré par CLOSER.(c)', 70, 270);
+        doc.text('Le QR-CODE atteste de son authenticité', 70, 280);
+        doc.text('Montée Elig Essono - Yaoundé - 20822- (+237) 677.66.10.66 / 655.01.02.03 - noceonigc@yahoo.fr - www.onigc.cm', 20, 290);
+        doc.text('Comptes bancaires : BICEC Yaoundé – Vallée sous le N° 31615665001-03 / ECOBANK Yaoundé - Hippodrome sous le N° 01316146701-72', 20, 300);
+
+        // Sauvegarder le PDF
+        doc.save(`attestation_${attest}.pdf`);
+      };
+    };
   }
+
 
 }

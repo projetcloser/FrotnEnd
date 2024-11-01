@@ -33,7 +33,13 @@ export class PaysServiceService {
   }
 
   create(country: Pays): Observable<any> {
-    return this.httpclient.post(this.apiURL , JSON.stringify(country), this.httpOptions)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.post(this.apiURL , JSON.stringify(country),  { headers })
       .pipe(
         catchError(this.errorHandler)
       );
@@ -47,14 +53,24 @@ export class PaysServiceService {
   }
 
   update(id: number, country: Pays): Observable<any> {
-    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(country), this.httpOptions)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(country),  { headers })
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   delete(id: number) {
-    return this.httpclient.delete(this.apiURL +'/'+ id, this.httpOptions)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.httpclient.delete(this.apiURL +'/'+ id,  { headers })
       .pipe(
         catchError(this.errorHandler)
       );

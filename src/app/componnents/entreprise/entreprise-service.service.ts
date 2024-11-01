@@ -39,7 +39,14 @@ export class EntrepriseServiceService {
   }
 
   create(entreprise: Entreprise): Observable<any> {
-    return this.httpclient.post(this.detailsUrl , JSON.stringify(entreprise), this.httpOptions)
+
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.post(this.detailsUrl , entreprise, { headers })
       .pipe(
         catchError(this.errorHandler)
       );
@@ -53,14 +60,25 @@ export class EntrepriseServiceService {
   }
 
   update(id: number, entreprise: Entreprise): Observable<any> {
-    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(entreprise), this.httpOptions)
+
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(entreprise),  { headers })
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   delete(id: number) {
-    return this.httpclient.delete(this.apiURL +'/'+ id, this.httpOptions)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.httpclient.delete(this.apiURL +'/'+ id, { headers })
       .pipe(
         catchError(this.errorHandler)
       );

@@ -26,7 +26,7 @@ export class CreateAttestPersonnelComponent {
       // social_reason: ['', Validators.required],
       author: [{ value: '', disabled: true }],
       object: [{ value: 'usage personnel', disabled: true }],
-      member_id: [''],
+      member_id: [],
       // nui: ['', Validators.required],
       // type: ['', Validators.required],
       // country_id: ['', Validators.required],

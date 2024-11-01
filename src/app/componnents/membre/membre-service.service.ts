@@ -14,6 +14,8 @@ export class MembreServiceService {
 
 
   private apiURL = environment.apiUrl+"members";
+  private countriesUrl = environment.apiUrl+'location/countries';
+    private citiesUrl = environment.apiUrl+'location/cities';
 
 
 
@@ -45,7 +47,13 @@ export class MembreServiceService {
   //     .pipe(catchError(this.errorHandler));
   // }
   create(membre: FormData): Observable<any> {
-    return this.httpclient.post(`${this.apiURL}`, membre)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.post(`${this.apiURL}`, membre,  { headers })
       .pipe(catchError(this.errorHandler));
   }
 
@@ -58,14 +66,24 @@ export class MembreServiceService {
   }
 
   update(id: number, data: Membre): Observable<any> {
-    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(data), this.httpOptions)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.httpclient.put(this.apiURL + '/' + id, JSON.stringify(data),  { headers })
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   delete(id: number) {
-    return this.httpclient.delete(this.apiURL +'/'+ id, this.httpOptions)
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.httpclient.delete(this.apiURL +'/'+ id,  { headers })
       .pipe(
         catchError(this.errorHandler)
       );
@@ -78,5 +96,13 @@ export class MembreServiceService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
+  }
+
+  getCountries(): Observable<any[]> {
+    return this.httpclient.get<any[]>(this.countriesUrl);
+  }
+
+  getCities(): Observable<any[]> {
+    return this.httpclient.get<any[]>(this.citiesUrl);
   }
 }

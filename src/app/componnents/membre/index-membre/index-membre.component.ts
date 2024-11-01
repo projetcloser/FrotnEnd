@@ -6,6 +6,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { ExcelService } from '../../../services/excel.service';
 
 @Component({
   selector: 'app-index-membre',
@@ -16,10 +17,12 @@ import { saveAs } from 'file-saver';
 })
 export class IndexMembreComponent implements OnInit{
   membres: Membre[]=[];
+  countries: any[] = [];
+  cities: any[] = [];
     // en voyer le loading
     isLoading:boolean = true;
 
-  constructor(public membreService: MembreServiceService,private router: Router){}
+  constructor(private excelService: ExcelService,public membreService: MembreServiceService,private router: Router){}
 
   navigateToForm() {
     this.router.navigate(['/Closer/nouveau-membre']);
@@ -90,5 +93,63 @@ export class IndexMembreComponent implements OnInit{
       const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
       saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
     }
+
+    // Récupérer les pays
+    loadCountries(): void {
+      this.membreService.getCountries().subscribe(data => {
+        this.countries = data;
+      });
+    }
+
+    // Récupérer les villes
+    loadCities(): void {
+      this.membreService.getCities().subscribe(data => {
+        this.cities = data;
+      });
+    }
+
+    // / Trouver le nom du pays à partir de l'ID
+    getCountryName(country_id: number): string {
+      const country = this.countries.find(c => c.id === country_id);
+      return country ? country.name : 'Non défini';
+    }
+
+    // Trouver le nom de la ville à partir de l'ID
+    getCityName(city_id: number): string {
+      const city = this.cities.find(c => c.id === city_id);
+      return city ? city.name : 'Non défini';
+    }
+
+
+    // Méthode pour obtenir le libellé du statut
+  getStatusLabel(status: number): string {
+    switch (status) {
+      case 1:
+        return 'En cours de fabrication';
+      case 2:
+        return 'Disponible';
+      case 3:
+        return 'Envoyée';
+      case 4:
+        return 'Livrée';
+      default:
+        return 'Inconnu';
+    }}
+
+    exportToExcelByStatus(status: number): void {
+    // Filtrer les cachets par statut
+    const filteredCachets = this.membres
+      .filter(membre => membre.status === status)
+      .map(membre => ({
+        ...membre,
+        status: this.getStatusLabel(membre.status), // Remplacer le statut numérique par le libellé
+        city: this.getCityName(membre.city_id), // Remplacer city_id par le nom de la ville
+        country: this.getCityName(membre.country_id), // Remplacer city_id par le nom de la ville
+        // member: this.getMembersName(cachet.member_id) // Remplacer member_id par le nom du membre
+      }));
+
+    // Exporter les cachets filtrés en fichier Excel
+    this.excelService.exportAsExcelFile(filteredCachets, 'Memberss_Status_' + status);
+  }
 }
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

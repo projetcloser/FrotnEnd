@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { User } from './model/user';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 export class AuthService {
 
     // private apiUrl = 'http://localhost:3000/users'; // URL du serveur JSON
-    private apiUrl = 'https://preprod.closercm.net/api';
+    // private apiUrl = 'https://preprod.closercm.net/api';
+    private apiUrl = environment.apiUrl+"login";
     private currentUserSubject: BehaviorSubject<User | null>;
     public currentUser: Observable<User | null>;
 
@@ -33,7 +35,7 @@ export class AuthService {
 
 // Connexion (login)
 login(data: any): Observable<any> {
-  return this.http.post(`${this.apiUrl}/login`, data);
+  return this.http.post(`${this.apiUrl}`, data);
 }
 
 // Déconnexion (logout)
@@ -72,5 +74,14 @@ getUser(): Observable<any> {
 clearToken() {
   localStorage.removeItem('access_token');
 }
+
+getUserProfile(): Observable<any> {
+  const token = this.getToken();
+  const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+  });
+  return this.http.get('http://127.0.0.1:8000/api/user', { headers });
+}
+
 
 }

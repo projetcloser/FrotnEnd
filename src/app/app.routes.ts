@@ -247,7 +247,7 @@ export const routes: Routes = [
     component:IndexPosteComponent
   },
   {
-    path: "nouveau-poste",
+    path: "nouveau-groupe",
     component:CreatePosteComponent
   },
     // evenements

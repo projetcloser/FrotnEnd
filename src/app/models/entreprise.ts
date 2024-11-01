@@ -8,7 +8,7 @@ export class Entreprise {
   country_id!:number;
   city_id!:number;
   phone: string="";
-  status?:number;
+  // status?:number;
   contact_person:string="";
   contact_person_phone:string ="";
   neighborhood:string="";

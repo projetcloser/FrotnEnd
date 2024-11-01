@@ -29,37 +29,39 @@ export class PersonnelCreateComponent implements OnInit{
   currentDay = new Date();
 
   personnelForm: FormGroup;
+  personnel: Personnel = new Personnel();
   selectedFiles: File[] = [];
 
   countries: any[] = [];
   cities: any[] = []
-  errorMessage: string = ''; // Variable pour stocker les erreurs globales
+  errorMessage: string | null = ''; // Variable pour stocker les erreurs globales
+
 
   constructor(private fb: FormBuilder, private personnelService: PersonnelService, private router: Router,private cityService: VilleServiceService,
     private countryService: PaysServiceService) {
       this.personnelForm = this.fb.group({
-        statut: ['', ], // 'married' or 'celibataire'
-        lastname: ['', ],
-        firstname: ['', ],
-        email: ['', [, Validators.email]],
-        date_card_validity: ['', ],
-        phone: ['', ],
-        father_name: ['', ],
-        father_phone: ['', ],
-        mother_name: ['', ],
-        birthday: ['', ], // Format: 'YYYY-MM-DD'
-        place_birth: ['', ],
-        profession: ['', ],
-        gender: ['', ], // 'male' or 'female'
-        contract_type: ['', ],
-        marital_status: ['', ], // 'married' or 'celibataire'
-        position: ['', ],
+        statut: [ Validators.required], // 'married' or 'celibataire'
+        lastname: ['',[Validators.required, Validators.minLength(2)] ],
+        firstname: ['', [Validators.required, Validators.minLength(2)]],
+        email: ['', [Validators.required, Validators.email]],
+        date_card_validity: [''],
+        phone: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)] ],
+        father_name: [''],
+        father_phone: [''],
+        mother_name: [''],
+        birthday: [''], // Format: 'YYYY-MM-DD'
+        place_birth: [''],
+        profession: [''],
+        gender: [''], // 'male' or 'female'
+        contract_type: [''],
+        marital_status: [''], // 'married' or 'celibataire'
+        position: [''],
         author:[],
         num_children: [0],
-        open_close: [false],
+        // open_close: [false],
         city_id: [ ], // Foreign key
         country_id: [ ], // Foreign key
-        attachment: [null]
+        attachment_file: [null]
       });
   }
   ngOnInit(): void {
@@ -93,35 +95,42 @@ export class PersonnelCreateComponent implements OnInit{
   //   );
   // }
   handleFileInput(event: any): void {
-    this.selectedFiles = event.target.files as File[];
+    const files = event.target.files as FileList;  // Fichiers sélectionnés
+    this.selectedFiles = Array.from(files);  // Conversion de FileList en tableau
   }
+
 
   onSubmit(): void {
     if (this.personnelForm.valid) {
       const formData = new FormData();
+
+      // Ajouter tous les champs du formulaire dans formData
       Object.keys(this.personnelForm.controls).forEach(key => {
         formData.append(key, this.personnelForm.get(key)?.value);
       });
 
-      // Ajouter les fichiers si attachés
+      // Ajouter les fichiers s'il y en a
       if (this.selectedFiles.length > 0) {
         this.selectedFiles.forEach(file => {
-          formData.append('attachment', file, file.name);
+          formData.append('attachment_file', file, file.name);  // Ajout des fichiers dans formData
         });
       }
 
+      // Appel du service pour ajouter le personnel
       this.personnelService.create(formData).subscribe(
         response => {
-          console.log('Personnel added successfully!', response);
-          this.router.navigate(['/Closer/personnel']); // Redirection après succès
+          console.log('Personnel ajouté avec succès !', response);
+          this.router.navigate(['/Closer/personnel']);  // Redirection après succès
         },
         error => {
-          console.error('Error while adding personnel', error);
+          console.error('Erreur lors de l\'ajout du personnel', error);
+
         }
       );
     } else {
-      console.error('Form is invalid');
+      console.error('Le formulaire est invalide');
     }
   }
+
 
 }

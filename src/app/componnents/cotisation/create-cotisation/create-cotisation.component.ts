@@ -7,6 +7,8 @@ import { Router, RouterModule } from '@angular/router';
 import { CaisseServiceService } from '../../Caisse/caisse-service.service';
 import { MembreServiceService } from '../../membre/membre-service.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../components/auth/auth.service';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-create-cotisation',
@@ -20,13 +22,14 @@ export class CreateCotisationComponent implements OnInit{
   cotisations: Cotisation[] = [];
   caisses: any[] = [];
   membres: any[] = []
+  user:any[]=[]
 
   currentTime = new Date();
   currentDay = new Date();
   currentYear: number = new Date().getFullYear(); // Récupère l'année actuelle
 
   constructor(public cotisationService:CotisationService,
-    private caisseService:CaisseServiceService,private membreService:MembreServiceService,
+    private caisseService:CaisseServiceService,private membreService:MembreServiceService,private authService: AuthService,
     private router:Router,private fb: FormBuilder,){
 
   }
@@ -36,16 +39,17 @@ export class CreateCotisationComponent implements OnInit{
       cashflow_id: [''],
       member_id: [''],
       pay_year: [this.currentYear], // Année actuelle
-      ref_ing_cost: [''],
+      ref_ing_cost: ['' ,[Validators.required]],
       amount: [60000], // Valeur par défaut
       pay: [60000], // Valeur par défaut
-      status: [''],
-      author: [''],
-      open_close: [false],
+      // status: [''],
+      author: [this.user],
+      open_close: [0],
     });
 
     this.loadCaisse();
     this.loadMembers();
+    this.loadUserProfile();
 
   }
 
@@ -72,8 +76,28 @@ export class CreateCotisationComponent implements OnInit{
       // const caisseData = this.caisseForm.value;
       this.cotisationService.createCotisation(this.cotisationForm.value).subscribe(() => {
         this.router.navigate(['/Closer/cotisation']);
-        console.log('Cotisation modifiée avec succès!');
-      });
+        console.log('Cotisation modifiée avec succès!')
+      },
+      error=> {
+        console.error('Erreur lors de l\'ajout de la cotisation', error);
+
+      }
+    );
+    }else {
+      console.error('Le formulaire est invalide');
     }
   }
+
+  loadUserProfile(): void {
+    this.authService.getUserProfile().subscribe(
+        (response: any) => {
+          this.user = response.name;
+          console.log('Utilisateur connecté:', this.user)  // Vérifie les données ici
+
+        },
+        (error) => {
+            console.error('Erreur lors de la récupération du profil utilisateur:', error);
+        }
+    );
+}
 }

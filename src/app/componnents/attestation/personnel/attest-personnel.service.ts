@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AttestPersonnel } from './attest-personnel';
 import { catchError, Observable, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
 import { Membre } from '../../../models/membre';
 
@@ -27,22 +27,46 @@ export class AttestPersonnelService {
 
   // Créer une nouvelle attestation
   create(attestPersonnel: AttestPersonnel): Observable<AttestPersonnel> {
-    return this.http.post<AttestPersonnel>(this.apiUrl, attestPersonnel);
+
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<AttestPersonnel>(this.apiUrl, attestPersonnel, { headers });
   }
 
   // Mettre à jour une attestation existante
   update(id: number, attestPersonnel: AttestPersonnel): Observable<AttestPersonnel> {
-    return this.http.put<AttestPersonnel>(`${this.apiUrl}/${id}`, attestPersonnel);
+
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.put<AttestPersonnel>(`${this.apiUrl}/${id}`, attestPersonnel, { headers });
   }
 
   // Supprimer une attestation
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers });
   }
 
    // Méthode pour mettre à jour le statut d'une attestation
    updateStatut(id: number, newStatus: number): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/${id}`, { status: newStatus });
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.patch(`${this.apiUrl}/${id}`, { status: newStatus }, { headers });
   }
 
   getMember(): Observable<Membre[]> { // Nouvelle méthode pour récupérer les pays

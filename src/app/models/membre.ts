@@ -12,10 +12,10 @@ export class Membre {
   phone_2: string = "";
   author: string = "";
   gender: string = "";
-  status?: number;
+  status!: number;
   open_close?:boolean;
-  city_id?:number;
-  country_id?:number;
+  city_id!:number;
+  country_id!:number;
   created_at!: Date;
 }
 

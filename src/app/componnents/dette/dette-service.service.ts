@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Dette } from './model/dette';
@@ -18,15 +18,33 @@ export class DetteServiceService {
   }
 
   addDette(dette: Dette): Observable<Dette> {
-    return this.http.post<Dette>(this.apiUrl, dette);
+
+  const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    'Content-Type': 'application/json'
+  });
+    return this.http.post<Dette>(this.apiUrl, dette, { headers });
   }
 
   updateDette(id: number, dette: Dette): Observable<Dette> {
-    return this.http.put<Dette>(`${this.apiUrl}/${id}`, dette);
+
+  const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    'Content-Type': 'application/json'
+  });
+    return this.http.put<Dette>(`${this.apiUrl}/${id}`, dette, { headers });
   }
 
   deleteDette(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+    });
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers });
   }
 
   getDetteById(id: number): Observable<Dette> {

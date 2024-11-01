@@ -12,7 +12,7 @@ export const routes = [
    },
    {
     path:"/Closer/poste",
-    name:"Postes",
+    name:"Groupe",
     single:"Poste"
    },
 

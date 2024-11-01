@@ -24,6 +24,9 @@ export class IndexEntrepriseComponent {
   countries: any[] = [];
   cities: any[] = [];
 
+  filteredDettes: Entreprise[] = [];
+  searchTerm: string = '';
+
   currentTime = new Date();
   currentDay = new Date();
 
@@ -36,7 +39,7 @@ ngOnInit(): void{
     (data:Entreprise[])=>{
       console.log(data);
       this.entreprises = data;
-
+      this.filteredDettes = data; // Initialisation du tableau filtré
 
     },
     error => {
@@ -45,6 +48,14 @@ ngOnInit(): void{
 )
 }
 
+
+filterDettes(): void {
+  this.filteredDettes = this.entreprises.filter(entreprise =>
+    this.getCountryName(entreprise.country_id).toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+    entreprise.social_reason.toString().includes(this.searchTerm)||
+    entreprise.company_type.toString().includes(this.searchTerm)
+  );
+}
 // Récupérer les pays
 loadCountries(): void {
   this.entrepriseService.getCountries().subscribe(data => {

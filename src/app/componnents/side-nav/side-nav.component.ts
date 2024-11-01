@@ -75,19 +75,33 @@ export class SideNavComponent implements OnInit{
   ngOnInit(): void {
     // this.currentLang = this.translate.getDefaultLang(); // Assurez-vous que la langue par défaut est bien chargée
 
-    this.authService.getUser().subscribe(
-      (data) => {
-        this.user = data;
-        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
-      },
-      (error) => {
-        console.error('Erreur lors du chargement des informations utilisateur', error);
-      }
-    );
+    // this.authService.getUser().subscribe(
+    //   (data) => {
+    //     this.user = data;
+    //     console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+    //   },
+    //   (error) => {
+    //     console.error('Erreur lors du chargement des informations utilisateur', error);
+    //   }
+    // );
+    this.loadUserProfile();
   }
 
 
   changeLanguage(lang: string): void {
     // this.translate.use(lang);
   }
+
+  loadUserProfile(): void {
+    this.authService.getUserProfile().subscribe(
+        (response: any) => {
+          this.user = response;
+          console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+
+        },
+        (error) => {
+            console.error('Erreur lors de la récupération du profil utilisateur:', error);
+        }
+    );
+}
 }

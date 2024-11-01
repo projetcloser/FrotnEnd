@@ -35,7 +35,7 @@
       <p><strong>NUI:</strong> {{ entreprise.nui }}</p>
       <p><strong>Pays:</strong> {{ getCityName(entreprise.country_id) }}</p>
       <p><strong>Ville:</strong> {{ getCityName(entreprise.city_id) }}</p>
-      <p><strong>Status:</strong>
+      <!-- <p><strong>Status:</strong>
         <span class="badge"
               [ngClass]="{
                 'badge-warning': entreprise.status === 1,
@@ -43,7 +43,7 @@
               }">
           {{ entreprise.status === 1 ? 'Active' : 'Annulé' }}
         </span>
-      </p>
+      </p> -->
       <p><strong>Créé en:</strong> {{ entreprise.created_at | date:'yyyy' }}</p>
 
      </div>

@@ -46,7 +46,7 @@ loadCities(): void {
   });
 }
 
-// Récupérer les villes
+// Récupérer les membres
 loadMembers(): void {
   this.cachetService.getMembers().subscribe(data => {
     this.members = data;
