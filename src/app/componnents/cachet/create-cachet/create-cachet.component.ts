@@ -6,6 +6,7 @@ import { VilleServiceService } from '../../ville/ville-service.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Cachet } from '../cachet';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../components/auth/auth.service';
 
 @Component({
   selector: 'app-create-cachet',
@@ -20,6 +21,7 @@ export class CreateCachetComponent {
   countries: any[] = [];
   cities: any[] = []
   members:any[]=[]
+  user: any = {};
 
   currentTime = new Date();
   currentDay = new Date();
@@ -32,7 +34,8 @@ export class CreateCachetComponent {
     { value: 4, label: 'Livrée' },
   ];
 
-  constructor(public companyService: CachetService, private router:Router, private route:ActivatedRoute,
+  constructor(public companyService: CachetService,
+    private authService: AuthService, private router:Router, private route:ActivatedRoute,
     private fb: FormBuilder, private countryService: PaysServiceService, cityService:VilleServiceService){
 
   }
@@ -40,7 +43,7 @@ export class CreateCachetComponent {
   ngOnInit():void{
     this.entrepriseForm = this.fb.group({
       receipt_number: [],
-        author: [],
+      author: [{ value: '', disabled: true }],
         phone: [],
         year: [],
         // nui: [this.company.nui],
@@ -52,6 +55,26 @@ export class CreateCachetComponent {
 
     this.loadCities();
     this.loadCountries();
+    this.loadmembers();
+
+    // Récupérer l'auteur (utilisateur connecté) et la date
+    const formattedDate = new Date().toISOString().split('T')[0]; // Date au format YYYY-MM-DD
+    // Récupérer l'auteur (utilisateur connecté) et la date
+    this.entrepriseForm.patchValue({
+      pay_year: formattedDate, // Date actuelle formatée
+      author:  this.authService.getUserProfile().subscribe(
+        (response: any) => {
+          this.user = response;
+          console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
+          // Mettre à jour le champ 'author' avec le nom de l'utilisateur
+          this.entrepriseForm.patchValue({ author: this.user.name });
+
+        },
+        (error) => {
+            console.error('Erreur lors de la récupération du profil utilisateur:', error);
+        }
+    ) // Auteur connecté
+    });
 
   }
 
@@ -82,9 +105,9 @@ export class CreateCachetComponent {
 
   onSubmit() {
     if (this.entrepriseForm.valid) {
-      // const caisseData = this.caisseForm.value;
-      this.companyService.addCachet(this.entrepriseForm.value).subscribe(() => {
-        this.router.navigate(['/Closer/entreprise']);
+      const formData = this.entrepriseForm.getRawValue(); // Récupère même les champs désactivés comme ref_ing_cost
+      this.companyService.addCachet(formData).subscribe(() => {
+        this.router.navigate(['/Closer/cachet']);
       });
     }
   }

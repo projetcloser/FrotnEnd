@@ -27,6 +27,11 @@ export class CotisationService {
    return this.http.get<Cotisation>(`${this.apiUrl}/${id}`);
  }
 
+  // Récupérer la dernière cotisation pour déterminer la prochaine référence
+  getLastCotisation(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}?_sort=id&_order=desc&_limit=1`);
+  }
+
  // Créer un nouvel événement
  createCotisation(Cotisation: Cotisation): Observable<Cotisation> {
 

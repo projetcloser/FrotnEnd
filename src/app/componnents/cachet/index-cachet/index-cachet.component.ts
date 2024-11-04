@@ -29,6 +29,10 @@ export class IndexCachetComponent implements OnInit {
     this.cachetService.getCachets().subscribe((data: any[]) => {
       this.cachets = data;
     });
+
+    this.loadCities();
+    this.loadCountries();
+    this.loadMembers();
   }
 
 
@@ -61,7 +65,7 @@ getCountryName(country_id: number): string {
 
 // Trouver le nom de la ville à partir de l'ID
 getCityName(city_id: number): string {
-  const city = this.members.find(c => c.id === city_id);
+  const city = this.cities.find(c => c.id === city_id);
   return city ? city.name : 'Non défini';
 }
 
