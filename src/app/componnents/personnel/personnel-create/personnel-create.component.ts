@@ -40,12 +40,18 @@ export class PersonnelCreateComponent implements OnInit{
   constructor(private fb: FormBuilder, private personnelService: PersonnelService, private router: Router,private cityService: VilleServiceService,
     private countryService: PaysServiceService) {
       this.personnelForm = this.fb.group({
-        statut: [ Validators.required], // 'married' or 'celibataire'
-        lastname: ['',[Validators.required, Validators.minLength(2)] ],
-        firstname: ['', [Validators.required, Validators.minLength(2)]],
-        email: ['', [Validators.required, Validators.email]],
+        // statut: [ Validators.required], // 'married' or 'celibataire'
+        // lastname: ['',[Validators.required, Validators.minLength(2)] ],
+        // firstname: ['', [Validators.required, Validators.minLength(2)]],
+        // email: ['', [Validators.required, Validators.email]],
+        // date_card_validity: [''],
+        // phone: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)] ],
+        statut: [], // 'married' or 'celibataire'
+        lastname: [''],
+        firstname: [''],
+        email: [''],
         date_card_validity: [''],
-        phone: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)] ],
+        phone: [''],
         father_name: [''],
         father_phone: [''],
         mother_name: [''],

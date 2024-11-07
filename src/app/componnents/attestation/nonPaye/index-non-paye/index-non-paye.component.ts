@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NonPayeService } from '../non-paye.service';
 import { NonPaye } from '../non-paye';
+import { Membre } from '../../../../models/membre';
+import { Entreprise } from '../../../../models/entreprise';
+import { EntrepriseServiceService } from '../../../entreprise/entreprise-service.service';
 
 @Component({
   selector: 'app-index-non-paye',
@@ -14,15 +17,21 @@ import { NonPaye } from '../non-paye';
 })
 export class IndexNonPayeComponent {
   attestations: NonPaye[] = [];
-  constructor(private router: Router,private attestationService: NonPayeService) {}
+  members:Membre[]=[];
+  companies:Entreprise[]=[];
+  constructor(private router: Router,private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService) {}
 
   ngOnInit(): void {
     this.loadAttestations();
+    this.getMemberALL();
+    this.getCompanies();
   }
 
   loadAttestations(): void {
     this.attestationService.getAttestations().subscribe(data => {
       this.attestations = data;
+      console.log('info sur attestationentreprise', this.attestations);
+
     });
   }
 
@@ -54,6 +63,43 @@ export class IndexNonPayeComponent {
     // this.personnelService.deletePersonnel(id).subscribe(response => { ... });
     console.log('Suppression confirmée pour l\'ID:', id);
     // Redirection ou autre logique après la suppression
+  }
+
+
+  getCompanies():void{
+    this.entrepriseService.getAll().subscribe(data =>{
+        this.companies = data;
+        console.log('info sur les companies ayant une attestation d\'esntreprise',this.companies);
+
+    });
+  }
+
+  getCompaniesNames(idCompanies:number):string{
+    const entreprises =this.companies.find(e =>e.id === idCompanies);
+    return entreprises? entreprises.social_reason: 'Inconnue';
+  }
+
+  getMemberALL(): void {
+    this.attestationService.getMember().subscribe(data => {
+      this.members = data;
+      console.log('info sur les membre attestation entreprise', this.members);
+
+    });
+  }
+
+  getMemberName(countryId: number): string {
+    const member = this.members.find(p => p.id === countryId);
+    return member ? member.firstname : 'Inconnu';
+  }
+
+  getmemberMatricule(countryId: number){
+    const member = this.members.find(p => p.id === countryId);
+    return member ? member.matricule : 'Inconnu';
+  }
+
+  // Formater la date pour afficher seulement l'année
+  formatDate(date: Date): string {
+    return new Date(date).getFullYear().toString();
   }
 
 }
