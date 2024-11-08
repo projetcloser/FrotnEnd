@@ -4,6 +4,9 @@ import { AnnonceServiceService } from '../annonce-service.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import {Observable} from "rxjs";
+import {HttpHeaders} from "@angular/common/http";
+import {AuthService} from "../../../components/auth/auth.service";
 
 @Component({
   selector: 'app-list-annonce',
@@ -14,13 +17,15 @@ import { Router } from '@angular/router';
 })
 export class ListAnnonceComponent implements OnInit {
   annonces: Annonce[] = [];
+  user: any = {};
 
-  constructor(private annonceService: AnnonceServiceService,private router: Router) {}
+  constructor(private annonceService: AnnonceServiceService,private router: Router,private authService: AuthService) {}
 
   ngOnInit(): void {
     this.annonceService.getAnnonces().subscribe((data: Annonce[]) => {
       this.annonces = data;
     });
+    this.loadUserProfile();
   }
 
    // Méthode pour rediriger vers le formulaire de création
@@ -64,4 +69,15 @@ export class ListAnnonceComponent implements OnInit {
     const fileName = fichier.split(/(\\|\/)/g).pop();
     return fileName || fichier;
   }
+
+  loadUserProfile(): void {
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+
+      }
+    );
+  }
+
 }

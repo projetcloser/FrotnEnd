@@ -8,6 +8,7 @@ import { Entreprise } from '../../../models/entreprise';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import {AuthService} from "../../../components/auth/auth.service";
 
 @Component({
   selector: 'app-index-entreprise',
@@ -29,12 +30,14 @@ export class IndexEntrepriseComponent {
 
   currentTime = new Date();
   currentDay = new Date();
+  user: any = {};
 
-constructor(public entrepriseService: EntrepriseServiceService,private router: Router){}
+constructor(public entrepriseService: EntrepriseServiceService,private router: Router,private authService: AuthService){}
 
 ngOnInit(): void{
   this.loadCountries();
     this.loadCities();
+  this.loadUserProfile();
   this.entrepriseService.getAll().subscribe(
     (data:Entreprise[])=>{
       console.log(data);
@@ -47,6 +50,19 @@ ngOnInit(): void{
     }
 )
 }
+
+  loadUserProfile(): void {
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
+  }
 
 
 filterDettes(): void {

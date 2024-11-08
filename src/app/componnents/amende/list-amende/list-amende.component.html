@@ -1,9 +1,13 @@
 <div class="container mt-5">
   <div class="card shadow-sm">
+
     <div class="card-header d-flex justify-content-between align-items-center">
       <h4 class="card-title">Liste des Amendes</h4>
+      <ng-container *ngIf=" user.role.name === 'membre'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
       <button class="btn btn-primary" [routerLink]="['/Closer/amendes/new']">Ajouter une Amende</button>
+    </ng-container>
     </div>
+
     <div class="card-body p-0">
       <table class="table table-striped table-hover">
         <thead class="table">

@@ -4,6 +4,7 @@ import { Evenement } from '../evenement';
 import { EvenementService } from '../evenement.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {AuthService} from "../../../components/auth/auth.service";
 
 @Component({
   selector: 'app-index-evenement',
@@ -15,11 +16,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class IndexEvenementComponent {
   evenements: Evenement[] = [];
+  user: any = {};
 
-  constructor(private evenementService: EvenementService,private router:Router) {}
+  constructor(private evenementService: EvenementService,private router:Router,private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadEvenements();
+    this.loadUserProfile();
+  }
+
+  loadUserProfile(): void {
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
   }
 
   loadEvenements() {

@@ -15,6 +15,7 @@ export class AuthService {
     private apiUrl = environment.apiUrl+"login";
     private currentUserSubject: BehaviorSubject<User | null>;
     public currentUser: Observable<User | null>;
+    private apiUrlRacine = environment.apiUrl;
 
     private loggedIn: boolean = false;
 
@@ -37,6 +38,8 @@ export class AuthService {
 login(data: any): Observable<any> {
   return this.http.post(`${this.apiUrl}`, data);
 }
+
+
 
 // Déconnexion (logout)
 logout(): Observable<any> {
@@ -80,7 +83,7 @@ getUserProfile(): Observable<any> {
   const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
   });
-  return this.http.get('http://127.0.0.1:8000/api/user', { headers });
+  return this.http.get(`${this.apiUrlRacine}/user-info`, { headers });
 }
 
 

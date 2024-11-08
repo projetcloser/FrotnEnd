@@ -7,8 +7,8 @@ export const environment = {
   //  apiUrl:"https://app.closercm.net/public/"
   //  apiUrl:"https://app.closercm.net/api/"
 
-  // apiUrl: "https://preprod.closercm.net/api/"
-  apiUrl : 'http://127.0.0.1:8000/api/'
+   apiUrl: "https://preprod.closercm.net/api/"
+  //apiUrl : 'http://127.0.0.1:8000/api/'
 };
 
 
