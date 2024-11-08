@@ -31,21 +31,25 @@ export class IndexCachetComponent implements OnInit {
     this.cachetService.getCachets().subscribe((data: any[]) => {
       this.cachets = data;
     });
+    this.loadCities();
+    this.loadCountries();
+    this.loadMembers();
     this.loadUserProfile();
   }
 
-  loadUserProfile(): void {
-    this.authService.getUserProfile().subscribe(
-      (response: any) => {
-        this.user = response;
-        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
 
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération du profil utilisateur:', error);
-      }
-    );
-  }
+loadUserProfile(): void {
+  this.authService.getUserProfile().subscribe(
+    (response: any) => {
+      this.user = response;
+      console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+
+    },
+    (error) => {
+      console.error('Erreur lors de la récupération du profil utilisateur:', error);
+    }
+  );
+}
 
 
 // Récupérer les pays
@@ -77,7 +81,7 @@ getCountryName(country_id: number): string {
 
 // Trouver le nom de la ville à partir de l'ID
 getCityName(city_id: number): string {
-  const city = this.members.find(c => c.id === city_id);
+  const city = this.cities.find(c => c.id === city_id);
   return city ? city.name : 'Non défini';
 }
 

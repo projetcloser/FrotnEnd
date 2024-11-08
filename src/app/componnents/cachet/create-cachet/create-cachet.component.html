@@ -23,7 +23,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="author">Auteur</label>
-                    <input id="author" formControlName="author" class="form-control" type="text" />
+                    <input id="author" formControlName="author" class="form-control" value="{{user.name}}" type="text" readonly />
                   </div>
                 </div>
 
@@ -41,9 +41,9 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="country_id">Membre</label>
-                    <select id="country_id" formControlName="country_id" class="form-control">
-                      <option *ngFor="let country of members" [value]="country.id">{{ country.name }}</option>
+                    <label for="member_id">Membre</label>
+                    <select id="member_id" formControlName="member_id" class="form-control">
+                      <option *ngFor="let country of members" [value]="country.id">{{ country.firstname }}</option>
                     </select>
                   </div>
                 </div>

@@ -74,7 +74,7 @@ export class UpdateCachetComponent {
         this.members = data;
       })
 
-      
+
   }
   onSubmit(): void {
     if (this.companyForm.valid) {

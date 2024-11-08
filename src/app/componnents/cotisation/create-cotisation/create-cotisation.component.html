@@ -17,6 +17,16 @@
               <form [formGroup]="cotisationForm" (ngSubmit)="onSubmit()">
                 <div class="row mb-3">
                   <div class="col-md-6">
+                    <!-- <span>ref</span> -->
+                    <!-- <input type="hidden" id="ref_ing_cost" formControlName="ref_ing_cost" class="form-control" readonly /> -->
+                    <!-- <div *ngIf="cotisationForm.controls['pay'].invalid && cotisationForm.controls['pay'].touched" class="text-danger">
+                      <small *ngIf="cotisationForm.controls['pay'].hasError('required')">Raison sociale est requise.</small>
+                    </div> -->
+                  </div>
+
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6">
                     <span>Verssement</span>
                     <input type="text" formControlName="pay" class="form-control" />
                     <!-- <div *ngIf="cotisationForm.controls['pay'].invalid && cotisationForm.controls['pay'].touched" class="text-danger">
@@ -42,7 +52,7 @@
                   </div>
                   <div class="col-md-6">
                     <span>Auteur</span>
-                    <input type="text" formControlName="author" class="form-control" />
+                    <input type="text" formControlName="author" class="form-control" value="{{user.name}}" readonly />
                     <!-- <div *ngIf="cotisationForm.controls['author'].invalid && cotisationForm.controls['author'].touched" class="text-danger">
                       <small *ngIf="cotisationForm.controls['author'].hasError('required')">Auteur est requis.</small>
                     </div> -->
@@ -57,14 +67,21 @@
                     </select>
                   </div>
                   <div class="col-md-6">
-                    <span>Caissse</span>
-                    <select formControlName="cashflow_id" class="form-control">
-                      <option *ngFor="let caisse of caisses" [value]="caisse.id">{{ caisse.name }}</option>
+                    <span>Personnel</span>
+                    <select formControlName="staff_id" class="form-control">
+                      <option *ngFor="let staff of staffs" [value]="staff.id">{{ staff.firstname }}</option>
                     </select>
                   </div>
                 </div>
 
                 <div class="row mb-3">
+                  <div class="col-md-6">
+                    <span>Caissse</span>
+                    <select formControlName="cashflow_id" class="form-control">
+
+                      <option *ngFor="let caisse of caisses" [value]="caisse.id">{{ caisse.name }}</option>
+                    </select>
+                  </div>
                   <div class="col-md-6">
                     <span>Année</span>
                     <input type="text" formControlName="pay_year" class="form-control" [value]="currentYear"  />

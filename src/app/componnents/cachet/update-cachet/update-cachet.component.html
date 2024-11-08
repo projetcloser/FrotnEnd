@@ -41,9 +41,9 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="country_id">Membre</label>
-                    <select id="country_id" formControlName="country_id" class="form-control">
-                      <option *ngFor="let country of members" [value]="country.id">{{ country.name }}</option>
+                    <label for="member_id">Membre</label>
+                    <select id="member_id" formControlName="member_id" class="form-control">
+                      <option *ngFor="let country of members" [value]="country.id">{{ country.firstname }}</option>
                     </select>
                   </div>
                 </div>
@@ -78,11 +78,8 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label for="name">Annee</label>
-                  <select id="status" formControlName="year" class="form-control" required>
-                    <option value="" disabled selected>Choisir un statut</option>
-                    <option *ngFor="let option of statusOptions" [value]="option.value">{{ option.label }}</option>
-                  </select>
+                  <label for="year">Annee</label>
+                  <input id="year" formControlName="year" class="form-control" type="date" />
                 </div>
 
 

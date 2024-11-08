@@ -47,6 +47,7 @@ export class UpdateCotisationComponent {
       author: [this.cotisation.author],
       member_id: [this.cotisation.member_id],
       cashflow_id: [this.cotisation.cashflow_id],
+      staff_id: [this.cotisation.staff_id],
       pay: [this.cotisation.pay],
       pay_year: [this.cotisation.pay_year],
       status: [this.cotisation.status]
