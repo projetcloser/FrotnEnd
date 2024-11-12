@@ -4,11 +4,12 @@ import { PaysServiceService } from '../pays-service.service';
 import { LoadingComponent } from '../../../components/loading/loading.component';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-index-pays',
   standalone: true,
-  imports: [LoadingComponent,RouterModule, RouterLink, CommonModule,],
+  imports: [LoadingComponent,RouterModule, RouterLink, CommonModule,ReactiveFormsModule],
   templateUrl: './index-pays.component.html',
   styleUrl: './index-pays.component.css'
 })
@@ -23,7 +24,7 @@ export class IndexPaysComponent {
 constructor(public paysService: PaysServiceService,private router: Router){}
 
 navigateToForm() {
-  this.router.navigate(['/pays/create']);
+  this.router.navigate(['/Closer/pays/create']);
 }
 
 

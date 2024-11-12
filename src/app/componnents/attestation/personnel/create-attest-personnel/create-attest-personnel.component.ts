@@ -82,12 +82,7 @@ export class CreateAttestPersonnelComponent {
     });
   }
 
-  generateRefIngCost(): string {
-    // Simple logic to generate a unique reference like 'RC001'
-    const date = new Date();
-    const randomPart = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-    return `RC${date.getFullYear()}${randomPart}`;
-  }
+
 
   onSubmit(): void {
     if (this.addForm.valid) {

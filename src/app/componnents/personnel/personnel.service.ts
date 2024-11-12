@@ -16,6 +16,7 @@ export class PersonnelService {
   private apiRecup =  environment.apiUrl
   // private apiURL = environment.apiUrl+"personnels";
   private apiURL = environment.apiUrl+"staff";
+  private createURL = environment.apiUrl+"staff/staff";
   private countriesUrl = environment.apiUrl+'location/countries';
   private citiesUrl = environment.apiUrl+'location/cities';
 
@@ -55,7 +56,7 @@ export class PersonnelService {
       'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
       'Content-Type': 'application/json'
     });
-    return this.httpclient.post(this.apiURL , JSON.stringify(data), { headers })
+    return this.httpclient.post(this.createURL , JSON.stringify(data), { headers })
       .pipe(
         catchError(this.errorHandler)
       );
