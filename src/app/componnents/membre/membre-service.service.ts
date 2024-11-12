@@ -13,7 +13,8 @@ import { environment } from '../../../environments/environment';
 export class MembreServiceService {
 
 
-  private apiURL = environment.apiUrl+"members";
+  private apiURL = environment.apiUrl+"members/member";
+  private apiURLV = environment.apiUrl+"members";
   private countriesUrl = environment.apiUrl+'location/countries';
     private citiesUrl = environment.apiUrl+'location/cities';
 
@@ -28,7 +29,7 @@ export class MembreServiceService {
   constructor(private httpclient: HttpClient) { }
 
   getAll(): Observable<Membre[]> {
-    return this.httpclient.get<any>(this.apiURL)
+    return this.httpclient.get<any>(this.apiURLV)
       .pipe(
         map(response=> response),
         catchError(this.errorHandler)
@@ -42,10 +43,6 @@ export class MembreServiceService {
   //     );
   // }
 
-  // create(membre: FormData): Observable<any> {
-  //   return this.httpclient.post(`${this.apiURL}/member`, membre)
-  //     .pipe(catchError(this.errorHandler));
-  // }
   create(membre: FormData): Observable<any> {
     const token = localStorage.getItem('access_token');  // Récupérer le token stocké
 
@@ -53,9 +50,24 @@ export class MembreServiceService {
       'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
       'Content-Type': 'application/json'
     });
-    return this.httpclient.post(`${this.apiURL}`, membre,  { headers })
+    return this.httpclient.post(`${this.apiURL}`, membre,{headers})
       .pipe(catchError(this.errorHandler));
   }
+  // create(memberData: any): Observable<any> {
+  //   const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+  //     'Content-Type': 'application/json'
+  //   });
+  //   const formData: FormData = new FormData();
+  //   for (const key in memberData) {
+  //     if (memberData.hasOwnProperty(key)) {
+  //       formData.append(key, memberData[key]);
+  //     }
+  //   }
+  //   return this.httpclient.post(this.apiURL, formData,{headers});
+  // }
 
 
   find(id: number): Observable<any> {
@@ -105,4 +117,6 @@ export class MembreServiceService {
   getCities(): Observable<any[]> {
     return this.httpclient.get<any[]>(this.citiesUrl);
   }
+
+  
 }
