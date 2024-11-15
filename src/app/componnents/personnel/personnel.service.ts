@@ -56,11 +56,13 @@ export class PersonnelService {
       'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
       'Content-Type': 'application/json'
     });
-    return this.httpclient.post(this.createURL , JSON.stringify(data), { headers })
+    return this.httpclient.post(this.createURL ,data , { headers })
       .pipe(
         catchError(this.errorHandler)
       );
   }
+
+
 
   find(id: number): Observable<any> {
     return this.httpclient.get(this.apiURL +'/' + id)

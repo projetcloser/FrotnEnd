@@ -49,6 +49,7 @@ export class IndexMembreComponent implements OnInit{
 
   ngOnInit(): void{
     this.getmember();
+    this.loadMembres();
   }
 
   getmember():void{
@@ -118,6 +119,17 @@ export class IndexMembreComponent implements OnInit{
     getCityName(city_id: number): string {
       const city = this.cities.find(c => c.id === city_id);
       return city ? city.name : 'Non défini';
+    }
+
+    loadMembres() {
+      this.membreService.getAll().subscribe(data => {
+        this.membres = data;
+      });
+    }
+
+    getMembreName(membreId: number): string {
+      const membre = this.membres.find(m => m.id === membreId);
+      return membre ? membre.firstname : 'Inconnu'; // Remplacez 'name' par le champ approprié dans votre modèle
     }
 
 

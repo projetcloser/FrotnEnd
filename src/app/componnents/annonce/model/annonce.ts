@@ -4,5 +4,6 @@ export class Annonce {
   author: string = ""; // Ce champ sera rempli avec l'utilisateur connecté
   body: string = "";
   fichiers?: []=[]; // Tableau pour gérer les fichiers joints
+  group_id?:number;
   created_at!: Date;
 }

@@ -21,15 +21,15 @@
               <h4>Créer une nouvelle Personne</h4>
             </div>
             <div class="card-body">
-              <form [formGroup]="personnelForm" (ngSubmit)="onSubmit()">
+              <form [formGroup]="personnelForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
                 <div class="row mb-3">
                   <!-- firstname -->
                   <div class="col-md-6">
                     <span>Nom</span>
                     <input type="text" formControlName="firstname" class="form-control" />
-                    <div *ngIf="personnelForm.controls['firstname'].invalid && personnelForm.controls['firstname'].touched" class="text-danger">
+                    <!-- <div *ngIf="personnelForm.controls['firstname'].invalid && personnelForm.controls['firstname'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['firstname'].hasError('required')">Raison sociale est requise.</small>
-                    </div>
+                    </div> -->
                   </div>
 
                   <!-- Author -->
@@ -47,18 +47,18 @@
                   <div class="col-md-6">
                     <span>Prénom</span>
                     <input type="text" formControlName="lastname" class="form-control" />
-                    <div *ngIf="personnelForm.controls['lastname'].invalid && personnelForm.controls['lastname'].touched" class="text-danger">
+                    <!-- <div *ngIf="personnelForm.controls['lastname'].invalid && personnelForm.controls['lastname'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['lastname'].hasError('required')">lastname est requis.</small>
-                    </div>
+                    </div> -->
                   </div>
 
                     <!-- Tel -->
                     <div class="col-md-6">
                       <span>Téléphone</span>
                       <input type="text" formControlName="phone" class="form-control" />
-                      <div *ngIf="personnelForm.get('phone')?.invalid && personnelForm.get('phone')?.touched">
+                      <!-- <div *ngIf="personnelForm.get('phone')?.invalid && personnelForm.get('phone')?.touched">
                         <small class="text-danger">Le téléphone est requis et doit contenir uniquement des chiffres.</small>
-                      </div>
+                      </div> -->
                     </div>
 
                   <!-- N° CNI ou Passport -->
@@ -71,7 +71,7 @@
                   </div> -->
                 </div>
 
-                <div class="row mb-3">
+                <!-- <div class="row mb-3"> -->
                   <!-- Date D'expiration CNI -->
                   <!-- <div class="col-md-6">
                     <span>Date d'Expiration CNI</span>
@@ -89,7 +89,7 @@
                       <small *ngIf="personnelForm.controls['type'].hasError('required')">Type est requis.</small>
                     </div>
                   </div> -->
-                </div>
+                <!-- </div> -->
 
                 <div class="row mb-3">
                   <!-- Country -->
@@ -128,13 +128,13 @@
                    <div class="col-md-6">
                     <span>Genre</span>
                     <select formControlName="gender" class="form-control">
-                      <option value="N/A" selected="">
-                        ...
+                      <option value="MALE" selected="">
+                        MALE
                       </option>
-                      <option value="MASCULIN">
+                      <option value="MALE">
                           MASCULIN
                       </option>
-                      <option value="FEMININ">
+                      <option value="FEMALE">
                           FEMININ
                       </option>
                     </select>
@@ -147,7 +147,7 @@
                   <div class="col-md-6">
                     <span>Situation Matrimoniale</span>
                     <select formControlName="marital_status" class="form-control">
-                      <option value="N/A" selected="">
+                      <option value="CELIBATAIRE" selected="">
                         ...
                       </option>
                       <option value="CELIBATAIRE">
@@ -167,7 +167,7 @@
                <!--Nombre D'enfants -->
                <div class="col-md-6">
                 <span>Nombre d'Enfants</span>
-                <input type="text" formControlName="num_children" class="form-control" />
+                <input type="number" formControlName="num_children" class="form-control" />
               </div>
             </div>
             <div class="row mb-3">
@@ -210,11 +210,29 @@
                      <!-- Email -->
                   <div class="col-md-6">
                     <span>Email</span>
-                    <input type="text" formControlName="email" class="form-control" />
-                    <div *ngIf="personnelForm.controls['email'].invalid && personnelForm.controls['email'].touched" class="text-danger">
+                    <input type="email" formControlName="email" class="form-control" />
+                    <!-- <div *ngIf="personnelForm.controls['email'].invalid && personnelForm.controls['email'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['email'].hasError('required')">email est requis.</small>
-                    </div>
+                    </div> -->
                    </div>
+
+                   <div class="col-md-6">
+                    <span>Type Contrat</span>
+                    <select formControlName="contract_type" class="form-control">
+                      <option value="CDI" selected="">
+                        ...
+                      </option>
+                      <option value="CDD">
+                        CDD
+                      </option>
+                      <option value="CDI">
+                        CDI
+                      </option>
+                      <option value="VEUF(VE)">
+                        TEMPORAIRE
+                      </option>
+                    </select>
+                  </div>
 
 
 
@@ -224,7 +242,7 @@
                   <!-- Piece jointe -->
                   <div class="col-md-6">
                     <span>Piece jointe</span>
-                    <input type="file" formControlName="attachment_file" (change)="handleFileInput($event)" class="form-control" multiple />
+                    <input type="file" formControlName="attachment_file" (change)="handleFileInput($event)" accept=".pdf, .txt,.doc" class="form-control" multiple />
                   </div>
                    <!--Nombre D'enfants -->
                    <div class="col-md-6">

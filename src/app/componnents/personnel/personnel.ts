@@ -32,13 +32,13 @@ export class Personnel {
   lastname: string = '';
   firstname: string = '';
   email: string = '';
-  date_card_validity?: string; // Date de validité de la carte (optionnel)
+  date_card_validity?: Date; // Date de validité de la carte (optionnel)
   phone?: string; // Numéro de téléphone (optionnel)
   phone2?: string; // Deuxième numéro de téléphone (optionnel)
   father_name?: string; // Nom du père (optionnel)
   father_phone?: string; // Téléphone du père (optionnel)
   mother_name?: string; // Nom de la mère (optionnel)
-  birthday!: string; // Format de date : 'YYYY-MM-DD'
+  birthday!: Date; // Format de date : 'YYYY-MM-DD'
   place_birth?: string; // Lieu de naissance (optionnel)
   profession?: string; // Profession (optionnel)
   gender!: string; // 'male' ou 'female'
