@@ -59,9 +59,9 @@
             <!-- </div> -->
 
 
-          <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
+          <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional' || user.role.name === 'receptionniste' ">
 
-            <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur'|| user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
+            <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur'|| user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' ">
             <li class="nav-item active">
 
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTw"
@@ -84,7 +84,7 @@
                           Payé
                         </a>
                       </li>
-                    <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
+                    <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional' || user.role.name === 'president' ">
                       <li >
                         <a class="collapse-item" routerLink="/Closer/attestation-initied"  style="color: white;">
                           <i class="fa-solid fa-ticket"></i>
@@ -121,12 +121,18 @@
             <span>Amendes</span>
           </a>
         </li>
-        <li class="nav-item active">
+            <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional' ">
+
+            <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/cotisation" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fa fa-dollar"></i>
             <span>Cotisations</span>
         </a>
         </li>
+            </ng-container>
+
+
+            <ng-container *ngIf="user.role.name === 'administrateur'|| user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional'">
 
         <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/dettes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
@@ -134,7 +140,7 @@
             <span>Dettes</span>
           </a>
         </li>
-
+            </ng-container>
         <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/cachet" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fa-sharp-duotone fa-solid fa-file-certificate"></i>
@@ -191,7 +197,7 @@
 
 
 
-          <ng-container *ngIf="user.role.name === 'administrateur' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
+          <ng-container *ngIf="user.role.name === 'administrateur' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' ">
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
 

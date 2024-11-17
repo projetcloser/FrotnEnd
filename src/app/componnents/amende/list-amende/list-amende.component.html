@@ -3,7 +3,7 @@
 
     <div class="card-header d-flex justify-content-between align-items-center">
       <h4 class="card-title">Liste des Amendes</h4>
-      <ng-container *ngIf=" user.role.name === 'membre'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
+      <ng-container *ngIf=" user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'secretaire administrative'">
       <button class="btn btn-primary" [routerLink]="['/Closer/amendes/new']">Ajouter une Amende</button>
     </ng-container>
     </div>
