@@ -12,6 +12,7 @@ export class EvenementService {
 
   // private apiUrl = environment.apiUrl+'evenement'; // URL du JSON Server
   private apiUrl = environment.apiUrl+"events";
+  private baseUrl = environment.apiUrl+'events/evenements';
 
   constructor(private http: HttpClient) {}
 
@@ -37,6 +38,28 @@ export class EvenementService {
   });
     return this.http.post<Evenement>(this.apiUrl, evenement,  { headers });
   }
+
+
+  incrementParticipant(id: number): Observable<any> {
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.baseUrl}/${id}/increment-participant`, {},  { headers });
+  }
+
+  decrementParticipant(id: number): Observable<any> {
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.baseUrl}/${id}/decrement-participant`, {},  { headers });
+  }
+
 
   // Mettre à jour un événement
   updateEvenement(id: number, evenement: Evenement): Observable<Evenement> {

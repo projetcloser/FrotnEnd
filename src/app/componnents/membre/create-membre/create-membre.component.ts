@@ -51,8 +51,8 @@ export class CreateMembreComponent {
         (response: any) => {
           this.user = response;
           console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
-          // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.membreForm.patchValue({ author: this.user.name });
+         // Met à jour le champ author avec le nom de l'utilisateur connecté
+         this.membreForm.get('author')?.setValue(this.user.name);
 
         },
         (error) => {

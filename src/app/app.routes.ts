@@ -350,7 +350,7 @@ export const routes: Routes = [
         component:CreateNonPayeComponent
       },
       {
-        path: "modifier-attestation-non_paye",
+        path: "modifier-attestation-non_paye/:id",
         component:EditNonPayeComponent
       },
       // attestation  paye

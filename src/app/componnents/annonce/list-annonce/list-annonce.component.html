@@ -25,12 +25,12 @@
           <!-- Informations supplémentaires -->
           <div class="d-flex justify-content-between">
             <span class="badge badge-secondary">
-              <i class="fas fa-user mr-1"></i> Auteur: {{ annonce.author }}
+              <i class="fas fa-user mr-1"></i> : {{ annonce.author }}
             </span>
             <span class="badge badge-info">
               <i class="fas fa-calendar-alt mr-1"></i> {{ annonce.created_at | date }}
             </span>
-          </div>
+          </div><br><br>
 
           <!-- Fichiers joints si disponibles -->
         <div *ngIf="annonce.fichiers?.length" class="mt-3">

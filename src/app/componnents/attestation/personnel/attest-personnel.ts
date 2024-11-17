@@ -3,7 +3,7 @@ export class AttestPersonnel {
   id!:number
   author: string ="";
   ref_dem_part: string ="";
-  date_certification!: Date;
+  certification_date!: Date;
   amount!: number;
   open_close!:boolean;
   status?:number;

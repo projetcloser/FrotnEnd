@@ -65,25 +65,17 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <table class="table table-border table-striped custom-table mb-0 dataTable no-footer" id="dataTable"
-                role="grid" aria-describedby="dataTable_info">
+              <table class="table table-striped table-hover">
                 <thead>
                   <tr role="row">
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-sort="ascending" aria-label="Ref_DP: activate to sort column descending"
-                      style="width: 177.141px;">Ref_DP</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Date: activate to sort column ascending" style="width: 53.0625px;">Date</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Matricule: activate to sort column ascending" style="width: 71.6875px;">Matricule</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Membre: activate to sort column ascending" style="width: 301.797px;">Membre</th>
+                    <th scope="col">Ref_DP</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Membre</th>
                     <!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                       aria-label="Statut: activate to sort column ascending" style="width: 45.5469px;">Statut</th> -->
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="PDF: activate to sort column ascending" style="width: 29.9531px;">PDF</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Auteur: activate to sort column ascending" style="width: 128.812px;">Auteur</th>
+                    <th scope="col">PDF</th>
+                    <th scope="col">Auteur</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,7 +85,7 @@
                     <!--<td><a href="#"></a></td>-->
                     <td><a href="#">{{attest.created_at | date: 'dd/MM/yyyy'}} </a></td>
                     <td><a href="#">{{ getmemberMatricule(attest.member_id) }}</a></td>
-                    <td><a href="#"><img width="28" height="28" src=""
+                    <td><a href="#"><img width="28" height="28" height="28" src="assets/img/user.jpg" 
                       class="rounded-circle m-r-5"
                           alt="">{{ getMemberName(attest.member_id) }}</a></td>
 

@@ -17,27 +17,45 @@ import { EntrepriseServiceService } from '../../../entreprise/entreprise-service
 })
 export class IndexNonPayeComponent {
   attestations: NonPaye[] = [];
+  statusFilter = 1; // Filtre par défaut : non payé
   members:Membre[]=[];
   companies:Entreprise[]=[];
   constructor(private router: Router,private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService) {}
 
   ngOnInit(): void {
-    this.loadAttestations();
+    // this.loadAttestations();
+    this.loadAttestationsByStatus(this.statusFilter);
     this.getMemberALL();
     this.getCompanies();
   }
 
-  loadAttestations(): void {
-    this.attestationService.getAttestations().subscribe(data => {
-      this.attestations = data;
-      console.log('info sur attestationentreprise', this.attestations);
-
-    });
+  loadAttestationsByStatus(status: number): void {
+    this.attestationService.getAttestationsByStatus(status).subscribe(
+      (data) => {
+        this.attestations = data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des attestations', error);
+      }
+    );
   }
+
+  // loadAttestations(): void {
+  //   this.attestationService.getAttestations().subscribe(data => {
+  //     this.attestations = data;
+  //     console.log('info sur attestationentreprise', this.attestations);
+
+  //   });
+  // }
+
+
 
   deleteAttestation(id: number): void {
     this.attestationService.deleteAttestation(id).subscribe(() => {
-      this.loadAttestations();
+      // this.loadAttestations();
+      this.loadAttestationsByStatus(this.statusFilter);
+      console.log('Suppression confirmée pour l\'ID:', id);
+
     });
   }
 
@@ -46,21 +64,21 @@ export class IndexNonPayeComponent {
   }
 
   navigateToFormEdit() {
-    this.router.navigate(['/Closer/modifier-attestation-non_paye']);
+    this.router.navigate(['/Closer/modifier-attestation-non_paye,']);
   }
 
    // Méthode de confirmation avant la suppression
    confirmDelete(id: number) {
     const confirmed = confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
     if (confirmed) {
-      this.deletePersonnel(id);
+      this.deleteAttestation(id);
     }
   }
 
   // Suppression de la personne avec l'ID donné
   deletePersonnel(id: number) {
     // Vous pouvez appeler ici votre service pour la suppression, par exemple :
-    // this.personnelService.deletePersonnel(id).subscribe(response => { ... });
+    // this.attestationService.(id).subscribe(response => { ... });
     console.log('Suppression confirmée pour l\'ID:', id);
     // Redirection ou autre logique après la suppression
   }

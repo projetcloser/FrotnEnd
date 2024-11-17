@@ -11,7 +11,7 @@ import { ExcelService } from '../../../services/excel.service';
 @Component({
   selector: 'app-index-membre',
   standalone: true,
-  imports: [LoadingComponent,RouterModule, RouterLink, CommonModule,],
+  imports: [LoadingComponent,RouterModule, RouterLink, CommonModule],
   templateUrl: './index-membre.component.html',
   styleUrl: './index-membre.component.css'
 })
@@ -48,23 +48,26 @@ export class IndexMembreComponent implements OnInit{
   }
 
   ngOnInit(): void{
-    this.getmember();
+    // this.getmember();
     this.loadMembres();
+    this.membreService.getAll().subscribe((data: Membre[]) => {
+      this.membres = data;
+    });
   }
 
-  getmember():void{
-    this.membreService.getAll().subscribe(
-      (data) => {
-        console.log(data);
+  // getmember():void{
+  //   this.membreService.getAll().subscribe(
+  //     (data) => {
+  //       console.log(data);
 
-        this.membres = data; // Assigner directement les données au tableau de villes
-      },
-      error => {
-        console.error('Erreur lors de la récupération des membres :', error);
-      }
+  //       this.membres = data; // Assigner directement les données au tableau de villes
+  //     },
+  //     error => {
+  //       console.error('Erreur lors de la récupération des membres :', error);
+  //     }
 
-  )
-  }
+  // )
+  // }
     /**
    * Write code on Method
    *

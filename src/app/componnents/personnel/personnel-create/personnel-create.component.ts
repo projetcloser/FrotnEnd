@@ -45,11 +45,7 @@ export class PersonnelCreateComponent implements OnInit{
      private router: Router,private cityService: VilleServiceService,
     private countryService: PaysServiceService) {
       this.personnelForm = this.fb.group({
-        // statut: [ Validators.required], // 'married' or 'celibataire'
-        // lastname: ['',[Validators.required, Validators.minLength(2)] ],
-        // firstname: ['', [Validators.required, Validators.minLength(2)]],
-        // email: ['', [Validators.required, Validators.email]],
-        // date_card_validity: [''],
+
         // phone: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)] ],
         statut: [], // 'married' or 'celibataire'
         lastname: [''],
@@ -112,16 +108,6 @@ export class PersonnelCreateComponent implements OnInit{
     });
   }
 
-  // loadCompanies(): void {
-  //   this.personnelService.getCompanies().subscribe(
-  //     (data) => {
-  //       this.companies = data;
-  //     },
-  //     (error) => {
-  //       console.error('Erreur lors de la récupération des entreprises', error);
-  //     }
-  //   );
-  // }
   handleFileInput(event: any): void {
     const file = (event.target as HTMLInputElement)?.files?.[0];
     this.personnelForm.patchValue({

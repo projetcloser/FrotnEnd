@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class IndexEvenementComponent {
   evenements: Evenement[] = [];
+  loading = false;
+
 
   constructor(private evenementService: EvenementService,private router:Router) {}
 
@@ -27,6 +29,34 @@ export class IndexEvenementComponent {
       this.evenements = data;
     });
   }
+
+  incrementParticipant(id: number) {
+    this.evenementService.incrementParticipant(id).subscribe(() => {
+      this.loadEvenements();
+
+      
+    });
+  }
+
+
+  decrementParticipant(id: number) {
+    if (this.loading) return; // Ignore si un appel est déjà en cours
+    this.loading = true;
+
+    this.evenementService.decrementParticipant(id).subscribe(
+      (updatedEvenement) => {
+        this.evenements = this.evenements.map((event) =>
+          event.id === updatedEvenement.id ? updatedEvenement : event
+        );
+        this.loading = false;
+      },
+      (error) => {
+        console.error("Erreur lors de l'annulation de participation :", error);
+        this.loading = false;
+      }
+    );
+  }
+
 
   deleteEvenement(id: number) {
     this.evenementService.deleteEvenement(id).subscribe(() => {

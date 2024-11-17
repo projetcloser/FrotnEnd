@@ -72,30 +72,20 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-12">
-                        <table class="table table-bordered table-hover dataTable no-footer" id="dataTable" width="100%"
-                          cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                        <table class="table table-striped table-hover" >
                           <thead>
                             <tr align="center" style="background-color: #dde9dd" role="row">
-                              <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                aria-sort="ascending" aria-label="Titre: activate to sort column descending"
-                                style="width: 35.1094px;">Titre</th>
-                              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                aria-label="Lieu: activate to sort column ascending" style="width: 31.0625px;">Lieu</th>
-                              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                aria-label="Nbre participants: activate to sort column ascending"
-                                style="width: 89.5312px;">Nbre participants</th>
-                              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                aria-label="Coût: activate to sort column ascending" style="width: 35.6719px;">Coût</th>
-                              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                aria-label="Date bedut: activate to sort column ascending" style="width: 44.3906px;">
+                              <th scope="col">Titre</th>
+                              <th scope="col">Lieu</th>
+                              <th scope="col">Nbre participants</th>
+                              <th scope="col">Coût</th>
+                              <th scope="col">
                                 Date bedut</th>
-                              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                aria-label="Date fin: activate to sort column ascending" style="width: 35.2344px;">Date
+                              <th scope="col">Date
                                 fin</th>
                               <!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                 aria-label="Statut: activate to sort column ascending" style="width: 182px;">Statut</th> -->
-                              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                aria-label="Options: activate to sort column ascending" style="width: 59.3281px;">
+                              <th scope="col">
                                 Options</th>
                             </tr>
                           </thead>
@@ -104,11 +94,12 @@
                             <tr role="row" class="odd" *ngFor="let evenement of evenements">
                               <td align="center" class="sorting_1">{{evenement.title}}</td>
                               <td align="center">{{evenement.place}} </td>
-                              <td align="center">{{evenement.participants}} </td>
+                              <td align="center" >{{evenement.participants}} </td>
                               <td align="center">{{evenement.price}} </td>
 
                               <td align="center">{{evenement.start_date}} </td>
                               <td align="center">{{evenement.end_date}}</td>
+
 
                               <!-- <td>
 
@@ -117,6 +108,25 @@
                               </td> -->
 
                               <td align="center" style="width: 18%">
+
+                               <tr>
+                                <td> <!-- <button (click)="incrementParticipant(evenement.id)">+1 Participant</button> -->
+                                  <button
+                                  id="btn-{{evenement.id}}"
+                                  class="btn btn-primary btn-increment"
+                                  (click)="incrementParticipant(evenement.id)">
+                                  <i class="fas fa-user-plus"></i>
+                                  </button>
+
+                                </td>
+                                <td> <!-- Bouton pour annuler la participation -->
+                                  <button
+                                    id="btn-decrement-{{evenement.id}}"
+                                    class="btn btn-danger btn-decrement"
+                                    (click)="decrementParticipant(evenement.id)">
+                                    <i class="fas fa-user-minus"></i>
+                                 </button></td>
+                               </tr>
 
                                 <a class="btn btn-outline-primary btn-sm" [routerLink]="['/Closer/evenement/details', evenement.id]">
 

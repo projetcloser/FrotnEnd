@@ -37,6 +37,8 @@ export class AttestPersonnelService {
     return this.http.post<AttestPersonnel>(this.apiUrl, attestPersonnel, { headers });
   }
 
+
+
   // Mettre à jour une attestation existante
   update(id: number, attestPersonnel: AttestPersonnel): Observable<AttestPersonnel> {
 

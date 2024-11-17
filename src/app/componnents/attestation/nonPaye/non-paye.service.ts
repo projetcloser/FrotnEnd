@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { NonPaye } from './non-paye';
 import { environment } from '../../../../environments/environment.development';
 import { Membre } from '../../../models/membre';
@@ -18,6 +18,14 @@ export class NonPayeService {
   getAttestations(): Observable<NonPaye[]> {
     return this.http.get<NonPaye[]>(this.apiUrl);
   }
+  getAttestationsByStatus(status: number): Observable<NonPaye[]> {
+    return this.http.get<NonPaye[]>(this.apiUrl).pipe(
+      map((attestations: NonPaye[]) =>
+        attestations.filter((attestation: NonPaye) => attestation.status === status)
+      )
+    );
+  }
+
 
   getAttestation(id: number): Observable<NonPaye> {
     return this.http.get<NonPaye>(`${this.apiUrl}/${id}`);
