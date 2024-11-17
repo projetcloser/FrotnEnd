@@ -15,7 +15,9 @@ export class Membre {
   status!: number;
   open_close?:boolean;
   city_id!:number;
+  group_id?:number;
   country_id!:number;
   created_at!: Date;
+  member_id!: number; // ID du membre concerné
 }
 

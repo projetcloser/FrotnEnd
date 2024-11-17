@@ -9,3 +9,81 @@
   width: 17px;  /* Adjust the width */
   height: 17px;  /* Adjust the height */
 }
+
+/* bouton incrementation */
+
+
+.btn-increment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px; /* Espace entre l'icône et le texte */
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px;
+  /* background: linear-gradient(45deg, #007bff, #0056b3); Dégradé/ */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-increment:hover {
+  transform: scale(1.05); /* Agrandissement au survol */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ombre au survol */
+}
+
+.btn-increment:active {
+  transform: scale(0.95); /* Réduction au clic */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Ombre réduite au clic */
+}
+
+.btn-increment i {
+  font-size: 18px;
+}
+
+/* bouton decrementation participation */
+
+.btn-decrement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px;
+  /* background: linear-gradient(45deg, #dc3545, #b21f2d); Dégradé rouge */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-decrement:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-decrement:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-decrement i {
+  font-size: 18px;
+}
+
+/* champ participant */
+.highlight-increment {
+  background-color: #d4edda; /* Vert clair */
+  color: #155724;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.highlight-decrement {
+  background-color: #f8d7da; /* Rouge clair */
+  color: #721c24;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}

@@ -52,6 +52,17 @@
                     </div> -->
                   </div>
 
+                   <!-- groupe -->
+                   <div class="col-md-6">
+                    <span>Groupe</span>
+                    <select formControlName="group_id" class="form-control">
+                      <option *ngFor="let country of groupe" [value]="country.id">{{ country.label }}</option>
+                    </select>
+                    <!-- <div *ngIf="membreForm.controls['country_id'].invalid && membreForm.controls['country_id'].touched" class="text-danger">
+                      <small *ngIf="membreForm.controls['country_id'].hasError('required')">Ville est requise.</small>
+                    </div> -->
+                  </div>
+
 
                 </div>
 
@@ -131,7 +142,7 @@
                     <!-- Piece jointe -->
                     <div class="col-md-6">
                       <span>Pièce jointe</span>
-                      <input type="file" accept=".pdf, .txt" (change)="onSelectDocument($event)" class="form-control"  />
+                      <input type="file" accept=".pdf, .txt,.doc" (change)="onSelectDocument($event)" class="form-control"  />
                       <!-- formControlName="folder"  -->
                     </div>
                      <!--Nombre D'enfants -->

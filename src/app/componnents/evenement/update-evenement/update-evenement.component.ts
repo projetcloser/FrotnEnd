@@ -59,8 +59,8 @@ export class UpdateEvenementComponent implements OnInit {
     if (this.evenementForm.valid) {
       this.evenementService.updateEvenement(this.evenementId, this.evenementForm.value).subscribe(() => {
         // Rediriger après la mise à jour ou afficher un message de succès
-        this.router.navigate(['/Closer/evenements']);
-        alert('modifier')
+        this.router.navigate(['/Closer/evenement']);
+        alert('voulez vous modifier!')
       });
     } else {
       console.error('Le formulaire est invalide');

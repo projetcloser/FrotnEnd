@@ -34,6 +34,7 @@ export class ListDetteComponent implements OnInit {
     });
   }
 
+
   loadMembres(): void {
     this.membreService.getAll().subscribe(data => {
       this.membres = data;
@@ -65,4 +66,6 @@ export class ListDetteComponent implements OnInit {
       this.loadDettes();
     });
   }
+
+  
 }

@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">Créer une  annonce</h2>
 
-  <form [formGroup]="annonceForm" (ngSubmit)="onSubmit()" novalidate>
+  <form [formGroup]="annonceForm" (ngSubmit)="onSubmit()" novalidate enctype="multipart/form-data">
     <div class="row">
       <!-- Champ auteur -->
       <div class="col-md-12 mb-3">
@@ -31,6 +31,19 @@
           </div> -->
         </div>
       </div>
+
+        <!-- Champ Object -->
+        <div class="col-md-12 mb-3">
+          <label for="object" class="form-label font-weight-bold">Groupe <span class="text-danger">*</span></label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
+            </div>
+            <select formControlName="group_id" class="form-control">
+              <option *ngFor="let country of groupe" [value]="country.id">{{ country.label }}</option>
+            </select>
+          </div>
+        </div>
 
       <!-- Champ Contenu -->
       <div class="col-md-12 mb-3">

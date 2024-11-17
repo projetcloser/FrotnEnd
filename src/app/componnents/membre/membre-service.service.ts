@@ -43,15 +43,15 @@ export class MembreServiceService {
   //     );
   // }
 
-  create(membre: FormData): Observable<any> {
+  create(membre: FormData): Observable<Membre> {
     const token = localStorage.getItem('access_token');  // Récupérer le token stocké
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
       'Content-Type': 'application/json'
     });
-    return this.httpclient.post(`${this.apiURL}`, membre,{headers})
-      .pipe(catchError(this.errorHandler));
+    return this.httpclient.post<Membre>(`${this.apiURL}`, membre,{headers});
+      // .pipe(catchError(this.errorHandler));
   }
   // create(memberData: any): Observable<any> {
   //   const token = localStorage.getItem('access_token');  // Récupérer le token stocké
@@ -118,5 +118,5 @@ export class MembreServiceService {
     return this.httpclient.get<any[]>(this.citiesUrl);
   }
 
-  
+
 }

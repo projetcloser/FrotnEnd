@@ -8,6 +8,8 @@ import { VilleServiceService } from '../../ville/ville-service.service';
 import { CommonModule } from '@angular/common';
 import { image } from 'html2canvas/dist/types/css/types/image';
 import { AuthService } from '../../../components/auth/auth.service';
+import { Poste } from '../../poste/poste';
+import { PosteService } from '../../poste/poste.service';
 
 @Component({
   selector: 'app-create-membre',
@@ -24,6 +26,7 @@ export class CreateMembreComponent {
   country:any;
   city:any;
   user: any = {};
+  groupe:Poste[]=[];
 
   currentTime = new Date();
   currentDay = new Date();
@@ -32,7 +35,8 @@ export class CreateMembreComponent {
   constructor(public membreService:MembreServiceService, private router:Router,private countryService:PaysServiceService,
      private fb: FormBuilder,
      private authService: AuthService,
-    private cityService:VilleServiceService
+    private cityService:VilleServiceService,
+    private groupeService:PosteService,
   ){
 
   }
@@ -47,8 +51,8 @@ export class CreateMembreComponent {
         (response: any) => {
           this.user = response;
           console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
-          // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.membreForm.patchValue({ author: this.user.name });
+         // Met à jour le champ author avec le nom de l'utilisateur connecté
+         this.membreForm.get('author')?.setValue(this.user.name);
 
         },
         (error) => {
@@ -76,6 +80,16 @@ export class CreateMembreComponent {
       }
     });
 
+     // goupe
+     this.groupeService.getAmendes().subscribe({
+      next: (data) => {
+        this.groupe = data;
+      },
+      error: (err) => {
+        console.error('Error fetching groupe', err);
+      }
+    });
+
   }
 
   initForm() {
@@ -93,6 +107,7 @@ export class CreateMembreComponent {
       open_close: [false],
       city_id: [''],
       country_id:[''],
+      group_id:[],
       created_at: [new Date()],
       picture: null,
       folder: null
@@ -190,6 +205,7 @@ export class CreateMembreComponent {
     formData.append('phone_2', this.membreForm.value.phone_2);
     formData.append('city_id', this.membreForm.value.city_id);
     formData.append('country_id', this.membreForm.value.country_id);
+    formData.append('group_id', this.membreForm.value.group_id);
     formData.append('picture', this.membreForm.controls['picture'].value);
     formData.append('folder', this.membreForm.controls['folder'].value);
 
@@ -204,24 +220,17 @@ export class CreateMembreComponent {
     formData.forEach((value:any, key:any) => {
       console.log(key, value);
   });
-  // const amendeData = this.amendeForm.getRawValue();
-    // Ajout des fichiers sélectionnés
-    // if (this.selectedFiles['picture']) {
-    //   formData.append('picture', this.selectedFiles['picture']);
-    // }
-    // if (this.selectedFiles['folder']) {
-    //   formData.append('folder', this.selectedFiles['folder']);
-    // }
+
     // console.log('Données envoyées :', this.membreForm.value);
     this.membreService.create(formData).subscribe(
       data => {
         // this.loadingNewExamen = false
-        if (data.code === 200) {
+        // if (data.code === 200) {
           this.router.navigate(['/Closer/membre']);
-        } else {
-          console.log('erreur : ', data.message);
+        // } else {
+          // console.log('erreur : ', data.message);
 
-        }
+        // }
       }
 
 

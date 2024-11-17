@@ -17,6 +17,8 @@ export class DetteServiceService {
     return this.http.get<Dette[]>(this.apiUrl);
   }
 
+  
+
   addDette(dette: Dette): Observable<Dette> {
 
   const token = localStorage.getItem('access_token');  // Récupérer le token stocké
@@ -51,5 +53,9 @@ export class DetteServiceService {
     return this.http.get<Dette>(`${this.apiUrl}/${id}`);
   }
 
+   // Calculer les dettes
+   calculateDettes(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/calculate`, {});
+  }
 }
 // C:\wamp64\bin\php\php8.1.0

@@ -46,51 +46,51 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <table class="table table-border table-striped custom-table mb-0 dataTable no-footer" id="dataTable"
-                role="grid" aria-describedby="dataTable_info">
+              <table class="table table-striped table-hover">
                 <thead>
                   <tr role="row">
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-sort="ascending" aria-label="Ref_DE: activate to sort column descending"
-                      style="width: 185.828px;">Ref_DE</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Date: activate to sort column ascending" style="width: 35.2344px;">Date</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Matricule: activate to sort column ascending" style="width: 71.6875px;">Matricule</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Nom ingénieur: activate to sort column ascending" style="width: 99.8281px;">Nom
+
+
+
+                    <th scope="col">Ref_DE</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Nom
                       ingénieur</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Entreprise: activate to sort column ascending" style="width: 169.406px;">Entreprise
+                    <th scope="col">Entreprise
                     </th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Statuts: activate to sort column ascending" style="width: 73px;">Statuts</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="PDF: activate to sort column ascending" style="width: 29.9531px;">PDF</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-label="Auteur: activate to sort column ascending" style="width: 62.4688px;">Auteur</th>
+                    <th scope="col">Statuts</th>
+                    <th scope="col">PDF</th>
+                    <th scope="col">Auteur</th>
                   </tr>
                 </thead>
                 <tbody>
 
-                  <tr role="row" class="odd">
-                    <td class="sorting_1"><a href="#">ATTE000001003_14819</a></td>
+                  <tr role="row" class="odd"  *ngFor="let item of attestations">
+
+
+                    <td class="sorting_1"><a href="#">{{item.id}}</a></td>
                     <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-04-24</a></td>
-                    <td><a href="#">08- 0996</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUEMO TIENTCHEU Yannick Hervé </a></td>
-                    <td><a href="#">ENSERBAT TP</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#">Avis D'appel à Manifestation D’interet
-N°009/am/cuy/2024 Du 22 Mars 2024
-                                              </a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
+                    <td><a href="#">{{item.year | date}}</a></td>
+                    <td><a href="#">{{ getmemberMatricule(item.member_id) }}</a></td>
+                    <td><a href="#"><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5"
+                          alt="">{{ getMemberName(item.member_id) }} </a></td>
+                    <td><a href="#">{{ getCompaniesNames(item.company_id) }}</a></td>
+
                     <td>
 
-                      <span class="custom-badge status-green">SUCCESS</span>
+                      <span class="custom-badge status-green">
+                        <span class="badge" [ngClass]="{
+                          'badge-success': item.status === 0,
+                          'badge-warning': item.status === 3,
+                          'badge-danger': item.status === 1
+                        }">
+                          {{
+                            item.status === 3 ? 'PAYE ' :
+                            item.status === 0 ? 'ANCIEN' :
+                            'RAS'
+                          }}
+                        </span></span>
                     </td>
                     <td align="center">
                       <a href="attestation.php?id=9140" target="_blank">
@@ -104,471 +104,10 @@ N°009/am/cuy/2024 Du 22 Mars 2024
 
                     </td>
 
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
+                    <td><a href="#">{{item.author}}</a></td>
 
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
                   </tr>
-                  <tr role="row" class="even">
-                    <td class="sorting_1"><a href="#">ATTE000001003_15682</a></td>
-                    <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-05-13</a></td>
-                    <td><a href="#">08- 0996</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUEMO TIENTCHEU Yannick Hervé </a></td>
-                    <td><a href="#">ENSERBAT TP</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#">Asmi N°003/asmi/feicom/dg/2024 Du 15 Avril 2024                                 </a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
-                    <td>
 
-                      <span class="custom-badge status-green">SUCCESS</span>
-                    </td>
-                    <td align="center">
-                      <a href="attestation.php?id=9558" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16  custom-icon" aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com --></a>
-
-                    </td>
-
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
-
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
-                  </tr>
-                  <tr role="row" class="odd">
-                    <td class="sorting_1"><a href="#">ATTE000001003_16171</a></td>
-                    <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-06-08</a></td>
-                    <td><a href="#">08- 0996</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUEMO TIENTCHEU Yannick Hervé </a></td>
-                    <td><a href="#">FCN BTP</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#">Aono N°009/aono/tradex/cipm/24 Du 15 Mai 2024   Construction D'une Station-service Tradex A Nkolmetet
-                                          </a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
-                    <td>
-
-                      <span class="custom-badge status-green">SUCCESS</span>
-                    </td>
-                    <td align="center">
-                      <a href="attestation.php?id=9902" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16  custom-icon" aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com --></a>
-
-                    </td>
-
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
-
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
-                  </tr>
-                  <tr role="row" class="even">
-                    <td class="sorting_1"><a href="#">ATTE000001003_16475</a></td>
-                    <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-06-21</a></td>
-                    <td><a href="#">08- 0996</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUEMO TIENTCHEU Yannick Hervé </a></td>
-                    <td><a href="#">ENSERBAT TP</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#">Avis De Sollicitation à Manifestation D’intérêt N°006/asmi/mincommerce/du 07 Juin 2024
-                                              </a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
-                    <td>
-
-                      <span class="custom-badge status-green">SUCCESS</span>
-                    </td>
-                    <td align="center">
-                      <a href="attestation.php?id=10071" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16  custom-icon" aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com --></a>
-
-                    </td>
-
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
-
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
-                  </tr>
-                  <tr role="row" class="odd">
-                    <td class="sorting_1"><a href="#">ATTE000001003_17006</a></td>
-                    <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-07-16</a></td>
-                    <td><a href="#">08- 0996</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUEMO TIENTCHEU Yannick Hervé </a></td>
-                    <td><a href="#">ENSERBAT TP</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#">Avis D'appel D’offres National Ouvert N°0082/aono/minhdu/cipm/2024 Du 13 Juin 2024                                 </a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
-                    <td>
-
-                      <span class="custom-badge status-green">SUCCESS</span>
-                    </td>
-                    <td align="center">
-                      <a href="attestation.php?id=10458" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16  custom-icon" aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com --></a>
-
-                    </td>
-
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
-
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
-                  </tr>
-                  <tr role="row" class="even">
-                    <td class="sorting_1"><a href="#">ATTE000001003_17329</a></td>
-                    <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-07-29</a></td>
-                    <td><a href="#">08- 0996</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUEMO TIENTCHEU Yannick Hervé </a></td>
-                    <td><a href="#">ENSERBAT TP</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#">Dp N°5636/dp/mintp/cccm-tr/cspm-pfc/2024 Pour La Surveillance Et Contrôle Des Travaux De Réhabilitation De La Section De Route Tchamakari à Zizague
-</a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
-                    <td>
-
-                      <span class="custom-badge status-green">SUCCESS</span>
-                    </td>
-                    <td align="center">
-                      <a href="attestation.php?id=10714" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16  custom-icon" aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com --></a>
-
-                    </td>
-
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
-
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
-                  </tr>
-                  <tr role="row" class="odd">
-                    <td class="sorting_1"><a href="#">ATTE000001003_17709</a></td>
-                    <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-08-14</a></td>
-                    <td><a href="#">08- 0996</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUEMO TIENTCHEU Yannick Hervé </a></td>
-                    <td><a href="#">ENSERBAT TP</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#">Avis D’appel D’offres National Restreint N°21/aonr/cipmpi/2024 Du 17 Juillet 2024
-                                              </a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
-                    <td>
-
-                      <span class="custom-badge status-green">SUCCESS</span>
-                    </td>
-                    <td align="center">
-                      <a href="attestation.php?id=11016" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16  custom-icon" aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com --></a>
-
-                    </td>
-
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
-
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
-                  </tr>
-                  <tr role="row" class="even">
-                    <td class="sorting_1"><a href="#">ATTE000001004_14881</a></td>
-                    <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-04-24</a></td>
-                    <td><a href="#">18- 2286</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUFANA Jean Cyrille </a></td>
-                    <td><a href="#">INTEGC SARL</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#"> N°009/ami/cuy/2024 Du 22/03/2024</a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
-                    <td>
-
-                      <span class="custom-badge status-green">SUCCESS</span>
-                    </td>
-                    <td align="center">
-                      <a href="attestation.php?id=9170" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16  custom-icon" aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com --></a>
-
-                    </td>
-
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
-
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
-                  </tr>
-                  <tr role="row" class="odd">
-                    <td class="sorting_1"><a href="#">ATTE000001004_16769</a></td>
-                    <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-07-04</a></td>
-                    <td><a href="#">18- 2286</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUFANA Jean Cyrille </a></td>
-                    <td><a href="#">BASS (WBC)</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#">N°014/aono/rs/crs/sg/dag/sm/cccm-bec/cipm/2024 Du 11/06/2024 Pour Les Travaux De Construction Du Centre Des Arts Et Métiers Du Conseil Régional Du Sud A Ambam Dans Le Département</a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
-                    <td>
-
-                      <span class="custom-badge status-green">SUCCESS</span>
-                    </td>
-                    <td align="center">
-                      <a href="attestation.php?id=10281" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16  custom-icon" aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com --></a>
-
-                    </td>
-
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
-
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
-                  </tr>
-                  <tr role="row" class="even">
-                    <td class="sorting_1"><a href="#">ATTE000001004_16889</a></td>
-                    <!--<td><a href="#">E-banking</a></td>-->
-                    <td><a href="#">2024-07-11</a></td>
-                    <td><a href="#">18- 2286</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg" class="rounded-circle m-r-5"
-                          alt="">KOUFANA Jean Cyrille </a></td>
-                    <td><a href="#">JUPITER ACTION 5</a></td>
-                    <!--<td><a href="#"><img width="28" height="28" src="assetss/img/user.jpg"-->
-                    <!--         class="rounded-circle m-r-5"-->
-                    <!--         alt="">ONIGC NOCE</a></td>-->
-                    <!--<td><a href="#">Aao N°0027/aoo/minader/sg/dda/pdcva/cspm/2024 Pour Les Travaux De Rehabilitation De 242,38km De Piste Rurales Dans Les Departements De La Lekie, De La Mefou&afamba, Du Mbam & Inoub</a></td>-->
-                    <!--<td><a href="#">En cours</a></td>-->
-                    <td>
-
-                      <span class="custom-badge status-green">SUCCESS</span>
-                    </td>
-                    <td align="center">
-                      <a href="attestation.php?id=10368" target="_blank">
-                        <svg class="svg-inline--fa fa-print fa-w-16  custom-icon" aria-hidden="true" focusable="false"
-                          data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512" data-fa-i2svg="">
-                          <path fill="currentColor"
-                            d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
-                          </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com --></a>
-
-                    </td>
-
-                    <td align="center">
-                    </td>
-                    <!-- <td class="text-right">
-                          <div class="dropdown dropdown-action">
-                              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                              <div class="dropdown-menu dropdown-menu-right">
-
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fas fa-random"></i>
-                                      Transférer</a>
-                                  <a class="dropdown-item" href="edit-patient.html"><i
-                                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                                  <a class="dropdown-item" href="#" data-toggle="modal"
-                                     data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i>
-                                      Delete</a>
-                              </div>
-                          </div>
-                      </td> -->
-                  </tr>
                 </tbody>
               </table>
             </div>

@@ -6,8 +6,9 @@
       <!-- Champ pour la date (readonly) avec icône -->
       <div class="form-group mb-4">
         <label for="date" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Date</label>
-        <input type="text" id="date" class="form-control border-0 bg-light" formControlName="date" readonly>
+        <input type="text" id="date" class="form-control border-0 bg-light" formControlName="certification_date" readonly>
       </div>
+      <input type="hidden" formControlName="ref_dem_part"  [value]="reference">
 
       <!-- Champ pour l'auteur (readonly) avec icône -->
       <div class="form-group mb-4">
