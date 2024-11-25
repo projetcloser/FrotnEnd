@@ -15,10 +15,13 @@ import { ExcelService } from '../../../services/excel.service';
 })
 export class IndexCachetComponent implements OnInit {
   cachets: Cachet[] = [];
+  filteredCachets: any[] = []; // Liste filtrée des cachets
 
   countries: any[] = [];
   cities: any[] = [];
   members:any[]=[];
+
+  searchTerm: string = ''; // Terme de recherche
 
   currentTime = new Date();
   currentDay = new Date();
@@ -28,6 +31,7 @@ export class IndexCachetComponent implements OnInit {
   ngOnInit(): void {
     this.cachetService.getCachets().subscribe((data: any[]) => {
       this.cachets = data;
+      this.filteredCachets = [...this.cachets]; // Initialisation de la liste filtrée
     });
 
     this.loadCities();
@@ -138,6 +142,27 @@ getMembersmatrivule(city_id: number): string {
 
     // Exporter les cachets filtrés en fichier Excel
     this.excelService.exportAsExcelFile(filteredCachets, 'Cachets_Status_' + status);
+  }
+
+   // Filtrer les cachets en fonction du terme de recherche
+   filterCachets(): void {
+    const term = this.searchTerm.toLowerCase();
+
+    this.filteredCachets = this.cachets.filter(cachet => {
+      const memberName = this.getMembersName(cachet.member_id).toLowerCase();
+      const cityName = this.getCityName(cachet.city_id).toLowerCase();
+      const statusLabel = this.getStatusLabel(cachet.status).toLowerCase();
+
+      return (
+        cachet.receipt_number.toLowerCase().includes(term) ||
+        memberName.includes(term) ||
+        cityName.includes(term) ||
+        statusLabel.includes(term) ||
+        cachet.year.toString().includes(term) ||
+        cachet.phone.toLowerCase().includes(term) ||
+        cachet.author.toLowerCase().includes(term)
+      );
+    });
   }
 }
 

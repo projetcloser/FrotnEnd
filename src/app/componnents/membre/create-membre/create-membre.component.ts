@@ -32,6 +32,8 @@ export class CreateMembreComponent {
   currentDay = new Date();
   selectedFiles: { [key: string]: File | null } = { folder: null, picture: null };
 
+
+
   constructor(public membreService:MembreServiceService, private router:Router,private countryService:PaysServiceService,
      private fb: FormBuilder,
      private authService: AuthService,
@@ -49,10 +51,10 @@ export class CreateMembreComponent {
       fine_date: new Date().toLocaleDateString(), // Date actuelle formatée
       author:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
          // Met à jour le champ author avec le nom de l'utilisateur connecté
-         this.membreForm.get('author')?.setValue(this.user.name);
+         this.membreForm.get('author')?.setValue(this.user);
 
         },
         (error) => {
@@ -102,7 +104,7 @@ export class CreateMembreComponent {
       debt: [],
       phone: [''],
       phone_2: [''],
-      author: [{ value: '', disabled: true }],
+      author: [{ value: this.user.name, disabled: true }],
       status: [0],
       open_close: [false],
       city_id: [''],
@@ -219,10 +221,10 @@ export class CreateMembreComponent {
 
     formData.forEach((value:any, key:any) => {
       console.log(key, value);
-  });
+   });
 
     // console.log('Données envoyées :', this.membreForm.value);
-    this.membreService.create(formData).subscribe(
+    this.membreService.create(this.membreForm.value).subscribe(
       data => {
         // this.loadingNewExamen = false
         // if (data.code === 200) {

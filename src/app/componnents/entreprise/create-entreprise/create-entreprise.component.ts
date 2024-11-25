@@ -53,8 +53,10 @@ export class CreateEntrepriseComponent {
       date: new Date().toLocaleDateString(), // Date actuelle formatée
       auteur:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur compagnie connecté:', this.user);  // Vérifie les données ici
+          // Mettre à jour le champ 'author' avec le nom de l'utilisateur
+          this.entrepriseForm.patchValue({ author: this.user });
 
         },
         (error) => {
@@ -62,6 +64,8 @@ export class CreateEntrepriseComponent {
         }
     ) // Auteur connecté
     });
+
+
 
   }
 
@@ -84,10 +88,12 @@ export class CreateEntrepriseComponent {
 
   onSubmit() {
     if (this.entrepriseForm.valid) {
-      // const caisseData = this.caisseForm.value;
-      this.entrepriseService.create(this.entrepriseForm.value).subscribe(() => {
+      const entrpriseData = this.entrepriseForm.getRawValue();
+      this.entrepriseService.create(entrpriseData).subscribe(() => {
         this.router.navigate(['/Closer/entreprise']);
       });
     }
   }
+
+
 }

@@ -28,6 +28,9 @@ export class IndexCotisationComponent {
   membres: Membre[]=[];
   caisses: Caisse[]=[];
 
+  filteredCotisations: any[] = []; // Liste filtrée affichée
+  searchTerm: string = ''; // Terme de recherche
+
   countries: any[] = [];
   cities: any[] = [];
 
@@ -40,6 +43,7 @@ export class IndexCotisationComponent {
   loadcotisations() {
     this.cotisationService.getCotisations().subscribe((data: Cotisation[]) => {
       this.cotisations = data;
+      this.filteredCotisations = data;
     });
   }
 
@@ -174,6 +178,16 @@ export class IndexCotisationComponent {
 
     // Exporter les cachets filtrés en fichier Excel
     this.excelService.exportAsExcelFile(filteredCachets, 'Cotisations_Status_' + status);
+  }
+
+   // Fonction de recherche
+   searchCotisations(): void {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredCotisations = this.cotisations.filter((cotisation) =>
+      Object.values(cotisation).some((value) =>
+        String(value).toLowerCase().includes(term)
+      )
+    );
   }
 }
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

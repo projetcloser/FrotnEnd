@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { Membre } from '../../../models/membre';
 import { MembreServiceService } from '../membre-service.service';
 import { LoadingComponent } from '../../../components/loading/loading.component';
@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { ExcelService } from '../../../services/excel.service';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-index-membre',
   standalone: true,
-  imports: [LoadingComponent,RouterModule, RouterLink, CommonModule],
+  imports: [RouterModule, CommonModule,FormsModule,ReactiveFormsModule,],
   templateUrl: './index-membre.component.html',
   styleUrl: './index-membre.component.css'
 })
@@ -19,10 +20,24 @@ export class IndexMembreComponent implements OnInit{
   membres: Membre[]=[];
   countries: any[] = [];
   cities: any[] = [];
+
+  filteredMembres: Membre[] = []; // Liste filtrée
+  searchTerm: string = ''; // Terme de recherche
+
     // en voyer le loading
     isLoading:boolean = true;
 
-  constructor(private excelService: ExcelService,public membreService: MembreServiceService,private router: Router){}
+    // search back
+    searchForm: FormGroup;
+
+
+  constructor(private fb: FormBuilder,private excelService: ExcelService,public membreService: MembreServiceService,private router: Router){
+    this.searchForm = this.fb.group({
+      keyword: [''],
+      statut: [''],
+      gender: [''],
+    });
+  }
 
   navigateToForm() {
     this.router.navigate(['/Closer/nouveau-membre']);
@@ -50,10 +65,32 @@ export class IndexMembreComponent implements OnInit{
   ngOnInit(): void{
     // this.getmember();
     this.loadMembres();
+
+  }
+
+  // searchMembres(): void {
+  //   const term = this.searchTerm.toLowerCase();
+  //   this.filteredMembres = this.membres.filter((membre) =>
+  //     membre.lastname.toLowerCase().includes(term) ||
+  //     membre.firstname.toLowerCase().includes(term) ||
+  //     membre.matricule.toLowerCase().includes(term) ||
+  //     membre.phone.toLowerCase().includes(term)
+  //   );
+  // }
+
+  loadMembres() {
     this.membreService.getAll().subscribe((data: Membre[]) => {
       this.membres = data;
     });
   }
+
+  onSearch() {
+    const filters = this.searchForm.value;
+    this.membreService.searchMembers(filters).subscribe((data) => {
+      this.membres = data;
+    });
+  }
+
 
   // getmember():void{
   //   this.membreService.getAll().subscribe(
@@ -124,11 +161,9 @@ export class IndexMembreComponent implements OnInit{
       return city ? city.name : 'Non défini';
     }
 
-    loadMembres() {
-      this.membreService.getAll().subscribe(data => {
-        this.membres = data;
-      });
-    }
+
+
+
 
     getMembreName(membreId: number): string {
       const membre = this.membres.find(m => m.id === membreId);
@@ -166,5 +201,13 @@ export class IndexMembreComponent implements OnInit{
     // Exporter les cachets filtrés en fichier Excel
     this.excelService.exportAsExcelFile(filteredCachets, 'Memberss_Status_' + status);
   }
+
+  // filterDettes(): void {
+  //   this.filteredDettes = this.dettes.filter(dette =>
+  //     this.getMembreNom(dette.membre_id).toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //     dette.montant.toString().includes(this.searchTerm)
+  //   );
+  // }
+
 }
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

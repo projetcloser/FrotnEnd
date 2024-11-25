@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NonPayeService } from '../non-paye.service';
 import { NonPaye } from '../non-paye';
@@ -20,7 +20,19 @@ export class IndexNonPayeComponent {
   statusFilter = 1; // Filtre par défaut : non payé
   members:Membre[]=[];
   companies:Entreprise[]=[];
-  constructor(private router: Router,private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService) {}
+
+  // seracc back
+  searchForm: FormGroup;
+
+  constructor(private fb: FormBuilder,private router: Router,private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService) {
+    this.searchForm = this.fb.group({
+      keyword: [''],
+      company_id: [''],
+      year: [''],
+      motif: [''],
+      member_id: [''],
+    });
+  }
 
   ngOnInit(): void {
     // this.loadAttestations();
@@ -38,6 +50,12 @@ export class IndexNonPayeComponent {
         console.error('Erreur lors du chargement des attestations', error);
       }
     );
+  }
+  onSearch() {
+    const filters = this.searchForm.value;
+    this.attestationService.searchStaff(filters).subscribe((data) => {
+      this.attestations = data;
+    });
   }
 
   // loadAttestations(): void {

@@ -45,10 +45,10 @@ export class CreateAmendeComponent implements OnInit {
       fine_date: new Date().toLocaleDateString(), // Date actuelle formatée
       auteur:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.amendeForm.patchValue({ author: this.user.name });
+          this.amendeForm.patchValue({ author: this.user });
 
         },
         (error) => {
@@ -56,6 +56,7 @@ export class CreateAmendeComponent implements OnInit {
         }
     ) // Auteur connecté
     });
+
 
     // Récupérer la liste des membres
     this.loadmembres();
@@ -80,13 +81,7 @@ onSubmit() {
   }
 }
 
-  // onSubmit() {
-  //   if (this.amendeForm.valid) {
-  //     this.amendeService.createAmende(this.amendeForm.value).subscribe(() => {
-  //       this.router.navigate(['/Closer/amendes']);
-  //     });
-  //   }
-  // }
+
   cancel() {
     this.router.navigate(['/Closer/amendes']);
   }

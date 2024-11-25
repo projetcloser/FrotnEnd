@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Personnel } from './personnel';
@@ -16,7 +16,7 @@ export class PersonnelService {
   private apiRecup =  environment.apiUrl
   // private apiURL = environment.apiUrl+"personnels";
   private apiURL = environment.apiUrl+"staff";
-  private createURL = environment.apiUrl+"staff/staff";
+
   private countriesUrl = environment.apiUrl+'location/countries';
   private citiesUrl = environment.apiUrl+'location/cities';
 
@@ -35,6 +35,23 @@ export class PersonnelService {
         // map(response=> response.body.data),
         catchError(this.errorHandler)
       );
+  }
+
+  searchStaff(filters: any): Observable<any> {
+    let params = new HttpParams();
+
+    // Ajouter les paramètres dynamiquement
+    if (filters.keyword) {
+      params = params.set('keyword', filters.keyword);
+    }
+    if (filters.statut) {
+      params = params.set('statut', filters.statut);
+    }
+    if (filters.gender) {
+      params = params.set('gender', filters.gender);
+    }
+
+    return this.httpclient.get(`${this.apiURL}/search`, { params });
   }
 
   getCountries(): Observable<any[]> {
@@ -56,7 +73,7 @@ export class PersonnelService {
       'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
       'Content-Type': 'application/json'
     });
-    return this.httpclient.post(this.createURL ,data , { headers })
+    return this.httpclient.post(`${this.apiURL}/staff` ,data , { headers })
       .pipe(
         catchError(this.errorHandler)
       );

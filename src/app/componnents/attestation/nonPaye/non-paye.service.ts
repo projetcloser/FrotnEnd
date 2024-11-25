@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { NonPaye } from './non-paye';
@@ -26,9 +26,32 @@ export class NonPayeService {
     );
   }
 
-
   getAttestation(id: number): Observable<NonPaye> {
     return this.http.get<NonPaye>(`${this.apiUrl}/${id}`);
+  }
+
+  searchStaff(filters: any): Observable<any> {
+    let params = new HttpParams();
+
+    // Ajouter les paramètres dynamiquement
+    if (filters.keyword) {
+      params = params.set('keyword', filters.keyword);
+    }
+    if (filters.year) {
+      params = params.set('year', filters.year);
+    }
+    if (filters.motif) {
+      params = params.set('motif', filters.motif);
+    }
+    if (filters.company_id) {
+      params = params.set('company_id', filters.company_id);
+    }
+    if (filters.member_id) {
+      params = params.set('member_id', filters.member_id);
+    }
+
+
+    return this.http.get(`${this.apiUrl}/search`, { params });
   }
 
   createAttestation(attestation: NonPaye): Observable<NonPaye> {

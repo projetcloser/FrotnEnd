@@ -22,6 +22,8 @@ export class CreateNonPayeComponent {
   companies:any[]=[];
   user: any = {};
 
+  reference!: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private attestCompaniesService: NonPayeService,
@@ -41,6 +43,7 @@ export class CreateNonPayeComponent {
       // ref_dem_part: ['', Validators.required],
       // type: ['', Validators.required],
       cashflow_id: [],
+      ref_dem_part: [''],
       // city_id: ['', Validators.required],
       // contact_person: ['', Validators.required],
       // contact_person_phone: ['', Validators.required],
@@ -70,10 +73,10 @@ export class CreateNonPayeComponent {
       year: formattedDate, // Date actuelle formatée
       author:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur attestation connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.addForm.patchValue({ author: this.user.name });
+          this.addForm.patchValue({ author: this.user });
 
         },
         (error) => {
@@ -83,6 +86,30 @@ export class CreateNonPayeComponent {
     });
     this.loadCaisse();
 
+    // compter le nombre d'attestation deja dans la bd
+    this.attestCompaniesService.getAttestations().subscribe(attestations => {
+      const numeroref = attestations.length + 1; // Le nombre d'attestations déjà présentes, +1 pour la nouvelle
+      this.generateReference(numeroref);
+    });
+
+  }
+
+  generateReference(numeroref: number): void {
+    const paddedNumeroref = numeroref.toString().padStart(4, '0'); // Ajout des zéros pour avoir 4 chiffres
+    const month = new Date().getMonth() + 1; // Mois actuel
+    const year = new Date().getFullYear().toString().slice(-2); // Derniers 2 chiffres de l'année
+
+    // Générer la référence
+    this.reference = `ATTE ${paddedNumeroref} / ${month.toString().padStart(2, '0')} / Pdt/SG/ONIGC/${year}`;
+    console.log('Référence générée :', this.reference)
+
+      // Mettre à jour la valeur de ref_dem_part dans le formulaire
+      this.addForm.patchValue({
+        ref_dem_part: this.reference
+      });
+
+      // Vérifier que la valeur est bien mise à jour dans le formulaire
+  console.log('Valeur de ref_dem_part dans le formulaire après patch :', this.addForm.get('ref_dem_part')?.value);
   }
 
   loadCaisse() {

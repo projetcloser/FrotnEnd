@@ -24,8 +24,8 @@ export class IndexEntrepriseComponent {
   countries: any[] = [];
   cities: any[] = [];
 
-  filteredDettes: Entreprise[] = [];
-  searchTerm: string = '';
+  filteredEntreprises: any[] = []; // Liste filtrée
+  searchTerm: string = ''; // Terme de recherche
 
   currentTime = new Date();
   currentDay = new Date();
@@ -39,7 +39,7 @@ ngOnInit(): void{
     (data:Entreprise[])=>{
       console.log(data);
       this.entreprises = data;
-      this.filteredDettes = data; // Initialisation du tableau filtré
+      this.filteredEntreprises = data; // Initialisation
 
     },
     error => {
@@ -49,11 +49,12 @@ ngOnInit(): void{
 }
 
 
-filterDettes(): void {
-  this.filteredDettes = this.entreprises.filter(entreprise =>
-    this.getCountryName(entreprise.country_id).toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-    entreprise.social_reason.toString().includes(this.searchTerm)||
-    entreprise.company_type.toString().includes(this.searchTerm)
+filterEntreprises(): void {
+  const term = this.searchTerm.toLowerCase();
+  this.filteredEntreprises = this.entreprises.filter((entreprise) =>
+    entreprise.social_reason.toLowerCase().includes(term) ||
+    entreprise.email.toLowerCase().includes(term) ||
+    entreprise.nui.toLowerCase().includes(term)
   );
 }
 // Récupérer les pays

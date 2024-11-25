@@ -10,9 +10,12 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthService {
 
-    // private apiUrl = 'http://localhost:3000/users'; // URL du serveur JSON
-    // private apiUrl = 'https://preprod.closercm.net/api';
+
     private apiUrl = environment.apiUrl+"login";
+    private apiUrluser = environment.apiUrl+"users";
+
+    private apiUrlinfo = environment.apiUrl;
+
     private currentUserSubject: BehaviorSubject<User | null>;
     public currentUser: Observable<User | null>;
 
@@ -30,7 +33,7 @@ export class AuthService {
 
  // Enregistrement (register)
  register(data: any): Observable<any> {
-  return this.http.post(`${this.apiUrl}/register`, data);
+  return this.http.post(`${this.apiUrlinfo}register`, data);
 }
 
 // Connexion (login)
@@ -67,8 +70,10 @@ isLoggedIn(): boolean {
 }
 
 getUser(): Observable<any> {
-  return this.http.get<any>(this.apiUrl);
+  return this.http.get<any>(`${this.apiUrluser}`);
 }
+// create user
+
 
 // Supprimer le token lors de la déconnexion
 clearToken() {
@@ -80,7 +85,8 @@ getUserProfile(): Observable<any> {
   const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
   });
-  return this.http.get('http://127.0.0.1:8000/api/user', { headers });
+  // return this.http.get('http://127.0.0.1:8000/api/user', { headers });apiUrl
+  return this.http.get(`${this.apiUrlinfo}user-info`, { headers });
 }
 
 

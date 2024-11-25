@@ -101,20 +101,52 @@
         <div class="col-md-12">
           <div class="table-responsive">
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"
-                        aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                      </select> entries</label></div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
-                        class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div>
-                </div>
+              <div class="col-sm-12 col-md-6">
+                <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="d-flex flex-column flex-md-row align-items-center gap-3">
+                  <!-- Champ de recherche -->
+                  <div class="form-group w-100">
+                    <input
+                      formControlName="keyword"
+                      class="form-control"
+                      placeholder="Rechercher par nom, email ou téléphone"
+                      aria-label="Recherche"
+                    />
+                  </div>
+
+                  <!-- Filtrer par statut -->
+                  <!-- <div class="form-group w-100">
+                    <select
+                      formControlName="statut"
+                      class="form-select"
+                      aria-label="Filtrer par statut"
+                    >
+                      <option value="">Tous les statuts</option>
+                      <option value="active">Actif</option>
+                      <option value="inactive">Inactif</option>
+                    </select>
+                  </div> -->
+
+                  <!-- Filtrer par genre -->
+                  <!-- <div class="form-group w-100">
+                    <select
+                      formControlName="gender"
+                      class="form-select"
+                      aria-label="Filtrer par genre"
+                    >
+                      <option value="">Tous les genres</option>
+                      <option value="male">Homme</option>
+                      <option value="female">Femme</option>
+                    </select>
+                  </div> -->
+
+                  <!-- Bouton de recherche -->
+                  <div  class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </form>
+
               </div>
               <div class="row">
                 <div class="col-sm-12">
@@ -126,12 +158,12 @@
                         <th scope="col">Nom</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
-                        <th scope="col">
-                          Montant Dette</th>
+                        <!-- <th scope="col">
+                          Montant Dette</th> -->
                         <th scope="col">Auteur</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                           aria-label=" Font Awesome fontawesome.com -->: activate to sort column ascending"
-                          style="width: 14px;"><svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true"
+                          style="width: 1px;"><svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true"
                             focusable="false" data-prefix="fas" data-icon="bars" role="img"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
                             <path fill="currentColor"
@@ -148,14 +180,16 @@
                           {{ membre.matricule }}
                         </td>
                         <td align="center" style="width:15%">{{membre.created_at| date:'yyy'}}</td>
-                        <td style="width:25%"><img width="28" height="28" src="assets/img/user.jpg"
+
+                        <td class="sorting_1"><img width="28" height="28" src="assets/img/user.jpg"
                             class="rounded-circle m-r-5" alt="">{{ membre.firstname }}
                         </td>
+
                         <td align="center" style="width:18%">{{ membre.phone }}</td>
                         <td align="center" style="width:22%">{{ membre.email }}
                         </td>
-                        <td align="center">
-                          {{ membre.debt }} </td>
+                        <!-- <td align="center"> -->
+                          <!-- {{ membre.debt }} </td> -->
                         <td>{{ membre.author }}</td>
                         <td align="center" style="width:10%">
                           <div class="dropdown dropdown-action">

@@ -84,7 +84,9 @@
                     </label>
                   </div> -->
                   <div class="d-flex justify-content-between mb-3">
-                    <input type="text" [(ngModel)]="searchTerm" (input)="filterDettes()" class="form-control w-50" placeholder="entreprise,type ou pays...">
+                    <input type="text" class="form-control w-50"  placeholder="Rechercher une entreprise"
+                    [(ngModel)]="searchTerm"
+                    (input)="filterEntreprises()">
                     <!-- <button [routerLink]="['/Closer/dettes/new']" routerLinkActive="router-link-active"  class="btn btn-primary">Ajouter une Dette <i class="fas fa-plus"></i></button> -->
                   </div>
                 </div>

@@ -52,7 +52,7 @@ export class CreateCotisationComponent implements OnInit{
       amount: [0], // Valeur par défaut
       pay: [60000], // Valeur par défaut
       status: ['OK'],
-      staff_id:[''],
+      // staff_id:[''],
       author: [{ value: '', disabled: true }],
       open_close: [0],
     });
@@ -69,10 +69,10 @@ export class CreateCotisationComponent implements OnInit{
       pay_year: formattedDate, // Date actuelle formatée
       auteur:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.cotisationForm.patchValue({ author: this.user.name });
+          this.cotisationForm.patchValue({ author: this.user });
 
         },
         (error) => {

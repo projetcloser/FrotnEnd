@@ -42,7 +42,7 @@
 
       <!-- Champ pour la sélection du membre avec icône -->
       <div class="form-group mb-4">
-        <label for="persoId" class="form-label"><i class="fas fa-user-friends me-2"></i>Membre</label>
+        <label for="persoId" class="form-label"><i class="fas fa-user-friends me-2"></i>Personnel</label>
         <select id="persoId" class="form-select" formControlName="persoId">
           <option value="" disabled>Sélectionnez un membre</option>
           <option *ngFor="let membre of membres" [value]="membre.id">

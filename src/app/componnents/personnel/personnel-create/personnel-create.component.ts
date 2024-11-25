@@ -80,10 +80,10 @@ export class PersonnelCreateComponent implements OnInit{
       fine_date: new Date().toLocaleDateString(), // Date actuelle formatée
       author:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.personnelForm.patchValue({ author: this.user.name });
+          this.personnelForm?.setValue({ author: this.user });
 
         },
         (error) => {
@@ -91,6 +91,31 @@ export class PersonnelCreateComponent implements OnInit{
         }
     ) // Auteur connecté
     });
+
+  //   this.authService.getUserProfile().subscribe(
+  //     (response: any) => {
+  //       // Assurez-vous que 'response' contient les données attendues
+  //       if (response && response.user && response.perso) {
+  //         const userName = response.user.name; // Récupérer le nom de l'utilisateur
+  //         const persoLastname = response.perso.lastname; // Récupérer le nom de famille de 'perso'
+
+  //         console.log('Utilisateur connecté:', userName);
+  //         console.log('Nom de famille du personnel:', persoLastname);
+
+  //         // Mettre à jour le formulaire avec les données
+  //         this.personnelForm.patchValue({
+  //           fine_date: new Date().toLocaleDateString(), // Date actuelle formatée
+  //           author: `${userName} (${persoLastname})`, // Combine le name et le lastname si nécessaire
+  //         });
+  //       } else {
+  //         console.error("Les données renvoyées par le backend ne sont pas dans le format attendu.");
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Erreur lors de la récupération du profil utilisateur:', error);
+  //     }
+  // );
+
 
   }
 
@@ -190,8 +215,9 @@ export class PersonnelCreateComponent implements OnInit{
       console.log(key, value);
   });
 
-    // console.log('Données envoyées :', this.personnelForm.value);
-    this.personnelService.create(formData).subscribe(
+    console.log('Données envoyées :', this.personnelForm.getRawValue());
+    const entrpriseData = this.personnelForm.getRawValue();
+    this.personnelService.create(entrpriseData).subscribe(
       data => {
         // this.loadingNewExamen = false
         if (data.code === 200) {
@@ -204,6 +230,8 @@ export class PersonnelCreateComponent implements OnInit{
 
 
     );
+
+
 
 
   }

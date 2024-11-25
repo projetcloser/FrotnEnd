@@ -93,15 +93,28 @@ export class SideNavComponent implements OnInit{
   }
 
   loadUserProfile(): void {
-    this.authService.getUserProfile().subscribe(
-        (response: any) => {
-          this.user = response;
-          console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+    // this.authService.getUserProfile().subscribe(
+    //     (response: any) => {
+    //       this.user = response;
+    //       console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
 
-        },
-        (error) => {
-            console.error('Erreur lors de la récupération du profil utilisateur:', error);
-        }
-    );
+    //     },
+    //     (error) => {
+    //         console.error('Erreur lors de la récupération du profil utilisateur:', error);
+    //     }
+    // );
+
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+
+        this.user = response.user.name;
+        
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+  );
 }
+
+
 }

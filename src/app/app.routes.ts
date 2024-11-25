@@ -80,6 +80,8 @@ import { ListDetteComponent } from './componnents/dette/list-dette/list-dette.co
 import { CreateDetteComponent } from './componnents/dette/create-dette/create-dette.component';
 import { UpdateDetteComponent } from './componnents/dette/update-dette/update-dette.component';
 import { DetailsDetteComponent } from './componnents/dette/details-dette/details-dette.component';
+import { IndexUserComponent } from './componnents/user/index-user/index-user.component';
+import { CreateUserComponent } from './componnents/user/create-user/create-user.component';
 
 
 
@@ -87,7 +89,7 @@ import { DetailsDetteComponent } from './componnents/dette/details-dette/details
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'register', component: RegisterComponent },
+
   { path: 'forgot-password', component: FpwComponent },
 
   {path:'Closer',component:SideNavComponent,
@@ -96,6 +98,10 @@ export const routes: Routes = [
     path: "dashboard",
     component:DashboardComponent
   },
+  // register
+  { path: 'register', component: RegisterComponent },
+  { path: 'perso', component: CreateUserComponent },
+  { path: 'list-utulisateur', component: IndexUserComponent },
   // anonce
   { path: 'annonces', component: ListAnnonceComponent },
   { path: 'annonces/new', component: CreateAnnonceComponent },

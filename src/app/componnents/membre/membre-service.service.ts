@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 
@@ -34,6 +34,23 @@ export class MembreServiceService {
         map(response=> response),
         catchError(this.errorHandler)
       );
+  }
+
+  searchMembers(filters: any): Observable<any> {
+    let params = new HttpParams();
+
+    // Ajouter les paramètres dynamiquement
+    if (filters.keyword) {
+      params = params.set('keyword', filters.keyword);
+    }
+    if (filters.statut) {
+      params = params.set('statut', filters.statut);
+    }
+    if (filters.gender) {
+      params = params.set('gender', filters.gender);
+    }
+
+    return this.httpclient.get(`${this.apiURLV}/search`, { params });
   }
 
   // create(data: Membre): Observable<any> {

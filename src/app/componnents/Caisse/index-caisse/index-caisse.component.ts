@@ -23,6 +23,9 @@ export class IndexCaisseComponent implements OnInit{
   caisses: Caisse[] = [];
   personnels: Personnel[] = [];
 
+  filteredCaisseList: any[] = [];
+  searchTerm: string = '';
+
   currentTime = new Date();
   currentDay = new Date();
   constructor(private router: Router, private caisseService: CaisseServiceService) {}
@@ -74,6 +77,13 @@ export class IndexCaisseComponent implements OnInit{
         console.error('Erreur lors de la suppression de la caisse :', error);
         alert('Erreur lors de la suppression de la caisse. Veuillez réessayer.');
       }
+    );
+  }
+
+  onSearch(): void {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredCaisseList = this.caisses.filter(caisse =>
+      caisse.name.toLowerCase().includes(term) || caisse.code.toLowerCase().includes(term)
     );
   }
 }

@@ -36,7 +36,7 @@ export class CreateAttestPersonnelComponent {
       member_id: [],
       ref_dem_part: [''],
       // type: ['', Validators.required],
-      cashflow_id: [],
+      // cashflow_id: [],
       // city_id: ['', Validators.required],
       // contact_person: ['', Validators.required],
       // contact_person_phone: ['', Validators.required],
@@ -61,10 +61,10 @@ export class CreateAttestPersonnelComponent {
       certification_date: formattedDate, // Date actuelle formatée
       auteur:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur attestation connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.addForm.patchValue({ author: this.user.name });
+          this.addForm.patchValue({ author: this.user });
 
         },
         (error) => {

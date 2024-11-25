@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
@@ -31,10 +31,25 @@ export class IndexpersonnelComponent implements OnInit {
 
   personnels: Personnel[] = [];
 
+  filteredPersonnel: any[] = []; // Liste filtrée pour l'affichage
+  searchTerm: string = ''; // Terme de recherche
+
   currentTime = new Date();
   currentDay = new Date();
 
-  constructor(private router: Router,private personnelService:PersonnelService) {}
+  // seracc back
+  searchForm: FormGroup;
+
+
+  constructor(private fb: FormBuilder,private router: Router,private personnelService:PersonnelService) {
+    this.searchForm = this.fb.group({
+      keyword: [''],
+      year: [''],
+      motif: [''],
+      company_id: [''],
+      member_id: [''],
+    });
+  }
 
   ngOnInit(): void {
     this.getAllPersonnels();
@@ -51,6 +66,13 @@ export class IndexpersonnelComponent implements OnInit {
         console.error('Erreur lors de la récupération des personnels', error);
       }
     );
+  }
+
+  onSearch() {
+    const filters = this.searchForm.value;
+    this.personnelService.searchStaff(filters).subscribe((data) => {
+      this.personnels = data;
+    });
   }
 
   // Méthode pour naviguer vers les détails
@@ -109,6 +131,18 @@ export class IndexpersonnelComponent implements OnInit {
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
     saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
   }
+
+  // onSearch(): void {
+  //   const term = this.searchTerm.toLowerCase();
+  //   this.filteredPersonnel = this.personnels.filter(person =>
+  //     person.lastname.toLowerCase().includes(term) ||
+  //     person.firstname.toLowerCase().includes(term) ||
+  //     person.email.toLowerCase().includes(term)
+  //     // person.?phone.includes(term)
+  //   );
+  // }
+
+
 
 
 

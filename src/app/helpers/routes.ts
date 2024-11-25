@@ -5,22 +5,22 @@ export const routes = [
     name:"Caisses",
     single:"Caisse"
    },
-   {
-    path:"/Closer/profession",
-    name:"Professions",
-    single:"Profession"
-   },
-   {
-    path:"/Closer/poste",
-    name:"Groupe",
-    single:"Poste"
-   },
-
-  // {
-  //   path:"/membre",
-  //   name:"Membres",
-  //   single:"Membre"
+  //  {
+  //   path:"/Closer/profession",
+  //   name:"Professions",
+  //   single:"Profession"
   //  },
+  //  {
+  //   path:"/Closer/poste",
+  //   name:"Groupe",
+  //   single:"Poste"
+  //  },
+
+  {
+    path:"/Closer/list-utulisateur",
+    name:"Utulisateur",
+    single:"Utulisateur"
+   },
   //  {
   //   path:"/entreprise",
   //   name:"Entreprises"

@@ -46,7 +46,7 @@
       <div class="table-responsive">
         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
           <div class="row">
-            <div class="col-sm-12 col-md-6">
+            <!-- <div class="col-sm-12 col-md-6">
               <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"
                     aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
                     <option value="10">10</option>
@@ -54,11 +54,65 @@
                     <option value="50">50</option>
                     <option value="100">100</option>
                   </select> entries</label></div>
-            </div>
+            </div> -->
             <div class="col-sm-12 col-md-6">
-              <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
+              <!-- <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
                     class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div>
-            </div>
+            </div> -->
+              <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="d-flex flex-column flex-md-row align-items-center gap-3">
+                <!-- Champ de recherche -->
+                <div class="form-group w-100">
+                  <input
+                    formControlName="keyword"
+                    class="form-control"
+                    placeholder="Rechercher par nom, motif ou téléphone"
+                    aria-label="Recherche"
+                  />
+                </div>
+
+                <!-- Filtrer par annee -->
+                <div class="form-group w-100">
+                  <input type="date" formControlName="year" class="from-control"  aria-label="Filtrer par date">
+                </div>
+
+                 <!-- Filtrer par motif -->
+                 <div class="form-group w-100">
+                  <input type="text" formControlName="motif" class="from-control"  aria-label="Filtrer par date">
+                </div>
+
+                <!-- Filtrer par statut -->
+                <div class="form-group w-100">
+                  <select
+                    formControlName="statut"
+                    class="form-select"
+                    aria-label="Filtrer par membre"
+                  >
+                    <option value="">Membre</option>
+                    <option value="active">Actif</option>
+                    <option value="inactive">Inactif</option>
+                  </select>
+                </div>
+
+                <!-- Filtrer par genre -->
+                <div class="form-group w-100">
+                  <select
+                    formControlName="gender"
+                    class="form-select"
+                    aria-label="Filtrer par company"
+                  >
+                    <option value="">Tous les companies</option>
+                    <option value="male">Homme</option>
+                    <option value="female">Femme</option>
+                  </select>
+                </div>
+
+                <!-- Bouton de recherche -->
+                <div  class="form-group">
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </form>
           </div>
           <div class="row">
             <div class="col-sm-12">
@@ -83,7 +137,7 @@
                 </thead>
                 <tbody>
                   <tr role="row" class="odd" *ngFor="let item of attestations">
-                    <td class="sorting_1"><a href="#">{{item.id}}</a></td>
+                    <td class="sorting_1"><a href="#">{{item.ref_dem_part}}</a></td>
                     <!--<td><a href="#"2023>E-banking</a></td>-->
                     <td><a href="#">{{item.year | date}}</a></td>
                     <td><a href="#">{{ getmemberMatricule(item.member_id) }}</a></td>
@@ -106,7 +160,7 @@
                         </span>
                       </span>
                     </td>
-                    <td><a href="#">{{item.author}}</a></td>
+                    <td><a >{{item.author}}</a></td>
                     <td>
 
 

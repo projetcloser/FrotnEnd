@@ -21,3 +21,9 @@ export class Membre {
   member_id!: number; // ID du membre concerné
 }
 
+export interface PaginatedResponse {
+  data: Membre[];
+  current_page: number;
+  total: number;
+  per_page: number;
+}

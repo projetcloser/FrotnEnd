@@ -1,6 +1,7 @@
 export class NonPaye {
   id!: number;
   member_id!: number;
+  ref_dem_part?:string;
   payment_amount!: number;
   cashflow_id!: number;
   year: string = "";

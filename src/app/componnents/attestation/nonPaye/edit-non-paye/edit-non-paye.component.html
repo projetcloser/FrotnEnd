@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="card shadow-lg p-4 border-0">
     <h3 class="card-title text-center text-primary">Modifier une Attestation</h3>
-    <form [formGroup]="addForm" (ngSubmit)="updateAttestation()">
+    <form [formGroup]="addForm" (ngSubmit)="onUpdate()">
 
       <!-- Champ pour la date (readonly) avec icône -->
       <div class="form-group mb-4">

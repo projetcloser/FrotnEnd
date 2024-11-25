@@ -17,6 +17,9 @@ export class IndexEvenementComponent {
   evenements: Evenement[] = [];
   loading = false;
 
+  filteredEvenements: Evenement[] = []; // Événements filtrés
+  searchTerm: string = ''; // Terme de recherche
+
 
   constructor(private evenementService: EvenementService,private router:Router) {}
 
@@ -34,7 +37,7 @@ export class IndexEvenementComponent {
     this.evenementService.incrementParticipant(id).subscribe(() => {
       this.loadEvenements();
 
-      
+
     });
   }
 
@@ -87,5 +90,17 @@ export class IndexEvenementComponent {
      //  console.log('activites deleted successfully!');
       alert("evenements deleted successfully!")
  })
+  }
+
+
+  onSearch(): void {
+    if (this.searchTerm.trim()) {
+      this.filteredEvenements = this.evenements.filter(evenement =>
+        evenement.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        evenement.author.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredEvenements = this.evenements; // Réinitialisez les résultats si le champ est vide
+    }
   }
 }

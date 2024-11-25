@@ -22,6 +22,7 @@ export class EditNonPayeComponent {
   caisses: any[] = [];
   companies:any[]=[];
   user: any = {};
+  attestationId!: number;
 
   attestations: NonPaye[] = [];
   selectedAttestation!: NonPaye | null;
@@ -76,10 +77,10 @@ export class EditNonPayeComponent {
       year: formattedDate, // Date actuelle formatée
       author:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur attestation connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.addForm?.setValue({ author: this.user.name });
+          this.addForm?.setValue({ author: this.user });
 
         },
         (error) => {
@@ -92,38 +93,65 @@ export class EditNonPayeComponent {
   }
 
 
-  // Charger toutes les attestations
-  loadAttestations(): void {
-    this.attestCompaniesService.getAttestations().subscribe(
-      (data) => (this.attestations = data),
-      (error) => console.error('Erreur lors du chargement des attestations', error)
-    );
+  // // Charger toutes les attestations
+  // loadAttestations(): void {
+  //   this.attestCompaniesService.getAttestations().subscribe(
+  //     (data) => (this.attestations = data),
+  //     (error) => console.error('Erreur lors du chargement des attestations', error)
+  //   );
+  // }
+
+  // // Préparer une attestation pour l'édition
+  // editAttestation(attestation: NonPaye): void {
+  //   this.selectedAttestation = attestation; // Sauvegarde de l'attestation sélectionnée
+  //   this.addForm.patchValue(attestation); // Pré-remplir le formulaire
+  // }
+
+   // Charger les données de l'amende pour l'édition
+   loadAttestations(): void {
+    this.attestCompaniesService.getAttestation (this.attestationId).subscribe((attestation: NonPaye) => {
+      this.addForm.patchValue({
+        author: attestation.author,
+        motif: attestation.motif,
+        payment_amount: attestation.payment_amount,
+        year: attestation.year,
+        member_id: attestation.member_id,
+        company_id: attestation.company_id,
+        cashflow_id:attestation.cashflow_id
+      });
+    });
   }
 
-  // Préparer une attestation pour l'édition
-  editAttestation(attestation: NonPaye): void {
-    this.selectedAttestation = attestation; // Sauvegarde de l'attestation sélectionnée
-    this.addForm.patchValue(attestation); // Pré-remplir le formulaire
+  // Méthode pour mettre à jour l'amende
+  onUpdate(): void {
+    if (this.addForm.valid) {
+      const updateAttestation = { ...this.addForm.value, id: this.attestationId };
+      // const updatedAmende = this.amendeForm.getRawValue(); // Récupère toutes les valeurs même celles désactivées
+      this.attestCompaniesService.updateAttestation(this.attestationId, updateAttestation).subscribe(() => {
+        this.router.navigate(['/Closer/amendes']);
+      });
+    }
   }
+
 
     // Méthode pour mettre à jour une attestation
-    updateAttestation(): void {
-      if (this.addForm.valid && this.selectedAttestation) {
-        const updatedData = { ...this.addForm.value, id: this.selectedAttestation.id };
+    // updateAttestation(): void {
+    //   if (this.addForm.valid && this.selectedAttestation) {
+    //     const updatedData = { ...this.addForm.value, id: this.selectedAttestation.id };
 
-        this.attestCompaniesService.updateAttestation(this.selectedAttestation.id, updatedData).subscribe(
-          (updatedAttestation) => {
-            console.log('Attestation mise à jour avec succès', updatedAttestation);
-            this.loadAttestations(); // Recharge la liste des attestations
-            this.addForm.reset();
-            this.selectedAttestation = null;
-          },
-          (error) => {
-            console.error('Erreur lors de la mise à jour', error);
-          }
-        );
-      }
-    }
+    //     this.attestCompaniesService.updateAttestation(this.selectedAttestation.id, updatedData).subscribe(
+    //       (updatedAttestation) => {
+    //         console.log('Attestation mise à jour avec succès', updatedAttestation);
+    //         this.loadAttestations(); // Recharge la liste des attestations
+    //         this.addForm.reset();
+    //         this.selectedAttestation = null;
+    //       },
+    //       (error) => {
+    //         console.error('Erreur lors de la mise à jour', error);
+    //       }
+    //     );
+    //   }
+    // }
 
   loadCaisse() {
     this.caisseService.getAll().subscribe((data) => {

@@ -41,10 +41,10 @@ export class UpdateAmendeComponent implements OnInit {
       fine_date: new Date().toLocaleDateString(), // Date actuelle formatée
       auteur:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.amendeForm.patchValue({ author: this.user.name });
+          this.amendeForm.patchValue({ author: this.user });
 
         },
         (error) => {

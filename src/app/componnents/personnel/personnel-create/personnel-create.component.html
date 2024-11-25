@@ -219,9 +219,9 @@
                    <div class="col-md-6">
                     <span>Type Contrat</span>
                     <select formControlName="contract_type" class="form-control">
-                      <option value="CDI" selected="">
+                      <!-- <option value="CDI" selected="">
                         ...
-                      </option>
+                      </option> -->
                       <option value="CDD">
                         CDD
                       </option>
@@ -242,7 +242,13 @@
                   <!-- Piece jointe -->
                   <div class="col-md-6">
                     <span>Piece jointe</span>
-                    <input type="file" formControlName="attachment_file" (change)="handleFileInput($event)" accept=".pdf, .txt,.doc" class="form-control" multiple />
+                    <input type="file" formControlName="attachment_file" (change)="handleFileInput($event)" accept=".png, .jpg, .jpeg" class="form-control" multiple />
+                  </div>
+
+                  <!-- profession -->
+                  <div class="col-md-6">
+                    <span>Position</span>
+                    <input type="text" formControlName="position" class="form-control" />
                   </div>
                    <!--Nombre D'enfants -->
                    <div class="col-md-6">

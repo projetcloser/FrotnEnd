@@ -45,10 +45,10 @@ export class CreateEvenementComponent {
       date: new Date().toLocaleDateString(), // Date actuelle formatée
       auteur:  this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response;
+          this.user = response.user.name;
           console.log('Utilisateur annonce connecté:', this.user);  // Vérifie les données ici
           // Met à jour le champ author avec le nom de l'utilisateur connecté
-           this.evenementForm.get('author')?.setValue(this.user.name);
+           this.evenementForm.get('author')?.setValue(this.user);
 
         },
         (error) => {
