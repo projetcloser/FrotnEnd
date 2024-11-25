@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MembreServiceService } from '../../membre/membre-service.service';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../../components/auth/auth.service';
 
 @Component({
   selector: 'app-list-amende',
@@ -16,10 +17,12 @@ import { RouterModule } from '@angular/router';
 export class ListAmendeComponent {
   amendes: any[] = [];
   membres: any[] = []; // Liste des membres
+  user: any = {};
 
   constructor(
     private amendeService: AmendeServiceService,
-    private membreService: MembreServiceService   // Injecter le service des membres
+    private membreService: MembreServiceService,   // Injecter le service des membres
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +40,7 @@ export class ListAmendeComponent {
     this.amendeService.getAmendes().subscribe(data => {
       this.amendes = data;
     });
+    this.loadUserProfile();
   }
 
   getMembreName(membreId: number): string {
@@ -50,6 +54,19 @@ export class ListAmendeComponent {
         //  console.log('activites deleted successfully!');
          alert("amendes deleted successfully!")
     });
+  }
+
+  loadUserProfile(): void {
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
   }
 
 }

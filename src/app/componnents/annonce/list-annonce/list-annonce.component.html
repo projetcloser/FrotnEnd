@@ -1,10 +1,12 @@
 <div class="container mt-5">
   <!-- Section pour créer une nouvelle annonce -->
+  <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary shadow" (click)="goToCreateAnnonce()">
       <i class="fas fa-plus mr-2"></i> Créer une nouvelle annonce
     </button>
   </div>
+  </ng-container>
 
   <!-- Titre principal -->
   <h2 class="text-center mb-4">Liste des annonces</h2>

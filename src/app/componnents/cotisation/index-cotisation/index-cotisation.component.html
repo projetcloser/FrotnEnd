@@ -17,6 +17,7 @@
       .
     </li>
   </ol>
+  <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
   <div class="row">
     <div class="col-xl-12">
       <ul class="nav nav-pills" style="float: right;">
@@ -86,6 +87,7 @@
 
     </div>
   </div>
+  </ng-container>
   <div class="row">
     <div class="col-md-12">
       <hr>

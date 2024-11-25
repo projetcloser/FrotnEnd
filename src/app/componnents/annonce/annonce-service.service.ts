@@ -80,4 +80,6 @@ export class AnnonceServiceService {
     downloadFile(fileUrl: string): Observable<Blob> {
       return this.http.get(fileUrl, { responseType: 'blob' });
     }
+
+
 }

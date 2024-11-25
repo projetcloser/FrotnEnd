@@ -12,6 +12,7 @@ import { CaisseServiceService } from '../../Caisse/caisse-service.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { ExcelService } from '../../../services/excel.service';
+import {AuthService} from "../../../components/auth/auth.service";
 
 @Component({
   selector: 'app-index-cotisation',
@@ -23,10 +24,11 @@ import { ExcelService } from '../../../services/excel.service';
 export class IndexCotisationComponent {
 
   constructor(private excelService: ExcelService,private router: Router,private cotisationService: CotisationService,
-    private membersService: MembreServiceService,private caisseService: CaisseServiceService) {}
+    private membersService: MembreServiceService,private caisseService: CaisseServiceService, private authService: AuthService) {}
   cotisations: Cotisation[] = [];
   membres: Membre[]=[];
   caisses: Caisse[]=[];
+  user: any = {};
 
   filteredCotisations: any[] = []; // Liste filtrée affichée
   searchTerm: string = ''; // Terme de recherche
@@ -38,6 +40,19 @@ export class IndexCotisationComponent {
     this.loadcotisations();
     this.loadCaisses();
     this.loadMembers();
+    this.loadUserProfile();
+  }
+  loadUserProfile(): void {
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
   }
 
   loadcotisations() {

@@ -37,6 +37,7 @@
                 </a>
               </li>
             </ul>
+            <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item">
                 <a class="nav-link active" (click)="exportToExcel()" target="blank" style="background-color: #28a745; color: white;margin-right: 20px"
@@ -50,6 +51,7 @@
                 </a>
               </li>
             </ul>
+            </ng-container>
           </b>
 
 

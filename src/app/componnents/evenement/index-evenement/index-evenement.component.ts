@@ -4,27 +4,46 @@ import { Evenement } from '../evenement';
 import { EvenementService } from '../evenement.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from "../../../components/auth/auth.service";
 
 @Component({
   selector: 'app-index-evenement',
   standalone: true,
   imports: [CommonModule,
-    RouterModule,ReactiveFormsModule,FormsModule],
+    RouterModule, ReactiveFormsModule, FormsModule],
   templateUrl: './index-evenement.component.html',
   styleUrl: './index-evenement.component.css'
 })
 export class IndexEvenementComponent {
   evenements: Evenement[] = [];
+
+  user: any = {};
+
   loading = false;
 
   filteredEvenements: Evenement[] = []; // Événements filtrés
   searchTerm: string = ''; // Terme de recherche
 
 
-  constructor(private evenementService: EvenementService,private router:Router) {}
+
+  constructor(private evenementService: EvenementService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadEvenements();
+    this.loadUserProfile();
+  }
+
+  loadUserProfile(): void {
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
   }
 
   loadEvenements() {
@@ -75,8 +94,8 @@ export class IndexEvenementComponent {
     this.router.navigate(['/Closer/modifier-evenement']);
   }
 
-   // Méthode de confirmation avant la suppression
-   confirmDelete(id: number) {
+  // Méthode de confirmation avant la suppression
+  confirmDelete(id: number) {
     const confirmed = confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
     if (confirmed) {
       this.deletePersonnel(id);
@@ -87,9 +106,9 @@ export class IndexEvenementComponent {
   deletePersonnel(id: number) {
     this.evenementService.deleteEvenement(id).subscribe(res => {
       this.evenements = this.evenements.filter(item => item.id !== id);
-     //  console.log('activites deleted successfully!');
+      //  console.log('activites deleted successfully!');
       alert("evenements deleted successfully!")
- })
+    })
   }
 
 

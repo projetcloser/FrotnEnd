@@ -5,6 +5,7 @@ import { CachetService } from '../cachet.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExcelService } from '../../../services/excel.service';
+import {AuthService} from "../../../components/auth/auth.service";
 
 @Component({
   selector: 'app-index-cachet',
@@ -25,19 +26,34 @@ export class IndexCachetComponent implements OnInit {
 
   currentTime = new Date();
   currentDay = new Date();
+  user: any = {};
 
-  constructor(private excelService: ExcelService,private cachetService: CachetService,private router: Router) {}
+  constructor(private excelService: ExcelService,private cachetService: CachetService,private router: Router,private authService: AuthService) {}
 
   ngOnInit(): void {
     this.cachetService.getCachets().subscribe((data: any[]) => {
       this.cachets = data;
       this.filteredCachets = [...this.cachets]; // Initialisation de la liste filtrée
     });
-
     this.loadCities();
     this.loadCountries();
     this.loadMembers();
+    this.loadUserProfile();
   }
+
+
+loadUserProfile(): void {
+  this.authService.getUserProfile().subscribe(
+    (response: any) => {
+      this.user = response;
+      console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+
+    },
+    (error) => {
+      console.error('Erreur lors de la récupération du profil utilisateur:', error);
+    }
+  );
+}
 
 
 // Récupérer les pays

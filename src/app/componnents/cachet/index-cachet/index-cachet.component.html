@@ -33,6 +33,7 @@
             </a>
           </li>
         </ul>
+        <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' ">
         <ul class="nav nav-pills" style="float: right;">
           <li class="nav-item">
             <a class="nav-link active btn btn-success" (click)="exportCachetsByStatus(4)"  style="background-color: #28a745; color: white;margin-right: 20px " target="blank"
@@ -84,6 +85,7 @@
             </a>
           </li>
         </ul>
+        </ng-container>
       </b>
 
 

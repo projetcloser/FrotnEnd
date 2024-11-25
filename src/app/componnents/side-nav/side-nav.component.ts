@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../components/auth/auth.service';
-import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+import {Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ContainerModule } from '../../components/container/container.module';
 import { MembreModule } from '../membre/membre/membre.module';
@@ -64,12 +64,14 @@ export class SideNavComponent implements OnInit{
   currentLang = 'fr'; // Langue par défaut
   user: any = {};
 
+
   routes: Array<any> = routes
-  constructor(private authService: AuthService,) { }
+  constructor(private authService: AuthService,private router: Router) { }
   // ,private translate: TranslateService)
 
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['/login'])
   }
 
   ngOnInit(): void {

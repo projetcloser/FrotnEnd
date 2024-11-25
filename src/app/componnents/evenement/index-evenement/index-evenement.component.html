@@ -29,6 +29,7 @@
           <b>
 
             <!-- Nav pills -->
+            <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item">
                 <a class="nav-link active  btn btn-success" (click)="navigateToForm()"
@@ -44,6 +45,7 @@
                 </a>
               </li>
             </ul>
+            </ng-container>
           </b>
         </div>
         <div class="card-body">
