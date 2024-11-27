@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../components/auth/auth.service';
-import {Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ContainerModule } from '../../components/container/container.module';
 import { MembreModule } from '../membre/membre/membre.module';
@@ -60,13 +60,13 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.css'
 })
-export class SideNavComponent implements OnInit{
+export class SideNavComponent implements OnInit {
   currentLang = 'fr'; // Langue par défaut
   user: any = {};
 
 
   routes: Array<any> = routes
-  constructor(private authService: AuthService,private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
   // ,private translate: TranslateService)
 
   logout(): void {
@@ -95,28 +95,28 @@ export class SideNavComponent implements OnInit{
   }
 
   loadUserProfile(): void {
-    // this.authService.getUserProfile().subscribe(
-    //     (response: any) => {
-    //       this.user = response;
-    //       console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
-
-    //     },
-    //     (error) => {
-    //         console.error('Erreur lors de la récupération du profil utilisateur:', error);
-    //     }
-    // );
-
     this.authService.getUserProfile().subscribe(
       (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
 
-        this.user = response.user.name;
-        
       },
       (error) => {
         console.error('Erreur lors de la récupération du profil utilisateur:', error);
       }
-  );
-}
+    );
+
+    //   this.authService.getUserProfile().subscribe(
+    //     (response: any) => {
+
+    //       this.user = response.user.name;
+
+    //     },
+    //     (error) => {
+    //       console.error('Erreur lors de la récupération du profil utilisateur:', error);
+    //     }
+    // );
+  }
 
 
 }
