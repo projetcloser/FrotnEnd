@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { PaginationComponent } from "../../../components/pagination/pagination.component";
 import { Cotisation } from '../cotisation';
 import { CotisationService } from '../cotisation.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Membre } from '../../../models/membre';
 import { Caisse } from '../../../models/caisse';
 import { MembreServiceService } from '../../membre/membre-service.service';
@@ -21,27 +21,47 @@ import {AuthService} from "../../../components/auth/auth.service";
   templateUrl: './index-cotisation.component.html',
   styleUrl: './index-cotisation.component.css'
 })
-export class IndexCotisationComponent {
+export class IndexCotisationComponent implements OnInit{
 
-  constructor(private excelService: ExcelService,private router: Router,private cotisationService: CotisationService,
-    private membersService: MembreServiceService,private caisseService: CaisseServiceService, private authService: AuthService) {}
   cotisations: Cotisation[] = [];
   membres: Membre[]=[];
   caisses: Caisse[]=[];
   user: any = {};
 
-  filteredCotisations: any[] = []; // Liste filtrée affichée
-  searchTerm: string = ''; // Terme de recherche
+  searchForm!: FormGroup;
+  results: any[] = [];
+
+
+  constructor(private fb: FormBuilder,private excelService: ExcelService,private router: Router,private cotisationService: CotisationService,
+    private membersService: MembreServiceService,private caisseService: CaisseServiceService, private authService: AuthService) {}
+
+
 
   countries: any[] = [];
   cities: any[] = [];
 
   ngOnInit(): void {
+    this.searchForm = this.fb.group({
+      keyword: [''],
+      member_id: [''],
+      cashflow_id: [''],
+      status: [''],
+      open_close: ['']
+    });
+
     this.loadcotisations();
     this.loadCaisses();
     this.loadMembers();
     this.loadUserProfile();
+
+
   }
+  onSearch(): void {
+    this.cotisationService.searchCotisations(this.searchForm.value).subscribe(data => {
+      this.results = data;
+    });
+  }
+  
   loadUserProfile(): void {
     this.authService.getUserProfile().subscribe(
       (response: any) => {
@@ -58,7 +78,7 @@ export class IndexCotisationComponent {
   loadcotisations() {
     this.cotisationService.getCotisations().subscribe((data: Cotisation[]) => {
       this.cotisations = data;
-      this.filteredCotisations = data;
+
     });
   }
 
@@ -196,13 +216,6 @@ export class IndexCotisationComponent {
   }
 
    // Fonction de recherche
-   searchCotisations(): void {
-    const term = this.searchTerm.toLowerCase();
-    this.filteredCotisations = this.cotisations.filter((cotisation) =>
-      Object.values(cotisation).some((value) =>
-        String(value).toLowerCase().includes(term)
-      )
-    );
-  }
+
 }
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

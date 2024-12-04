@@ -27,6 +27,10 @@ export class CotisationService {
    return this.http.get<Cotisation>(`${this.apiUrl}/${id}`);
  }
 
+ searchCotisations(filters: any): Observable<any> {
+  return this.http.get(`${this.apiUrl}/search`, { params: filters });
+}
+
   // Récupérer la dernière cotisation pour déterminer la prochaine référence
   getLastCotisation(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}?_sort=id&_order=desc&_limit=1`);

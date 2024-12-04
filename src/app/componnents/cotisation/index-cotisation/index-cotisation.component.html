@@ -109,10 +109,52 @@
                   </select> entries</label></div>
             </div>
             <div class="col-sm-12 col-md-6">
-              <div id="dataTable_filter" class="search-container"><label><input type="text"
-                    class="form-control" placeholder="Rechercher une cotisation"
-                    [(ngModel)]="searchTerm"
-                    (input)="searchCotisations()"></label></div>
+              <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                <div>
+                  <label for="keyword">Mot-clé</label>
+                  <input id="keyword" formControlName="keyword" type="text" placeholder="Rechercher...">
+                </div>
+
+                <div>
+                  <label for="member">Membre</label>
+                  <select id="member" formControlName="member_id">
+                    <option value="">-- Sélectionner un membre --</option>
+                    <option *ngFor="let member of membres" [value]="member.id">
+                      {{ member.firstname }} {{ member.lastname }}
+                    </option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="cashflow">Cashflow</label>
+                  <select id="cashflow" formControlName="cashflow_id">
+                    <option value="">-- Sélectionner un cashflow --</option>
+                    <option *ngFor="let cashflow of caisses" [value]="cashflow.id">
+                      {{ cashflow.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="status">Statut</label>
+                  <select id="status" formControlName="status">
+                    <option value="">-- Sélectionner un statut --</option>
+                    <option value="paid">Payé</option>
+                    <option value="unpaid">Non payé</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="open_close">État</label>
+                  <select id="open_close" formControlName="open_close">
+                    <option value="">-- Sélectionner un état --</option>
+                    <option value="open">Ouvert</option>
+                    <option value="closed">Fermé</option>
+                  </select>
+                </div>
+
+                <button type="submit">Rechercher</button>
+              </form>
             </div>
           </div>
           <div class="row">
