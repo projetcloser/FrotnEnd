@@ -1,13 +1,7 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <!-- <h1 class="mt-4 ">Nouvelle Personne</h1> -->
-    <ol class="breadcrumb mb-4 text-center ">
-      <li class="breadcrumb-item active " style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-        Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
-      </li>
 
-    </ol>
     <div class="row justify-content-center">
       <!-- Horizontal Form -->
       <div class="card card-info col-md-8">
@@ -18,7 +12,7 @@
         <div class="container mt-5">
           <div class="card">
             <div class="card-header">
-              <h4>Créer une nouvelle Personne</h4>
+              <h4>Enregistrer un  personnel</h4>
             </div>
             <div class="card-body">
               <form [formGroup]="personnelForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
@@ -35,7 +29,7 @@
                   <!-- Author -->
                   <div class="col-md-6">
                     <span>Auteur</span>
-                    <input type="text" formControlName="author" class="form-control" />
+                    <input type="text" formControlName="author" class="form-control" value="{{user.name}}" readonly />
                     <!-- <div *ngIf="personnelForm.controls['author'].invalid && personnelForm.controls['author'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['author'].hasError('required')">Auteur est requis.</small>
                     </div> -->

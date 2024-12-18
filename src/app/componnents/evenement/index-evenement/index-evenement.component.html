@@ -7,12 +7,6 @@
       </path>
     </svg><!-- <i class=" far fa-calendar-alt" style="color: silver"></i> Font Awesome fontawesome.com --> Liste des
     Evènements</h4>
-  <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active"
-      style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-      Hello M/Mme, il est 10:58 en ce jour du Mardi 6 Aout 2024.
-    </li>
-  </ol>
   <!--                Main Body-->
   <div class="row">
     <div class="col-xl-12">
@@ -25,7 +19,7 @@
               d="M48 0C21.53 0 0 21.53 0 48v64c0 8.84 7.16 16 16 16h80V48C96 21.53 74.47 0 48 0zm208 412.57V352h288V96c0-52.94-43.06-96-96-96H111.59C121.74 13.41 128 29.92 128 48v368c0 38.87 34.65 69.65 74.75 63.12C234.22 474 256 444.46 256 412.57zM288 384v32c0 52.93-43.06 96-96 96h336c61.86 0 112-50.14 112-112 0-8.84-7.16-16-16-16H288z">
             </path>
           </svg><!-- <i class="fas fa-scroll"></i> Font Awesome fontawesome.com -->
-          <b>L'ensemble des evenements.</b>
+          <b>L'ensemble des évènements.</b>
           <b>
 
             <!-- Nav pills -->
@@ -67,7 +61,7 @@
                             </select> entries</label></div>
                       </div>
                       <div class="col-sm-12 col-md-6">
-                        <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="text"
+                        <div id="dataTable_filter" class="dataTables_filter"><label>recherche:<input type="text"
                               class="form-control form-control-sm"  placeholder="Rechercher par titre ou auteur"
                               [(ngModel)]="searchTerm"
                               (ngModelChange)="onSearch()" aria-controls="dataTable"></label>
@@ -173,19 +167,18 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 2
-                          of 2 entries</div>
+                        <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Affichages de 1 à 2 entrées  </div>
                       </div>
                       <div class="col-sm-12 col-md-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
                           <ul class="pagination">
                             <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#"
-                                aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                                aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Précédant</a>
                             </li>
                             <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable"
                                 data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
                             <li class="paginate_button page-item next disabled" id="dataTable_next"><a href="#"
-                                aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
+                                aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">Suivant</a></li>
                           </ul>
                         </div>
                       </div>

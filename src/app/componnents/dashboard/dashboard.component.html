@@ -5,8 +5,7 @@
   <h1 class="mt-4">Tableau de Bord</h1>
   <ol class="breadcrumb mb-4" >
     <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-        Hello M/Mme {{user.perso.lastname}}, il est 11:17 en ce jour
-        du Lundi 29 Juillet 2024.
+        <b>Bienvenue sur Closer ! </b> &nbsp;votre espace privilégié pour l’Ordre National des Ingénieurs de Génie Civil du Cameroun
     </li>
   </ol>
   <!-- ------------------------------------------Membres ---------------------------------------------------------------------------- -->
@@ -123,21 +122,6 @@
           <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
         </div>
         <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa fa-dollar"></i>
-        </div>
-      </div>
-    </div>
- </div>
- </div>
- <div class="col">
- <div class="card radius-10 border-start border-0 border-3 border-success">
-    <div class="card-body">
-      <div class="d-flex align-items-center">
-        <div>
-          <p class="mb-0 text-secondary">Frais etudes dossiers</p>
-          <h4 class="my-1 text-success">0</h4>
-          <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
-        </div>
-        <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-dollar"></i>
         </div>
       </div>
     </div>
@@ -508,119 +492,6 @@
   <div class="col-md-12">
       <hr>
   </div>
-</div>
-  </ng-container>
-  <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' ">
- <label>
-  <svg class="svg-inline--fa fa-newspaper fa-w-18 small-icon" aria-hidden="true" focusable="false" data-prefix="far" data-icon="newspaper" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"></path></svg><!-- <i class="far fa-newspaper"></i> Font Awesome fontawesome.com -->
-  Dossiers/Postulants
-</label>
- <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-  <div class="col">
-<div class="card radius-10 border-start border-0 border-3 border-info">
- <div class="card-body">
-   <div class="d-flex align-items-center">
-     <div>
-       <p class="mb-0 text-secondary">Dossiers recus</p>
-       <h4 class="my-1 text-info">5</h4>
-       <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
-     </div>
-     <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa fa-address-book-o" aria-hidden="true"></i>
-     </div>
-   </div>
- </div>
-</div>
-</div>
-<div class="col">
-<div class="card radius-10 border-start border-0 border-3 border-danger">
-  <div class="card-body">
-    <div class="d-flex align-items-center">
-      <div>
-        <p class="mb-0 text-secondary">Dossiers en cours</p>
-        <h4 class="my-1 text-danger">0</h4>
-        <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
-      </div>
-      <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa fa-address-book-o" aria-hidden="true"></i>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<div class="col">
-<div class="card radius-10 border-start border-0 border-3 border-success">
-  <div class="card-body">
-    <div class="d-flex align-items-center">
-      <div>
-        <p class="mb-0 text-secondary">Dossiers rejetes</p>
-        <h4 class="my-1 text-success">0</h4>
-        <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
-      </div>
-      <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-address-book-o" aria-hidden="true"></i>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<!-- <div class="col">
-<div class="card radius-10 border-start border-0 border-3 border-warning">
-  <div class="card-body">
-    <div class="d-flex align-items-center">
-      <div>
-        <p class="mb-0 text-secondary">Total Customers</p>
-        <h4 class="my-1 text-warning">8.4K</h4>
-        <p class="mb-0 font-13">+8.4% from last week</p>
-      </div>
-      <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa fa-users"></i>
-      </div>
-    </div>
-  </div>
-</div>
-</div>  -->
-</div>
- <!-- ------------------------------------------  Etats trésorerie ---------------------------------------------------------------------------- -->
- <div class="row">
-  <div class="col-md-12">
-      <hr>
-  </div>
-</div>
- <label>
-  <svg class="svg-inline--fa fa-newspaper fa-w-18 small-icon" aria-hidden="true" focusable="false" data-prefix="far" data-icon="newspaper" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"></path></svg><!-- <i class="far fa-newspaper"></i> Font Awesome fontawesome.com -->
-  Etats trésorerie
-</label>
- <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-
-<div class="col">
-  <div class="card radius-10 border-start border-0 border-3 border-warning">
-    <div class="card-body">
-      <div class="d-flex align-items-center">
-        <div>
-          <p class="mb-0 text-secondary">Siege</p>
-          <p class="mb-0 font-13">Responsable: SALOMON</p>
-          <h4 class="my-1 text-warning">8.4K</h4>
-        </div>
-        <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa fa-dollar"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col">
-  <div class="card radius-10 border-start border-0 border-3 border-warning">
-    <div class="card-body">
-      <div class="d-flex align-items-center">
-        <div>
-          <p class="mb-0 text-secondary">E-banking</p>
-
-          <p class="mb-0 font-13">Responsable: SALOMON</p>
-          <h4 class="my-1 text-warning">8.4K</h4>
-        </div>
-        <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa fa-dollar"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
   </ng-container>
 

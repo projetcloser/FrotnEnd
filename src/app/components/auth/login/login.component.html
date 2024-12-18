@@ -1,4 +1,4 @@
-<div  style="background-color: #dde9dd;">
+<div class="bgcolorlogin">
 
   <div class="container">
       <!-- Outer Row -->
@@ -9,21 +9,22 @@
                       <!-- Nested Row within Card Body -->
                       <div class="row">
                         <div class="text-center custom-text">
-                          <h6 class="h8 text-primary-900 mb-1" style="font-size: 20px;">Bienvenue sur Closer, la plateforme qui vous rapproche des services de l'Ordre National des Ingénieurs de Génie Civil!</h6>
+                          <h3 class="h8 text-primary-900 mb-1" style="font-size: 20px;">Bienvenue sur Closer, la plateforme qui vous rapproche des services de l'Ordre National des Ingénieurs de Génie Civil!</h3>
                        </div>
                           <!-- Slide Section -->
                           <div class="col-lg-6 d-none d-lg-block p-0" >
                               <div id="loginSlider" class="carousel slide" data-ride="carousel">
                                   <div class="carousel-inner">
-                                      <div class="carousel-item active">
+
+                                    <div class="carousel-item active">
+                                      <img class="d-block w-100" src="assets/img/logo.jpg" alt="Third slide">
+                                  </div>
+                                      <div class="carousel-item">
                                           <img class="d-block w-100" src="assets/img/1R9A0582.jpg" alt="First slide">
                                       </div>
                                       <div class="carousel-item">
                                           <img class="d-block w-100" src="assets/img/delegation onigc a batimat.jpg" alt="Second slide">
                                       </div>
-                                      <!-- <div class="carousel-item">
-                                          <img class="d-block w-100" src="assets/img/logo.jpg" alt="Third slide">
-                                      </div> -->
                                   </div>
                                   <a class="carousel-control-prev" href="#loginSlider" role="button" data-slide="prev">
                                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -45,12 +46,12 @@
                                       <div class="form-group">
                                           <input type="text" class="form-control form-control-user"
                                           [(ngModel)]="matricule" id="matricule " name="matricule" required
-                                              placeholder="matricule">
+                                              placeholder="Entrez votre matricule">
                                       </div>
 
                                       <div class="form-group">
                                         <input class="form-control form-control-user" [(ngModel)]="password" type="password" id="password" name="password" required
-                                             aria-describedby="emailHelp" placeholder="mot de passe">
+                                             aria-describedby="emailHelp" placeholder="Entrez votre mot de passe ">
                                     </div>
                                       <!-- <div class="form-group">
                                           <div class="custom-control custom-checkbox small">
@@ -67,10 +68,13 @@
                                       <a class="small" href="">Mot de passe oublié?</a>
                                   </div>
                                   <div class="text-center">
-                                      <a class="small" [routerLink]="['/Closer/entreprise/create']" routerLinkActive="router-link-active"  >Enregistrer votre entreprise</a>
+                                      <a class="small" [routerLink]="['/Closer/entreprise/create']" routerLinkActive="router-link-active"  >Espace entreprise</a>
                                   </div>
                               </div>
                           </div>
+                          <div class="text-center custom-text">
+                            <h6 class="h8 text-primary-900 mb-1" style="font-size: 15px;">Contacts: 6 77 66 10 66/6 55 01 02 03 -- Site web: www.onigc.cm -- Siège: Montée Elig Essono –B.P: 20822 Yaoundé</h6>
+                         </div>
                       </div>
                   </div>
               </div>

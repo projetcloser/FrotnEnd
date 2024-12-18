@@ -12,28 +12,28 @@ import { CaisseServiceService } from '../../Caisse/caisse-service.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { ExcelService } from '../../../services/excel.service';
-import {AuthService} from "../../../components/auth/auth.service";
+import { AuthService } from "../../../components/auth/auth.service";
 
 @Component({
   selector: 'app-index-cotisation',
   standalone: true,
-  imports: [PaginationComponent,CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [PaginationComponent, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './index-cotisation.component.html',
   styleUrl: './index-cotisation.component.css'
 })
-export class IndexCotisationComponent implements OnInit{
+export class IndexCotisationComponent implements OnInit {
 
   cotisations: Cotisation[] = [];
-  membres: Membre[]=[];
-  caisses: Caisse[]=[];
+  membres: Membre[] = [];
+  caisses: Caisse[] = [];
   user: any = {};
 
   searchForm!: FormGroup;
   results: any[] = [];
 
 
-  constructor(private fb: FormBuilder,private excelService: ExcelService,private router: Router,private cotisationService: CotisationService,
-    private membersService: MembreServiceService,private caisseService: CaisseServiceService, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private excelService: ExcelService, private router: Router, private cotisationService: CotisationService,
+    private membersService: MembreServiceService, private caisseService: CaisseServiceService, private authService: AuthService) { }
 
 
 
@@ -61,7 +61,7 @@ export class IndexCotisationComponent implements OnInit{
       this.results = data;
     });
   }
-  
+
   loadUserProfile(): void {
     this.authService.getUserProfile().subscribe(
       (response: any) => {
@@ -94,11 +94,11 @@ export class IndexCotisationComponent implements OnInit{
   // Trouver le nom du pays à partir de l'ID
   getmembresName(member_id: number): string {
     const membre = this.membres.find(c => c.id === member_id);
-    return membre ? membre.firstname : 'Non défini';
+    return membre ? membre.lastname : 'Non défini';
   }
 
-   // Récupérer les villes
-   loadCaisses(): void {
+  // Récupérer les villes
+  loadCaisses(): void {
     this.caisseService.getAll().subscribe(data => {
       this.caisses = data;
       console.log('caisses : ', this.caisses);
@@ -119,8 +119,8 @@ export class IndexCotisationComponent implements OnInit{
     this.router.navigate(['/Closer/modifier-cotisation']);
   }
 
-   // Méthode de confirmation avant la suppression
-   confirmDelete(id: number) {
+  // Méthode de confirmation avant la suppression
+  confirmDelete(id: number) {
     const confirmed = confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
     if (confirmed) {
       this.deletePersonnel(id);
@@ -131,60 +131,60 @@ export class IndexCotisationComponent implements OnInit{
   deletePersonnel(id: number) {
     this.cotisationService.deleteCotisation(id).subscribe(res => {
       this.cotisations = this.cotisations.filter(item => item.id !== id);
-     //  console.log('activites deleted successfully!');
+      //  console.log('activites deleted successfully!');
       alert("cotisations deleted successfully!")
- })
+    })
   }
 
 
-// exportation excel
- exportToExcel(): void {
-      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.cotisations);
-      const workbook: XLSX.WorkBook = {
-        Sheets: { 'Liste des cotisations': worksheet },
-        SheetNames: ['Liste des cotisations']
-      };
+  // exportation excel
+  exportToExcel(): void {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.cotisations);
+    const workbook: XLSX.WorkBook = {
+      Sheets: { 'Liste des cotisations': worksheet },
+      SheetNames: ['Liste des cotisations']
+    };
 
-      // Générer le fichier Excel en binaire
-      const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    // Générer le fichier Excel en binaire
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-      // Appeler la méthode pour sauvegarder le fichier
-      this.saveAsExcelFile(excelBuffer, 'Liste_Cotisations');
-    }
+    // Appeler la méthode pour sauvegarder le fichier
+    this.saveAsExcelFile(excelBuffer, 'Liste_Cotisations');
+  }
 
-    saveAsExcelFile(buffer: any, fileName: string): void {
-      const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
-      saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
-    }
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
+    saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
+  }
 
-    // Récupérer les pays
-    loadCountries(): void {
-      this.cotisationService.getCountries().subscribe(data => {
-        this.countries = data;
-      });
-    }
+  // Récupérer les pays
+  loadCountries(): void {
+    this.cotisationService.getCountries().subscribe(data => {
+      this.countries = data;
+    });
+  }
 
-    // Récupérer les villes
-    loadCities(): void {
-      this.cotisationService.getCities().subscribe(data => {
-        this.cities = data;
-      });
-    }
+  // Récupérer les villes
+  loadCities(): void {
+    this.cotisationService.getCities().subscribe(data => {
+      this.cities = data;
+    });
+  }
 
-    // / Trouver le nom du pays à partir de l'ID
-    getCountryName(country_id: number): string {
-      const country = this.countries.find(c => c.id === country_id);
-      return country ? country.name : 'Non défini';
-    }
+  // / Trouver le nom du pays à partir de l'ID
+  getCountryName(country_id: number): string {
+    const country = this.countries.find(c => c.id === country_id);
+    return country ? country.name : 'Non défini';
+  }
 
-    // Trouver le nom de la ville à partir de l'ID
-    getCityName(city_id: number): string {
-      const city = this.cities.find(c => c.id === city_id);
-      return city ? city.name : 'Non défini';
-    }
+  // Trouver le nom de la ville à partir de l'ID
+  getCityName(city_id: number): string {
+    const city = this.cities.find(c => c.id === city_id);
+    return city ? city.name : 'Non défini';
+  }
 
 
-    // Méthode pour obtenir le libellé du statut
+  // Méthode pour obtenir le libellé du statut
   getStatusLabel(status: number): string {
     switch (status) {
       case 1:
@@ -197,9 +197,10 @@ export class IndexCotisationComponent implements OnInit{
         return 'Livrée';
       default:
         return 'Inconnu';
-    }}
+    }
+  }
 
-    exportToExcelByStatus(status: number): void {
+  exportToExcelByStatus(status: number): void {
     // Filtrer les cachets par statut
     const filteredCachets = this.membres
       .filter(membre => membre.status === status)
@@ -215,7 +216,7 @@ export class IndexCotisationComponent implements OnInit{
     this.excelService.exportAsExcelFile(filteredCachets, 'Cotisations_Status_' + status);
   }
 
-   // Fonction de recherche
+  // Fonction de recherche
 
 }
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

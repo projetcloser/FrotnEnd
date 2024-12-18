@@ -7,16 +7,7 @@
       </path>
     </svg><!-- <i class=" fa fa-address-card" style="color: silver"></i> Font Awesome fontawesome.com --> Liste des
     Cotisations</h4>
-  <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active"
-      style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-      <!--Hello M/Mme, il est 12:09 en ce jour du Mardi 6 Aout 2024-->
-      Bien vouloir faire enregistrer votre reçu de versement bancaire auprès du secrétariat
-      de l'Ordre sis montee Elig essono, 2e étage au dessus d'élégance pressing.
-      Contactez nous au 655010203.
-      .
-    </li>
-  </ol>
+
   <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
   <div class="row">
     <div class="col-xl-12">
@@ -167,7 +158,7 @@
                     <th scope="col">
                       Année d'inscription</th>
                     <th scope="col">Ingénieur</th>
-                    <th scope="col">Payer</th>
+                    <th scope="col">Payé</th>
                     <th scope="col">Reste</th>
                     <th scope="col">Statut</th>
                     <th scope="col">Auteur</th>

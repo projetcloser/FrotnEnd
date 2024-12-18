@@ -5,7 +5,7 @@
 
       <!-- Champ pour la date (readonly) avec icône -->
       <div class="form-group mb-4">
-        <label for="matricule" class="form-label"><i class="fas fa-user me-2"></i>matricule</label>
+        <label for="matricule" class="form-label"><i class="fas fa-user me-2"></i>pseudo</label>
         <input type="text" id="matricule" class="form-control border-0 bg-light" formControlName="matricule" >
       </div>
 
@@ -31,11 +31,15 @@
       <div class="form-group mb-4">
         <label for="roleId" class="form-label"><i class="fas fa-info-circle me-2"></i>Role</label>
         <select id="roleId" class="form-select" formControlName="roleId">
-          <option value="3" disabled>Sélectionnez un role</option>
+          <option value="" disabled>Sélectionnez un role</option>
           <option value="5">president</option>
-          <option value="1">membre</option>
           <option value="7">secrétaire administrative</option>
           <option value="2">administrateur</option>
+          <option value="3">receptionniste</option>
+          <option value="4">representant regional</option>
+          <option value="6">secretaire general</option>
+          <option value="8">responsable de communication</option>
+          <option value="9">reponsable administratif</option>
         </select>
       </div>
       <!-- sélect ( 1= membre, 2=administrateur, 7= secrétaire administrative, 5=président) tou ca c'est dans le seeder de rôle -->

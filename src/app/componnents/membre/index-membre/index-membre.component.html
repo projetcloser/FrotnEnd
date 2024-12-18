@@ -10,13 +10,6 @@
           </path>
         </svg><!-- <i class=" fas fa-user-graduate" style="color: silver"></i> Font Awesome fontawesome.com --> Liste
         des membres</h4>
-      <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active"
-          style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-          Hello M/Mme, il est 14:09 en ce jour du Lundi 16 Septembre 2024 .
-
-        </li>
-      </ol>
       <div class="row">
         <div class="col-xl-12">
 
@@ -182,7 +175,7 @@
                         <td align="center" style="width:15%">{{membre.created_at| date:'yyy'}}</td>
 
                         <td class="sorting_1"><img width="28" height="28" src="assets/img/user.jpg"
-                            class="rounded-circle m-r-5" alt="">{{ membre.firstname }}
+                            class="rounded-circle m-r-5" alt="">{{ membre.lastname }} {{ membre.firstname }}
                         </td>
 
                         <td align="center" style="width:18%">{{ membre.phone }}</td>

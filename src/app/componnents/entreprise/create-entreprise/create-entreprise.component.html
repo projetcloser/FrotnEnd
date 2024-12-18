@@ -1,12 +1,8 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <h1 class="mt-4 ">Nouvelle Entreprises</h1>
-    <ol class="breadcrumb mb-4 text-center">
-      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
-        Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
-      </li>
-    </ol>
+    <h1 class="mt-4 ">Nouvelle Entreprise</h1>
+
     <div class="row justify-content-center">
       <!-- Horizontal Form -->
       <div class="card card-info col-md-8">
@@ -157,7 +153,9 @@
         <div class="container mt-5">
           <div class="card">
             <div class="card-header">
-              <h4>Créer une nouvelle entreprise</h4>
+              <h4>
+                Enregistrer une entreprise
+                </h4>
             </div>
             <div class="card-body">
               <form [formGroup]="entrepriseForm" (ngSubmit)="onSubmit()">
@@ -186,9 +184,14 @@
                   <div class="col-md-6">
                     <span>Téléphone</span>
                     <input type="text" formControlName="phone" class="form-control" />
-                    <!-- <div *ngIf="entrepriseForm.controls['phone'].invalid && entrepriseForm.controls['phone'].touched" class="text-danger">
-                      <small *ngIf="entrepriseForm.controls['phone'].hasError('required')">Téléphone est requis.</small>
-                    </div> -->
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="catId" class="form-label"><i class="fas fa-info-circle me-2"></i>Catégorie d'entreprise</label>
+                    <select id="catId" class="form-select" formControlName="catId">
+                      <option value="bet">BET</option>
+                      <option value="entreprise" selected>Entreprise</option>
+                    </select>
                   </div>
 
                   <!-- Email -->
@@ -204,7 +207,7 @@
                 <div class="row mb-3">
                   <!-- NUI -->
                   <div class="col-md-6">
-                    <span>NUI</span>
+                    <span>NIU</span>
                     <input type="text" formControlName="nui" class="form-control" />
                     <!-- <div *ngIf="entrepriseForm.controls['nui'].invalid && entrepriseForm.controls['nui'].touched" class="text-danger">
                       <small *ngIf="entrepriseForm.controls['nui'].hasError('required')">NUI est requis.</small>
@@ -224,7 +227,7 @@
                       <option value="PRIVEE">
                         PRIVEE
                       </option>
-                 
+
                     </select>
                     <!-- <div *ngIf="personnelForm.controls['city_id'].invalid && personnelForm.controls['city_id'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['city_id'].hasError('required')">Ville est requise.</small>

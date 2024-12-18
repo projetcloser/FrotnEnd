@@ -50,8 +50,6 @@
               "src/assets/vendor/chart.js/Chart.min.js",
               "src/assets/js/demo/chart-area-demo.js",
               "src/assets/js/demo/chart-pie-demo.js"
-
-
             ]
           },
           "configurations": {
