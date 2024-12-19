@@ -98,6 +98,8 @@
                           style="width: 215.719px;">Entreprises</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                           aria-label="Type : activate to sort column ascending" style="width: 35.8438px;">Type </th>
+                          <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                          aria-label="Type : activate to sort column ascending" style="width: 35.8438px;">Categorie </th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                           aria-label="Tel : activate to sort column ascending" style="width: 154.859px;">Tel </th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
@@ -127,6 +129,7 @@
                       <tr align="center" role="row" class="odd" *ngFor="let entreprise of entreprises">
                         <td class="sorting_1"><a href="#">{{entreprise.social_reason}}</a></td>
                         <td><a href="#">{{entreprise.company_type}} </a></td>
+                        <td><a href="#">{{entreprise.company_categorie}} </a></td>
                         <td><a href="#">{{entreprise.phone}}</a></td>
                         <td><a href="#">{{entreprise.nui}}</a></td>
                         <td><a href="#">{{ getCityName(entreprise.city_id) }}</a></td>

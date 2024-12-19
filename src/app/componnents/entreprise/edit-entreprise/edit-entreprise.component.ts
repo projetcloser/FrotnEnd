@@ -49,7 +49,7 @@ export class EditEntrepriseComponent {
       neighborhood: [this.company.neighborhood],
       contact_person: [this.company.contact_person, Validators.required],
       contact_person_phone: [this.company.contact_person_phone, Validators.required],
-      // status: [this.company.status, Validators.required]
+      company_categorie: [this.company.company_categorie, Validators.required]
     });
   });
 

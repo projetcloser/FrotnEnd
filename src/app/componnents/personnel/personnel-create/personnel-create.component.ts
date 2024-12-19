@@ -29,7 +29,7 @@ export class PersonnelCreateComponent implements OnInit{
   currentTime = new Date();
   currentDay = new Date();
 
-  personnelForm: FormGroup;
+  personnelForm!: FormGroup;
   personnel: Personnel = new Personnel();
   selectedFiles: File[] = [];
 
@@ -44,34 +44,37 @@ export class PersonnelCreateComponent implements OnInit{
     private authService: AuthService,
      private router: Router,private cityService: VilleServiceService,
     private countryService: PaysServiceService) {
-      this.personnelForm = this.fb.group({
-
-        // phone: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)] ],
-        statut: [], // 'married' or 'celibataire'
-        lastname: [''],
-        firstname: [''],
-        email: [''],
-        date_card_validity: [''],
-        phone: [''],
-        father_name: [''],
-        father_phone: [''],
-        mother_name: [''],
-        birthday: [''], // Format: 'YYYY-MM-DD'
-        place_birth: [''],
-        profession: [''],
-        gender: [''], // 'male' or 'female'
-        contract_type: [''],
-        marital_status: [''], // 'married' or 'celibataire'
-        position: [''],
-        author:[{value:this.user.name, disabled: true }],
-        num_children: [0],
-        // open_close: [false],
-        city_id: [ ], // Foreign key
-        country_id: [ ], // Foreign key
-        attachment_file: [null]
-      });
+     
   }
   ngOnInit(): void {
+
+    this.personnelForm = this.fb.group({
+
+      // phone: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)] ],
+      statut: [], // 'married' or 'celibataire'
+      lastname: [''],
+      firstname: [''],
+      email: [''],
+      date_card_validity: [''],
+      phone: [''],
+      father_name: [''],
+      father_phone: [''],
+      mother_name: [''],
+      birthday: [''], // Format: 'YYYY-MM-DD'
+      place_birth: [''],
+      profession: [''],
+      gender: [''], // 'male' or 'female'
+      contract_type: [''],
+      marital_status: [''], // 'married' or 'celibataire'
+      position: [''],
+      author:[{value:'', disabled: true }],
+      num_children: [0],
+      // open_close: [false],
+      city_id: [ ], // Foreign key
+      country_id: [ ], // Foreign key
+      attachment_file: [null]
+    });
+
     this.loadCities();
     this.loadCountries();
     // this.loadCompanies();
@@ -81,9 +84,9 @@ export class PersonnelCreateComponent implements OnInit{
       author:  this.authService.getUserProfile().subscribe(
         (response: any) => {
           this.user = response.user.name;
-          console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
+          console.log('Utilisateur staff connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.personnelForm?.setValue({ author: this.user });
+          this.personnelForm.patchValue({ author: this.user });
 
         },
         (error) => {
@@ -91,6 +94,8 @@ export class PersonnelCreateComponent implements OnInit{
         }
     ) // Auteur connecté
     });
+
+      
 
   //   this.authService.getUserProfile().subscribe(
   //     (response: any) => {

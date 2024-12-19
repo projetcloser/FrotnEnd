@@ -1,0 +1,58 @@
+/* Style de l'arrière-plan */
+body {
+   /* Couleur de l'arrière-plan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Hauteur minimale de la fenêtre */
+  margin: 0;
+}
+
+/* Conteneur global */
+.container-fluid {
+  display: flex;
+  background-color: #c7e2c3;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Prendre toute la largeur */
+  padding: 20px; /* Ajout d'un espace pour le haut/bas */
+}
+
+/* Formulaire centré dans une carte */
+.card {
+  width: 100%;
+  max-width: 700px; /* Largeur maximale du formulaire */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* Fond blanc pour le formulaire */
+  padding: 20px;
+}
+
+/* Header centré */
+.card-header {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: #17a2b8; /* Couleur de fond bleu clair */
+  color: white;
+  padding: 15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Bouton d'envoi */
+button[type="submit"] {
+  background-color: #28a745; /* Couleur verte */
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Prend toute la largeur */
+  margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838; /* Vert plus foncé au survol */
+}

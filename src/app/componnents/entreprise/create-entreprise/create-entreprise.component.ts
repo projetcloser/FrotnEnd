@@ -42,7 +42,7 @@ export class CreateEntrepriseComponent {
       neighborhood: [''],
       contact_person: [''],
       contact_person_phone: [''],
-      // status: [],
+      company_categorie: [''],
     });
 
     this.loadCities();

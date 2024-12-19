@@ -10,11 +10,11 @@ export const routes = [
   //   name:"Professions",
   //   single:"Profession"
   //  },
-  //  {
-  //   path:"/Closer/poste",
-  //   name:"Groupe",
-  //   single:"Poste"
-  //  },
+   {
+    path:"/Closer/poste",
+    name:"Groupe",
+    single:"Poste"
+   },
 
   {
     path: "/Closer/list-utulisateur",

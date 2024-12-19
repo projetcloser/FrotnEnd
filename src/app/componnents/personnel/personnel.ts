@@ -1,36 +1,11 @@
-// export class Personnel {
-//   id!: number;
-//   statut!: number; // 'married' or 'celibataire'
-//   lastname: string = '';
-//   firstname: string = '';
-//   email: string = '';
-//   date_card_validity: string = '';
-//   phone: string = '';
-//   phone2: string = '';
-//   father_name: string = '';
-//   father_phone: string = '';
-//   mother_name: string = '';
-//   birthday: string = ''; // Date format: 'YYYY-MM-DD'
-//   place_birth: string = '';
-//   profession: string = '';
-//   gender: string = ''; // 'male' or 'female'
-//   contract_type: string = '';
-//   marital_status: string = ''; // married or celibataire
-//   position: string = '';
-//   num_children: number = 0;
-//   open_close: boolean = false;
-//   city_id!: number; // Foreign key
-//   country_id!: number; // Foreign key
-//   attachment_file?: File[]; // Attachment field for file upload
-//   created_at?: Date;
-//   updated_at?: Date;
-// }
+
 
 export class Personnel {
   id!: number;
   statut!: number; // Ex: 1 pour actif, 0 pour inactif
   lastname: string = '';
   firstname: string = '';
+  author: string = '';
   email: string = '';
   date_card_validity?: Date; // Date de validité de la carte (optionnel)
   phone?: string; // Numéro de téléphone (optionnel)

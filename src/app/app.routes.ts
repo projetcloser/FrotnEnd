@@ -82,6 +82,7 @@ import { UpdateDetteComponent } from './componnents/dette/update-dette/update-de
 import { DetailsDetteComponent } from './componnents/dette/details-dette/details-dette.component';
 import { IndexUserComponent } from './componnents/user/index-user/index-user.component';
 import { CreateUserComponent } from './componnents/user/create-user/create-user.component';
+import { SinglepageCreateComponent } from './componnents/entreprise/singlepage-create/singlepage-create.component';
 
 
 
@@ -89,6 +90,8 @@ import { CreateUserComponent } from './componnents/user/create-user/create-user.
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  { path: 'Nouvelle_entreprise', component: SinglepageCreateComponent },
 
   { path: 'forgot-password', component: FpwComponent },
 

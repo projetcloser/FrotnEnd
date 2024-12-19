@@ -3,6 +3,7 @@ export class Entreprise {
   company_name:string="";
   author: string ="";
   company_type: string ="";
+  company_categorie:string=""
   email:string="";
   nui:string="";
   country_id!:number;
