@@ -13,6 +13,7 @@ import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { ExcelService } from '../../../services/excel.service';
 import { AuthService } from "../../../components/auth/auth.service";
+import { PaginationService } from '../../../components/pagination.service';
 
 @Component({
   selector: 'app-index-cotisation',
@@ -31,9 +32,17 @@ export class IndexCotisationComponent implements OnInit {
   searchForm!: FormGroup;
   results: any[] = [];
 
+   // pagination
+   paginatedData: any[] = []; // Données de la page courante
+
+   currentPage: number = 1;
+   pageSize: number = 10;
+   totalItems: number = 0;
+
 
   constructor(private fb: FormBuilder, private excelService: ExcelService, private router: Router, private cotisationService: CotisationService,
-    private membersService: MembreServiceService, private caisseService: CaisseServiceService, private authService: AuthService) { }
+    private membersService: MembreServiceService, private caisseService: CaisseServiceService
+    , private authService: AuthService, private paginationService: PaginationService) { }
 
 
 
@@ -87,6 +96,9 @@ export class IndexCotisationComponent implements OnInit {
     this.membersService.getAll().subscribe(data => {
       this.membres = data;
       console.log('membre : ', this.membres);
+       // pagination
+       this.totalItems = this.membres.length;
+       this.updatePage();
 
     });
   }
@@ -217,6 +229,21 @@ export class IndexCotisationComponent implements OnInit {
   }
 
   // Fonction de recherche
+
+   // pagination
+
+ updatePage(): void {
+  this.paginatedData = this.paginationService.paginate(
+    this.membres,
+    this.currentPage,
+    this.pageSize
+  );
+}
+
+onPageChange(page: number): void {
+  this.currentPage = page;
+  this.updatePage();
+}
 
 }
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

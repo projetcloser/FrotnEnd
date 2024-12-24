@@ -7,11 +7,13 @@ import { NonPayeService } from '../../nonPaye/non-paye.service';
 import { EntrepriseServiceService } from '../../../entreprise/entreprise-service.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaginationComponent } from '../../../../components/pagination/pagination.component';
+import { PaginationService } from '../../../../components/pagination.service';
 
 @Component({
   selector: 'app-index-paye',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,PaginationComponent],
   templateUrl: './index-paye.component.html',
   styleUrl: './index-paye.component.css'
 })
@@ -20,7 +22,15 @@ export class IndexPayeComponent {
   statusFilter = 3; // Filtre par défaut : non payé
   members:Membre[]=[];
   companies:Entreprise[]=[];
-  constructor(private router: Router,private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService) {}
+
+   // pagination
+   paginatedData: any[] = []; // Données de la page courante
+
+   currentPage: number = 1;
+   pageSize: number = 10;
+   totalItems: number = 0;
+  constructor(private router: Router,private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService,
+       private paginationService: PaginationService) {}
 
   ngOnInit(): void {
     // this.loadAttestations();
@@ -33,6 +43,9 @@ export class IndexPayeComponent {
     this.attestationService.getAttestationsByStatus(status).subscribe(
       (data) => {
         this.attestations = data;
+           // pagination
+      this.totalItems = this.attestations.length;
+      this.updatePage();
       },
       (error) => {
         console.error('Erreur lors du chargement des attestations', error);
@@ -117,6 +130,19 @@ export class IndexPayeComponent {
   // Formater la date pour afficher seulement l'année
   formatDate(date: Date): string {
     return new Date(date).getFullYear().toString();
+  }
+// pagination
+  updatePage(): void {
+    this.paginatedData = this.paginationService.paginate(
+      this.attestations,
+      this.currentPage,
+      this.pageSize
+    );
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.updatePage();
   }
 
 }

@@ -8,20 +8,30 @@ import { Membre } from '../../../../models/membre';
 import jsPDF from 'jspdf'; // Assurez-vous d'avoir installé jsPDF: `npm install jspdf`
 import html2canvas from 'html2canvas';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginationComponent } from '../../../../components/pagination/pagination.component';
+import { PaginationService } from '../../../../components/pagination.service';
 
 @Component({
   selector: 'app-index-attest-personnel',
   standalone: true,
   imports: [FormsModule,
-    CommonModule,ReactiveFormsModule,RouterModule,HttpClientModule ],
+    CommonModule,ReactiveFormsModule,RouterModule,HttpClientModule,PaginationComponent ],
   templateUrl: './index-attest-personnel.component.html',
   styleUrl: './index-attest-personnel.component.css'
 })
 export class IndexAttestPersonnelComponent implements OnInit{
-  constructor(private router: Router,private attestPersonnelService: AttestPersonnelService) {}
+  constructor(private router: Router,private attestPersonnelService: AttestPersonnelService,
+       private paginationService: PaginationService) {}
 
   attestations: AttestPersonnel[] = [];
   membres:Membre[]=[]
+
+   // pagination
+   paginatedData: any[] = []; // Données de la page courante
+
+   currentPage: number = 1;
+   pageSize: number = 10;
+   totalItems: number = 0;
 
    // Image de la signature (fichier PNG dans le dossier assets)
    signatureImage = 'assets/img/1.jpg';
@@ -35,6 +45,9 @@ export class IndexAttestPersonnelComponent implements OnInit{
   getAttestations(): void {
     this.attestPersonnelService.getAll().subscribe((data: AttestPersonnel[]) => {
       this.attestations = data;
+      // pagination
+      this.totalItems = this.attestations.length;
+      this.updatePage();
 
     });
   }
@@ -147,6 +160,21 @@ export class IndexAttestPersonnelComponent implements OnInit{
       };
     };
   }
+
+   // pagination
+
+ updatePage(): void {
+  this.paginatedData = this.paginationService.paginate(
+    this.attestations,
+    this.currentPage,
+    this.pageSize
+  );
+}
+
+onPageChange(page: number): void {
+  this.currentPage = page;
+  this.updatePage();
+}
 
 
 }

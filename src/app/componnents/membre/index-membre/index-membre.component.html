@@ -17,7 +17,7 @@
           <b>
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item">
-                <a class="nav-link " (click)="exportToExcel()"target="blank"
+                <a class="nav-link " (click)="exportToExcel()" target="blank"
                   style="background-color: #28a745; margin-right: 20px; color: white"><svg
                     class="svg-inline--fa fa-download fa-w-16 small-button" aria-hidden="true" focusable="false"
                     data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@
             <!-- memmbre a jour -->
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item">
-                <a class="nav-link " (click)="exportToExcelByStatus(1)"target="blank"
+                <a class="nav-link " (click)="exportToExcelByStatus(1)" target="blank"
                   style="background-color: #28a745; margin-right: 20px; color: white"><svg
                     class="svg-inline--fa fa-download fa-w-16 small-button" aria-hidden="true" focusable="false"
                     data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@
             <!-- membre pas a jour -->
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item">
-                <a class="nav-link " (click)="exportToExcelByStatus(0)"target="blank"
+                <a class="nav-link " (click)="exportToExcelByStatus(0)" target="blank"
                   style="background-color: #28a745; margin-right: 20px; color: white"><svg
                     class="svg-inline--fa fa-download fa-w-16 small-button" aria-hidden="true" focusable="false"
                     data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -95,15 +95,12 @@
           <div class="table-responsive">
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
               <div class="col-sm-12 col-md-6">
-                <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="d-flex flex-column flex-md-row align-items-center gap-3">
+                <form [formGroup]="searchForm" (ngSubmit)="onSearch()"
+                  class="d-flex flex-column flex-md-row align-items-center gap-3">
                   <!-- Champ de recherche -->
                   <div class="form-group w-100">
-                    <input
-                      formControlName="keyword"
-                      class="form-control"
-                      placeholder="Rechercher par nom, email ou téléphone"
-                      aria-label="Recherche"
-                    />
+                    <input formControlName="keyword" class="form-control"
+                      placeholder="Rechercher par nom, email ou téléphone" aria-label="Recherche" />
                   </div>
 
                   <!-- Filtrer par statut -->
@@ -133,7 +130,7 @@
                   </div> -->
 
                   <!-- Bouton de recherche -->
-                  <div  class="form-group">
+                  <div class="form-group">
                     <button type="submit" class="btn btn-primary">
                       <i class="fas fa-search"></i>
                     </button>
@@ -182,7 +179,7 @@
                         <td align="center" style="width:22%">{{ membre.email }}
                         </td>
                         <!-- <td align="center"> -->
-                          <!-- {{ membre.debt }} </td> -->
+                        <!-- {{ membre.debt }} </td> -->
                         <td>{{ membre.author }}</td>
                         <td align="center" style="width:10%">
                           <div class="dropdown dropdown-action">
@@ -215,10 +212,10 @@
                                 Delete
                               </a>
                               <!-- <a class="dropdown-item" [routerLink]="['/membre/',membre.id, 'show']" (click)="viewMembre(membre.id)"> -->
-                                <!--  -->
-                                <i class="fa-solid fa-eye">
-                                </i>
-                                View
+                              <!--  -->
+                              <i class="fa-solid fa-eye">
+                              </i>
+                              View
                               <!-- </a> -->
                             </div>
                           </div>
@@ -227,6 +224,32 @@
 
                     </tbody>
                   </table>
+                </div>
+              </div>
+              <div class="row">
+                <!-- <div class="col-sm-12 col-md-5">
+                  <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 18
+                    entries</div>
+                </div> -->
+                <div class="col-sm-12 col-md-7">
+                  <app-pagination
+                  [totalItems]="totalItems"
+                  [pageSize]="pageSize"
+                  [currentPage]="currentPage"
+                  (pageChanged)="onPageChange($event)"
+                ></app-pagination>
+                  <!-- <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                    <ul class="pagination">
+                      <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#"
+                          aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                      <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1"
+                          tabindex="0" class="page-link">1</a></li>
+                      <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2"
+                          tabindex="0" class="page-link">2</a></li>
+                      <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable"
+                          data-dt-idx="3" tabindex="0" class="page-link">Next</a></li>
+                    </ul>
+                  </div> -->
                 </div>
               </div>
 

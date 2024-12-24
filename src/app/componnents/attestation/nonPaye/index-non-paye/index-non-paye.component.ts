@@ -7,11 +7,13 @@ import { NonPaye } from '../non-paye';
 import { Membre } from '../../../../models/membre';
 import { Entreprise } from '../../../../models/entreprise';
 import { EntrepriseServiceService } from '../../../entreprise/entreprise-service.service';
+import { PaginationComponent } from '../../../../components/pagination/pagination.component';
+import { PaginationService } from '../../../../components/pagination.service';
 
 @Component({
   selector: 'app-index-non-paye',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,PaginationComponent],
   templateUrl: './index-non-paye.component.html',
   styleUrl: './index-non-paye.component.css'
 })
@@ -24,7 +26,16 @@ export class IndexNonPayeComponent {
   // seracc back
   searchForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private router: Router,private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService) {
+     // pagination
+     paginatedData: any[] = []; // Données de la page courante
+
+     currentPage: number = 1;
+     pageSize: number = 10;
+     totalItems: number = 0;
+
+  constructor(private fb: FormBuilder,private router: Router,
+    private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService,
+    private paginationService: PaginationService) {
     this.searchForm = this.fb.group({
       keyword: [''],
       company_id: [''],
@@ -45,6 +56,9 @@ export class IndexNonPayeComponent {
     this.attestationService.getAttestationsByStatus(status).subscribe(
       (data) => {
         this.attestations = data;
+           // pagination
+      this.totalItems = this.attestations.length;
+      this.updatePage();
       },
       (error) => {
         console.error('Erreur lors du chargement des attestations', error);
@@ -137,5 +151,20 @@ export class IndexNonPayeComponent {
   formatDate(date: Date): string {
     return new Date(date).getFullYear().toString();
   }
+
+  // pagination
+
+ updatePage(): void {
+  this.paginatedData = this.paginationService.paginate(
+    this.attestations,
+    this.currentPage,
+    this.pageSize
+  );
+}
+
+onPageChange(page: number): void {
+  this.currentPage = page;
+  this.updatePage();
+}
 
 }

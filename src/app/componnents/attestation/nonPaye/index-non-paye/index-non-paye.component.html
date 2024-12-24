@@ -266,11 +266,17 @@
           </div>
           <div class="row">
             <div class="col-sm-12 col-md-5">
-              <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 7,626
-                entries</div>
+              <!-- <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 7,626
+                entries</div> -->
             </div>
             <div class="col-sm-12 col-md-7">
-              <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+              <app-pagination
+              [totalItems]="totalItems"
+              [pageSize]="pageSize"
+              [currentPage]="currentPage"
+              (pageChanged)="onPageChange($event)"
+            ></app-pagination>
+              <!-- <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
                 <ul class="pagination">
                   <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#"
                       aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
@@ -291,7 +297,7 @@
                   <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable"
                       data-dt-idx="8" tabindex="0" class="page-link">Next</a></li>
                 </ul>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

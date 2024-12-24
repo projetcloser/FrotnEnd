@@ -5,12 +5,14 @@ import { EvenementService } from '../evenement.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from "../../../components/auth/auth.service";
+import { PaginationService } from '../../../components/pagination.service';
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-index-evenement',
   standalone: true,
   imports: [CommonModule,
-    RouterModule, ReactiveFormsModule, FormsModule],
+    RouterModule, ReactiveFormsModule, FormsModule,PaginationComponent],
   templateUrl: './index-evenement.component.html',
   styleUrl: './index-evenement.component.css'
 })
@@ -24,9 +26,18 @@ export class IndexEvenementComponent {
   filteredEvenements: Evenement[] = []; // Événements filtrés
   searchTerm: string = ''; // Terme de recherche
 
+     // pagination
+     paginatedData: any[] = []; // Données de la page courante
+
+     currentPage: number = 1;
+     pageSize: number = 10;
+     totalItems: number = 0;
 
 
-  constructor(private evenementService: EvenementService, private router: Router, private authService: AuthService) { }
+
+  constructor(private evenementService: EvenementService, private router: Router, private authService: AuthService,
+     private paginationService: PaginationService
+  ) { }
 
   ngOnInit(): void {
     this.loadEvenements();
@@ -49,6 +60,9 @@ export class IndexEvenementComponent {
   loadEvenements() {
     this.evenementService.getEvenements().subscribe((data: Evenement[]) => {
       this.evenements = data;
+       // pagination
+       this.totalItems = this.evenements.length;
+       this.updatePage();
     });
   }
 
@@ -122,4 +136,19 @@ export class IndexEvenementComponent {
       this.filteredEvenements = this.evenements; // Réinitialisez les résultats si le champ est vide
     }
   }
+
+   // pagination
+
+ updatePage(): void {
+  this.paginatedData = this.paginationService.paginate(
+    this.evenements,
+    this.currentPage,
+    this.pageSize
+  );
+}
+
+onPageChange(page: number): void {
+  this.currentPage = page;
+  this.updatePage();
+}
 }

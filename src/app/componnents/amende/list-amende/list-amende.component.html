@@ -45,10 +45,19 @@
     </div>
     <!-- Pagination -->
     <div class="card-footer d-flex justify-content-center">
-      <button id="prevPage" class="btn btn-secondary me-2">Précédent</button>
+      <div class="col-sm-12 col-md-7">
+        <app-pagination
+        [totalItems]="totalItems"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        (pageChanged)="onPageChange($event)"
+      ></app-pagination>
+      <!-- <button id="prevPage" class="btn btn-secondary me-2">Précédent</button>
       <span id="pageNumber" class="mt-2"></span>
-      <button id="nextPage" class="btn btn-secondary ms-2">Suivant</button>
+      <button id="nextPage" class="btn btn-secondary ms-2">Suivant</button> -->
     </div>
+
+
   </div>
 </div>
 
