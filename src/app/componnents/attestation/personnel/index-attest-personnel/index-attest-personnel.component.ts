@@ -13,19 +13,19 @@ import { HttpClientModule } from '@angular/common/http';
   selector: 'app-index-attest-personnel',
   standalone: true,
   imports: [FormsModule,
-    CommonModule,ReactiveFormsModule,RouterModule,HttpClientModule ],
+    CommonModule, ReactiveFormsModule, RouterModule, HttpClientModule],
   templateUrl: './index-attest-personnel.component.html',
   styleUrl: './index-attest-personnel.component.css'
 })
-export class IndexAttestPersonnelComponent implements OnInit{
-  constructor(private router: Router,private attestPersonnelService: AttestPersonnelService) {}
+export class IndexAttestPersonnelComponent implements OnInit {
+  constructor(private router: Router, private attestPersonnelService: AttestPersonnelService) { }
 
   attestations: AttestPersonnel[] = [];
-  membres:Membre[]=[]
+  membres: Membre[] = []
 
-   // Image de la signature (fichier PNG dans le dossier assets)
-   signatureImage = 'assets/img/1.jpg';
-   qrCodeImage = 'assets/img/2.jpg';
+  // Image de la signature (fichier PNG dans le dossier assets)
+  signatureImage = 'assets/img/1.jpg';
+  qrCodeImage = 'assets/img/2.jpg';
 
   ngOnInit(): void {
     this.getAttestations();
@@ -48,10 +48,10 @@ export class IndexAttestPersonnelComponent implements OnInit{
 
   getMemberName(countryId: number): string {
     const member = this.membres.find(p => p.id === countryId);
-    return member ? member.firstname : 'Inconnu';
+    return member ? member.lastname : 'Inconnu';
   }
 
-  getmemberMatricule(countryId: number){
+  getmemberMatricule(countryId: number) {
     const member = this.membres.find(p => p.id === countryId);
     return member ? member.matricule : 'Inconnu';
   }
@@ -69,8 +69,8 @@ export class IndexAttestPersonnelComponent implements OnInit{
     this.router.navigate(['/Closer/modifier-personne']);
   }
 
-   // Méthode pour générer un PDF pour l'attestation
-   generatePdf(attest: AttestPersonnel): void {
+  // Méthode pour générer un PDF pour l'attestation
+  generatePdf(attest: AttestPersonnel): void {
     const doc = new jsPDF('portrait');
 
     // Récupérer la date du jour

@@ -11,20 +11,20 @@ import { EntrepriseServiceService } from '../../../entreprise/entreprise-service
 @Component({
   selector: 'app-index-non-paye',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './index-non-paye.component.html',
   styleUrl: './index-non-paye.component.css'
 })
 export class IndexNonPayeComponent {
   attestations: NonPaye[] = [];
   statusFilter = 1; // Filtre par défaut : non payé
-  members:Membre[]=[];
-  companies:Entreprise[]=[];
+  members: Membre[] = [];
+  companies: Entreprise[] = [];
 
   // seracc back
   searchForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private router: Router,private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService) {
+  constructor(private fb: FormBuilder, private router: Router, private attestationService: NonPayeService, private entrepriseService: EntrepriseServiceService) {
     this.searchForm = this.fb.group({
       keyword: [''],
       company_id: [''],
@@ -85,8 +85,8 @@ export class IndexNonPayeComponent {
     this.router.navigate(['/Closer/modifier-attestation-non_paye,']);
   }
 
-   // Méthode de confirmation avant la suppression
-   confirmDelete(id: number) {
+  // Méthode de confirmation avant la suppression
+  confirmDelete(id: number) {
     const confirmed = confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
     if (confirmed) {
       this.deleteAttestation(id);
@@ -102,17 +102,17 @@ export class IndexNonPayeComponent {
   }
 
 
-  getCompanies():void{
-    this.entrepriseService.getAll().subscribe(data =>{
-        this.companies = data;
-        console.log('info sur les companies ayant une attestation d\'esntreprise',this.companies);
+  getCompanies(): void {
+    this.entrepriseService.getAll().subscribe(data => {
+      this.companies = data;
+      console.log('info sur les companies ayant une attestation d\'esntreprise', this.companies);
 
     });
   }
 
-  getCompaniesNames(idCompanies:number):string{
-    const entreprises =this.companies.find(e =>e.id === idCompanies);
-    return entreprises? entreprises.social_reason: 'Inconnue';
+  getCompaniesNames(idCompanies: number): string {
+    const entreprises = this.companies.find(e => e.id === idCompanies);
+    return entreprises ? entreprises.social_reason : 'Inconnue';
   }
 
   getMemberALL(): void {
@@ -125,10 +125,10 @@ export class IndexNonPayeComponent {
 
   getMemberName(countryId: number): string {
     const member = this.members.find(p => p.id === countryId);
-    return member ? member.firstname : 'Inconnu';
+    return member ? member.lastname : 'Inconnu';
   }
 
-  getmemberMatricule(countryId: number){
+  getmemberMatricule(countryId: number) {
     const member = this.members.find(p => p.id === countryId);
     return member ? member.matricule : 'Inconnu';
   }
