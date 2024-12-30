@@ -162,6 +162,8 @@
                     <th scope="col" i18n>Reste</th>
                     <th scope="col" i18n>Statut</th>
                     <th scope="col" i18n>Auteur</th>
+                    <th scope="col" i18n>
+                      Prévisualisation</th>
                     <th class="text-right sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                       aria-label=" Font Awesome fontawesome.com -->: activate to sort column ascending"
                       style="width: 14.0312px;"><svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true"
@@ -197,6 +199,16 @@
                     </td>
                     <td>
                       {{cotisation.author}}
+                    </td>
+                    <td>
+                       <!-- Bouton de paiement avec badge -->
+                       <a (click)="payer(cotisation)" style="cursor: pointer;" target="_blank" i18n>
+                        <span class="custom-badge status-red">
+                          <span class="badge badge-danger badge-pill">
+                            <i class="fa fa-money" aria-hidden="true"></i> ICI POUR PAYER
+                          </span>
+                        </span>
+                      </a>
                     </td>
                     <td>
 
