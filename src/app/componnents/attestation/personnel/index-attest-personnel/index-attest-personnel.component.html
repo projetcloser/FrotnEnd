@@ -42,13 +42,13 @@
         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
           <div class="row">
             <div class="col-sm-12 col-md-6">
-              <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"
+              <!-- <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"
                     aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
                     <option value="10">10</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
-                  </select> entries</label></div>
+                  </select> entries</label></div> -->
             </div>
             <div class="col-sm-12 col-md-6">
               <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
@@ -96,15 +96,26 @@
                         </span>
                       </a>
                     </td> -->
-                    <td align="center"><a (click)="generatePdf(attest)" target="_blank">
+                    <td align="center">
+                      <a href="assets/img/attestation_member.pdf" target="_blank">
+                      <svg class="svg-inline--fa fa-print fa-w-16 custom-icon " aria-hidden="true" focusable="false"
+                        data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
+                        </path>
+                      </svg>
+                    </a>
+                    <!-- <a (click)="generatePdf(attest)" target="_blank">
                         <svg class="svg-inline--fa fa-print fa-w-16 custom-icon " aria-hidden="true" focusable="false"
                           data-prefix="fa" data-icon="print" role="img" xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 512 512" data-fa-i2svg="">
                           <path fill="currentColor"
                             d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z">
                           </path>
-                        </svg><!-- <i class="fa fa-print"></i> Font Awesome fontawesome.com -->
-                      </a></td>
+                        </svg>
+                      </a> -->
+                    </td>
                     <td>{{attest.author}}</td>
                   </tr>
 
@@ -117,12 +128,19 @@
           </div>
           <div class="row">
             <div class="col-sm-12 col-md-5">
-              <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 357
-                entries</div>
+              <!-- <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 357
+                entries</div> -->
             </div>
             <div class="col-sm-12 col-md-7">
               <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                <ul class="pagination">
+
+                  <app-pagination
+                  [totalItems]="totalItems"
+                  [pageSize]="pageSize"
+                  [currentPage]="currentPage"
+                  (pageChanged)="onPageChange($event)"
+                ></app-pagination>
+                <!-- <ul class="pagination">
                   <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#"
                       aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
                   <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1"
@@ -141,7 +159,7 @@
                       tabindex="0" class="page-link">36</a></li>
                   <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable"
                       data-dt-idx="8" tabindex="0" class="page-link">Next</a></li>
-                </ul>
+                </ul> -->
               </div>
             </div>
           </div>

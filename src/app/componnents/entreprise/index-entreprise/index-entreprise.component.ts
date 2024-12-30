@@ -9,11 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import {AuthService} from "../../../components/auth/auth.service";
+import { PaginationService } from '../../../components/pagination.service';
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-index-entreprise',
   standalone: true,
-  imports: [LoadingComponent,RouterModule, RouterLink, CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [RouterModule, RouterLink, CommonModule,FormsModule,ReactiveFormsModule,PaginationComponent],
   templateUrl: './index-entreprise.component.html',
   styleUrl: './index-entreprise.component.css'
 })
@@ -32,7 +34,15 @@ export class IndexEntrepriseComponent {
   currentDay = new Date();
   user: any = {};
 
-constructor(public entrepriseService: EntrepriseServiceService,private router: Router,private authService: AuthService){}
+  // pagination
+  paginatedData: any[] = []; // Données de la page courante
+
+  currentPage: number = 1;
+  pageSize: number = 15;
+  totalItems: number = 0;
+
+constructor(public entrepriseService: EntrepriseServiceService,private router: Router,private authService: AuthService,
+   private paginationService: PaginationService){}
 
 ngOnInit(): void{
   this.loadCountries();
@@ -43,6 +53,9 @@ ngOnInit(): void{
       console.log(data);
       this.entreprises = data;
       this.filteredEntreprises = data; // Initialisation
+      // pagination
+      this.totalItems = this.entreprises.length;
+      this.updatePage();
 
     },
     error => {
@@ -142,6 +155,22 @@ getCityName(city_id: number): string {
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
     saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
   }
+  // pagination
+
+  updatePage(): void {
+    this.paginatedData = this.paginationService.paginate(
+      this.entreprises,
+      this.currentPage,
+      this.pageSize
+    );
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.updatePage();
+  }
+
+
 
 
 

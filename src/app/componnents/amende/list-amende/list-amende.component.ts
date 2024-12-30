@@ -5,25 +5,37 @@ import { AuthService } from '../../../components/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { PaginationService } from '../../../components/pagination.service';
 
 declare var $: any; // Utiliser jQuery globalement
 
 @Component({
   selector: 'app-list-amende',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule,PaginationComponent],
   templateUrl: './list-amende.component.html',
   styleUrl: './list-amende.component.css',
 })
-export class ListAmendeComponent implements OnInit, AfterViewInit {
+export class ListAmendeComponent implements OnInit
+// , AfterViewInit
+{
   amendes: any[] = [];
   membres: any[] = [];
   user: any = {};
 
+   // pagination
+   paginatedData: any[] = []; // Données de la page courante
+
+   currentPage: number = 1;
+   pageSize: number = 10;
+   totalItems: number = 0;
+
   constructor(
     private amendeService: AmendeServiceService,
     private membreService: MembreServiceService,
-    private authService: AuthService
+    private authService: AuthService,
+     private paginationService: PaginationService
   ) { }
 
   ngOnInit(): void {
@@ -31,32 +43,35 @@ export class ListAmendeComponent implements OnInit, AfterViewInit {
     this.loadAmendes();
   }
 
-  ngAfterViewInit(): void {
-    // Initialisation de DataTables après chargement complet du composant
-    setTimeout(() => {
-      $('#amendesTable').DataTable({
-        paging: true, // Pagination activée
-        searching: true, // Filtrage activé
-        lengthChange: true, // Option pour choisir le nombre de lignes
-        pageLength: 5, // Nombre de lignes par défaut
-        language: {
-          search: 'Filtrer :',
-          lengthMenu: 'Afficher _MENU_ enregistrements',
-          info: 'Affichage de _START_ à _END_ sur _TOTAL_ enregistrements',
-          paginate: {
-            first: 'Premier',
-            last: 'Dernier',
-            next: 'Suivant',
-            previous: 'Précédent',
-          },
-        },
-      });
-    }, 1000); // Délai pour assurer le chargement des données
-  }
+  // ngAfterViewInit(): void {
+  //   // Initialisation de DataTables après chargement complet du composant
+  //   setTimeout(() => {
+  //     $('#amendesTable').DataTable({
+  //       paging: true, // Pagination activée
+  //       searching: true, // Filtrage activé
+  //       lengthChange: true, // Option pour choisir le nombre de lignes
+  //       pageLength: 5, // Nombre de lignes par défaut
+  //       language: {
+  //         search: 'Filtrer :',
+  //         lengthMenu: 'Afficher _MENU_ enregistrements',
+  //         info: 'Affichage de _START_ à _END_ sur _TOTAL_ enregistrements',
+  //         paginate: {
+  //           first: 'Premier',
+  //           last: 'Dernier',
+  //           next: 'Suivant',
+  //           previous: 'Précédent',
+  //         },
+  //       },
+  //     });
+  //   }, 1000); // Délai pour assurer le chargement des données
+  // }
 
   loadMembres() {
     this.membreService.getAll().subscribe((data) => {
       this.membres = data;
+      // pagination
+      this.totalItems = this.membres.length;
+      this.updatePage();
     });
   }
 
@@ -88,4 +103,19 @@ export class ListAmendeComponent implements OnInit, AfterViewInit {
       }
     );
   }
+  // pagination
+
+ updatePage(): void {
+  this.paginatedData = this.paginationService.paginate(
+    this.membres,
+    this.currentPage,
+    this.pageSize
+  );
+}
+
+onPageChange(page: number): void {
+  this.currentPage = page;
+  this.updatePage();
+}
+
 }

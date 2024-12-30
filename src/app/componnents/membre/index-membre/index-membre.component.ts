@@ -8,11 +8,13 @@ import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { ExcelService } from '../../../services/excel.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaginationService } from '../../../components/pagination.service';
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-index-membre',
   standalone: true,
-  imports: [RouterModule, CommonModule,FormsModule,ReactiveFormsModule,],
+  imports: [RouterModule, CommonModule,FormsModule,ReactiveFormsModule,PaginationComponent],
   templateUrl: './index-membre.component.html',
   styleUrl: './index-membre.component.css'
 })
@@ -30,8 +32,17 @@ export class IndexMembreComponent implements OnInit{
     // search back
     searchForm: FormGroup;
 
+     // pagination
+     paginatedData: any[] = []; // Données de la page courante
 
-  constructor(private fb: FormBuilder,private excelService: ExcelService,public membreService: MembreServiceService,private router: Router){
+     currentPage: number = 1;
+     pageSize: number = 10;
+     totalItems: number = 0;
+
+
+
+  constructor(private fb: FormBuilder,private excelService: ExcelService,public membreService: MembreServiceService,
+    private router: Router, private paginationService: PaginationService){
     this.searchForm = this.fb.group({
       keyword: [''],
       statut: [''],
@@ -81,6 +92,9 @@ export class IndexMembreComponent implements OnInit{
   loadMembres() {
     this.membreService.getAll().subscribe((data: Membre[]) => {
       this.membres = data;
+          // pagination
+          this.totalItems = this.membres.length;
+          this.updatePage();
     });
   }
 
@@ -208,6 +222,22 @@ export class IndexMembreComponent implements OnInit{
   //     dette.montant.toString().includes(this.searchTerm)
   //   );
   // }
+
+  // pagination
+
+ updatePage(): void {
+  this.paginatedData = this.paginationService.paginate(
+    this.membres,
+    this.currentPage,
+    this.pageSize
+  );
+}
+
+onPageChange(page: number): void {
+  this.currentPage = page;
+  this.updatePage();
+}
+
 
 }
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

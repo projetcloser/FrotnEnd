@@ -10,6 +10,8 @@ import { Personnel } from '../personnel';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { PaginationService } from '../../../components/pagination.service';
 
 
 @Component({
@@ -19,7 +21,8 @@ import { saveAs } from 'file-saver';
     CommonModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    RouterModule
+    RouterModule,
+    PaginationComponent
 
   ],
   templateUrl: './indexpersonnel.component.html',
@@ -40,8 +43,16 @@ export class IndexpersonnelComponent implements OnInit {
   // seracc back
   searchForm: FormGroup;
 
+    // pagination
+    paginatedData: any[] = []; // Données de la page courante
 
-  constructor(private fb: FormBuilder,private router: Router,private personnelService:PersonnelService) {
+    currentPage: number = 1;
+    pageSize: number = 10;
+    totalItems: number = 0;
+
+
+  constructor(private fb: FormBuilder,private router: Router,private personnelService:PersonnelService,
+     private paginationService: PaginationService) {
     this.searchForm = this.fb.group({
       keyword: [''],
       year: [''],
@@ -61,6 +72,9 @@ export class IndexpersonnelComponent implements OnInit {
       (data: Personnel[]) => {
         console.log('Données récupérées :', data); // Vérifiez ce qui est renvoyé
         this.personnels = data;
+         // pagination
+      this.totalItems = this.personnels.length;
+      this.updatePage();
       },
       (error) => {
         console.error('Erreur lors de la récupération des personnels', error);
@@ -142,7 +156,20 @@ export class IndexpersonnelComponent implements OnInit {
   //   );
   // }
 
+ // pagination
 
+ updatePage(): void {
+  this.paginatedData = this.paginationService.paginate(
+    this.personnels,
+    this.currentPage,
+    this.pageSize
+  );
+}
+
+onPageChange(page: number): void {
+  this.currentPage = page;
+  this.updatePage();
+}
 
 
 

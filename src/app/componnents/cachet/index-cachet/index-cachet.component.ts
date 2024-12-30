@@ -6,11 +6,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExcelService } from '../../../services/excel.service';
 import {AuthService} from "../../../components/auth/auth.service";
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { PaginationService } from '../../../components/pagination.service';
 
 @Component({
   selector: 'app-index-cachet',
   standalone: true,
-  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule,PaginationComponent],
   templateUrl: './index-cachet.component.html',
   styleUrl: './index-cachet.component.css'
 })
@@ -28,12 +30,23 @@ export class IndexCachetComponent implements OnInit {
   currentDay = new Date();
   user: any = {};
 
-  constructor(private excelService: ExcelService,private cachetService: CachetService,private router: Router,private authService: AuthService) {}
+  // pagination
+  paginatedData: any[] = []; // Données de la page courante
+
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalItems: number = 0;
+
+  constructor(private excelService: ExcelService,private cachetService: CachetService,private router: Router,
+    private paginationService: PaginationService,private authService: AuthService) {}
 
   ngOnInit(): void {
     this.cachetService.getCachets().subscribe((data: any[]) => {
       this.cachets = data;
       this.filteredCachets = [...this.cachets]; // Initialisation de la liste filtrée
+        // pagination
+        this.totalItems = this.cachets.length;
+        this.updatePage();
     });
     this.loadCities();
     this.loadCountries();
@@ -180,6 +193,22 @@ getMembersmatrivule(city_id: number): string {
       );
     });
   }
+
+  // pagination
+
+ updatePage(): void {
+  this.paginatedData = this.paginationService.paginate(
+    this.cachets,
+    this.currentPage,
+    this.pageSize
+  );
+}
+
+onPageChange(page: number): void {
+  this.currentPage = page;
+  this.updatePage();
+}
+
 }
 
 
