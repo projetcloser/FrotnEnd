@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <!-- <h1 class="mt-4 ">Nouvelle Personne</h1> -->
     <ol class="breadcrumb mb-4 text-center ">
-      <li class="breadcrumb-item active " style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
+      <li class="breadcrumb-item active " style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;" i18n>
         Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
       </li>
 
@@ -18,7 +18,7 @@
         <div class="container mt-5">
           <div class="card">
             <div class="card-header">
-              <h4>Editer un nouveau Membre</h4>
+              <h4 i18n>Editer un nouveau Membre</h4>
             </div>
             <div class="card-body">
               <form [formGroup]="membreForm">
@@ -26,7 +26,7 @@
                 <div class="row mb-3">
                   <!-- firstname -->
                   <div class="col-md-6">
-                    <span>Nom</span>
+                    <span i18n>Nom</span>
                     <input type="text" formControlName="firstname" class="form-control" />
                     <div *ngIf="membreForm.controls['firstname'].invalid && membreForm.controls['firstname'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['firstname'].hasError('required')">Raison sociale est requise.</small>
@@ -35,7 +35,7 @@
 
                   <!-- Author -->
                   <div class="col-md-6">
-                    <span>Auteur</span>
+                    <span i18n>Auteur</span>
                     <input type="text" formControlName="author" class="form-control" />
                     <div *ngIf="membreForm.controls['author'].invalid && membreForm.controls['author'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['author'].hasError('required')">Auteur est requis.</small>
@@ -46,7 +46,7 @@
                 <div class="row mb-3">
                   <!-- Prénom -->
                   <div class="col-md-6">
-                    <span>Prénom</span>
+                    <span i18n>Prénom</span>
                     <input type="text" formControlName="lastname" class="form-control" />
                     <div *ngIf="membreForm.controls['lastname'].invalid && membreForm.controls['lastname'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['lastname'].hasError('required')">Télélastname est requis.</small>
@@ -55,7 +55,7 @@
 
                   <!-- N° CNI ou Passport -->
                   <div class="col-md-6">
-                    <span>N° CNI ou Passport</span>
+                    <span i18n>N° CNI ou Passport</span>
                     <input type="id_card_number" formControlName="id_card_number" class="form-control" />
                     <div *ngIf="membreForm.controls['id_card_number'].invalid && membreForm.controls['id_card_number'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['id_card_number'].hasError('id_card_number')">id_card_number invalide.</small>
@@ -66,7 +66,7 @@
                 <div class="row mb-3">
                   <!-- Tel1 -->
                   <div class="col-md-6">
-                    <span>Tel1</span>
+                    <span i18n>Tel1</span>
                     <input type="text" formControlName="phone" class="form-control" />
                     <div *ngIf="membreForm.controls['phone'].invalid && membreForm.controls['phone'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['phone'].hasError('required')">Personne de contact est requise.</small>
@@ -75,7 +75,7 @@
 
                   <!-- Matricule -->
                   <div class="col-md-6">
-                    <span>Matricule</span>
+                    <span i18n>Matricule</span>
                     <input type="matricule" formControlName="matricule" class="form-control" />
                     <div *ngIf="membreForm.controls['matricule'].invalid && membreForm.controls['matricule'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['matricule'].hasError('matricule')">matricule invalide.</small>
@@ -100,7 +100,7 @@
 
                   <!-- City -->
                   <div class="col-md-6">
-                    <span>Ville</span>
+                    <span i18n>Ville</span>
                     <select formControlName="city_id" class="form-control">
                       <!-- <option *ngFor="let city of city" [value]="city.id">{{ city.name }}</option> -->
                     </select>
@@ -110,7 +110,7 @@
                   </div>
 
                   <div class="col-md-6">
-                    <span>Annee</span>
+                    <span i18n>Annee</span>
                     <select formControlName="city_id" class="form-control">
                       <!-- <option *ngFor="let city of city" [value]="city.id">{{ city.name }}</option> -->
                     </select>
@@ -123,7 +123,7 @@
                 <div class="row mb-3">
                   <!-- Tel -->
                   <div class="col-md-6">
-                    <span>Tel2</span>
+                    <span i18n>Tel2</span>
                     <input type="text" formControlName="phone" class="form-control" />
                     <div *ngIf="membreForm.controls['phone'].invalid && membreForm.controls['phone'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['phone'].hasError('required')">Personne de contact est requise.</small>
@@ -132,7 +132,7 @@
 
                   <!-- Email -->
                   <div class="col-md-6">
-                    <span>Email</span>
+                    <span i18n>Email</span>
                     <input type="text" formControlName="email" class="form-control" />
                     <div *ngIf="membreForm.controls['email'].invalid && membreForm.controls['email'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['email'].hasError('required')">Télélastname de contact est requis.</small>
@@ -145,12 +145,12 @@
 
                   <!-- father_name -->
                   <div class="col-md-6">
-                    <span>Nom du Père</span>
+                    <span i18n>Nom du Père</span>
                     <input type="text" formControlName="father_name" class="form-control" />
                   </div>
                    <!-- mother_name -->
                    <div class="col-md-6">
-                    <span>Nom de la mère</span>
+                    <span i18n>Nom de la mère</span>
                     <input type="text" formControlName="mother_name" class="form-control" />
                   </div>
                 </div>
@@ -170,7 +170,7 @@
                 <div class="row mb-3">
                   <!-- Date de Naissance -->
                   <div class="col-md-6">
-                    <span>Date de Naissance</span>
+                    <span i18n>Date de Naissance</span>
                     <input type="date" formControlName="birthday" class="form-control" />
                     <div *ngIf="membreForm.controls['birthday'].invalid && membreForm.controls['birthday'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['birthday'].hasError('required')">Personne de contact est requise.</small>
@@ -179,7 +179,7 @@
 
                   <!-- Lieu de Naissance -->
                   <div class="col-md-6">
-                    <span>Lieu de Naissance</span>
+                    <span i18n>Lieu de Naissance</span>
                     <input type="text" formControlName="place_birth" class="form-control" />
                     <div *ngIf="membreForm.controls['place_birth'].invalid && membreForm.controls['place_birth'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['place_birth'].hasError('required')">Lieu de Naissance est requis.</small>
@@ -195,10 +195,10 @@
                       <option value="N/A" selected="">
                         ...
                       </option>
-                      <option value="MASCULIN">
+                      <option value="MASCULIN" i18n>
                           MASCULIN
                       </option>
-                      <option value="FEMININ">
+                      <option value="FEMININ" i18n>
                           FEMININ
                       </option>
                     </select>
@@ -230,14 +230,14 @@
                   <div class="row mb-3">
                     <!-- Piece jointe -->
                     <div class="col-md-6">
-                      <span>Piece jointe</span>
+                      <span i18n>Piece jointe</span>
                       <input type="file" formControlName="attachment"  class="form-control" multiple />
                       <!-- (change)="onCaseSelected($event)" -->
                     </div>
                      <!--Nombre D'enfants -->
                      <div class="col-md-6">
                       <div class="col-md-6">
-                        <span>Photo</span>
+                        <span i18n>Photo</span>
                         <input type="file" formControlName="attachment"  class="form-control" multiple />
                         <!-- (change)="onCaseSelected($event)" -->
                       </div>
@@ -248,7 +248,7 @@
                 <div class="row mb-3">
                   <!-- Submit Button -->
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block">Editer le membre</button>
+                    <button type="submit" class="btn btn-primary btn-block" i18n>Editer le membre</button>
                   </div>
                 </div>
               </form>

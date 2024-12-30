@@ -15,6 +15,9 @@ import { ExcelService } from '../../../services/excel.service';
 import { AuthService } from "../../../components/auth/auth.service";
 import { PaginationService } from '../../../components/pagination.service';
 
+import { NonPayeService } from '../../attestation/nonPaye/non-paye.service';
+import { Payment } from '../../attestation/nonPaye/payer/payment';
+
 @Component({
   selector: 'app-index-cotisation',
   standalone: true,
@@ -42,7 +45,7 @@ export class IndexCotisationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private excelService: ExcelService, private router: Router, private cotisationService: CotisationService,
     private membersService: MembreServiceService, private caisseService: CaisseServiceService
-    , private authService: AuthService, private paginationService: PaginationService) { }
+    , private authService: AuthService, private paginationService: PaginationService,private attestationService: NonPayeService) { }
 
 
 
@@ -244,6 +247,50 @@ onPageChange(page: number): void {
   this.currentPage = page;
   this.updatePage();
 }
+
+// paiement
+getMemberName(countryId: number): string {
+  const member = this.membres.find(p => p.id === countryId);
+  return member ? member.firstname : 'Inconnu';
+}
+
+getMemberUserName(countryId: number): string {
+  const member = this.membres.find(p => p.id === countryId);
+  return member ? member.lastname : 'Inconnu';
+}
+
+getmemberMatricule(countryId: number){
+  const member = this.membres.find(p => p.id === countryId);
+  return member ? member.matricule : 'Inconnu';
+}
+
+  payer(cotisation: any): void {
+    const payment: Payment = {
+      id: 0, // ou une valeur par défaut
+      transaction_id:cotisation.id,
+      member_id: cotisation.member_id,
+      customer_name: this.getMemberName(cotisation.member_id),
+      customer_surname: this.getMemberUserName(cotisation.member_id), // Renseignez si applicable
+      amount: 60000, // Assurez-vous que l'objet `item` contient cette information
+      description: 'Paiement Attestation', // Description par défaut
+      currency: 'XAF', // Exemple : devise utilisée
+      created_at: new Date()
+    };
+
+    this.attestationService.payer(payment).subscribe(
+      (response: any) => {
+        if (response && response.data && response.data.payment_url) {
+          // Redirection vers l'URL de paiement
+          window.open(response.data.payment_url, '_blank');
+        } else {
+          console.error('Erreur lors de la génération du lien de paiement', response);
+        }
+      },
+      (error) => {
+        console.error('Erreur lors du paiement', error);
+      }
+    );
+  }
 
 }
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

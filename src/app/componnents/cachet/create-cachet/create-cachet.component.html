@@ -1,14 +1,14 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <h1 class="mt-4 ">Nouveau cachet</h1>
+    <h1 class="mt-4 " i18n>Nouveau cachet</h1>
     <div class="row justify-content-center">
       <!-- Horizontal Form -->
       <div class="card card-info col-md-8">
         <!-- form start -->
         <div class="card">
           <div class="card-header">
-            <h2>Nouveau cachet</h2>
+            <h2 i18n>Nouveau cachet</h2>
           </div>
           <div class="card-body">
             <form [formGroup]="entrepriseForm" (ngSubmit)="onSubmit()">
@@ -17,14 +17,14 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="author">Auteur</label>
+                    <label for="author" i18n>Auteur</label>
                     <input id="author" formControlName="author" class="form-control" value="{{user.name}}" type="text" readonly />
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="phone">Téléphone</label>
+                    <label for="phone" i18n>Téléphone</label>
                     <input id="phone" formControlName="phone" class="form-control" type="text" />
                   </div>
                 </div>
@@ -36,7 +36,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="member_id">Membre</label>
+                    <label for="member_id" i18n>Membre</label>
                     <select id="member_id" formControlName="member_id" class="form-control">
                       <option *ngFor="let country of members" [value]="country.id">{{ country.firstname }}</option>
                     </select>
@@ -45,7 +45,7 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="city_id">Ville</label>
+                    <label for="city_id" i18n>Ville</label>
                     <select id="city_id" formControlName="city_id" class="form-control">
                       <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
                     </select>
@@ -59,13 +59,13 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="name">Num recep</label>
+                    <label for="name" i18n>Num recep</label>
                     <input id="name" formControlName="receipt_number" class="form-control" type="text" />
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="name">Status</label>
+                  <label for="name" i18n>Status</label>
                   <select id="status" formControlName="status" class="form-control" required>
                     <option value="" disabled selected>Choisir un statut</option>
                     <option *ngFor="let option of statusOptions" [value]="option.value">{{ option.label }}</option>
@@ -73,14 +73,14 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label for="name">Annee</label>
+                  <label for="name" i18n>Annee</label>
                   <input id="phone" formControlName="year" class="form-control" type="date" />
 
                 </div>
 
               </div><br>
 
-              <button type="submit" class="btn btn-primary">Mettre à jour</button>
+              <button type="submit" class="btn btn-primary" i18n>Mettre à jour</button>
             </form>
           </div>
         </div>

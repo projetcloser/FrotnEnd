@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h4 class="mt-4"><svg class="svg-inline--fa fa-calendar-alt fa-w-14 custom-icon" style="color: silver;"
+  <h4 class="mt-4" i18n><svg class="svg-inline--fa fa-calendar-alt fa-w-14 custom-icon" style="color: silver;"
       aria-hidden="true" focusable="false" data-prefix="far" data-icon="calendar-alt" role="img"
       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
       <path fill="currentColor"
@@ -19,7 +19,7 @@
               d="M48 0C21.53 0 0 21.53 0 48v64c0 8.84 7.16 16 16 16h80V48C96 21.53 74.47 0 48 0zm208 412.57V352h288V96c0-52.94-43.06-96-96-96H111.59C121.74 13.41 128 29.92 128 48v368c0 38.87 34.65 69.65 74.75 63.12C234.22 474 256 444.46 256 412.57zM288 384v32c0 52.93-43.06 96-96 96h336c61.86 0 112-50.14 112-112 0-8.84-7.16-16-16-16H288z">
             </path>
           </svg><!-- <i class="fas fa-scroll"></i> Font Awesome fontawesome.com -->
-          <b>L'ensemble des évènements.</b>
+          <b i18n>L'ensemble des évènements.</b>
           <b>
 
             <!-- Nav pills -->
@@ -27,7 +27,7 @@
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item">
                 <a class="nav-link active  btn btn-success" (click)="navigateToForm()"
-                  style="background-color: #28a745; color: white;">
+                  style="background-color: #28a745; color: white;" i18n>
                   <svg class="svg-inline--fa fa-plus-circle fa-w-16 small-icon" aria-hidden="true" focusable="false"
                     data-prefix="fas" data-icon="plus-circle" role="img" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512" data-fa-i2svg="">
@@ -60,7 +60,7 @@
                             </select> entries</label></div>
                       </div>
                       <div class="col-sm-12 col-md-6">
-                        <div id="dataTable_filter" class="dataTables_filter"><label>recherche:<input type="text"
+                        <div id="dataTable_filter" class="dataTables_filter"><label>search:<input type="text"
                               class="form-control form-control-sm"  placeholder="Rechercher par titre ou auteur"
                               [(ngModel)]="searchTerm"
                               (ngModelChange)="onSearch()" aria-controls="dataTable"></label>
@@ -72,13 +72,13 @@
                         <table class="table table-striped table-hover" >
                           <thead>
                             <tr align="center" style="background-color: #dde9dd" role="row">
-                              <th scope="col">Titre</th>
-                              <th scope="col">Lieu</th>
-                              <th scope="col">Nbre participants</th>
-                              <th scope="col">Coût</th>
-                              <th scope="col">
+                              <th scope="col" i18n>Titre</th>
+                              <th scope="col" i18n>Lieu</th>
+                              <th scope="col" i18n>Nbre participants</th>
+                              <th scope="col" i18n>Coût</th>
+                              <th scope="col" i18n>
                                 Date bedut</th>
-                              <th scope="col">Date
+                              <th scope="col" i18n>Date
                                 fin</th>
                               <!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                 aria-label="Statut: activate to sort column ascending" style="width: 182px;">Statut</th> -->

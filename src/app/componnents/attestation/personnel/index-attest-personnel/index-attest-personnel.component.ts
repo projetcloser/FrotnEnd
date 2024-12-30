@@ -6,6 +6,7 @@ import { AttestPersonnel } from '../attest-personnel';
 import { AttestPersonnelService } from '../attest-personnel.service';
 import { Membre } from '../../../../models/membre';
 import jsPDF from 'jspdf'; // Assurez-vous d'avoir installé jsPDF: `npm install jspdf`
+import QRCode from 'qrcode';
 import html2canvas from 'html2canvas';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from '../../../../components/pagination/pagination.component';
@@ -82,8 +83,13 @@ export class IndexAttestPersonnelComponent implements OnInit {
     this.router.navigate(['/Closer/modifier-personne']);
   }
 
+<<<<<<< HEAD
   // Méthode pour générer un PDF pour l'attestation
   // generatePdf(attest: AttestPersonnel): void {
+=======
+   // Méthode pour générer un PDF pour l'attestation
+  //  generatePdf(attest: AttestPersonnel): void {
+>>>>>>> dbe4565936c989f330b860b592326a7293a72255
   //   const doc = new jsPDF('portrait');
 
   //   // Récupérer la date du jour
@@ -160,6 +166,7 @@ export class IndexAttestPersonnelComponent implements OnInit {
   //     };
   //   };
   // }
+
 
   generatePdf(attest: AttestPersonnel): void {
     const doc = new jsPDF('portrait');

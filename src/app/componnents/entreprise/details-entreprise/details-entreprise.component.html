@@ -9,7 +9,7 @@
      <!-- Card Header - Dropdown -->
      <div
          class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-         <h6 class="m-0 font-weight-bold text-primary">Details entreprises</h6>
+         <h6 class="m-0 font-weight-bold text-primary" i18n>Details entreprises</h6>
          <div class="dropdown no-arrow">
              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,8 +17,8 @@
              </a>
              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                  aria-labelledby="dropdownMenuLink">
-                 <div class="dropdown-header">Action:</div>
-                 <a class="dropdown-item" [routerLink]="['/Closer/entreprise']" routerLinkActive="router-link-active" >Retour</a>
+                 <div class="dropdown-header" i18n>Action:</div>
+                 <a class="dropdown-item" [routerLink]="['/Closer/entreprise']" routerLinkActive="router-link-active" i18n>Retour</a>
                  <!-- <a class="dropdown-item" href="#">Another action</a>
                  <div class="dropdown-divider"></div>
                  <a class="dropdown-item" href="#">Something else here</a> -->
@@ -27,14 +27,14 @@
      </div>
      <!-- Card Body -->
      <div class="card-body" *ngIf="entreprise">
-      <p><strong>NOM:</strong> {{ entreprise.company_name }}</p>
-      <p><strong>Raison sociale:</strong> {{ entreprise.social_reason }}</p>
-      <p><strong>Auteur:</strong> {{ entreprise.author }}</p>
-      <p><strong>Contact:</strong> {{ entreprise.contact_person }} - {{ entreprise.contact_person_phone }}</p>
-      <p><strong>Type:</strong> {{ entreprise.company_type }}</p>
-      <p><strong>NUI:</strong> {{ entreprise.nui }}</p>
-      <p><strong>Pays:</strong> {{ getCityName(entreprise.country_id) }}</p>
-      <p><strong>Ville:</strong> {{ getCityName(entreprise.city_id) }}</p>
+      <p><strong i18n>NOM:</strong> {{ entreprise.company_name }}</p>
+      <p><strong i18n>Raison sociale:</strong> {{ entreprise.social_reason }}</p>
+      <p><strong i18n>Auteur:</strong> {{ entreprise.author }}</p>
+      <p><strong i18n>Contact:</strong> {{ entreprise.contact_person }} - {{ entreprise.contact_person_phone }}</p>
+      <p><strong i18n>Type:</strong> {{ entreprise.company_type }}</p>
+      <p><strong i18n>NUI:</strong> {{ entreprise.nui }}</p>
+      <p><strong i18n>Pays:</strong> {{ getCityName(entreprise.country_id) }}</p>
+      <p><strong i18n>Ville:</strong> {{ getCityName(entreprise.city_id) }}</p>
       <!-- <p><strong>Status:</strong>
         <span class="badge"
               [ngClass]="{
@@ -44,7 +44,7 @@
           {{ entreprise.status === 1 ? 'Active' : 'Annulé' }}
         </span>
       </p> -->
-      <p><strong>Créé en:</strong> {{ entreprise.created_at | date:'yyyy' }}</p>
+      <p><strong i18n>Créé en:</strong> {{ entreprise.created_at | date:'yyyy' }}</p>
 
      </div>
   </div>

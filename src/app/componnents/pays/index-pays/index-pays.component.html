@@ -3,7 +3,7 @@
 <div class="col-12"  *ngIf="!isLoading"> -->
 <section class="content">
   <div class="container-fluid">
-    <h4 class="mt-4">Liste des Pays</h4>
+    <h4 class="mt-4" i18n>Liste des Pays</h4>
     <!--                Main Body-->
     <div class="row">
       <div class="col-xl-12">
@@ -17,7 +17,7 @@
               <!-- Nav pills -->
               <ul class="nav nav-pills" style="float: right;">
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="modal" data-target="#ajouterPays" (click)="navigateToForm()" style="background-color: #28a745; color: white;">
+                  <a class="nav-link active" data-toggle="modal" data-target="#ajouterPays" i18n (click)="navigateToForm()" style="background-color: #28a745; color: white;">
                     <svg class="svg-inline--fa fa-cubes fa-w-16 small-button" aria-hidden="true" focusable="false" data-prefix="fas"
                       data-icon="cubes" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                       data-fa-i2svg="">
@@ -64,7 +64,7 @@
                                 <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                   aria-sort="ascending" aria-label="Pays: activate to sort column descending"
                                   style="width: 531px;">
-                                  <p align="center" >Pays</p>
+                                  <p align="center"i18n >Pays</p>
                                 </th>
                               </tr>
                             </thead>

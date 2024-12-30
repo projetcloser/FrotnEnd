@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-index-pays',
   standalone: true,
-  imports: [LoadingComponent,RouterModule, RouterLink, CommonModule,ReactiveFormsModule],
+  imports: [RouterModule,CommonModule,ReactiveFormsModule],
   templateUrl: './index-pays.component.html',
   styleUrl: './index-pays.component.css'
 })

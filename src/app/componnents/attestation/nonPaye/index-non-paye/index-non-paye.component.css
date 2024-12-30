@@ -21,3 +21,25 @@ a
  width: 1em;
  height: 1em;
 }
+
+
+.custom-badge {
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.status-red .badge-danger {
+  background-color: #e74c3c;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.status-red:hover {
+  background-color: #c0392b; /* Couleur au survol */
+  transition: background-color 0.3s;
+}

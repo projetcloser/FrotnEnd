@@ -1,18 +1,18 @@
 <div class="container-fluid">
-  <h4 class="mt-4"><svg class="svg-inline--fa fa-tasks fa-w-16 custom-icon" style="color: silver;" aria-hidden="true"
+  <h4 class="mt-4" i18n><svg class="svg-inline--fa fa-tasks fa-w-16 custom-icon" style="color: silver;" aria-hidden="true"
       focusable="false" data-prefix="fas" data-icon="tasks" role="img" xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512" data-fa-i2svg="">
       <path fill="currentColor"
         d="M139.61 35.5a12 12 0 0 0-17 0L58.93 98.81l-22.7-22.12a12 12 0 0 0-17 0L3.53 92.41a12 12 0 0 0 0 17l47.59 47.4a12.78 12.78 0 0 0 17.61 0l15.59-15.62L156.52 69a12.09 12.09 0 0 0 .09-17zm0 159.19a12 12 0 0 0-17 0l-63.68 63.72-22.7-22.1a12 12 0 0 0-17 0L3.53 252a12 12 0 0 0 0 17L51 316.5a12.77 12.77 0 0 0 17.6 0l15.7-15.69 72.2-72.22a12 12 0 0 0 .09-16.9zM64 368c-26.49 0-48.59 21.5-48.59 48S37.53 464 64 464a48 48 0 0 0 0-96zm432 16H208a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h288a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H208a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h288a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H208a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h288a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z">
       </path>
-    </svg><!-- <i class="fas fa-tasks" style="color: silver"></i> Font Awesome fontawesome.com --> Liste des demandes d’attestations non payées pour le compte des entreprises</h4>
+    </svg> Liste des demandes d’attestations non payées pour le compte des entreprises</h4>
   <div class="row">
     <div class="col-xl-12">
       <b>
         <!-- Nav pills -->
         <ul class="nav nav-pills" style="float: right;">
           <li class="nav-item">
-            <a class="btn btn-success" (click)="navigateToForm()" style="background-color: #28a745; color: white;">
+            <a class="btn btn-success" (click)="navigateToForm()" style="background-color: #28a745; color: white;" i18n-alt>
               <svg class="svg-inline--fa fa-plus-circle fa-w-16 small-icon" aria-hidden="true" focusable="false"
                 data-prefix="fas" data-icon="plus-circle" role="img" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512" data-fa-i2svg="">
@@ -79,9 +79,9 @@
                     class="form-select"
                     aria-label="Filtrer par membre"
                   >
-                    <option value="">Membre</option>
-                    <option value="active">Actif</option>
-                    <option value="inactive">Inactif</option>
+                    <option value="" i18n>Membre</option>
+                    <option value="active" i18n>Actif</option>
+                    <option value="inactive" i18n>Inactif</option>
                   </select>
                 </div>
 
@@ -92,9 +92,9 @@
                     class="form-select"
                     aria-label="Filtrer par company"
                   >
-                    <option value="">Tous les companies</option>
-                    <option value="male">Homme</option>
-                    <option value="female">Femme</option>
+                    <option value="" i18n>Tous les companies</option>
+                    <option value="male" i18n>Homme</option>
+                    <option value="female" i18n>Femme</option>
                   </select>
                 </div>
 
@@ -112,18 +112,18 @@
                 role="grid" aria-describedby="dataTable_info">
                 <thead>
                   <tr role="row">
-                    <th scope="col">Ref_DE</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Matricule</th>
-                    <th scope="col">Nom
+                    <th scope="col" i18n>Ref_DE</th>
+                    <th scope="col" i18n>Date</th>
+                    <th scope="col" i18n>Matricule</th>
+                    <th scope="col" i18n> Nom
                       ingénieur</th>
-                    <th scope="col">Entreprise
+                    <th scope="col" i18n>Entreprise
                     </th>
-                    <th scope="col">Statut</th>
-                    <th scope="col">Auteur</th>
-                    <th scope="col">
+                    <th scope="col" i18n>Statut</th>
+                    <th scope="col" i18n>Auteur</th>
+                    <th scope="col" i18n>
                       Prévisualisation</th>
-                      <th scope="col">PDF</th>
+                      <th scope="col" i18n>PDF</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -156,8 +156,14 @@
                     <td>
 
 
-                      <a href="valide_demande_entreprise.php?id=7140" target="_blank"><span
-                          class="custom-badge status-red"> ICI POUR PAYER</span></a> <!-----// DEBUT //------>
+                     <!-- Bouton de paiement avec badge -->
+                      <a (click)="payer(item)" style="cursor: pointer;" target="_blank" i18n>
+                        <span class="custom-badge status-red">
+                          <span class="badge badge-danger badge-pill">
+                            <i class="fa fa-money" aria-hidden="true"></i> ICI POUR PAYER
+                          </span>
+                        </span>
+                      </a> <!-----// DEBUT //------>
                       <div class="modal fade" id="PopAlert7140" role="dialog">
                         <div class="modal-dialog">
                           <!-- Modal content-->
