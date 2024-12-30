@@ -63,6 +63,7 @@ export class EditEntrepriseComponent {
       this.cities = data;
     });
   }
+  
   onSubmit(): void {
     if (this.companyForm.valid) {
       this.companyService.update(this.companyId, this.companyForm.value).subscribe(() => {

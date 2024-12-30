@@ -5,7 +5,7 @@
 
   <!-- Fichier Joint Existant -->
   <div *ngIf="annonce && annonce.fichiers && annonce.fichiers.length > 0" class="col-md-12 mb-3">
-    <label class="form-label font-weight-bold">Fichier(s) joint(s) actuel(s) :</label>
+    <label class="form-label font-weight-bold" i18n>Fichier(s) joint(s) actuel(s) :</label>
     <ul>
       <li *ngFor="let fichier of annonce.fichiers">
         <!-- <a [href]="fichier.url" download>{{ fichier.nom}}</a> -->
@@ -16,6 +16,6 @@
 
 
   <div class="text-center">
-    <a routerLink="/annonces" class="btn btn-secondary">Retour à la liste des annonces</a>
+    <a routerLink="/annonces" class="btn btn-secondary" i18n>Retour à la liste des annonces</a>
   </div>
 </div>

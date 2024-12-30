@@ -7,7 +7,7 @@
     <div class="container" style="padding:40px 50px;">
       <form [formGroup]="countryForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="name">Nom du pays</label>
+          <label for="name" i18n>Nom du pays</label>
           <input
             type="text"
             id="name"
@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="countryForm.invalid">Ajouter</button>
+        <button type="submit" class="btn btn-primary" [disabled]="countryForm.invalid" i18n>Ajouter</button>
       </form>
   </div>
   </fieldset>

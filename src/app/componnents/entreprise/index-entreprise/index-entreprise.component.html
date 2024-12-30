@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <h4 class="mt-4"><svg class="svg-inline--fa fa-building fa-w-14 small-icon" style="color: silver;" aria-hidden="true"
           focusable="false" data-prefix="fas" data-icon="building" role="img" xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512" data-fa-i2svg="">
+          viewBox="0 0 448 512" data-fa-i2svg="" i18n>
           <path fill="currentColor"
             d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z">
           </path>
@@ -19,7 +19,7 @@
             <!-- Nav pills -->
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item " >
-                <a class="btn" [routerLink]="['/Closer/entreprise/create']" style="background-color: #28a745; color: white;" >
+                <a class="btn" [routerLink]="['/Closer/entreprise/create']" style="background-color: #28a745; color: white;" i18n>
                   <svg class="svg-inline--fa fa-plus-circle fa-w-16 small-button" aria-hidden="true" focusable="false"
                     data-prefix="fas" data-icon="plus-circle" role="img" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512" data-fa-i2svg="">
@@ -35,7 +35,7 @@
             <ul class="nav nav-pills" style="float: right;">
               <li class="nav-item">
                 <a class="nav-link active" (click)="exportToExcel()" target="blank" style="background-color: #28a745; color: white;margin-right: 20px"
-                  ><svg class="svg-inline--fa fa-download fa-w-16 small-button" aria-hidden="true"
+                i18n><svg class="svg-inline--fa fa-download fa-w-16 small-button" aria-hidden="true"
                     focusable="false" data-prefix="fas" data-icon="download" role="img"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                     <path fill="currentColor"
@@ -95,25 +95,25 @@
                       <tr align="center" style="background-color: #dde9dd" role="row">
                         <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                           aria-sort="ascending" aria-label="Entreprises: activate to sort column descending"
-                          style="width: 215.719px;">Entreprises</th>
+                          style="width: 215.719px;" i18n>Entreprises</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                          aria-label="Type : activate to sort column ascending" style="width: 35.8438px;">Type </th>
+                          aria-label="Type : activate to sort column ascending" style="width: 35.8438px;" i18n>Type </th>
                           <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                          aria-label="Type : activate to sort column ascending" style="width: 35.8438px;">Categorie </th>
+                          aria-label="Type : activate to sort column ascending" style="width: 35.8438px;" i18n>Categorie </th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                          aria-label="Tel : activate to sort column ascending" style="width: 154.859px;">Tel </th>
+                          aria-label="Tel : activate to sort column ascending" style="width: 154.859px;" i18n>Tel </th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                          aria-label="NUI : activate to sort column ascending" style="width: 267.312px;">NUI </th>
+                          aria-label="NUI : activate to sort column ascending" style="width: 267.312px;" i18n>NUI </th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                           aria-label="Localisation : activate to sort column ascending" style="width: 190.5px;">
                           Localisation </th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                          aria-label="Point Focal: activate to sort column ascending" style="width: 184.25px;">Point
+                          aria-label="Point Focal: activate to sort column ascending" style="width: 184.25px;" i18n>Point
                           Focal</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                          aria-label="Contact: activate to sort column ascending" style="width: 209.203px;">Contact</th>
+                          aria-label="Contact: activate to sort column ascending" style="width: 209.203px;" i18n>Contact</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                          aria-label="Auteur: activate to sort column ascending" style="width: 99.8281px;">Auteur</th>
+                          aria-label="Auteur: activate to sort column ascending" style="width: 99.8281px;" i18n>Auteur</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                           aria-label=" Font Awesome fontawesome.com -->: activate to sort column ascending"
                           style="width: 14px;"><svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true"

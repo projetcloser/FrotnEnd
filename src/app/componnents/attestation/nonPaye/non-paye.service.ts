@@ -4,6 +4,7 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { NonPaye } from './non-paye';
 import { environment } from '../../../../environments/environment.development';
 import { Membre } from '../../../models/membre';
+import { Payment } from './payer/payment';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,8 @@ export class NonPayeService {
   // private apiUrl = 'http://localhost:3000/attestations_companies';
   private apiUrl = environment.apiUrl+"companies/attestations";
   private countryApiURL  = environment.apiUrl+"members";
+  private payerUrl = environment.apiUrl+"payment/action";
+
 
   constructor(private http: HttpClient) { }
 
@@ -73,6 +76,18 @@ export class NonPayeService {
     });
     return this.http.put<NonPaye>(`${this.apiUrl}/${id}`, attestation, { headers });
   }
+
+  // Méthode pour payer 
+  payer(payer: Payment): Observable<any> {
+    const token = localStorage.getItem('access_token');  // Récupérer le token stocké
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<Payment>(`${this.payerUrl}`,payer, { headers });
+  }
+  
 
   deleteAttestation(id: number): Observable<void> {
     const token = localStorage.getItem('access_token');  // Récupérer le token stocké

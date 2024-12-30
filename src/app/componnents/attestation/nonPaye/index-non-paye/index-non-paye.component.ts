@@ -1,14 +1,15 @@
+import { NonPayeService } from './../non-paye.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { NonPayeService } from '../non-paye.service';
 import { NonPaye } from '../non-paye';
 import { Membre } from '../../../../models/membre';
 import { Entreprise } from '../../../../models/entreprise';
 import { EntrepriseServiceService } from '../../../entreprise/entreprise-service.service';
 import { PaginationComponent } from '../../../../components/pagination/pagination.component';
 import { PaginationService } from '../../../../components/pagination.service';
+import { Payment } from '../payer/payment';
 
 @Component({
   selector: 'app-index-non-paye',
@@ -142,6 +143,11 @@ export class IndexNonPayeComponent {
     return member ? member.firstname : 'Inconnu';
   }
 
+  getMemberUserName(countryId: number): string {
+    const member = this.members.find(p => p.id === countryId);
+    return member ? member.lastname : 'Inconnu';
+  }
+
   getmemberMatricule(countryId: number){
     const member = this.members.find(p => p.id === countryId);
     return member ? member.matricule : 'Inconnu';
@@ -167,4 +173,34 @@ onPageChange(page: number): void {
   this.updatePage();
 }
 
+  // paiement
+  payer(item: any): void {
+    const payment: Payment = {
+      id: 0, // ou une valeur par défaut
+      transaction_id:item.id,
+      member_id: item.member_id,
+      customer_name: this.getMemberName(item.member_id),
+      customer_surname: this.getMemberUserName(item.member_id), // Renseignez si applicable
+      amount: 1000, // Assurez-vous que l'objet `item` contient cette information
+      description: 'Paiement Attestation', // Description par défaut
+      currency: 'XAF', // Exemple : devise utilisée
+      created_at: new Date()
+    };
+
+    this.attestationService.payer(payment).subscribe(
+      (response: any) => {
+        if (response && response.data && response.data.payment_url) {
+          // Redirection vers l'URL de paiement
+          window.open(response.data.payment_url, '_blank');
+        } else {
+          console.error('Erreur lors de la génération du lien de paiement', response);
+        }
+      },
+      (error) => {
+        console.error('Erreur lors du paiement', error);
+      }
+    );
+  }
+
+ 
 }

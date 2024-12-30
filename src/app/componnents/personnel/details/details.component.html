@@ -18,24 +18,24 @@
       <div class="row">
         <!-- Column 1 -->
         <div class="col-md-6">
-          <p><i class="fas fa-user text-primary"></i> <strong class="text-dark">Nom:</strong> <span class="text-secondary">{{ personnel.lastname }}</span></p>
-          <p><i class="fas fa-user text-primary"></i> <strong class="text-dark">Prénom:</strong> <span class="text-secondary">{{ personnel.firstname }}</span></p>
-          <p><i class="fas fa-envelope text-success"></i> <strong class="text-dark">Email:</strong> <span class="text-secondary">{{ personnel.email }}</span></p>
-          <p><i class="fas fa-phone text-warning"></i> <strong class="text-dark">Téléphone:</strong> <span class="text-secondary">{{ personnel.phone }}</span></p>
-          <p><i class="fas fa-briefcase text-info"></i> <strong class="text-dark">Profession:</strong> <span class="text-secondary">{{ personnel.profession }}</span></p>
-          <p><i class="fas fa-user-friends text-danger"></i> <strong class="text-dark">Statut marital:</strong> <span class="text-secondary">{{ personnel.marital_status }}</span></p>
-          <p><i class="fas fa-user-tie text-purple"></i> <strong class="text-dark">Position:</strong> <span class="text-secondary">{{ personnel.position }}</span></p>
+          <p><i class="fas fa-user text-primary"></i> <strong class="text-dark" i18n>Nom:</strong> <span class="text-secondary">{{ personnel.lastname }}</span></p>
+          <p><i class="fas fa-user text-primary"></i> <strong class="text-dark" i18n>Prénom:</strong> <span class="text-secondary">{{ personnel.firstname }}</span></p>
+          <p><i class="fas fa-envelope text-success"></i> <strong class="text-dark" i18n>Email:</strong> <span class="text-secondary">{{ personnel.email }}</span></p>
+          <p><i class="fas fa-phone text-warning"></i> <strong class="text-dark" i18n>Téléphone:</strong> <span class="text-secondary">{{ personnel.phone }}</span></p>
+          <p><i class="fas fa-briefcase text-info"></i> <strong class="text-dark" i18n>Profession:</strong> <span class="text-secondary">{{ personnel.profession }}</span></p>
+          <p><i class="fas fa-user-friends text-danger"></i> <strong class="text-dark" i18n>Statut marital:</strong> <span class="text-secondary">{{ personnel.marital_status }}</span></p>
+          <p><i class="fas fa-user-tie text-purple"></i> <strong class="text-dark" i18n>Position:</strong> <span class="text-secondary">{{ personnel.position }}</span></p>
         </div>
 
         <!-- Column 2 -->
         <div class="col-md-6">
-          <p><i class="fas fa-map-marker-alt text-danger"></i> <strong class="text-dark">Pays:</strong> <span class="text-secondary">{{ getCityName(personnel.country_id) }}</span></p>
-          <p><i class="fas fa-city text-primary"></i> <strong class="text-dark">Ville:</strong> <span class="text-secondary">{{ getCityName(personnel.city_id) }}</span></p>
-          <p><i class="fas fa-users text-success"></i> <strong class="text-dark">Nom de la mère:</strong> <span class="text-secondary">{{ personnel.mother_name }}</span></p>
-          <p><i class="fas fa-user text-warning"></i> <strong class="text-dark">Nom du père:</strong> <span class="text-secondary">{{ personnel.father_name }}</span></p>
-          <p><i class="fas fa-venus-mars text-pink"></i> <strong class="text-dark">Sexe:</strong> <span class="text-secondary">{{ personnel.gender }}</span></p>
-          <p><i class="fas fa-file-contract text-info"></i> <strong class="text-dark">Type de contrat:</strong> <span class="text-secondary">{{ personnel.contract_type }}</span></p>
-          <p><i class="fas fa-child text-purple"></i> <strong class="text-dark">Nombre d'enfants:</strong> <span class="text-secondary">{{ personnel.num_children }}</span></p>
+          <p><i class="fas fa-map-marker-alt text-danger"></i> <strong class="text-dark" i18n>Pays:</strong> <span class="text-secondary">{{ getCityName(personnel.country_id) }}</span></p>
+          <p><i class="fas fa-city text-primary"></i> <strong class="text-dark" i18n>Ville:</strong> <span class="text-secondary">{{ getCityName(personnel.city_id) }}</span></p>
+          <p><i class="fas fa-users text-success"></i> <strong class="text-dark" i18n>Nom de la mère:</strong> <span class="text-secondary">{{ personnel.mother_name }}</span></p>
+          <p><i class="fas fa-user text-warning"></i> <strong class="text-dark"i18n>Nom du père:</strong> <span class="text-secondary">{{ personnel.father_name }}</span></p>
+          <p><i class="fas fa-venus-mars text-pink"></i> <strong class="text-dark"i18n>Sexe:</strong> <span class="text-secondary">{{ personnel.gender }}</span></p>
+          <p><i class="fas fa-file-contract text-info"></i> <strong class="text-dark" i18n>Type de contrat:</strong> <span class="text-secondary">{{ personnel.contract_type }}</span></p>
+          <p><i class="fas fa-child text-purple"></i> <strong class="text-dark" i18n>Nombre d'enfants:</strong> <span class="text-secondary">{{ personnel.num_children }}</span></p>
         </div>
       </div>
     </div>

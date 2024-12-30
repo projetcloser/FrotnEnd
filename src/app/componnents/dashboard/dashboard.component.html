@@ -2,9 +2,9 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="container">
-  <h1 class="mt-4">Tableau de Bord</h1>
+  <h1 class="mt-4" i18n>Tableau de Bord</h1>
   <ol class="breadcrumb mb-4" >
-    <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
+    <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;" i18n>
         <b>Bienvenue sur Closer ! </b> &nbsp;votre espace privilégié pour l’Ordre National des Ingénieurs de Génie Civil du Cameroun
     </li>
   </ol>
@@ -15,7 +15,7 @@
     </div>
 </div>
   <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional' || user.role.name === 'receptionniste' ">
-  <label>
+  <label i18n>
     <svg class="svg-inline--fa fa-newspaper fa-w-18 small-icon" aria-hidden="true" focusable="false" data-prefix="far" data-icon="newspaper" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"></path></svg><!-- <i class="far fa-newspaper"></i> Font Awesome fontawesome.com -->
     Membres
 </label>
@@ -25,7 +25,7 @@
 			<div class="card-body">
 				<div class="d-flex align-items-center">
 					<div>
-						<p class="mb-0 text-secondary">Membres Inscrits</p>
+						<p class="mb-0 text-secondary" i18n>Membres Inscrits</p>
 						<h4 class="my-1 text-info">4805</h4>
 						<!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
 					</div>
@@ -40,7 +40,7 @@
 		   <div class="card-body">
 			   <div class="d-flex align-items-center">
 				   <div>
-					   <p class="mb-0 text-secondary">Membres Actifs</p>
+					   <p class="mb-0 text-secondary" i18n>Membres Actifs</p>
 					   <h4 class="my-1 text-danger">84,245</h4>
 					   <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
 				   </div>
@@ -55,7 +55,7 @@
 		   <div class="card-body">
 			   <div class="d-flex align-items-center">
 				   <div>
-					   <p class="mb-0 text-secondary">Membres Echus</p>
+					   <p class="mb-0 text-secondary" i18n>Membres Echus</p>
 					   <h4 class="my-1 text-success">34.6</h4>
 					   <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
 				   </div>
@@ -92,7 +92,7 @@
   </ng-container>
 
   <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'receptionniste' || user.role.name === 'president' || user.role.name === 'secretaire administrative'">
-   <label>
+   <label i18n>
     <svg class="svg-inline--fa fa-newspaper fa-w-18 small-icon" aria-hidden="true" focusable="false" data-prefix="far" data-icon="newspaper" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"></path></svg><!-- <i class="far fa-newspaper"></i> Font Awesome fontawesome.com -->
     Sercices Vendus
   </label>
@@ -102,7 +102,7 @@
    <div class="card-body">
      <div class="d-flex align-items-center">
        <div>
-         <p class="mb-0 text-secondary">Frais cotisations</p>
+         <p class="mb-0 text-secondary" i18n>Frais cotisations</p>
          <h4 class="my-1 text-info">60,000</h4>
          <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
        </div>
@@ -117,7 +117,7 @@
     <div class="card-body">
       <div class="d-flex align-items-center">
         <div>
-          <p class="mb-0 text-secondary">Frais attestations</p>
+          <p class="mb-0 text-secondary" i18n>Frais attestations</p>
           <h4 class="my-1 text-danger">35,000</h4>
           <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
         </div>
@@ -152,7 +152,7 @@
   </div>
   </ng-container>
   <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'secretaire administrative' || user.role.name === 'president' ">
-     <label>
+     <label i18n>
       <svg class="svg-inline--fa fa-newspaper fa-w-18 small-icon" aria-hidden="true" focusable="false" data-prefix="far" data-icon="newspaper" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"></path></svg><!-- <i class="far fa-newspaper"></i> Font Awesome fontawesome.com -->
       Dettes-Ingénieurs-2021
     </label>
@@ -162,7 +162,7 @@
    <div class="card-body">
      <div class="d-flex align-items-center">
        <div>
-         <p class="mb-0 text-secondary">Dettes totales</p>
+         <p class="mb-0 text-secondary" i18n>Dettes totales</p>
          <h4 class="my-1 text-info">0</h4>
          <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
        </div>
@@ -177,7 +177,7 @@
     <div class="card-body">
       <div class="d-flex align-items-center">
         <div>
-          <p class="mb-0 text-secondary">Dettes acquises</p>
+          <p class="mb-0 text-secondary" i18n>Dettes acquises</p>
           <h4 class="my-1 text-danger">0</h4>
           <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
         </div>
@@ -192,7 +192,7 @@
     <div class="card-body">
       <div class="d-flex align-items-center">
         <div>
-          <p class="mb-0 text-secondary">Dettes en cours</p>
+          <p class="mb-0 text-secondary" i18n>Dettes en cours</p>
           <h4 class="my-1 text-success">0</h4>
           <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
         </div>
@@ -225,7 +225,7 @@
       <hr>
   </div>
 </div>
- <label>
+ <label i18n>
   <svg class="svg-inline--fa fa-newspaper fa-w-18 small-icon" aria-hidden="true" focusable="false" data-prefix="far" data-icon="newspaper" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"></path></svg><!-- <i class="far fa-newspaper"></i> Font Awesome fontawesome.com -->
   Demande de cachets
 </label>
@@ -235,7 +235,7 @@
  <div class="card-body">
    <div class="d-flex align-items-center">
      <div>
-       <p class="mb-0 text-secondary">Demandes envoyees</p>
+       <p class="mb-0 text-secondary" i18n>Demandes envoyees</p>
        <h4 class="my-1 text-info">8</h4>
        <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
      </div>
@@ -250,7 +250,7 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary">Cachets disponibles</p>
+        <p class="mb-0 text-secondary" i18n>Cachets disponibles</p>
         <h4 class="my-1 text-danger">6</h4>
         <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
       </div>
@@ -265,7 +265,7 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary">Cachets livres</p>
+        <p class="mb-0 text-secondary" i18n>Cachets livres</p>
         <h4 class="my-1 text-success">4</h4>
         <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
       </div>
@@ -298,7 +298,7 @@
       <hr>
   </div>
 </div>
- <label>
+ <label i18n>
   <svg class="svg-inline--fa fa-newspaper fa-w-18 small-icon" aria-hidden="true" focusable="false" data-prefix="far" data-icon="newspaper" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"></path></svg><!-- <i class="far fa-newspaper"></i> Font Awesome fontawesome.com -->
   Attestations pour le compte des entreprises
 </label>
@@ -308,7 +308,7 @@
  <div class="card-body">
    <div class="d-flex align-items-center">
      <div>
-       <p class="mb-0 text-secondary">Demandes totales</p>
+       <p class="mb-0 text-secondary" i18n>Demandes totales</p>
        <h4 class="my-1 text-info">20</h4>
        <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
      </div>
@@ -323,7 +323,7 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary">Attestations generées</p>
+        <p class="mb-0 text-secondary" i18n>Attestations generées</p>
         <h4 class="my-1 text-danger">15</h4>
         <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
       </div>
@@ -338,7 +338,7 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary">Demandes rejetées</p>
+        <p class="mb-0 text-secondary" i18n>Demandes rejetées</p>
         <h4 class="my-1 text-success">5</h4>
         <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
       </div>
@@ -372,7 +372,7 @@
   </div>
 </div>
 
- <label>
+ <label i18n>
   <svg class="svg-inline--fa fa-newspaper fa-w-18 small-icon" aria-hidden="true" focusable="false" data-prefix="far" data-icon="newspaper" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"></path></svg><!-- <i class="far fa-newspaper"></i> Font Awesome fontawesome.com -->
   Attestations à usage personnel
 </label>
@@ -382,7 +382,7 @@
  <div class="card-body">
    <div class="d-flex align-items-center">
      <div>
-       <p class="mb-0 text-secondary">Demandes totales</p>
+       <p class="mb-0 text-secondary" i18n>Demandes totales</p>
        <h4 class="my-1 text-info">25</h4>
        <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
      </div>
@@ -397,7 +397,7 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary">Attestations generées</p>
+        <p class="mb-0 text-secondary" i18n>Attestations generées</p>
         <h4 class="my-1 text-danger">20</h4>
         <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
       </div>
@@ -412,7 +412,7 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary">Demandes rejetees</p>
+        <p class="mb-0 text-secondary" i18n>Demandes rejetees</p>
         <h4 class="my-1 text-success">5</h4>
         <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
       </div>
@@ -445,7 +445,7 @@
       <hr>
   </div>
 </div>
- <label>
+ <label i18n>
   <svg class="svg-inline--fa fa-newspaper fa-w-18 small-icon" aria-hidden="true" focusable="false" data-prefix="far" data-icon="newspaper" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"></path></svg><!-- <i class="far fa-newspaper"></i> Font Awesome fontawesome.com -->
   Personnels/Entreprises
 </label>
@@ -456,7 +456,7 @@
  <div class="card-body">
    <div class="d-flex align-items-center">
      <div>
-       <p class="mb-0 text-secondary">Personnels </p>
+       <p class="mb-0 text-secondary" i18n>Personnels </p>
        <h4 class="my-1 text-info">10</h4>
        <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
      </div>
@@ -473,7 +473,7 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary">Entreprises</p>
+        <p class="mb-0 text-secondary" i18n>Entreprises</p>
         <h4 class="my-1 text-danger">125</h4>
         <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
       </div>

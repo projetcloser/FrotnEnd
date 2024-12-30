@@ -153,7 +153,7 @@
         <div class="container mt-5">
           <div class="card">
             <div class="card-header">
-              <h4>
+              <h4 i18n>
                 Enregistrer une entreprise
                 </h4>
             </div>
@@ -162,7 +162,7 @@
                 <div class="row mb-3">
                   <!-- Social Reason -->
                   <div class="col-md-6">
-                    <span>Raison sociale</span>
+                    <span i18n>Raison sociale</span>
                     <input type="text" formControlName="social_reason" class="form-control" />
                     <!-- <div *ngIf="entrepriseForm.controls['social_reason'].invalid && entrepriseForm.controls['social_reason'].touched" class="text-danger">
                       <small *ngIf="entrepriseForm.controls['social_reason'].hasError('required')">Raison sociale est requise.</small>
@@ -171,7 +171,7 @@
 
                   <!-- Author -->
                   <div class="col-md-6">
-                    <span>Auteur</span>
+                    <span i18n>Auteur</span>
                     <input type="text" formControlName="author" class="form-control" value="{{user.name}}" />
                     <!-- <div *ngIf="entrepriseForm.controls['author'].invalid && entrepriseForm.controls['author'].touched" class="text-danger">
                       <small *ngIf="entrepriseForm.controls['author'].hasError('required')">Auteur est requis.</small>
@@ -182,21 +182,21 @@
                 <div class="row mb-3">
                   <!-- Phone -->
                   <div class="col-md-6">
-                    <span>Téléphone</span>
+                    <span i18n>Téléphone</span>
                     <input type="text" formControlName="phone" class="form-control" />
                   </div>
 
                   <div class="col-md-6">
-                    <label for="catId" class="form-label"><i class="fas fa-info-circle me-2"></i>Catégorie d'entreprise</label>
+                    <label for="catId" class="form-label" i18n><i class="fas fa-info-circle me-2"></i>Catégorie d'entreprise</label>
                     <select id="catId" class="form-select" formControlName="catId">
                       <option value="bet">BET</option>
-                      <option value="entreprise" selected>Entreprise</option>
+                      <option value="entreprise" selected i18n>Entreprise</option>
                     </select>
                   </div>
 
                   <!-- Email -->
                   <div class="col-md-6">
-                    <span>Email</span>
+                    <span i18n>Email</span>
                     <input type="email" formControlName="email" class="form-control" />
                     <!-- <div *ngIf="entrepriseForm.controls['email'].invalid && entrepriseForm.controls['email'].touched" class="text-danger">
                       <small *ngIf="entrepriseForm.controls['email'].hasError('email')">Email invalide.</small>
@@ -221,10 +221,10 @@
                       <option value="N/A" selected="">
                         ...
                       </option>
-                      <option value="PUBLIC">
+                      <option value="PUBLIC" i18n>
                         PUBLIC
                       </option>
-                      <option value="PRIVEE">
+                      <option value="PRIVEE" i18n>
                         PRIVEE
                       </option>
 
@@ -238,7 +238,7 @@
                 <div class="row mb-3">
                   <!-- Country -->
                   <div class="col-md-6">
-                    <span>Pays</span>
+                    <span i18n>Pays</span>
                     <select formControlName="country_id" class="form-control">
                       <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
                     </select>
@@ -249,7 +249,7 @@
 
                   <!-- City -->
                   <div class="col-md-6">
-                    <span>Ville</span>
+                    <span i18n>Ville</span>
                     <select formControlName="city_id" class="form-control">
                       <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
                     </select>
@@ -262,7 +262,7 @@
                 <div class="row mb-3">
                   <!-- Contact Person -->
                   <div class="col-md-6">
-                    <span>Personne de contact</span>
+                    <span i18n>Personne de contact</span>
                     <input type="text" formControlName="contact_person" class="form-control" />
                     <!-- <div *ngIf="entrepriseForm.controls['contact_person'].invalid && entrepriseForm.controls['contact_person'].touched" class="text-danger">
                       <small *ngIf="entrepriseForm.controls['contact_person'].hasError('required')">Personne de contact est requise.</small>
@@ -271,7 +271,7 @@
 
                   <!-- Contact Person Phone -->
                   <div class="col-md-6">
-                    <span>Téléphone de la personne de contact</span>
+                    <span i18n>Téléphone de la personne de contact</span>
                     <input type="text" formControlName="contact_person_phone" class="form-control" />
                     <!-- <div *ngIf="entrepriseForm.controls['contact_person_phone'].invalid && entrepriseForm.controls['contact_person_phone'].touched" class="text-danger">
                       <small *ngIf="entrepriseForm.controls['contact_person_phone'].hasError('required')">Téléphone de contact est requis.</small>
@@ -291,7 +291,7 @@
 
                   <!-- Neighborhood -->
                   <div class="col-md-6">
-                    <span>Quartier</span>
+                    <span i18n>Quartier</span>
                     <input type="text" formControlName="neighborhood" class="form-control" />
                   </div>
                 </div>
@@ -299,7 +299,7 @@
                 <div class="row mb-3">
                   <!-- Submit Button -->
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block">Créer l'entreprise</button>
+                    <button type="submit" class="btn btn-primary btn-block" i18n>Créer l'entreprise</button>
                   </div>
                 </div>
               </form>

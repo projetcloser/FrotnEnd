@@ -1,8 +1,8 @@
 <section class="content" style="margin-left: 15px;">
   <div class="container-fluid">
-    <h1 class="mt-4">Modifier l'evenement</h1>
+    <h1 class="mt-4" i18n>Modifier l'evenement</h1>
     <ol class="breadcrumb mb-4 text-center">
-      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;">
+      <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;" i18n>
         Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
       </li>
     </ol>
@@ -11,20 +11,20 @@
         <div class="container mt-5">
           <div class="card">
             <div class="card-header">
-              <h4>Modifier l'evenement</h4>
+              <h4 i18n>Modifier l'evenement</h4>
             </div>
             <div class="card-body">
               <form [formGroup]="evenementForm" (ngSubmit)="onSubmit()">
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span>titre</span>
+                    <span i18n>titre</span>
                     <input type="text" formControlName="title" class="form-control" />
                     <!-- <div *ngIf="evenementForm.controls['pay'].invalid && evenementForm.controls['pay'].touched" class="text-danger">
                       <small *ngIf="evenementForm.controls['pay'].hasError('required')">Raison sociale est requise.</small>
                     </div> -->
                   </div>
                   <div class="col-md-6">
-                    <span>Place</span>
+                    <span i18n>Place</span>
                     <input type="text" formControlName="place" class="form-control" />
                     <!-- <div *ngIf="evenementForm.controls['amount'].invalid && evenementForm.controls['amount'].touched" class="text-danger">
                       <small *ngIf="evenementForm.controls['amount'].hasError('required')">Somme est requise.</small>
@@ -34,14 +34,14 @@
 
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span>Participant</span>
+                    <span i18n>Participant</span>
                     <input type="text" formControlName="participants" class="form-control" />
                     <!-- <div *ngIf="evenementForm.controls['phone'].invalid && evenementForm.controls['phone'].touched" class="text-danger">
                       <small *ngIf="evenementForm.controls['phone'].hasError('required')">Téléphone est requis.</small>
                     </div> -->
                   </div>
                   <div class="col-md-6">
-                    <span>Auteur</span>
+                    <span i18n>Auteur</span>
                     <input type="text" formControlName="author" class="form-control" />
                     <!-- <div *ngIf="evenementForm.controls['author'].invalid && evenementForm.controls['author'].touched" class="text-danger">
                       <small *ngIf="evenementForm.controls['author'].hasError('required')">Auteur est requis.</small>
@@ -49,7 +49,7 @@
                   </div>
 
                   <div class="col-md-6">
-                    <span>prix</span>
+                    <span i18n>prix</span>
                     <input type="text" formControlName="price" class="form-control" />
                     <!-- <div *ngIf="evenementForm.controls['author'].invalid && evenementForm.controls['author'].touched" class="text-danger">
                       <small *ngIf="evenementForm.controls['author'].hasError('required')">Auteur est requis.</small>
@@ -74,18 +74,18 @@
 
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span>Debut</span>
+                    <span i18n>Debut</span>
                     <input type="date" formControlName="start_date" class="form-control"  />
                   </div>
                   <div class="col-md-6">
-                    <span>Fin</span>
+                    <span i18n>Fin</span>
                     <input type="date" formControlName="end_date" class="form-control"  />
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block">Soumettre</button>
+                    <button type="submit" class="btn btn-primary btn-block" i18n>Soumettre</button>
                   </div>
                 </div>
               </form>

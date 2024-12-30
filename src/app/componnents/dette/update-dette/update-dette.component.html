@@ -9,7 +9,7 @@
           <form [formGroup]="debtForm" (ngSubmit)="onSubmit()">
             <!-- Champ de sélection de membre -->
             <div class="form-group position-relative mb-4">
-              <label for="membre_id" class="form-label floating-label">Sélectionner un membre</label>
+              <label for="membre_id" class="form-label floating-label" i18n>Sélectionner un membre</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text bg-light"><i class="fas fa-user"></i></span>
@@ -55,7 +55,7 @@
 
             <!-- Bouton de soumission -->
             <div class="d-grid gap-2 mt-4">
-              <button type="submit" class="btn btn-lg btn-success rounded-pill btn-block" [disabled]="debtForm.invalid">
+              <button type="submit" class="btn btn-lg btn-success rounded-pill btn-block" [disabled]="debtForm.invalid" i18n>
                 <i class="fas fa-sync-alt"></i> Mettre à Jour la Dette
               </button>
             </div>

@@ -4,13 +4,13 @@
       <!-- Carte avec un design élégant -->
       <div class="card shadow-lg border-0 rounded-lg">
         <div class="card-header bg-gradient-primary text-white text-center">
-          <h3 class="font-weight-light">Ajouter une Dette</h3>
+          <h3 class="font-weight-light" i18n>Ajouter une Dette</h3>
         </div>
         <div class="card-body p-4">
           <form [formGroup]="detteForm" (ngSubmit)="onSubmit()">
             <!-- Champ de sélection de membre avec icône et label flottant -->
             <div class="form-group position-relative mb-4">
-              <label for="membre_id" class="form-label floating-label">Sélectionner un membre</label>
+              <label for="membre_id" class="form-label floating-label" i18n>Sélectionner un membre</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text bg-light"><i class="fas fa-user"></i></span>
@@ -21,42 +21,42 @@
                   </option>
                 </select>
               </div>
-              <small *ngIf="detteForm.controls['membre_id'].invalid && detteForm.controls['membre_id'].touched" class="form-text text-danger">
+              <small i18n *ngIf="detteForm.controls['membre_id'].invalid && detteForm.controls['membre_id'].touched" class="form-text text-danger">
                 Veuillez sélectionner un membre.
               </small>
             </div>
 
             <!-- Champ montant avec label flottant et validation -->
             <div class="form-group position-relative mb-4">
-              <label for="montant" class="form-label floating-label">Montant</label>
+              <label for="montant" class="form-label floating-label" i18n>Montant</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text bg-light"><i class="fas fa-money-bill-wave"></i></span>
                 </div>
                 <input type="number" class="form-control" id="montant" formControlName="montant" placeholder="0.00">
               </div>
-              <small *ngIf="detteForm.controls['montant'].invalid && detteForm.controls['montant'].touched" class="form-text text-danger">
+              <small *ngIf="detteForm.controls['montant'].invalid && detteForm.controls['montant'].touched" i18n class="form-text text-danger">
                 Veuillez entrer un montant valide.
               </small>
             </div>
 
             <!-- Champ de date d'échéance avec label flottant -->
             <div class="form-group position-relative mb-4">
-              <label for="date_echeance" class="form-label floating-label">Date d'Échéance</label>
+              <label for="date_echeance" class="form-label floating-label" i18n>Date d'Échéance</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text bg-light"><i class="fas fa-calendar-alt"></i></span>
                 </div>
                 <input type="date" class="form-control" id="date_echeance" formControlName="date_echeance">
               </div>
-              <small *ngIf="detteForm.controls['date_echeance'].invalid && detteForm.controls['date_echeance'].touched" class="form-text text-danger">
+              <small *ngIf="detteForm.controls['date_echeance'].invalid && detteForm.controls['date_echeance'].touched" class="form-text text-danger" i18n>
                 Veuillez sélectionner une date.
               </small>
             </div>
 
             <!-- Bouton d'envoi -->
             <div class="d-grid gap-2 mt-4">
-              <button type="submit" class="btn btn-lg btn-success rounded-pill btn-block" [disabled]="detteForm.invalid">
+              <button type="submit" class="btn btn-lg btn-success rounded-pill btn-block" [disabled]="detteForm.invalid" i18n>
                 <i class="fas fa-check-circle"></i> Ajouter Dette
               </button>
             </div>
