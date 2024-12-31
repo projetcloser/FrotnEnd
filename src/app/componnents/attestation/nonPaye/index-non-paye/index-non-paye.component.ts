@@ -182,8 +182,10 @@ export class IndexNonPayeComponent {
   payer(item: any): void {
     const payment: Payment = {
       id: 0, // ou une valeur par défaut
-      transaction_id: item.id,
+      transaction_id: item.ref_dem_part,
       member_id: item.member_id,
+      company_attestation_id: item.id,
+      cotisation_id: 0,
       customer_name: this.getMemberName(item.member_id),
       customer_surname: this.getMemberUserName(item.member_id), // Renseignez si applicable
       amount: 1000, // Assurez-vous que l'objet `item` contient cette information

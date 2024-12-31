@@ -15,16 +15,16 @@ import { Personnel } from '../../personnel/personnel';
 @Component({
   selector: 'app-create-cotisation',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './create-cotisation.component.html',
   styleUrl: './create-cotisation.component.css'
 })
-export class CreateCotisationComponent implements OnInit{
+export class CreateCotisationComponent implements OnInit {
   cotisationForm!: FormGroup;
   cotisations: Cotisation[] = [];
   caisses: any[] = [];
   membres: any[] = [];
-  staffs:  any[] = [];
+  staffs: any[] = [];
   user: any = {};
 
   currentTime = new Date();
@@ -34,24 +34,24 @@ export class CreateCotisationComponent implements OnInit{
 
 
 
-  constructor(public cotisationService:CotisationService,
-    private caisseService:CaisseServiceService,private membreService:MembreServiceService,
+  constructor(public cotisationService: CotisationService,
+    private caisseService: CaisseServiceService, private membreService: MembreServiceService,
     private authService: AuthService,
-    private personnelservice:PersonnelService,
-    private router:Router,private fb: FormBuilder,){
+    private personnelservice: PersonnelService,
+    private router: Router, private fb: FormBuilder,) {
 
   }
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.cotisationForm = this.fb.group({
-      cashflow_id: [''],
+      cashflow_id: [1],
       member_id: [''],
       // pay_year: [this.currentYear], // Année actuelle
       pay_year: [{ value: '', disabled: true }],
       ref_ing_cost: [{ value: this.generateRefIngCost(), disabled: true }],
       amount: [0], // Valeur par défaut
       pay: [60000], // Valeur par défaut
-      status: ['OK'],
+      status: [1],
       // staff_id:[''],
       author: [{ value: '', disabled: true }],
       open_close: [0],
@@ -67,7 +67,7 @@ export class CreateCotisationComponent implements OnInit{
     // Récupérer l'auteur (utilisateur connecté) et la date
     this.cotisationForm.patchValue({
       pay_year: formattedDate, // Date actuelle formatée
-      auteur:  this.authService.getUserProfile().subscribe(
+      auteur: this.authService.getUserProfile().subscribe(
         (response: any) => {
           this.user = response.user.name;
           console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
@@ -76,12 +76,12 @@ export class CreateCotisationComponent implements OnInit{
 
         },
         (error) => {
-            console.error('Erreur lors de la récupération du profil utilisateur:', error);
+          console.error('Erreur lors de la récupération du profil utilisateur:', error);
         }
-    ) // Auteur connecté
+      ) // Auteur connecté
     });
 
-     // Surveillez les changements du champ 'pay'
+    // Surveillez les changements du champ 'pay'
     this.cotisationForm.get('pay')?.valueChanges.subscribe((payValue: number) => {
       const calculatedAmount = 60000 - (payValue || 0); // Calcule le montant restant
       this.cotisationForm.patchValue({ amount: calculatedAmount }); // Met à jour 'amount'
@@ -91,26 +91,26 @@ export class CreateCotisationComponent implements OnInit{
 
   loadMembers() {
     this.membreService.getAll().subscribe((data) => {
-      console.log('membre',data);
+      console.log('membre', data);
       this.membres = data;
     });
   }
 
   loadCaisse() {
     this.caisseService.getAll().subscribe((data) => {
-      console.log('caisse',data);
+      console.log('caisse', data);
       this.caisses = data;
     });
   }
-  loadStaff(){
-    this.personnelservice.getAll().subscribe((data)=>{
+  loadStaff() {
+    this.personnelservice.getAll().subscribe((data) => {
       this.staffs = data;
       console.log('staff:', this.staffs);
 
     });
   }
 
-  get f(){
+  get f() {
     return this.cotisationForm.controls;
   }
 
@@ -128,26 +128,26 @@ export class CreateCotisationComponent implements OnInit{
         this.router.navigate(['/Closer/cotisation']);
         console.log('Cotisation modifiée avec succès!')
       },
-      error=> {
-        console.error('Erreur lors de l\'ajout de la cotisation', error);
+        error => {
+          console.error('Erreur lors de l\'ajout de la cotisation', error);
 
-      }
-    );
-    }else {
+        }
+      );
+    } else {
       console.error('Le formulaire est invalide');
     }
   }
 
   loadUserProfile(): void {
     this.authService.getUserProfile().subscribe(
-        (response: any) => {
-          this.user = response;
-          console.log('Utilisateur connecté:', this.user)  // Vérifie les données ici
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user)  // Vérifie les données ici
 
-        },
-        (error) => {
-            console.error('Erreur lors de la récupération du profil utilisateur:', error);
-        }
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
     );
-}
+  }
 }

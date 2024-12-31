@@ -83,13 +83,10 @@ export class IndexAttestPersonnelComponent implements OnInit {
     this.router.navigate(['/Closer/modifier-personne']);
   }
 
-<<<<<<< HEAD
+
   // Méthode pour générer un PDF pour l'attestation
   // generatePdf(attest: AttestPersonnel): void {
-=======
-   // Méthode pour générer un PDF pour l'attestation
-  //  generatePdf(attest: AttestPersonnel): void {
->>>>>>> dbe4565936c989f330b860b592326a7293a72255
+
   //   const doc = new jsPDF('portrait');
 
   //   // Récupérer la date du jour
@@ -168,10 +165,91 @@ export class IndexAttestPersonnelComponent implements OnInit {
   // }
 
 
-  generatePdf(attest: AttestPersonnel): void {
-    const doc = new jsPDF('portrait');
+  // generatePdf(attest: AttestPersonnel): void {
+  //   const doc = new jsPDF('portrait');
 
-    // Récupérer la date du jour
+  //   // Récupérer la date du jour
+  //   const today = new Date();
+  //   const formattedDate = today.toLocaleDateString('fr-FR', {
+  //     year: 'numeric',
+  //     month: 'long',
+  //     day: 'numeric'
+  //   });
+
+  //   // En-tête bilingue
+  //   doc.setFontSize(12);
+  //   doc.text('République du Cameroun', 20, 20);
+  //   doc.text('Republic of Cameroon', 140, 20);
+  //   doc.text('Paix - Travail - Patrie', 20, 30);
+  //   doc.text('Peace - Work - Fatherland', 140, 30);
+
+  //   // Ordre National
+  //   doc.setFontSize(14);
+  //   doc.text('Ordre National des Ingénieurs de Génie Civil', 50, 50);
+  //   doc.text('National Order of Civil Engineers', 55, 60);
+
+  //   // Numéro de référence
+  //   doc.setFontSize(12);
+  //   doc.text(`N° 00145789`, 80, 80);
+
+  //   // Titre central - ATTESTATION
+  //   doc.setFontSize(18);
+  //   doc.setTextColor(0, 0, 128); // Couleur bleue
+  //   doc.text('A T T E S T A T I O N', 75, 100);
+
+  //   // Corps du texte
+  //   doc.setFontSize(14);
+  //   doc.setTextColor(0, 0, 0); // Noir par défaut
+  //   doc.text('Le Président de l’Ordre', 20, 120);
+  //   doc.text('atteste que', 20, 130);
+  //   doc.text(`l’Ingénieur ABANDA Jean Roger`, 20, 140);
+  //   doc.text(`est bien inscrit au Tableau de l’Ordre pour l’année 2004`, 20, 150);
+  //   doc.text(`sous le matricule 02414.`, 20, 160);
+
+  //   doc.text('A ce titre, il est autorisé à exercer la profession', 20, 170);
+  //   doc.text('d’Ingénieur de Génie Civil pour la période allant', 20, 180);
+  //   doc.text(`du 1er janvier 2025au 31 décembre 2025.`, 20, 190);
+  //   doc.text('et à faire prévaloir la présente attestation pour usage personnel.', 20, 200);
+
+  //   // Date et lieu
+  //   doc.text(`Fait à Yaoundé, le 26/12/2024`, 20, 220);
+
+  //   // QR Code
+  //   // const qrCodeData = `
+  //   //   N° Attestation: 00122
+  //   //   Nom de l’Ingénieur: ABANDA Jean Roger
+  //   //   Année: 2024
+  //   //   Matricule: 02141
+  //   //   Date: 26/12/2024
+  //   // `;
+  //   // const qrCodeSize = 50;
+  //   // const qrCode = new QRCode({
+  //   //     content: qrCodeData,
+  //   //     width: qrCodeSize,
+  //   //     height: qrCodeSize,
+  //   // });
+  //   // const qrCodeBase64 = qrCode.toDataURL();
+  //   // doc.addImage(qrCodeBase64, 'PNG', 20, 240, qrCodeSize, qrCodeSize);
+
+  //   // Cachet et signature
+  //   doc.addImage('path/to/cachet.png', 'PNG', 120, 240, 50, 40);
+  //   doc.setFontSize(12);
+  //   doc.text('Le Président de l’Ordre', 130, 290);
+
+  //   // Footer
+  //   doc.setFontSize(10);
+  //   doc.setTextColor(54, 95, 145); // Bleu foncé
+  //   doc.text('Montée Elig Essono - Yaoundé - BP 20822 - (+237) 677.66.10.66 / 655.01.02.03', 20, 300);
+  //   doc.text('Email: noceonigc@yahoo.fr - www.onigc.cm', 20, 310);
+
+  //   doc.save(`Attestation_andy.pdf`);
+  // }
+  generatePdf(attest: AttestPersonnel): void {
+    const doc = new jsPDF('portrait', 'mm', 'A4');
+
+    // Récupérer les données
+
+    // Date actuelle formatée
     const today = new Date();
     const formattedDate = today.toLocaleDateString('fr-FR', {
       year: 'numeric',
@@ -188,65 +266,73 @@ export class IndexAttestPersonnelComponent implements OnInit {
 
     // Ordre National
     doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
     doc.text('Ordre National des Ingénieurs de Génie Civil', 50, 50);
     doc.text('National Order of Civil Engineers', 55, 60);
 
     // Numéro de référence
     doc.setFontSize(12);
-    doc.text(`N° 00145789`, 80, 80);
+    doc.text(`N° 00000`, 130, 70);
 
     // Titre central - ATTESTATION
     doc.setFontSize(18);
-    doc.setTextColor(0, 0, 128); // Couleur bleue
-    doc.text('A T T E S T A T I O N', 75, 100);
+    doc.setTextColor(0, 0, 128); // Bleu
+    doc.text('A T T E S T A T I O N', 75, 90);
 
     // Corps du texte
     doc.setFontSize(14);
-    doc.setTextColor(0, 0, 0); // Noir par défaut
-    doc.text('Le Président de l’Ordre', 20, 120);
-    doc.text('atteste que', 20, 130);
-    doc.text(`l’Ingénieur ABANDA Jean Roger`, 20, 140);
-    doc.text(`est bien inscrit au Tableau de l’Ordre pour l’année 2004`, 20, 150);
-    doc.text(`sous le matricule 02414.`, 20, 160);
+    doc.setTextColor(0, 0, 0); // Noir
+    doc.text('Le Président de l’Ordre', 20, 110);
+    doc.text('atteste que', 20, 120);
 
-    doc.text('A ce titre, il est autorisé à exercer la profession', 20, 170);
-    doc.text('d’Ingénieur de Génie Civil pour la période allant', 20, 180);
-    doc.text(`du 1er janvier 2025au 31 décembre 2025.`, 20, 190);
-    doc.text('et à faire prévaloir la présente attestation pour usage personnel.', 20, 200);
+    // Nom de l'ingénieur
+    doc.setFont('helvetica', 'bold');
+    doc.text(`l’Ingénieur xxxxxxx`, 20, 130);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`est bien inscrit au Tableau de l’Ordre pour l’année xxxx`, 20, 140);
+    doc.text(`sous le matricule xx-xxxx`, 20, 150);
+
+    // Validité
+    doc.text(
+      `A ce titre, il est autorisé à exercer la profession d’Ingénieur de Génie Civil pour la période allant du 1er janvier xxxx au 31 décembre xxxxx`,
+      20,
+      160
+    );
+    doc.text(`et à faire prévaloir la présente attestation dans le cadre de xxxxx`, 20, 170);
 
     // Date et lieu
-    doc.text(`Fait à Yaoundé, le 26/12/2024`, 20, 220);
+    doc.text(`Fait à Yaoundé, le xxxxx`, 20, 190);
 
     // QR Code
-    // const qrCodeData = `
-    //   N° Attestation: 00122
-    //   Nom de l’Ingénieur: ABANDA Jean Roger
-    //   Année: 2024
-    //   Matricule: 02141
-    //   Date: 26/12/2024
-    // `;
-    // const qrCodeSize = 50;
-    // const qrCode = new QRCode({
-    //     content: qrCodeData,
-    //     width: qrCodeSize,
-    //     height: qrCodeSize,
-    // });
-    // const qrCodeBase64 = qrCode.toDataURL();
-    // doc.addImage(qrCodeBase64, 'PNG', 20, 240, qrCodeSize, qrCodeSize);
+    // const qrCodeText = `N° Attestation: ${ref}\nNom de l’ingénieur: ${ingenieur}\nTableau de l’Ordre: ${annee}\nMatricule: ${matricule}\nDate: ${formattedDate}`;
+    // const qrCodeSize = 30; // Taille du QR code
+    // const qrCodeX = 20; // Position X du QR
+    // const qrCodeY = 200; // Position Y du QR
 
-    // Cachet et signature
-    doc.addImage('path/to/cachet.png', 'PNG', 120, 240, 50, 40);
-    doc.setFontSize(12);
-    doc.text('Le Président de l’Ordre', 130, 290);
+    // const qrCodeCanvas = document.createElement('canvas');
+    // QRCode.toCanvas(qrCodeCanvas, qrCodeText, { width: qrCodeSize });
+    // const qrCodeDataURL = qrCodeCanvas.toDataURL('image/png');
+    // doc.addImage(qrCodeDataURL, 'PNG', qrCodeX, qrCodeY, qrCodeSize, qrCodeSize);
 
-    // Footer
+    // Cachet
+    doc.addImage('assets/img/signe.jpg', 'PNG', 130, 200, 50, 50);
+
+    // Bas de page
     doc.setFontSize(10);
-    doc.setTextColor(54, 95, 145); // Bleu foncé
-    doc.text('Montée Elig Essono - Yaoundé - BP 20822 - (+237) 677.66.10.66 / 655.01.02.03', 20, 300);
-    doc.text('Email: noceonigc@yahoo.fr - www.onigc.cm', 20, 310);
+    doc.setFont('helvetica', 'italic');
+    doc.text('Ce document est généré par CLOSER (c)', 20, 270);
+    doc.text('Le QR-CODE atteste de son authenticité', 20, 275);
+    doc.setFont('helvetica', 'bold');
+    doc.text(
+      'Montée Elig Essono - Yaoundé - 20822 - (+237) 677.66.10.66 / 655.01.02.03 - noceonigc@yahoo.fr - www.onigc.cm',
+      20,
+      280
+    );
 
-    doc.save(`Attestation_andy.pdf`);
+    // Exporter le PDF
+    doc.save(`Attestation_xxxx.pdf`);
   }
+
 
 
   // pagination
