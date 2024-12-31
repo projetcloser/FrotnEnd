@@ -50,22 +50,50 @@
 
                   <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                     <div class="row">
+
                       <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"
-                              aria-controls="dataTable"
-                              class="custom-select custom-select-sm form-control form-control-sm">
-                              <option value="10">10</option>
-                              <option value="25">25</option>
-                              <option value="50">50</option>
-                              <option value="100">100</option>
-                            </select> entries</label></div>
-                      </div>
-                      <div class="col-sm-12 col-md-6">
-                        <div id="dataTable_filter" class="dataTables_filter"><label>search:<input type="text"
-                              class="form-control form-control-sm"  placeholder="Rechercher par titre ou auteur"
-                              [(ngModel)]="searchTerm"
-                              (ngModelChange)="onSearch()" aria-controls="dataTable"></label>
-                        </div>
+                        <form [formGroup]="searchForm" (ngSubmit)="onSearch()"
+                          class="d-flex flex-column flex-md-row align-items-center gap-3">
+                          <!-- Champ de recherche -->
+                          <div class="form-group w-100">
+                            <input formControlName="keyword" class="form-control"
+                              placeholder="Rechercher sur toutes les lignes de la table" aria-label="Recherche" />
+                          </div>
+
+                          <!-- Filtrer par statut -->
+                          <!-- <div class="form-group w-100">
+                            <select
+                              formControlName="statut"
+                              class="form-select"
+                              aria-label="Filtrer par statut"
+                            >
+                              <option value="">Tous les statuts</option>
+                              <option value="active">Actif</option>
+                              <option value="inactive">Inactif</option>
+                            </select>
+                          </div> -->
+
+                          <!-- Filtrer par genre -->
+                          <!-- <div class="form-group w-100">
+                            <select
+                              formControlName="gender"
+                              class="form-select"
+                              aria-label="Filtrer par genre"
+                            >
+                              <option value="">Tous les genres</option>
+                              <option value="male">Homme</option>
+                              <option value="female">Femme</option>
+                            </select>
+                          </div> -->
+
+                          <!-- Bouton de recherche -->
+                          <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                              <i class="fas fa-search"></i>
+                            </button>
+                          </div>
+                        </form>
+
                       </div>
                     </div>
                     <div class="row">

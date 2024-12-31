@@ -15,6 +15,7 @@ export class MembreServiceService {
 
   private apiURL = environment.apiUrl+"members/member";
   private apiURLV = environment.apiUrl+"members";
+  private apisearch = environment.apiUrl+"members";
   private countriesUrl = environment.apiUrl+'location/countries';
     private citiesUrl = environment.apiUrl+'location/cities';
 
@@ -50,7 +51,7 @@ export class MembreServiceService {
       params = params.set('gender', filters.gender);
     }
 
-    return this.httpclient.get(`${this.apiURLV}/search`, { params });
+    return this.httpclient.get(`${this.apisearch}/search`, { params });
   }
 
   // create(data: Membre): Observable<any> {

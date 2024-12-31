@@ -3,7 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { Evenement } from '../evenement';
 import { EvenementService } from '../evenement.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from "../../../components/auth/auth.service";
 import { PaginationService } from '../../../components/pagination.service';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
@@ -22,9 +22,9 @@ export class IndexEvenementComponent {
   user: any = {};
 
   loading = false;
+ // search back
+      searchForm: FormGroup;
 
-  filteredEvenements: Evenement[] = []; // Événements filtrés
-  searchTerm: string = ''; // Terme de recherche
 
      // pagination
      paginatedData: any[] = []; // Données de la page courante
@@ -35,9 +35,13 @@ export class IndexEvenementComponent {
 
 
 
-  constructor(private evenementService: EvenementService, private router: Router, private authService: AuthService,
+  constructor(private fb: FormBuilder,private evenementService: EvenementService, private router: Router, private authService: AuthService,
      private paginationService: PaginationService
-  ) { }
+  ) {  this.searchForm = this.fb.group({
+    keyword: [''],
+    statut: [''],
+    gender: [''],
+  });}
 
   ngOnInit(): void {
     this.loadEvenements();
@@ -55,6 +59,13 @@ export class IndexEvenementComponent {
         console.error('Erreur lors de la récupération du profil utilisateur:', error);
       }
     );
+  }
+
+  onSearch() {
+    const filters = this.searchForm.value;
+    this.evenementService.searchMembers(filters).subscribe((data) => {
+      this.evenements = data;
+    });
   }
 
   loadEvenements() {
@@ -126,16 +137,6 @@ export class IndexEvenementComponent {
   }
 
 
-  onSearch(): void {
-    if (this.searchTerm.trim()) {
-      this.filteredEvenements = this.evenements.filter(evenement =>
-        evenement.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        evenement.author.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    } else {
-      this.filteredEvenements = this.evenements; // Réinitialisez les résultats si le champ est vide
-    }
-  }
 
    // pagination
 

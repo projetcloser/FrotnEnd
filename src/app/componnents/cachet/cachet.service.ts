@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cachet } from './cachet';
 import { catchError, Observable } from 'rxjs';
@@ -21,7 +21,22 @@ export class CachetService {
   getCachets(): Observable<Cachet[]> {
     return this.http.get<Cachet[]>(this.caheturl);
   }
+  searchMembers(filters: any): Observable<any> {
+      let params = new HttpParams();
 
+      // Ajouter les paramètres dynamiquement
+      if (filters.keyword) {
+        params = params.set('keyword', filters.keyword);
+      }
+      if (filters.statut) {
+        params = params.set('statut', filters.statut);
+      }
+      if (filters.gender) {
+        params = params.set('gender', filters.gender);
+      }
+
+      return this.http.get(`${this.caheturl}/search`, { params });
+    }
   find(id: number): Observable<any> {
     return this.http.get(this.caheturl +'/' + id);
   }

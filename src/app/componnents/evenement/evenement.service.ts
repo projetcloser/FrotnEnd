@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Evenement } from './evenement';
 import { Observable } from 'rxjs';
@@ -26,6 +26,23 @@ export class EvenementService {
     return this.http.get<Evenement>(`${this.apiUrl}/${id}`);
   }
 
+
+     searchMembers(filters: any): Observable<any> {
+        let params = new HttpParams();
+
+        // Ajouter les paramètres dynamiquement
+        if (filters.keyword) {
+          params = params.set('keyword', filters.keyword);
+        }
+        if (filters.statut) {
+          params = params.set('statut', filters.statut);
+        }
+        if (filters.gender) {
+          params = params.set('gender', filters.gender);
+        }
+
+        return this.http.get(`${this.apiUrl}/search`, { params });
+      }
 
   // Créer un nouvel événement
   createEvenement(evenement: Evenement): Observable<Evenement> {
