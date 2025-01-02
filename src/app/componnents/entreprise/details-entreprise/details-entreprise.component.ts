@@ -38,8 +38,6 @@ export class DetailsEntrepriseComponent implements OnInit{
   loadEntreprise(id: number) {
     this.entrepriseService.find(id).subscribe((data) => {
       this.entreprise = data;
-      // this.loadCountryName(this.entreprise.country_id);
-      // this.loadCityName(this.entreprise.city_id);
     });
   }
 

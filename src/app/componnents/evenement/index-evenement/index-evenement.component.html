@@ -141,7 +141,7 @@
                                   id="btn-{{evenement.id}}"
                                   class="btn btn-primary btn-increment"
                                   (click)="incrementParticipant(evenement.id)">
-                                  <i class="fas fa-user-plus"></i>
+                                  <i class="fas fa-user-plus">{{ evenement.hasParticipated ? 'Déjà participé' : 'Participer' }}</i>
                                   </button>
 
                                 </td>
@@ -150,7 +150,7 @@
                                     id="btn-decrement-{{evenement.id}}"
                                     class="btn btn-danger btn-decrement"
                                     (click)="decrementParticipant(evenement.id)">
-                                    <i class="fas fa-user-minus"></i>
+                                    <i class="fas fa-user-minus">{{ evenement.hasParticipated ? 'Déjà participé' : 'annuler' }}</i>
                                  </button></td>
                                </tr>
 

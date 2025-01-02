@@ -10,4 +10,6 @@ export class Evenement {
   // status!: number;
   created_at: string = "";
   updated_at: string = "";
+
+  hasParticipated?: boolean; // Ajout pour gérer l'état
 }

@@ -79,6 +79,8 @@ export class UpdateCachetComponent {
   onSubmit(): void {
     if (this.companyForm.valid) {
       this.companyService.updateCachet(this.companyId, this.companyForm.value).subscribe(() => {
+        console.log('donne envoyer : ',this.companyForm.value);
+
         this.router.navigate(['/Closer/cachet']);
       });
     }

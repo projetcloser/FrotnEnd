@@ -71,6 +71,14 @@ export class IndexEvenementComponent {
   loadEvenements() {
     this.evenementService.getEvenements().subscribe((data: Evenement[]) => {
       this.evenements = data;
+
+         // Charger l'état de participation pour chaque événement
+        this.evenements.forEach(event => {
+          this.evenementService.hasParticipated(event.id).subscribe((hasParticipated: boolean) => {
+            event.hasParticipated = hasParticipated;
+          });
+        });
+
        // pagination
        this.totalItems = this.evenements.length;
        this.updatePage();
@@ -80,11 +88,27 @@ export class IndexEvenementComponent {
   incrementParticipant(id: number) {
     this.evenementService.incrementParticipant(id).subscribe(() => {
       this.loadEvenements();
-
-
     });
   }
 
+
+  // decrementParticipant(id: number) {
+  //   if (this.loading) return; // Ignore si un appel est déjà en cours
+  //   this.loading = true;
+
+  //   this.evenementService.decrementParticipant(id).subscribe(
+  //     (updatedEvenement) => {
+  //       this.evenements = this.evenements.map((event) =>
+  //         event.id === updatedEvenement.id ? updatedEvenement : event
+  //       );
+  //       this.loading = false;
+  //     },
+  //     (error) => {
+  //       console.error("Erreur lors de l'annulation de participation :", error);
+  //       this.loading = false;
+  //     }
+  //   );
+  // }
 
   decrementParticipant(id: number) {
     if (this.loading) return; // Ignore si un appel est déjà en cours
@@ -98,11 +122,17 @@ export class IndexEvenementComponent {
         this.loading = false;
       },
       (error) => {
-        console.error("Erreur lors de l'annulation de participation :", error);
+        if (error.status === 400) {
+          alert("Impossible de retirer la participation. Aucun participant.");
+        } else {
+          console.error("Erreur lors de l'annulation de participation :", error);
+        }
         this.loading = false;
       }
     );
   }
+
+
 
 
   deleteEvenement(id: number) {

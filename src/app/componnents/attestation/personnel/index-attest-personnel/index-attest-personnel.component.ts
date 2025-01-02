@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AttestPersonnel } from '../attest-personnel';
 import { AttestPersonnelService } from '../attest-personnel.service';
@@ -21,8 +21,16 @@ import { PaginationService } from '../../../../components/pagination.service';
   styleUrl: './index-attest-personnel.component.css'
 })
 export class IndexAttestPersonnelComponent implements OnInit{
-  constructor(private router: Router,private attestPersonnelService: AttestPersonnelService,
-       private paginationService: PaginationService) {}
+  constructor(private fb: FormBuilder,private router: Router,private attestPersonnelService: AttestPersonnelService,
+       private paginationService: PaginationService) {
+        this.searchForm = this.fb.group({
+          keyword: [''],
+          year: [''],
+          motif: [''],
+          company_id: [''],
+          member_id: [''],
+        });
+       }
 
   attestations: AttestPersonnel[] = [];
   membres:Membre[]=[]
@@ -37,6 +45,9 @@ export class IndexAttestPersonnelComponent implements OnInit{
    // Image de la signature (fichier PNG dans le dossier assets)
    signatureImage = 'assets/img/1.jpg';
    qrCodeImage = 'assets/img/2.jpg';
+
+    // seracc back
+     searchForm: FormGroup;
 
   ngOnInit(): void {
     this.getAttestations();
@@ -53,6 +64,12 @@ export class IndexAttestPersonnelComponent implements OnInit{
     });
   }
 
+  onSearch() {
+    const filters = this.searchForm.value;
+    this.attestPersonnelService.searchStaff(filters).subscribe((data) => {
+      this.attestations = data;
+    });
+  }
 
   getMemberALL(): void {
     this.attestPersonnelService.getMember().subscribe(members => {
@@ -63,6 +80,11 @@ export class IndexAttestPersonnelComponent implements OnInit{
   getMemberName(countryId: number): string {
     const member = this.membres.find(p => p.id === countryId);
     return member ? member.firstname : 'Inconnu';
+  }
+
+  getMemberUserName(countryId: number): string {
+    const member = this.membres.find(p => p.id === countryId);
+    return member ? member.lastname : 'Inconnu';
   }
 
   getmemberMatricule(countryId: number){
@@ -195,7 +217,7 @@ export class IndexAttestPersonnelComponent implements OnInit{
       doc.text('Le Président de l’Ordre', 20, 120);
       doc.text('atteste que', 20, 130);
       doc.setFontSize(16);
-      // doc.text(`l’Ingénieur ${this.getMemberName(attest.firstname)} ${this.getMemberName(attest.lastname)}`, 20, 140);
+      doc.text(`l’Ingénieur ${this.getMemberName(attest.id)} ${this.getMemberUserName(attest.id)}`, 20, 140);
       doc.text('est bien inscrit au Tableau de l’Ordre pour l’année 2024', 20, 150);
       doc.text(`sous le matricule ${this.getmemberMatricule(attest.member_id)}`, 20, 160);
       doc.setFontSize(14);

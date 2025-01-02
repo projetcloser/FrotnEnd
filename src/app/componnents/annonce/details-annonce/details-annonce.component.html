@@ -1,21 +1,35 @@
-<div class="container mt-5">
-  <!-- <h2 class="text-center">{{ annonce?.object }}</h2>
-  <p><strong>Auteur :</strong> {{ annonce?.auteur }}</p>
-  <p><strong>Contenu :</strong> {{ annonce?.contenu }}</p> -->
 
-  <!-- Fichier Joint Existant -->
-  <div *ngIf="annonce && annonce.fichiers && annonce.fichiers.length > 0" class="col-md-12 mb-3">
-    <label class="form-label font-weight-bold" i18n>Fichier(s) joint(s) actuel(s) :</label>
-    <ul>
-      <li *ngFor="let fichier of annonce.fichiers">
-        <!-- <a [href]="fichier.url" download>{{ fichier.nom}}</a> -->
-        <!-- <i class="fas fa-download" [title]="'Télécharger ' + (fichier.url | extractFileName)"></i> -->
-      </li>
-    </ul>
+
+
+
+<div class="container mt-5">
+  <h2 class="text-center text-primary " i18n>Détails de l'annonce</h2>
+
+  <div class="debt-details card border-0 rounded shadow-sm mb-4">
+    <div class="card-body" *ngIf="annonce">
+      <h4 class="card-title text-muted" i18n>Informations sur l'annonce </h4>
+      <p><strong i18n>Titre :</strong> <span class="text-dark">{{ annonce?.object }}</span></p>
+      <p><strong i18n>Auteur :</strong> <span class="text-dark">{{ annonce?.author }}</span></p>
+      <p><strong i18n>contenue :</strong> <span class="text-dark">{{ annonce?.body }}</span></p>
+      <!-- <p><strong i18n>Nombre de participants :</strong> <span class="text-dark">{{ event.participants }}</span></p>
+      <p><strong i18n>Montant :</strong> <span class="text-dark">{{ event.price  | currency }}</span></p>
+      <p><strong i18n>debut :</strong> <span class="text-dark">{{ event.start_date | date }}</span></p>
+      <p><strong i18n>fin :</strong> <span class="text-dark">{{ event.end_date | date }}</span></p> -->
+      <!-- <p>
+        <strong>Statut :</strong>
+        <span
+          [ngClass]="{'text-success': debt.statut === 'Payé', 'text-danger': debt.statut === 'Payé'}"
+          class="badge rounded-pill"
+          style="background-color: rgba(0, 128, 0, 0.1);">
+          {{ debt.statut === 'Payé' ? 'Payé' : 'Non Payé' }}
+        </span>
+      </p> -->
+    </div>
   </div>
 
 
+
   <div class="text-center">
-    <a routerLink="/annonces" class="btn btn-secondary" i18n>Retour à la liste des annonces</a>
+    <a [routerLink]="['/Closer/annonces']" class="btn btn-primary mt-3 rounded-pill" i18n>Retour à la liste des annonces</a>
   </div>
 </div>

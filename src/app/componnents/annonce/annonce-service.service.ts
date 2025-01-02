@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Annonce } from './model/annonce';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -34,21 +34,16 @@ export class AnnonceServiceService {
     });
     return this.http.post<Annonce>(this.apiUrl, annonce, { headers });
   }
-  // Créer une nouvelle annonce
-  // createAnnonce(annonce: Annonce): Observable<Annonce> {
 
-  //   const token = localStorage.getItem('access_token');  // Récupérer le token stocké
-
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
-  //     'Content-Type': 'application/json'
-  //   });
-  //   return this.http.post<Annonce>(this.apiUrl, annonce, { headers });
-  // }
 
   getAnnonceById(id: number): Observable<Annonce> {
     return this.http.get<Annonce>(`${this.apiUrl}/${id}`);
   }
+
+    find(id: number): Observable<any> {
+      return this.http.get(this.apiUrl +'/' + id)
+
+    }
   // Mettre à jour une annonce
   // updateAnnonce(id: number, annonce: Annonce): Observable<Annonce> {
   //   return this.http.put<Annonce>(`${this.apiUrl}/${id}`, annonce);
@@ -63,7 +58,7 @@ export class AnnonceServiceService {
       'Authorization': `Bearer ${token}`,  // Ajouter le token à l'en-tête
       'Content-Type': 'application/json'
     });
-    return this.http.put(`${this.apiUrl}/annonces/${id}`, formData, { headers });
+    return this.http.put(`${this.apiUrl}/${id}`, formData, { headers });
   }
 
 

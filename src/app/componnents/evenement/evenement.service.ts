@@ -67,6 +67,18 @@ export class EvenementService {
     return this.http.post<any>(`${this.baseUrl}/${id}/increment-participant`, {},  { headers });
   }
 
+  hasParticipated(eventId: number): Observable<boolean> {
+    const token = localStorage.getItem('access_token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<boolean>(`${this.baseUrl}/${eventId}/has-participated`, { headers });
+  }
+
+
   decrementParticipant(id: number): Observable<any> {
     const token = localStorage.getItem('access_token');  // Récupérer le token stocké
 

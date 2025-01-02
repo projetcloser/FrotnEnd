@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AttestPersonnel } from './attest-personnel';
 import { catchError, Observable, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
 import { Membre } from '../../../models/membre';
 
@@ -24,7 +24,22 @@ export class AttestPersonnelService {
   getById(id: number): Observable<AttestPersonnel> {
     return this.http.get<AttestPersonnel>(`${this.apiUrl}/${id}`);
   }
+   searchStaff(filters: any): Observable<any> {
+      let params = new HttpParams();
 
+      // Ajouter les paramètres dynamiquement
+      if (filters.keyword) {
+        params = params.set('keyword', filters.keyword);
+      }
+      if (filters.statut) {
+        params = params.set('statut', filters.statut);
+      }
+      if (filters.gender) {
+        params = params.set('gender', filters.gender);
+      }
+
+      return this.http.get(`${this.apiUrl}/search`, { params });
+    }
   // Créer une nouvelle attestation
   create(attestPersonnel: AttestPersonnel): Observable<AttestPersonnel> {
 

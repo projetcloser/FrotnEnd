@@ -1,8 +1,22 @@
-<div class="container mt-5" style="max-width: 600px;">
-  <h2 class="text-center mb-4" i18n>Modifier l'annonce</h2>
+<div class="container mt-5">
+  <h2 class="text-center mb-4" i18n>Modifier une  Annonce</h2>
 
-  <form [formGroup]="annonceForm" (ngSubmit)="onSubmit()" novalidate>
+  <form [formGroup]="annonceForm" (ngSubmit)="onSubmit()" novalidate enctype="multipart/form-data">
     <div class="row">
+      <!-- Champ auteur -->
+      <div class="col-md-12 mb-3">
+        <label for="author" class="form-label font-weight-bold" i18n>Auteur <span class="text-danger">*</span></label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
+          </div>
+          <input type="text" id="author" formControlName="author" class="form-control" readonly >
+          <!-- [ngClass]="{ 'is-invalid': submitted && f.object.errors }" -->
+          <!-- <div *ngIf="submitted && f.object.errors" class="invalid-feedback">
+            <div *ngIf="f.object.errors.required">Objet est requis.</div>
+          </div> -->
+        </div>
+      </div>
       <!-- Champ Object -->
       <div class="col-md-12 mb-3">
         <label for="object" class="form-label font-weight-bold" i18n>Objet <span class="text-danger">*</span></label>
@@ -10,33 +24,52 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
           </div>
-          <input type="text" id="object" formControlName="object" class="form-control" placeholder="Titre de l'annonce">
+          <input type="text" id="object" formControlName="object" class="form-control" placeholder="Titre de l'annonce" >
+          <!-- [ngClass]="{ 'is-invalid': submitted && f.object.errors }" -->
+          <!-- <div *ngIf="submitted && f.object.errors" class="invalid-feedback">
+            <div *ngIf="f.object.errors.required">Objet est requis.</div>
+          </div> -->
         </div>
       </div>
+
+        <!-- Champ Object -->
+        <div class="col-md-12 mb-3">
+          <label for="object" class="form-label font-weight-bold" i18n>Groupe <span class="text-danger">*</span></label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
+            </div>
+            <select formControlName="group_id" class="form-control">
+              <option *ngFor="let country of groupe" [value]="country.id">{{ country.label }}</option>
+            </select>
+          </div>
+        </div>
 
       <!-- Champ Contenu -->
       <div class="col-md-12 mb-3">
-        <label for="contenu" class="form-label font-weight-bold" i18n>Contenu <span class="text-danger">*</span></label>
-        <textarea id="contenu" formControlName="contenu" rows="5" class="form-control" placeholder="Écrire le contenu de l'annonce"></textarea>
+        <label for="body  " class="form-label font-weight-bold" i18n>Contenu <span class="text-danger">*</span></label>
+        <textarea id="body" formControlName="body" rows="5" class="form-control" placeholder="Écrire le contenu de l'annonce" ></textarea>
+        <!-- [ngClass]="{ 'is-invalid': submitted && f.contenu.errors }" -->
+        <!-- <div *ngIf="submitted && f.contenu.errors" class="invalid-feedback">
+          <div *ngIf="f.contenu.errors.required">Le contenu est requis.</div>
+        </div> -->
       </div>
 
-
-
-      <!-- Champ pour ajouter de nouveaux fichiers -->
-      <div class="col-md-12 mb-3">
-        <label for="fichiers" class="form-label font-weight-bold" i18n>Modifier les fichiers joints</label>
+      <!-- Upload des fichiers joints -->
+      <!-- <div class="col-md-12 mb-3">
+        <label for="fichiers" class="form-label font-weight-bold" i18n>Joindre des fichiers</label>
         <div class="custom-file">
-          <input type="file" id="fichiers" (change)="onFileChange($event)" class="custom-file-input" multiple>
-          <label class="custom-file-label" for="fichiers" i18n>Choisissez de nouveaux fichiers</label>
+          <label for="fichiers" i18n>Joindre des fichiers</label>
+          <input type="file" id="fichiers" (change)="onFileChange($event)" multiple />
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- Boutons d'action -->
     <div class="d-flex justify-content-between mt-4">
-      <button type="button" class="btn btn-outline-secondary" (click)="onCancel()" i18n>Annuler</button>
+      <button type="button" class="btn btn-outline-secondary" i18n >Annuler</button>
       <button type="submit" class="btn btn-primary" i18n>
-        <i class="fas fa-save"></i> Mettre à jour l'annonce
+        <i class="fas fa-save"></i> Enregistrer l'annonce
       </button>
     </div>
   </form>

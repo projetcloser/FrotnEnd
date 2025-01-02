@@ -4,6 +4,8 @@ import { Annonce } from '../model/annonce';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnnonceServiceService } from '../annonce-service.service';
 import { CommonModule } from '@angular/common';
+import { Poste } from '../../poste/poste';
+import { PosteService } from '../../poste/poste.service';
 
 @Component({
   selector: 'app-update-annonce',
@@ -17,15 +19,19 @@ export class UpdateAnnonceComponent implements OnInit {
   annonce: Annonce | null = null;
   selectedFiles: File[] = [];
   fichiers: string[] = [];
+  groupe:Poste[]=[];
+  idannonce!: number;
 
   constructor(
     private fb: FormBuilder,
     private annonceService: AnnonceServiceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private groupeService:PosteService,
   ) {}
 
   ngOnInit(): void {
+    this.idannonce = Number(this.route.snapshot.paramMap.get('id'));
     const annonceId = this.route.snapshot.paramMap.get('id');
 
     // Conversion de l'ID en number si l'ID existe
@@ -42,13 +48,25 @@ export class UpdateAnnonceComponent implements OnInit {
       console.error('ID d\'annonce non valide');
       this.router.navigate(['/Closer/annonces']); // Redirection vers la liste des annonces si l'ID est invalide
     }
+
+    // goupe
+    this.groupeService.getAmendes().subscribe({
+      next: (data) => {
+        this.groupe = data;
+      },
+      error: (err) => {
+        console.error('Error fetching groupe', err);
+      }
+    });
   }
 
 
   initForm() {
     this.annonceForm = this.fb.group({
-      object: [this.annonce?.object || '', Validators.required],
-      contenu: [this.annonce?.body || '', Validators.required]
+      author: [this.annonce?.author || ''],
+      object: [this.annonce?.object || ''],
+      body: [this.annonce?.body || ''],
+      group_id: [this.annonce?.group_id || '']
     });
   }
 
@@ -71,7 +89,7 @@ export class UpdateAnnonceComponent implements OnInit {
       const annonce = this.annonceForm.value;
       annonce.auteur = 'Utilisateur connecté'; // Remplacez par la session réelle de l'utilisateur
 
-      this.annonceService.createAnnonce(annonce).subscribe(() => {
+      this.annonceService.updateAnnonce(this.idannonce,this.annonceForm.value).subscribe(() => {
         this.router.navigate(['/Closer/annonces']); // Redirection après création
       });
     }
