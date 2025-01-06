@@ -129,13 +129,13 @@
                 </thead>
                 <tbody>
                   <tr role="row" class="odd" *ngFor="let item of attestations">
-                    <td class="sorting_1"><a href="#">{{item.ref_dem_part}}</a></td>
+                    <td class="sorting_1"><a >{{item.ref_dem_part}}</a></td>
                     <!--<td><a href="#"2023>E-banking</a></td>-->
-                    <td><a href="#">{{item.year | date}}</a></td>
-                    <td><a href="#">{{ getmemberMatricule(item.member_id) }}</a></td>
-                    <td><a href="#"><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5"
+                    <td><a >{{item.year | date}}</a></td>
+                    <td><a >{{ getmemberMatricule(item.member_id) }}</a></td>
+                    <td><a ><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5"
                           alt="">{{ getMemberName(item.member_id) }} </a></td>
-                    <td><a href="#">{{ getCompaniesNames(item.company_id) }}</a></td>
+                    <td><a >{{ getCompaniesNames(item.company_id) }}</a></td>
                     <td>
 
                       <span class="custom-badge status-green">

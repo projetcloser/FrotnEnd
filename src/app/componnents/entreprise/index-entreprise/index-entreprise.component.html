@@ -72,19 +72,48 @@
                       </select> entries</label></div>
                 </div> -->
                 <div class="col-sm-12 col-md-6">
-                  <!-- <div id="dataTable_filter" class="dataTables_filter">
-                    <label>Search:
-                      <input type="search"
-                          class="form-control form-control-sm" placeholder="" aria-controls="dataTable"
-                          [(ngModel)]="searchTerm" (input)="filterDettes()" >
-                    </label>
-                  </div> -->
-                  <div class="d-flex justify-content-between mb-3">
-                    <input type="text" class="form-control w-50"  placeholder="Rechercher une entreprise"
-                    [(ngModel)]="searchTerm"
-                    (input)="filterEntreprises()">
-                    <!-- <button [routerLink]="['/Closer/dettes/new']" routerLinkActive="router-link-active"  class="btn btn-primary">Ajouter une Dette <i class="fas fa-plus"></i></button> -->
-                  </div>
+                  <form [formGroup]="searchForm" (ngSubmit)="onSearch()"
+                    class="d-flex flex-column flex-md-row align-items-center gap-3">
+                    <!-- Champ de recherche -->
+                    <div class="form-group w-100">
+                      <input formControlName="keyword" class="form-control"
+                        placeholder="Rechercher sur toutes les lignes de la table" aria-label="Recherche" />
+                    </div>
+
+                    <!-- Filtrer par statut -->
+                    <!-- <div class="form-group w-100">
+                      <select
+                        formControlName="statut"
+                        class="form-select"
+                        aria-label="Filtrer par statut"
+                      >
+                        <option value="">Tous les statuts</option>
+                        <option value="active">Actif</option>
+                        <option value="inactive">Inactif</option>
+                      </select>
+                    </div> -->
+
+                    <!-- Filtrer par genre -->
+                    <!-- <div class="form-group w-100">
+                      <select
+                        formControlName="gender"
+                        class="form-select"
+                        aria-label="Filtrer par genre"
+                      >
+                        <option value="">Tous les genres</option>
+                        <option value="male">Homme</option>
+                        <option value="female">Femme</option>
+                      </select>
+                    </div> -->
+
+                    <!-- Bouton de recherche -->
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </form>
+
                 </div>
               </div>
               <div class="row">
@@ -127,14 +156,14 @@
                     </thead>
                     <tbody>
                       <tr align="center" role="row" class="odd" *ngFor="let entreprise of entreprises">
-                        <td class="sorting_1"><a href="#">{{entreprise.social_reason}}</a></td>
-                        <td><a href="#">{{entreprise.company_type}} </a></td>
-                        <td><a href="#">{{entreprise.company_categorie}} </a></td>
-                        <td><a href="#">{{entreprise.phone}}</a></td>
-                        <td><a href="#">{{entreprise.nui}}</a></td>
-                        <td><a href="#">{{ getCityName(entreprise.city_id) }}</a></td>
-                        <td><a href="#">{{entreprise.contact_person}}</a></td>
-                        <td><a href="#">{{entreprise.contact_person_phone}}</a></td>
+                        <td class="sorting_1">{{entreprise.social_reason}}</td>
+                        <td>{{entreprise.company_type}} </td>
+                        <td>{{entreprise.company_categorie}} </td>
+                        <td>{{entreprise.phone}}</td>
+                        <td>{{entreprise.nui}}</td>
+                        <td>{{ getCityName(entreprise.city_id) }}</td>
+                        <td>{{entreprise.contact_person}}</td>
+                        <td>{{entreprise.contact_person_phone}}</td>
                         <td>{{entreprise.author}} </td>
                         <td class="text-right">
                           <div class="dropdown dropdown-action">

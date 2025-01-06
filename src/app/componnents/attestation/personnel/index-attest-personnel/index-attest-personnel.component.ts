@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AttestPersonnel } from '../attest-personnel';
 import { AttestPersonnelService } from '../attest-personnel.service';
@@ -20,9 +20,23 @@ import { PaginationService } from '../../../../components/pagination.service';
   templateUrl: './index-attest-personnel.component.html',
   styleUrl: './index-attest-personnel.component.css'
 })
+<<<<<<< HEAD
 export class IndexAttestPersonnelComponent implements OnInit {
   constructor(private router: Router, private attestPersonnelService: AttestPersonnelService,
     private paginationService: PaginationService) { }
+=======
+export class IndexAttestPersonnelComponent implements OnInit{
+  constructor(private fb: FormBuilder,private router: Router,private attestPersonnelService: AttestPersonnelService,
+       private paginationService: PaginationService) {
+        this.searchForm = this.fb.group({
+          keyword: [''],
+          year: [''],
+          motif: [''],
+          company_id: [''],
+          member_id: [''],
+        });
+       }
+>>>>>>> 0526988158eedca908c1fa2175808575193f6ee4
 
   attestations: AttestPersonnel[] = [];
   membres: Membre[] = []
@@ -37,6 +51,9 @@ export class IndexAttestPersonnelComponent implements OnInit {
   // Image de la signature (fichier PNG dans le dossier assets)
   signatureImage = 'assets/img/1.jpg';
   qrCodeImage = 'assets/img/2.jpg';
+
+    // seracc back
+     searchForm: FormGroup;
 
   ngOnInit(): void {
     this.getAttestations();
@@ -53,6 +70,12 @@ export class IndexAttestPersonnelComponent implements OnInit {
     });
   }
 
+  onSearch() {
+    const filters = this.searchForm.value;
+    this.attestPersonnelService.searchStaff(filters).subscribe((data) => {
+      this.attestations = data;
+    });
+  }
 
   getMemberALL(): void {
     this.attestPersonnelService.getMember().subscribe(members => {
@@ -65,7 +88,16 @@ export class IndexAttestPersonnelComponent implements OnInit {
     return member ? member.lastname : 'Inconnu';
   }
 
+<<<<<<< HEAD
   getmemberMatricule(countryId: number) {
+=======
+  getMemberUserName(countryId: number): string {
+    const member = this.membres.find(p => p.id === countryId);
+    return member ? member.lastname : 'Inconnu';
+  }
+
+  getmemberMatricule(countryId: number){
+>>>>>>> 0526988158eedca908c1fa2175808575193f6ee4
     const member = this.membres.find(p => p.id === countryId);
     return member ? member.matricule : 'Inconnu';
   }
@@ -176,12 +208,86 @@ export class IndexAttestPersonnelComponent implements OnInit {
   //     day: 'numeric'
   //   });
 
+<<<<<<< HEAD
   //   // En-tête bilingue
   //   doc.setFontSize(12);
   //   doc.text('République du Cameroun', 20, 20);
   //   doc.text('Republic of Cameroon', 140, 20);
   //   doc.text('Paix - Travail - Patrie', 20, 30);
   //   doc.text('Peace - Work - Fatherland', 140, 30);
+=======
+  generatePdf(attest: AttestPersonnel): void {
+    const doc = new jsPDF('portrait');
+
+    // En-tête
+    const headerImage = new Image();
+    headerImage.src = 'assets/img/onigc.jpg';
+    headerImage.onload = () => {
+      doc.addImage(headerImage, 'PNG', 80, 10, 50, 20); // Image centrée
+      doc.setFontSize(12);
+      doc.text('République du Cameroun', 20, 20);
+      doc.text('Republic of Cameroon', 140, 20);
+      doc.text('Paix - Travail - Patrie', 20, 30);
+      doc.text('Peace - Work - Fatherland', 140, 30);
+
+      doc.setFontSize(14);
+      doc.text('Ordre National des Ingénieurs de Génie Civil', 60, 50);
+      doc.text('National Order of Civil Engineers', 65, 60);
+
+      doc.setFontSize(12);
+      doc.text('N° 0457 / 11 /Pdt/SG/ONIGC/24', 80, 80);
+
+      // Titre
+      doc.setFontSize(18);
+      doc.text('A T T E S T A T I O N', 75, 100);
+
+      // Corps du texte
+      doc.setFontSize(14);
+      doc.text('Le Président de l’Ordre', 20, 120);
+      doc.text('atteste que', 20, 130);
+      doc.setFontSize(16);
+      doc.text(`l’Ingénieur ${this.getMemberName(attest.id)} ${this.getMemberUserName(attest.id)}`, 20, 140);
+      doc.text('est bien inscrit au Tableau de l’Ordre pour l’année 2024', 20, 150);
+      doc.text(`sous le matricule ${this.getmemberMatricule(attest.member_id)}`, 20, 160);
+      doc.setFontSize(14);
+      doc.text('A ce titre, il est autorisé à exercer la profession', 20, 170);
+      doc.text('d’Ingénieur de Génie Civil pour la période allant', 20, 180);
+      doc.text('du 1er janvier 2024 au 31 décembre 2024', 20, 190);
+      doc.text('et à faire prévaloir la présente attestation', 20, 200);
+      doc.text('pour usage personnel.', 20, 210);
+
+      // Signature et QR Code
+      const qrCodeImg = new Image();
+      qrCodeImg.src = 'assets/img/2.jpg';
+      qrCodeImg.onload = () => {
+        doc.addImage(qrCodeImg, 'PNG', 150, 250, 40, 40); // QR Code à droite
+        const signatureImg = new Image();
+        signatureImg.src = 'assets/img/signe.jpg';
+        signatureImg.onload = () => {
+          doc.addImage(signatureImg, 'PNG', 30, 250, 40, 40); // Signature à gauche
+
+          // Footer
+          doc.setLineWidth(0.5);
+          doc.line(20, 290, 190, 290); // Ligne de séparation
+          doc.setFontSize(10);
+          doc.text(
+            'Montée Elig Essono - Yaoundé - 20822- (+237) 677.66.10.66 / 655.01.02.03 - noceonigc@yahoo.fr - www.onigc.cm',
+            20,
+            300
+          );
+          doc.text(
+            'Comptes bancaires : BICEC Yaoundé – Vallée sous le N° 31615665001-03 / ECOBANK Yaoundé - Hippodrome sous le N° 01316146701-72',
+            20,
+            310
+          );
+
+          // Sauvegarde
+          doc.save(`attestation_${attest.member_id}.pdf`);
+        };
+      };
+    };
+  }
+>>>>>>> 0526988158eedca908c1fa2175808575193f6ee4
 
   //   // Ordre National
   //   doc.setFontSize(14);

@@ -3,7 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { Evenement } from '../evenement';
 import { EvenementService } from '../evenement.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from "../../../components/auth/auth.service";
 import { PaginationService } from '../../../components/pagination.service';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
@@ -22,9 +22,9 @@ export class IndexEvenementComponent {
   user: any = {};
 
   loading = false;
+ // search back
+      searchForm: FormGroup;
 
-  filteredEvenements: Evenement[] = []; // Événements filtrés
-  searchTerm: string = ''; // Terme de recherche
 
      // pagination
      paginatedData: any[] = []; // Données de la page courante
@@ -35,9 +35,13 @@ export class IndexEvenementComponent {
 
 
 
-  constructor(private evenementService: EvenementService, private router: Router, private authService: AuthService,
+  constructor(private fb: FormBuilder,private evenementService: EvenementService, private router: Router, private authService: AuthService,
      private paginationService: PaginationService
-  ) { }
+  ) {  this.searchForm = this.fb.group({
+    keyword: [''],
+    statut: [''],
+    gender: [''],
+  });}
 
   ngOnInit(): void {
     this.loadEvenements();
@@ -57,9 +61,24 @@ export class IndexEvenementComponent {
     );
   }
 
+  onSearch() {
+    const filters = this.searchForm.value;
+    this.evenementService.searchMembers(filters).subscribe((data) => {
+      this.evenements = data;
+    });
+  }
+
   loadEvenements() {
     this.evenementService.getEvenements().subscribe((data: Evenement[]) => {
       this.evenements = data;
+
+         // Charger l'état de participation pour chaque événement
+        this.evenements.forEach(event => {
+          this.evenementService.hasParticipated(event.id).subscribe((hasParticipated: boolean) => {
+            event.hasParticipated = hasParticipated;
+          });
+        });
+
        // pagination
        this.totalItems = this.evenements.length;
        this.updatePage();
@@ -69,11 +88,27 @@ export class IndexEvenementComponent {
   incrementParticipant(id: number) {
     this.evenementService.incrementParticipant(id).subscribe(() => {
       this.loadEvenements();
-
-
     });
   }
 
+
+  // decrementParticipant(id: number) {
+  //   if (this.loading) return; // Ignore si un appel est déjà en cours
+  //   this.loading = true;
+
+  //   this.evenementService.decrementParticipant(id).subscribe(
+  //     (updatedEvenement) => {
+  //       this.evenements = this.evenements.map((event) =>
+  //         event.id === updatedEvenement.id ? updatedEvenement : event
+  //       );
+  //       this.loading = false;
+  //     },
+  //     (error) => {
+  //       console.error("Erreur lors de l'annulation de participation :", error);
+  //       this.loading = false;
+  //     }
+  //   );
+  // }
 
   decrementParticipant(id: number) {
     if (this.loading) return; // Ignore si un appel est déjà en cours
@@ -87,11 +122,17 @@ export class IndexEvenementComponent {
         this.loading = false;
       },
       (error) => {
-        console.error("Erreur lors de l'annulation de participation :", error);
+        if (error.status === 400) {
+          alert("Impossible de retirer la participation. Aucun participant.");
+        } else {
+          console.error("Erreur lors de l'annulation de participation :", error);
+        }
         this.loading = false;
       }
     );
   }
+
+
 
 
   deleteEvenement(id: number) {
@@ -126,16 +167,6 @@ export class IndexEvenementComponent {
   }
 
 
-  onSearch(): void {
-    if (this.searchTerm.trim()) {
-      this.filteredEvenements = this.evenements.filter(evenement =>
-        evenement.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        evenement.author.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    } else {
-      this.filteredEvenements = this.evenements; // Réinitialisez les résultats si le champ est vide
-    }
-  }
 
    // pagination
 

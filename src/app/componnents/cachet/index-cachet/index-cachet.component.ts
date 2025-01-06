@@ -3,7 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { Cachet } from '../cachet';
 import { CachetService } from '../cachet.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExcelService } from '../../../services/excel.service';
 import {AuthService} from "../../../components/auth/auth.service";
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
@@ -30,6 +30,9 @@ export class IndexCachetComponent implements OnInit {
   currentDay = new Date();
   user: any = {};
 
+  // search back
+  searchForm: FormGroup;
+
   // pagination
   paginatedData: any[] = []; // Données de la page courante
 
@@ -37,8 +40,12 @@ export class IndexCachetComponent implements OnInit {
   pageSize: number = 10;
   totalItems: number = 0;
 
-  constructor(private excelService: ExcelService,private cachetService: CachetService,private router: Router,
-    private paginationService: PaginationService,private authService: AuthService) {}
+  constructor(private fb: FormBuilder,private excelService: ExcelService,private cachetService: CachetService,private router: Router,
+    private paginationService: PaginationService,private authService: AuthService) {this.searchForm = this.fb.group({
+      keyword: [''],
+      statut: [''],
+      gender: [''],
+    });}
 
   ngOnInit(): void {
     this.cachetService.getCachets().subscribe((data: any[]) => {
@@ -53,7 +60,12 @@ export class IndexCachetComponent implements OnInit {
     this.loadMembers();
     this.loadUserProfile();
   }
-
+  onSearch() {
+    const filters = this.searchForm.value;
+    this.cachetService.searchMembers(filters).subscribe((data) => {
+      this.cachets = data;
+    });
+  }
 
 loadUserProfile(): void {
   this.authService.getUserProfile().subscribe(
@@ -173,26 +185,7 @@ getMembersmatrivule(city_id: number): string {
     this.excelService.exportAsExcelFile(filteredCachets, 'Cachets_Status_' + status);
   }
 
-   // Filtrer les cachets en fonction du terme de recherche
-   filterCachets(): void {
-    const term = this.searchTerm.toLowerCase();
 
-    this.filteredCachets = this.cachets.filter(cachet => {
-      const memberName = this.getMembersName(cachet.member_id).toLowerCase();
-      const cityName = this.getCityName(cachet.city_id).toLowerCase();
-      const statusLabel = this.getStatusLabel(cachet.status).toLowerCase();
-
-      return (
-        cachet.receipt_number.toLowerCase().includes(term) ||
-        memberName.includes(term) ||
-        cityName.includes(term) ||
-        statusLabel.includes(term) ||
-        cachet.year.toString().includes(term) ||
-        cachet.phone.toLowerCase().includes(term) ||
-        cachet.author.toLowerCase().includes(term)
-      );
-    });
-  }
 
   // pagination
 

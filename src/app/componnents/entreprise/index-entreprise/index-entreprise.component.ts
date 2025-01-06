@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { EntrepriseServiceService } from '../entreprise-service.service';
 import { Entreprise } from '../../../models/entreprise';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import {AuthService} from "../../../components/auth/auth.service";
@@ -27,8 +27,10 @@ export class IndexEntrepriseComponent {
   countries: any[] = [];
   cities: any[] = [];
 
-  filteredEntreprises: any[] = []; // Liste filtrée
-  searchTerm: string = ''; // Terme de recherche
+
+
+      // search back
+      searchForm: FormGroup;
 
   currentTime = new Date();
   currentDay = new Date();
@@ -41,8 +43,14 @@ export class IndexEntrepriseComponent {
   pageSize: number = 15;
   totalItems: number = 0;
 
-constructor(public entrepriseService: EntrepriseServiceService,private router: Router,private authService: AuthService,
-   private paginationService: PaginationService){}
+constructor(private fb: FormBuilder,public entrepriseService: EntrepriseServiceService,private router: Router,private authService: AuthService,
+   private paginationService: PaginationService){
+    this.searchForm = this.fb.group({
+      keyword: [''],
+      statut: [''],
+      gender: [''],
+    });
+   }
 
 ngOnInit(): void{
   this.loadCountries();
@@ -52,7 +60,7 @@ ngOnInit(): void{
     (data:Entreprise[])=>{
       console.log(data);
       this.entreprises = data;
-      this.filteredEntreprises = data; // Initialisation
+
       // pagination
       this.totalItems = this.entreprises.length;
       this.updatePage();
@@ -77,15 +85,20 @@ ngOnInit(): void{
     );
   }
 
-
-filterEntreprises(): void {
-  const term = this.searchTerm.toLowerCase();
-  this.filteredEntreprises = this.entreprises.filter((entreprise) =>
-    entreprise.social_reason.toLowerCase().includes(term) ||
-    entreprise.email.toLowerCase().includes(term) ||
-    entreprise.nui.toLowerCase().includes(term)
-  );
-}
+  onSearch() {
+    const filters = this.searchForm.value;
+    this.entrepriseService.searchMembers(filters).subscribe((data) => {
+      this.entreprises = data;
+    });
+  }
+// filterEntreprises(): void {
+//   const term = this.searchTerm.toLowerCase();
+//   this.filteredEntreprises = this.entreprises.filter((entreprise) =>
+//     entreprise.social_reason.toLowerCase().includes(term) ||
+//     entreprise.email.toLowerCase().includes(term) ||
+//     entreprise.nui.toLowerCase().includes(term)
+//   );
+// }
 // Récupérer les pays
 loadCountries(): void {
   this.entrepriseService.getCountries().subscribe(data => {
