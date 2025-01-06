@@ -248,14 +248,14 @@ export class IndexNonPayeComponent {
 
     // Nom de l'ingénieur
     doc.setFont('helvetica', 'bold');
-    doc.text(`l’Ingénieur DJABARA Appolinaire`, 55, 116);
+    doc.text(`l’Ingénieur ${this.getMemberName(attest.member_id)}`, 55, 116);
     doc.setFont('helvetica', 'normal');
     doc.text(
       `est bien inscrit au Tableau de l’Ordre pour l’année 2024`,
       35,
       124
     );
-    doc.text(`sous le matricule 24- 3614`, 70, 132);
+    doc.text(`sous le matricule ${this.getmemberMatricule(attest.member_id)}`, 70, 132);
 
     // Validité
     doc.setFontSize(14);
@@ -270,7 +270,7 @@ export class IndexNonPayeComponent {
       154
     );
     doc.text(
-      `du 1er janvier xxxxx au 31 décembre xxxxx.`,
+      `du 1er janvier 2025 au 31 décembre 2025.`,
       53,
       162
     );
@@ -289,7 +289,7 @@ export class IndexNonPayeComponent {
     doc.setTextColor(0, 0, 128); //
     doc.setFont('helvetica', 'bold');
     doc.text(
-      `PRO-TECH ENGINEERING SARL`,
+      `${this.getCompaniesNames(attest.company_id)}`,
       80,
       178
     );
@@ -309,7 +309,7 @@ export class IndexNonPayeComponent {
     doc.setFont('helvetica', 'bold');
 
     // Texte à insérer
-    const longText = `Pour ` + ` AVIS NO. 006/AONO/SG/C.BHA/CICPM-TBEC/2024 POUR LE CONTRÔLE TECHNIQUE ET LA SURVEILLANCE DES TRAVAUX DE L'HÔTEL DE VILLE DE ROUA`;
+    const longText = `Pour ` + ` ${attest.motif}`;
 
     // Largeur maximale autorisée pour le texte (en mm)
     const maxWidth = 150;
@@ -341,7 +341,7 @@ export class IndexNonPayeComponent {
 
 
     // QR Code
-    const qrCodeText = `N° Attestation: xxx\nNom de l’ingénieur: xxx\nTableau de l’Ordre: xxxx\nMatricule: xxxx\nDate: ${formattedDate}`;
+    const qrCodeText = `N° Attestation: xxx\nNom de l’ingénieur: ${this.getMemberName(attest.member_id)}\nTableau de l’Ordre: xxxx\nMatricule: ${this.getmemberMatricule(attest.member_id)}\nDate: ${formattedDate}`;
     const qrCodeSize = 30; // Taille du QR code
     try {
       const qrCodeCanvas = document.createElement('canvas');
@@ -380,7 +380,7 @@ export class IndexNonPayeComponent {
     }
 
     // Exporter le PDF
-    const fileName = `Attestation_entreprise_xxxx.pdf`;
+    const fileName = `Attestation_entreprise_${attest.member_id}.pdf`;
     doc.save(fileName);
   }
 

@@ -271,7 +271,7 @@ export class IndexCotisationComponent implements OnInit {
       member_id: cotisation.member_id,
       company_attestation_id: 0,
       cotisation_id: cotisation.id,
-      customer_name: this.getMemberName(cotisation.member_id),
+      customer_name: this.getMemberUserName(cotisation.member_id),
       customer_surname: this.getMemberUserName(cotisation.member_id), // Renseignez si applicable
       amount: 60000, // Assurez-vous que l'objet `item` contient cette information
       description: 'Paiement Attestation', // Description par défaut

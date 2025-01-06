@@ -4,10 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
     "FrontEnd": {
-<<<<<<< HEAD
-=======
-
->>>>>>> 0526988158eedca908c1fa2175808575193f6ee4
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -17,10 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-<<<<<<< HEAD
-=======
-
->>>>>>> 0526988158eedca908c1fa2175808575193f6ee4
             "outputPath": "dist/front-end",
             "index": "src/index.html",
             "browser": "src/main.ts",

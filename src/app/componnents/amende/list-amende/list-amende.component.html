@@ -33,7 +33,7 @@
             <td>{{ amende.fine_date }}</td>
             <td>{{ amende.author }}</td>
             <td>{{ amende.object }}</td>
-            <td>{{ amende.amount | currency }} FCFA</td>
+            <td>{{ amende.amount  }} FCFA</td>
             <td>{{ getMembreName(amende.member_id) }}</td>
             <td class="text-center">
               <button class="btn btn-sm btn-outline-info me-2" [routerLink]="['/Closer/amendes/edit', amende.id]"><i class="fas fa-edit"></i>Éditer</button>
@@ -47,7 +47,7 @@
     <div class="card-footer d-flex justify-content-center">
       <div class="col-sm-12 col-md-7">
         <app-pagination
-        [totalItems]="totalItems"
+        [totalItems]="10"
         [pageSize]="pageSize"
         [currentPage]="currentPage"
         (pageChanged)="onPageChange($event)"
