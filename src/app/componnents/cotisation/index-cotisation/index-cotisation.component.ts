@@ -35,17 +35,17 @@ export class IndexCotisationComponent implements OnInit {
   searchForm!: FormGroup;
   results: any[] = [];
 
-   // pagination
-   paginatedData: any[] = []; // Données de la page courante
+  // pagination
+  paginatedData: any[] = []; // Données de la page courante
 
-   currentPage: number = 1;
-   pageSize: number = 10;
-   totalItems: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalItems: number = 0;
 
 
   constructor(private fb: FormBuilder, private excelService: ExcelService, private router: Router, private cotisationService: CotisationService,
     private membersService: MembreServiceService, private caisseService: CaisseServiceService
-    , private authService: AuthService, private paginationService: PaginationService,private attestationService: NonPayeService) { }
+    , private authService: AuthService, private paginationService: PaginationService, private attestationService: NonPayeService) { }
 
 
 
@@ -99,9 +99,9 @@ export class IndexCotisationComponent implements OnInit {
     this.membersService.getAll().subscribe(data => {
       this.membres = data;
       console.log('membre : ', this.membres);
-       // pagination
-       this.totalItems = this.membres.length;
-       this.updatePage();
+      // pagination
+      this.totalItems = this.membres.length;
+      this.updatePage();
 
     });
   }
@@ -233,43 +233,45 @@ export class IndexCotisationComponent implements OnInit {
 
   // Fonction de recherche
 
-   // pagination
+  // pagination
 
- updatePage(): void {
-  this.paginatedData = this.paginationService.paginate(
-    this.membres,
-    this.currentPage,
-    this.pageSize
-  );
-}
+  updatePage(): void {
+    this.paginatedData = this.paginationService.paginate(
+      this.membres,
+      this.currentPage,
+      this.pageSize
+    );
+  }
 
-onPageChange(page: number): void {
-  this.currentPage = page;
-  this.updatePage();
-}
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.updatePage();
+  }
 
-// paiement
-getMemberName(countryId: number): string {
-  const member = this.membres.find(p => p.id === countryId);
-  return member ? member.firstname : 'Inconnu';
-}
+  // paiement
+  getMemberName(countryId: number): string {
+    const member = this.membres.find(p => p.id === countryId);
+    return member ? member.firstname : 'Inconnu';
+  }
 
-getMemberUserName(countryId: number): string {
-  const member = this.membres.find(p => p.id === countryId);
-  return member ? member.lastname : 'Inconnu';
-}
+  getMemberUserName(countryId: number): string {
+    const member = this.membres.find(p => p.id === countryId);
+    return member ? member.lastname : 'Inconnu';
+  }
 
-getmemberMatricule(countryId: number){
-  const member = this.membres.find(p => p.id === countryId);
-  return member ? member.matricule : 'Inconnu';
-}
+  getmemberMatricule(countryId: number) {
+    const member = this.membres.find(p => p.id === countryId);
+    return member ? member.matricule : 'Inconnu';
+  }
 
   payer(cotisation: any): void {
     const payment: Payment = {
       id: 0, // ou une valeur par défaut
-      transaction_id:cotisation.id,
+      transaction_id: cotisation.ref_ing_cost,
       member_id: cotisation.member_id,
-      customer_name: this.getMemberName(cotisation.member_id),
+      company_attestation_id: 0,
+      cotisation_id: cotisation.id,
+      customer_name: this.getMemberUserName(cotisation.member_id),
       customer_surname: this.getMemberUserName(cotisation.member_id), // Renseignez si applicable
       amount: 60000, // Assurez-vous que l'objet `item` contient cette information
       description: 'Paiement Cotisation', // Description par défaut

@@ -10,7 +10,7 @@ import { AuthService } from '../../../../components/auth/auth.service';
 @Component({
   selector: 'app-create-attest-personnel',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './create-attest-personnel.component.html',
   styleUrl: './create-attest-personnel.component.css'
 })
@@ -24,7 +24,7 @@ export class CreateAttestPersonnelComponent {
   constructor(
     private formBuilder: FormBuilder,
     private attestPersonnelService: AttestPersonnelService,
-    private caisseService:CaisseServiceService,
+    private caisseService: CaisseServiceService,
     private router: Router,
     private authService: AuthService,
     private membreService: MembreServiceService
@@ -59,7 +59,7 @@ export class CreateAttestPersonnelComponent {
     // Récupérer l'auteur (utilisateur connecté) et la date
     this.addForm.patchValue({
       certification_date: formattedDate, // Date actuelle formatée
-      auteur:  this.authService.getUserProfile().subscribe(
+      auteur: this.authService.getUserProfile().subscribe(
         (response: any) => {
           this.user = response.user.name;
           console.log('Utilisateur attestation connecté:', this.user);  // Vérifie les données ici
@@ -68,9 +68,9 @@ export class CreateAttestPersonnelComponent {
 
         },
         (error) => {
-            console.error('Erreur lors de la récupération du profil utilisateur:', error);
+          console.error('Erreur lors de la récupération du profil utilisateur:', error);
         }
-    ) // Auteur connecté
+      ) // Auteur connecté
     });
     this.loadCaisse();
 
@@ -90,18 +90,18 @@ export class CreateAttestPersonnelComponent {
     this.reference = `N° ${paddedNumeroref} / ${month.toString().padStart(2, '0')} / Pdt/SG/ONIGC/${year}`;
     console.log('Référence générée :', this.reference)
 
-      // Mettre à jour la valeur de ref_dem_part dans le formulaire
-      this.addForm.patchValue({
-        ref_dem_part: this.reference
-      });
+    // Mettre à jour la valeur de ref_dem_part dans le formulaire
+    this.addForm.patchValue({
+      ref_dem_part: this.reference
+    });
 
-      // Vérifier que la valeur est bien mise à jour dans le formulaire
-  console.log('Valeur de ref_dem_part dans le formulaire après patch :', this.addForm.get('ref_dem_part')?.value);
+    // Vérifier que la valeur est bien mise à jour dans le formulaire
+    console.log('Valeur de ref_dem_part dans le formulaire après patch :', this.addForm.get('ref_dem_part')?.value);
   }
 
   loadCaisse() {
     this.caisseService.getAll().subscribe((data) => {
-      console.log('caisse',data);
+      console.log('caisse', data);
       this.caisses = data;
     });
   }

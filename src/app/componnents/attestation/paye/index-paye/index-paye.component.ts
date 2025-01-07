@@ -9,43 +9,49 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../../../components/pagination/pagination.component';
 import { PaginationService } from '../../../../components/pagination.service';
+import { environment } from '../../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-index-paye',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,PaginationComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PaginationComponent],
   templateUrl: './index-paye.component.html',
   styleUrl: './index-paye.component.css'
 })
 export class IndexPayeComponent {
   attestations: NonPaye[] = [];
-  statusFilter = 3; // Filtre par défaut : non payé
-  members:Membre[]=[];
-  companies:Entreprise[]=[];
+  item: any = {}; // Declare the item property
+  statusFilter = 3; //Filtre par défaut : non payé
+  members: Membre[] = [];
+  companies: Entreprise[] = [];
 
-   // pagination
-   paginatedData: any[] = []; // Données de la page courante
+  // pagination
+  paginatedData: any[] = []; // Données de la page courante
 
-   currentPage: number = 1;
-   pageSize: number = 10;
-   totalItems: number = 0;
-  constructor(private router: Router,private attestationService: NonPayeService,private entrepriseService:EntrepriseServiceService,
-       private paginationService: PaginationService) {}
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalItems: number = 0;
+  private loadattesturl = environment.apiUrl + 'companies/attestations/success';
+  constructor(private router: Router, private attestationService: NonPayeService, private entrepriseService: EntrepriseServiceService,
+    private paginationService: PaginationService, private http: HttpClient) { }
 
   ngOnInit(): void {
     // this.loadAttestations();
     this.loadAttestationsByStatus(this.statusFilter);
     this.getMemberALL();
     this.getCompanies();
+    //this.loadAttestPaye();
   }
 
   loadAttestationsByStatus(status: number): void {
     this.attestationService.getAttestationsByStatus(status).subscribe(
       (data) => {
         this.attestations = data;
-           // pagination
-      this.totalItems = this.attestations.length;
-      this.updatePage();
+        // pagination
+        this.totalItems = this.attestations.length;
+        this.updatePage();
       },
       (error) => {
         console.error('Erreur lors du chargement des attestations', error);
@@ -79,8 +85,8 @@ export class IndexPayeComponent {
     this.router.navigate(['/Closer/modifier-attestation-non_paye']);
   }
 
-   // Méthode de confirmation avant la suppression
-   confirmDelete(id: number) {
+  // Méthode de confirmation avant la suppression
+  confirmDelete(id: number) {
     const confirmed = confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
     if (confirmed) {
       this.deletePersonnel(id);
@@ -96,17 +102,17 @@ export class IndexPayeComponent {
   }
 
 
-  getCompanies():void{
-    this.entrepriseService.getAll().subscribe(data =>{
-        this.companies = data;
-        console.log('info sur les companies ayant une attestation d\'esntreprise',this.companies);
+  getCompanies(): void {
+    this.entrepriseService.getAll().subscribe(data => {
+      this.companies = data;
+      console.log('info sur les companies ayant une attestation d\'esntreprise', this.companies);
 
     });
   }
 
-  getCompaniesNames(idCompanies:number):string{
-    const entreprises =this.companies.find(e =>e.id === idCompanies);
-    return entreprises? entreprises.social_reason: 'Inconnue';
+  getCompaniesNames(idCompanies: number): string {
+    const entreprises = this.companies.find(e => e.id === idCompanies);
+    return entreprises ? entreprises.social_reason : 'Inconnue';
   }
 
   getMemberALL(): void {
@@ -122,7 +128,7 @@ export class IndexPayeComponent {
     return member ? member.firstname : 'Inconnu';
   }
 
-  getmemberMatricule(countryId: number){
+  getmemberMatricule(countryId: number) {
     const member = this.members.find(p => p.id === countryId);
     return member ? member.matricule : 'Inconnu';
   }
@@ -131,7 +137,7 @@ export class IndexPayeComponent {
   formatDate(date: Date): string {
     return new Date(date).getFullYear().toString();
   }
-// pagination
+  // pagination
   updatePage(): void {
     this.paginatedData = this.paginationService.paginate(
       this.attestations,
@@ -144,5 +150,18 @@ export class IndexPayeComponent {
     this.currentPage = page;
     this.updatePage();
   }
+
+  // loadAttestPaye(): void {
+
+  //   this.http.get(this.loadattesturl).subscribe(
+  //     (response: any) => {
+  //       this.item = response;
+  //       console.log('Données des attestations payées:', this.loadattesturl);
+  //     },
+  //     (error) => {
+  //       console.error('Erreur lors de la récupération des données du tableau de bord:', error);
+  //     }
+  //   );
+  // }
 
 }

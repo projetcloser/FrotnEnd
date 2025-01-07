@@ -4,7 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
     "FrontEnd": {
-
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -14,7 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-
             "outputPath": "dist/front-end",
             "index": "src/index.html",
             "browser": "src/main.ts",

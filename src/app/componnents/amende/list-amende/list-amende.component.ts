@@ -15,7 +15,7 @@ declare var $: any; // Utiliser jQuery globalement
 @Component({
   selector: 'app-list-amende',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule,PaginationComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PaginationComponent],
   templateUrl: './list-amende.component.html',
   styleUrl: './list-amende.component.css',
 })
@@ -26,18 +26,20 @@ export class ListAmendeComponent implements OnInit
   membres: any[] = [];
   user: any = {};
 
-   // pagination
-   paginatedData: any[] = []; // Données de la page courante
+  // pagination
+  paginatedData: any[] = []; // Données de la page courante
 
-   currentPage: number = 1;
-   pageSize: number = 10;
-   totalItems: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalItems: number = 0;
 
   constructor(
     private amendeService: AmendeServiceService,
     private membreService: MembreServiceService,
     private authService: AuthService,
-     private paginationService: PaginationService,private attestationService: NonPayeService
+     private attestationService: NonPayeService,
+    private paginationService: PaginationService
+
   ) { }
 
   ngOnInit(): void {
@@ -85,7 +87,7 @@ export class ListAmendeComponent implements OnInit
 
   getMembreName(membreId: number): string {
     const membre = this.membres.find((m) => m.id === membreId);
-    return membre ? membre.firstname : 'Inconnu';
+    return membre ? membre.lastname : 'Inconnu';
   }
   getMemberUserName(membreId: number): string {
     const membre = this.membres.find((m) => m.id === membreId);
@@ -112,18 +114,18 @@ export class ListAmendeComponent implements OnInit
   }
   // pagination
 
- updatePage(): void {
-  this.paginatedData = this.paginationService.paginate(
-    this.membres,
-    this.currentPage,
-    this.pageSize
-  );
-}
+  updatePage(): void {
+    this.paginatedData = this.paginationService.paginate(
+      this.membres,
+      this.currentPage,
+      this.pageSize
+    );
+  }
 
-onPageChange(page: number): void {
-  this.currentPage = page;
-  this.updatePage();
-}
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.updatePage();
+  }
 
   payer(amende: any): void {
     const payment: Payment = {

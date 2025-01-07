@@ -25,8 +25,8 @@
 			<div class="card-body">
 				<div class="d-flex align-items-center">
 					<div>
-						<p class="mb-0 text-secondary" i18n>Membres Inscrits</p>
-						<h4 class="my-1 text-info">4805</h4>
+						<p class="mb-0 text-secondary">Membres Inscrits</p>
+						<h4 class="my-1 text-info">{{dashboardData.members.total}}</h4>
 						<!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
 					</div>
 					<div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa fa-users"></i>
@@ -40,8 +40,8 @@
 		   <div class="card-body">
 			   <div class="d-flex align-items-center">
 				   <div>
-					   <p class="mb-0 text-secondary" i18n>Membres Actifs</p>
-					   <h4 class="my-1 text-danger">84,245</h4>
+					   <p class="mb-0 text-secondary">Membres Actifs</p>
+					   <h4 class="my-1 text-danger">{{dashboardData.members.no_debt}}</h4>
 					   <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
 				   </div>
 				   <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa fa-users"></i>
@@ -55,8 +55,8 @@
 		   <div class="card-body">
 			   <div class="d-flex align-items-center">
 				   <div>
-					   <p class="mb-0 text-secondary" i18n>Membres Echus</p>
-					   <h4 class="my-1 text-success">34.6</h4>
+					   <p class="mb-0 text-secondary">Membres Echus</p>
+					   <h4 class="my-1 text-success">{{dashboardData.members.with_debt}}</h4>
 					   <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
 				   </div>
 				   <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-users"></i>
@@ -102,8 +102,9 @@
    <div class="card-body">
      <div class="d-flex align-items-center">
        <div>
-         <p class="mb-0 text-secondary" i18n>Frais cotisations</p>
-         <h4 class="my-1 text-info">60,000</h4>
+
+         <p class="mb-0 text-secondary">Frais cotisations</p>
+         <h4 class="my-1 text-info">{{dashboardData.cotisations.total}}</h4>
          <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
        </div>
        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa fa-dollar"></i>
@@ -117,8 +118,8 @@
     <div class="card-body">
       <div class="d-flex align-items-center">
         <div>
-          <p class="mb-0 text-secondary" i18n>Frais attestations</p>
-          <h4 class="my-1 text-danger">35,000</h4>
+          <p class="mb-0 text-secondary">Frais attestations</p>
+          <h4 class="my-1 text-danger">{{dashboardData.company_attestations.total_cotisations}}</h4>
           <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
         </div>
         <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa fa-dollar"></i>
@@ -162,8 +163,8 @@
    <div class="card-body">
      <div class="d-flex align-items-center">
        <div>
-         <p class="mb-0 text-secondary" i18n>Dettes totales</p>
-         <h4 class="my-1 text-info">0</h4>
+         <p class="mb-0 text-secondary">Dettes totales</p>
+         <h4 class="my-1 text-info">{{dashboardData.debts.total}}</h4>
          <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
        </div>
        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa fa-dollar"></i>
@@ -235,8 +236,8 @@
  <div class="card-body">
    <div class="d-flex align-items-center">
      <div>
-       <p class="mb-0 text-secondary" i18n>Demandes envoyees</p>
-       <h4 class="my-1 text-info">8</h4>
+       <p class="mb-0 text-secondary">Demandes envoyées</p>
+       <h4 class="my-1 text-info">{{dashboardData.stamps.status_3}}</h4>
        <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
      </div>
      <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa fa-address-book-o" aria-hidden="true"></i>
@@ -250,8 +251,8 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary" i18n>Cachets disponibles</p>
-        <h4 class="my-1 text-danger">6</h4>
+        <p class="mb-0 text-secondary">Cachets disponibles</p>
+        <h4 class="my-1 text-danger">{{dashboardData.stamps.status_2}}</h4>
         <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
       </div>
       <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa fa-address-book-o" aria-hidden="true"></i>
@@ -265,8 +266,8 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary" i18n>Cachets livres</p>
-        <h4 class="my-1 text-success">4</h4>
+        <p class="mb-0 text-secondary">Cachets livrés</p>
+        <h4 class="my-1 text-success">{{dashboardData.stamps.status_4}}</h4>
         <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
       </div>
       <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-address-book-o" aria-hidden="true"></i>
@@ -308,8 +309,9 @@
  <div class="card-body">
    <div class="d-flex align-items-center">
      <div>
-       <p class="mb-0 text-secondary" i18n>Demandes totales</p>
-       <h4 class="my-1 text-info">20</h4>
+
+       <p class="mb-0 text-secondary">Demandes totales</p>
+       <h4 class="my-1 text-info">{{dashboardData.company_attestations.ask_attestations}}</h4>
        <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
      </div>
      <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>
@@ -323,8 +325,9 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary" i18n>Attestations generées</p>
-        <h4 class="my-1 text-danger">15</h4>
+        <p class="mb-0 text-secondary">Attestations generées</p>
+        <h4 class="my-1 text-danger">{{dashboardData.company_attestations.total_attestations}}</h4>
+
         <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
       </div>
       <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>
@@ -338,8 +341,8 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary" i18n>Demandes rejetées</p>
-        <h4 class="my-1 text-success">5</h4>
+        <p class="mb-0 text-secondary">Demandes rejetées</p>
+        <h4 class="my-1 text-success">{{dashboardData.company_attestations.failed_attestations}}</h4>
         <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
       </div>
       <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>
@@ -382,8 +385,8 @@
  <div class="card-body">
    <div class="d-flex align-items-center">
      <div>
-       <p class="mb-0 text-secondary" i18n>Demandes totales</p>
-       <h4 class="my-1 text-info">25</h4>
+       <p class="mb-0 text-secondary">Demandes totales</p>
+       <h4 class="my-1 text-info">{{dashboardData.personal_certificates.total}}</h4>
        <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
      </div>
      <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa fa-hourglass-half" aria-hidden="true"></i>
@@ -397,8 +400,8 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary" i18n>Attestations generées</p>
-        <h4 class="my-1 text-danger">20</h4>
+        <p class="mb-0 text-secondary">Attestations generées</p>
+        <h4 class="my-1 text-danger">{{dashboardData.personal_certificates.total_success}}</h4>
         <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
       </div>
       <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa fa-hourglass-half" aria-hidden="true"></i>
@@ -412,8 +415,8 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary" i18n>Demandes rejetees</p>
-        <h4 class="my-1 text-success">5</h4>
+        <p class="mb-0 text-secondary">Demandes rejetees</p>
+        <h4 class="my-1 text-success">0</h4>
         <!-- <p class="mb-0 font-13">-4.5% from last week</p> -->
       </div>
       <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-hourglass-half" aria-hidden="true"></i>
@@ -456,8 +459,9 @@
  <div class="card-body">
    <div class="d-flex align-items-center">
      <div>
-       <p class="mb-0 text-secondary" i18n>Personnels </p>
-       <h4 class="my-1 text-info">10</h4>
+
+       <p class="mb-0 text-secondary">Personnels </p>
+       <h4 class="my-1 text-info">{{dashboardData.staffs.total}}</h4>
        <!-- <p class="mb-0 font-13">+2.5% from last week</p> -->
      </div>
      <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa fa-users"></i>
@@ -473,8 +477,8 @@
   <div class="card-body">
     <div class="d-flex align-items-center">
       <div>
-        <p class="mb-0 text-secondary" i18n>Entreprises</p>
-        <h4 class="my-1 text-danger">125</h4>
+        <p class="mb-0 text-secondary">Entreprises</p>
+        <h4 class="my-1 text-danger">{{dashboardData.companies.total}}</h4>
         <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
       </div>
       <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa-solid fa-building"></i>

@@ -11,7 +11,7 @@ import { EntrepriseServiceService } from '../../../entreprise/entreprise-service
 @Component({
   selector: 'app-create-non-paye',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,RouterModule,RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, RouterModule],
   templateUrl: './create-non-paye.component.html',
   styleUrl: './create-non-paye.component.css'
 })
@@ -19,7 +19,7 @@ export class CreateNonPayeComponent {
   addForm: FormGroup;
   membres: any[] = []; // Liste des membres
   caisses: any[] = [];
-  companies:any[]=[];
+  companies: any[] = [];
   user: any = {};
 
   reference!: string;
@@ -27,8 +27,8 @@ export class CreateNonPayeComponent {
   constructor(
     private formBuilder: FormBuilder,
     private attestCompaniesService: NonPayeService,
-    private caisseService:CaisseServiceService,
-    private companiesService:EntrepriseServiceService,
+    private caisseService: CaisseServiceService,
+    private companiesService: EntrepriseServiceService,
     private router: Router,
     private authService: AuthService,
     private membreService: MembreServiceService
@@ -39,10 +39,10 @@ export class CreateNonPayeComponent {
       motif: [''],
       member_id: [],
       company_id: [],
-      payment_amount: [0],
+      payment_amount: [],
       // ref_dem_part: ['', Validators.required],
       // type: ['', Validators.required],
-      cashflow_id: [],
+      cashflow_id: [1],
       ref_dem_part: [''],
       // city_id: ['', Validators.required],
       // contact_person: ['', Validators.required],
@@ -62,7 +62,7 @@ export class CreateNonPayeComponent {
     });
 
     //recuperer les companies
-    this.companiesService.getAll().subscribe(data =>{
+    this.companiesService.getAll().subscribe(data => {
       this.companies = data;
     })
 
@@ -71,7 +71,7 @@ export class CreateNonPayeComponent {
     // Récupérer l'auteur (utilisateur connecté) et la date
     this.addForm.patchValue({
       year: formattedDate, // Date actuelle formatée
-      author:  this.authService.getUserProfile().subscribe(
+      author: this.authService.getUserProfile().subscribe(
         (response: any) => {
           this.user = response.user.name;
           console.log('Utilisateur attestation connecté:', this.user);  // Vérifie les données ici
@@ -80,9 +80,9 @@ export class CreateNonPayeComponent {
 
         },
         (error) => {
-            console.error('Erreur lors de la récupération du profil utilisateur:', error);
+          console.error('Erreur lors de la récupération du profil utilisateur:', error);
         }
-    ) // Auteur connecté
+      ) // Auteur connecté
     });
     this.loadCaisse();
 
@@ -103,18 +103,18 @@ export class CreateNonPayeComponent {
     this.reference = `ATTE ${paddedNumeroref} / ${month.toString().padStart(2, '0')} / Pdt/SG/ONIGC/${year}`;
     console.log('Référence générée :', this.reference)
 
-      // Mettre à jour la valeur de ref_dem_part dans le formulaire
-      this.addForm.patchValue({
-        ref_dem_part: this.reference
-      });
+    // Mettre à jour la valeur de ref_dem_part dans le formulaire
+    this.addForm.patchValue({
+      ref_dem_part: this.reference
+    });
 
-      // Vérifier que la valeur est bien mise à jour dans le formulaire
-  console.log('Valeur de ref_dem_part dans le formulaire après patch :', this.addForm.get('ref_dem_part')?.value);
+    // Vérifier que la valeur est bien mise à jour dans le formulaire
+    console.log('Valeur de ref_dem_part dans le formulaire après patch :', this.addForm.get('ref_dem_part')?.value);
   }
 
   loadCaisse() {
     this.caisseService.getAll().subscribe((data) => {
-      console.log('caisse',data);
+      console.log('caisse', data);
       this.caisses = data;
     });
   }
