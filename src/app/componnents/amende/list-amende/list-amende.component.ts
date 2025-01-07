@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
 import { PaginationService } from '../../../components/pagination.service';
+import { NonPayeService } from '../../attestation/nonPaye/non-paye.service';
+import { Payment } from '../../attestation/nonPaye/payer/payment';
 
 declare var $: any; // Utiliser jQuery globalement
 
@@ -35,7 +37,7 @@ export class ListAmendeComponent implements OnInit
     private amendeService: AmendeServiceService,
     private membreService: MembreServiceService,
     private authService: AuthService,
-     private paginationService: PaginationService
+     private paginationService: PaginationService,private attestationService: NonPayeService
   ) { }
 
   ngOnInit(): void {
@@ -76,7 +78,7 @@ export class ListAmendeComponent implements OnInit
   }
 
   loadAmendes() {
-    this.amendeService.getAmendes().subscribe((data) => {
+    this.amendeService.getUserAmendes().subscribe((data) => {
       this.amendes = data;
     });
   }
@@ -85,6 +87,11 @@ export class ListAmendeComponent implements OnInit
     const membre = this.membres.find((m) => m.id === membreId);
     return membre ? membre.firstname : 'Inconnu';
   }
+  getMemberUserName(membreId: number): string {
+    const membre = this.membres.find((m) => m.id === membreId);
+    return membre ? membre.lastname : 'Inconnu';
+  }
+
 
   deleteAmende(id: number) {
     this.amendeService.deleteAmende(id).subscribe(() => {
@@ -117,5 +124,33 @@ onPageChange(page: number): void {
   this.currentPage = page;
   this.updatePage();
 }
+
+  payer(amende: any): void {
+    const payment: Payment = {
+      id: 0, // ou une valeur par défaut
+      transaction_id:amende.id,
+      member_id: amende.member_id,
+      customer_name: this.getMembreName(amende.member_id),
+      customer_surname: this.getMemberUserName(amende.member_id), // Renseignez si applicable
+      amount: amende.amount, // Assurez-vous que l'objet `item` contient cette information
+      description: 'Paiement Ammende', // Description par défaut
+      currency: 'XAF', // Exemple : devise utilisée
+      created_at: new Date()
+    };
+
+    this.attestationService.payer(payment).subscribe(
+      (response: any) => {
+        if (response && response.data && response.data.payment_url) {
+          // Redirection vers l'URL de paiement
+          window.open(response.data.payment_url, '_blank');
+        } else {
+          console.error('Erreur lors de la génération du lien de paiement', response);
+        }
+      },
+      (error) => {
+        console.error('Erreur lors du paiement', error);
+      }
+    );
+  }
 
 }

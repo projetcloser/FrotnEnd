@@ -26,19 +26,18 @@ export class AmendeServiceService {
     return this.http.post<Amende>(this.apiUrl, amende, { headers });
   }
 
-
-  // addAmende(amende: any): Observable<any> {
-  //   const newAmende = {
-  //     ...amende,
-  //     date: new Date().toISOString(), // Ajoute la date actuelle
-  //     auteur: this.getCurrentUser() // Récupère l'utilisateur connecté
-  //   };
-  //   return this.http.post(this.apiUrl, newAmende);
-  // }
-
   // Récupérer toutes les amendes
   getAmendes(): Observable<Amende[]> {
     return this.http.get<Amende[]>(this.apiUrl);
+  }
+  getUserAmendes(): Observable<any> {
+    const token = localStorage.getItem('access_token'); // Récupérer le token
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(`${this.apiUrl}/user`, { headers });
   }
 
   // Récupérer une amende par ID

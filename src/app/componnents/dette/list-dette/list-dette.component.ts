@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Membre } from '../../../models/membre';
 import { MembreServiceService } from '../../membre/membre-service.service';
+import { Payment } from '../../attestation/nonPaye/payer/payment';
+import { NonPayeService } from '../../attestation/nonPaye/non-paye.service';
 
 @Component({
   selector: 'app-list-dette',
@@ -20,7 +22,9 @@ export class ListDetteComponent implements OnInit {
   membres: Membre[] = [];
   searchTerm: string = '';
 
-  constructor(private detteService: DetteServiceService, private membreService: MembreServiceService, private router: Router) {}
+  constructor(private detteService: DetteServiceService, private membreService: MembreServiceService, private router: Router
+    ,private attestationService: NonPayeService
+  ) {}
 
   ngOnInit(): void {
     this.loadDettes();
@@ -43,7 +47,12 @@ export class ListDetteComponent implements OnInit {
 
   getMembreNom(membreId: number): string {
     const membre = this.membres.find(m => m.id === membreId);
-    return membre ? `${membre.firstname} ${membre.lastname}` : 'Inconnu';
+    return membre ? `${membre.firstname} ` : 'Inconnu';
+  }
+
+  getMemberUserName(membreId: number): string {
+    const membre = this.membres.find(m => m.id === membreId);
+    return membre ? `${membre.lastname}` : 'Inconnu';
   }
 
   filterDettes(): void {
@@ -66,6 +75,34 @@ export class ListDetteComponent implements OnInit {
       this.loadDettes();
     });
   }
+
+    payer(dette: any): void {
+      const payment: Payment = {
+        id: 0, // ou une valeur par défaut
+        transaction_id:dette.id,
+        member_id: dette.member_id,
+        customer_name: this.getMembreNom(dette.member_id),
+        customer_surname: this.getMemberUserName(dette.member_id), // Renseignez si applicable
+        amount: dette.montant, // Assurez-vous que l'objet `item` contient cette information
+        description: 'Paiement Dettes', // Description par défaut
+        currency: 'XAF', // Exemple : devise utilisée
+        created_at: new Date()
+      };
+
+      this.attestationService.payer(payment).subscribe(
+        (response: any) => {
+          if (response && response.data && response.data.payment_url) {
+            // Redirection vers l'URL de paiement
+            window.open(response.data.payment_url, '_blank');
+          } else {
+            console.error('Erreur lors de la génération du lien de paiement', response);
+          }
+        },
+        (error) => {
+          console.error('Erreur lors du paiement', error);
+        }
+      );
+    }
 
 
 }

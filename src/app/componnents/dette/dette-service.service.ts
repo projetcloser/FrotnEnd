@@ -17,7 +17,15 @@ export class DetteServiceService {
     return this.http.get<Dette[]>(this.apiUrl);
   }
 
-  
+  getUserDettes(): Observable<any> {
+    const token = localStorage.getItem('access_token'); // Récupérer le token
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(`${this.apiUrl}/user`, { headers });
+  }
 
   addDette(dette: Dette): Observable<Dette> {
 

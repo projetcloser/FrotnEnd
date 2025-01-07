@@ -272,7 +272,7 @@ getmemberMatricule(countryId: number){
       customer_name: this.getMemberName(cotisation.member_id),
       customer_surname: this.getMemberUserName(cotisation.member_id), // Renseignez si applicable
       amount: 60000, // Assurez-vous que l'objet `item` contient cette information
-      description: 'Paiement Attestation', // Description par défaut
+      description: 'Paiement Cotisation', // Description par défaut
       currency: 'XAF', // Exemple : devise utilisée
       created_at: new Date()
     };

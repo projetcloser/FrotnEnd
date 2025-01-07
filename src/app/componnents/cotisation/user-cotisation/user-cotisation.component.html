@@ -1,0 +1,277 @@
+<div class="container-fluid">
+  <h4 class="mt-4" i18n> <svg class="svg-inline--fa fa-address-card fa-w-18 custom-icon " style="color: silver;"
+      aria-hidden="true" focusable="false" data-prefix="fa" data-icon="address-card" role="img"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+      <path fill="currentColor"
+        d="M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-352 96c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64zm112 236.8c0 10.6-10 19.2-22.4 19.2H86.4C74 384 64 375.4 64 364.8v-19.2c0-31.8 30.1-57.6 67.2-57.6h5c12.3 5.1 25.7 8 39.8 8s27.6-2.9 39.8-8h5c37.1 0 67.2 25.8 67.2 57.6v19.2zM512 312c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-64c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-64c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16z">
+      </path>
+    </svg><!-- <i class=" fa fa-address-card" style="color: silver"></i> Font Awesome fontawesome.com --> Liste des
+    Cotisations</h4>
+
+  <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
+  <div class="row">
+    <div class="col-xl-12">
+      <ul class="nav nav-pills" style="float: right;">
+        <li class="nav-item">
+          <a class="nav-link " (click)="exportToExcel()" target="blank"
+            style="background-color: #28a745; margin-right: 20px; color: white"><svg
+              class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true" focusable="false"
+              data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+              data-fa-i2svg="">
+              <path fill="currentColor"
+                d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z">
+              </path>
+            </svg><!-- <i class="fas fa-download"></i> Font Awesome fontawesome.com --> Exporter
+          </a>
+        </li>
+      </ul>
+
+      <!-- memmbre a jour -->
+      <ul class="nav nav-pills" style="float: right;">
+        <li class="nav-item">
+          <a class="nav-link " (click)="exportToExcelByStatus(1)" target="blank" i18n
+            style="background-color: #28a745; margin-right: 20px; color: white"><svg
+              class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true" focusable="false"
+              data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+              data-fa-i2svg="">
+              <path fill="currentColor"
+                d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z">
+              </path>
+            </svg> Actifs
+          </a>
+        </li>
+      </ul>
+
+      <!-- membre pas a jour -->
+      <ul class="nav nav-pills" style="float: right;">
+        <li class="nav-item">
+          <a class="nav-link " (click)="exportToExcelByStatus(0)" target="blank"
+            style="background-color: #28a745; margin-right: 20px; color: white" i18n><svg
+              class="svg-inline--fa fa-download fa-w-16 small-icon" aria-hidden="true" focusable="false"
+              data-prefix="fas" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+              data-fa-i2svg="">
+              <path fill="currentColor"
+                d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z">
+              </path>
+            </svg> Non Actifs
+          </a>
+        </li>
+      </ul>
+
+      <b>
+        <!-- Nav pills -->
+        <ul class="nav nav-pills" style="float: right; margin-right: 5px;">
+          <li class="nav-item">
+            <a class="btn btn-success" (click)="navigateToForm()"  style="background-color: #28a745; color: white;" i18n>
+              <svg class="svg-inline--fa fa-plus-circle fa-w-16 small-icon " aria-hidden="true" focusable="false"
+                data-prefix="fas" data-icon="plus-circle" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor"
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z">
+                </path>
+              </svg><!-- <i class="fas fa-plus-circle"></i> Font Awesome fontawesome.com -->
+              Nouvelle cotisation
+            </a>
+          </li>
+        </ul>
+      </b>
+
+    </div>
+  </div>
+  </ng-container>
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+    </div>
+  </div>
+  <!--                Main Body              -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+          <div class="row">
+            <!-- <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"
+                    aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select> entries</label></div>
+            </div> -->
+            <div class="col-sm-12 col-md-6">
+              <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="d-flex flex-column flex-md-row align-items-center gap-3">
+                <div>
+                  <label for="keyword" i18n>Mot-clé</label>
+                  <input id="keyword" formControlName="keyword" type="text" placeholder="Rechercher..."  class="form-control">
+                </div>
+
+                <div class="form-group w-100">
+                  <label for="member" i18n>Membre</label>
+                  <select id="member" formControlName="member_id"  class="form-control">
+                    <option value="" i18n>-- Sélectionner un membre --</option>
+                    <option *ngFor="let member of membres" [value]="member.id">
+                      {{ member.firstname }} {{ member.lastname }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group w-100">
+                  <label for="cashflow" i18n>Cashflow</label>
+                  <select id="cashflow" formControlName="cashflow_id"  class="form-control">
+                    <option value="" i18n>-- Sélectionner un cashflow --</option>
+                    <option *ngFor="let cashflow of caisses" [value]="cashflow.id">
+                      {{ cashflow.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group w-100">
+                  <label for="status" i18n>Statut</label>
+                  <select id="status" formControlName="status"  class="form-control">
+                    <option value="" i18n>-- Sélectionner un statut --</option>
+                    <option value="paid" i18n>Payé</option>
+                    <option value="unpaid" i18n>Non payé</option>
+                  </select>
+                </div>
+
+                <div class="form-group w-100">
+                  <label for="open_close" i18n>État</label>
+                  <select id="open_close" formControlName="open_close"  class="form-control">
+                    <option value="" i18n>-- Sélectionner un état --</option>
+                    <option value="open" i18n>Ouvert</option>
+                    <option value="closed" i18n>Fermé</option>
+                  </select>
+                </div>
+
+                <!-- Bouton de recherche -->
+                <div  class="form-group">
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr style="background-color: #dde9dd" role="row">
+                    <th scope="col" i18n>Ref_cotisation</th>
+                    <th scope="col" i18n>Caisse</th>
+                    <th scope="col" i18n>
+                      Année d'inscription</th>
+                    <th scope="col" i18n>Ingénieur</th>
+                    <th scope="col" i18n>Payé</th>
+                    <th scope="col" i18n>Reste</th>
+                    <th scope="col" i18n>Statut</th>
+                    <th scope="col" i18n>Auteur</th>
+                    <th scope="col" i18n>
+                      Prévisualisation</th>
+                    <!-- <th class="text-right sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                      aria-label=" Font Awesome fontawesome.com: activate to sort column ascending"
+                      style="width: 14.0312px;"><svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true"
+                        focusable="false" data-prefix="fas" data-icon="bars" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z">
+                        </path>
+                      </svg></th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr role="row" class="odd" *ngFor="let cotisation of cotisations">
+                    <!-- <input name="id" type="hidden" value="3049"> -->
+                    <td class="sorting_1"><a href="#" title="" style="color: black">{{cotisation.ref_ing_cost}}</a>
+                    </td>
+                    <td><a href="" style="color: black">{{getCaissesName(cotisation.cashflow_id)}}</a>
+                    </td>
+                    <td><a href="" style="color: black">{{cotisation.pay_year}} </a></td>
+                    <td><a href="" style="color: black">{{getmembresName(cotisation.member_id)}} </a>
+                    </td>
+                    <td><a href="" style="color: black">{{cotisation.amount}}</a>
+                    </td>
+
+
+                    <td><a href="" title="0" style="color: black">{{cotisation.pay}}</a></td>
+
+
+
+                    <td>
+
+                      <span class="custom-bg-success  status-green">{{cotisation.status}}</span>
+                    </td>
+                    <td>
+                      {{cotisation.author}}
+                    </td>
+                    <td>
+                       <!-- Bouton de paiement avec badge -->
+                       <a (click)="payer(cotisation)" style="cursor: pointer;" target="_blank" i18n>
+                        <span class="custom-badge status-red">
+                          <span class="badge badge-danger badge-pill">
+                            <i class="fa fa-money" aria-hidden="true"></i> ICI POUR PAYER
+                          </span>
+                        </span>
+                      </a>
+                    </td>
+                    <!-- <td>
+
+                      <div class="dropdown dropdown-action">
+                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                          aria-expanded="false"><svg class="svg-inline--fa fa-ellipsis-v fa-w-6 custom-iconbuttonmenu"
+                            aria-hidden="true" focusable="false" data-prefix="fa" data-icon="ellipsis-v" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                              d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z">
+                            </path>
+                          </svg></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" [routerLink]="['/Closer/modifier-cotisation',cotisation.id]"
+                            routerLinkActive="router-link-active"><svg
+                              class="svg-inline--fa fa-pen fa-w-16 custom-iconbutton" aria-hidden="true"
+                              focusable="false" data-prefix="fas" data-icon="pen" role="img"
+                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                              <path fill="currentColor"
+                                d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z">
+                              </path>
+                            </svg> Edit</a>
+                          <a class="dropdown-item" (click)="confirmDelete(cotisation.id)">
+                            <svg class="svg-inline--fa fa-trash fa-w-14 custom-iconbutton" aria-hidden="true"
+                              focusable="false" data-prefix="fas" data-icon="trash" role="img"
+                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                              <path fill="currentColor"
+                                d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z">
+                              </path>
+                            </svg>
+                            Delete
+                          </a>
+                        </div>
+                      </div>
+
+                    </td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-7">
+            <app-pagination
+            [totalItems]="totalItems"
+            [pageSize]="pageSize"
+            [currentPage]="currentPage"
+            (pageChanged)="onPageChange($event)"
+          ></app-pagination>
+
+        </div>
+      </div>
+    </div>
+    <!--                End Body              -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+      </div>
+    </div>
+
+  </div>

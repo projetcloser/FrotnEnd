@@ -121,26 +121,54 @@
             <span>Amendes</span>
           </a>
         </li>
-            <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional' ">
+        <ng-container *ngIf="user.role.name === 'membre'   ">
 
-            <li class="nav-item active">
-          <a class="nav-link collapsed" routerLink="/Closer/cotisation" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-            <i class="fas fa-donate"></i>
-            <span>Cotisations</span>
-        </a>
-        </li>
-            </ng-container>
+          <li class="nav-item active">
+            <a class="nav-link collapsed" routerLink="/Closer/user-amendes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+              <i class="fa fa-dollar"></i>
+              <span>Amendes</span>
+            </a>
+          </li>
+       </ng-container>
+        <ng-container *ngIf="user.role.name === 'membre' || user.role.name === 'administrateur' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional' ">
 
-
-            <ng-container *ngIf="user.role.name === 'administrateur'|| user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional'">
+          <li class="nav-item active">
+            <a class="nav-link collapsed" routerLink="/Closer/cotisation" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+              <i class="fas fa-donate"></i>
+              <span>Cotisations</span>
+            </a>
+          </li>
+       </ng-container>
+      <!-- user cotisation -->
+       <ng-container *ngIf="user.role.name === 'membre'">
 
         <li class="nav-item active">
-          <a class="nav-link collapsed" routerLink="/Closer/dettes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+          <a class="nav-link collapsed" routerLink="/Closer/user-cotisation" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fas fa-donate"></i>
-            <span>Dettes</span>
+            <span>Cotisations</span>
           </a>
         </li>
-            </ng-container>
+      </ng-container>
+
+
+        <ng-container *ngIf="user.role.name === 'administrateur'|| user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional'">
+
+          <li class="nav-item active">
+            <a class="nav-link collapsed" routerLink="/Closer/dettes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+              <i class="fas fa-donate"></i>
+              <span>Dettes</span>
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="user.role.name === 'membre' ">
+
+          <li class="nav-item active">
+            <a class="nav-link collapsed" routerLink="/Closer/user-dettes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+              <i class="fas fa-donate"></i>
+              <span>Dettes</span>
+            </a>
+          </li>
+        </ng-container>
         <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/cachet" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="far fa-folder-open"></i>

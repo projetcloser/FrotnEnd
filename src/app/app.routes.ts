@@ -83,6 +83,9 @@ import { DetailsDetteComponent } from './componnents/dette/details-dette/details
 import { IndexUserComponent } from './componnents/user/index-user/index-user.component';
 import { CreateUserComponent } from './componnents/user/create-user/create-user.component';
 import { SinglepageCreateComponent } from './componnents/entreprise/singlepage-create/singlepage-create.component';
+import { UserCotisationComponent } from './componnents/cotisation/user-cotisation/user-cotisation.component';
+import { UserAmendeComponent } from './componnents/amende/user-amende/user-amende.component';
+import { UserDetteComponent } from './componnents/dette/user-dette/user-dette.component';
 
 
 
@@ -113,12 +116,14 @@ export const routes: Routes = [
   // amende
   { path: 'amendes', component: ListAmendeComponent },
   { path: 'amendes/new', component: CreateAmendeComponent },
+  { path: 'user-amendes', component: UserAmendeComponent },
   { path: 'amendes/edit/:id', component: UpdateAmendeComponent },
   { path: 'amendes/details/:id', component: DetailsAmendeComponent },
 
   // dettes
   { path: 'dettes', component: ListDetteComponent },
   { path: 'dettes/new', component: CreateDetteComponent },
+  { path: 'user-dettes', component: UserDetteComponent },
   { path: 'dettes/edit/:id', component: UpdateDetteComponent },
   { path: 'dettes/details/:id', component: DetailsDetteComponent },
   // personnels
@@ -307,6 +312,10 @@ export const routes: Routes = [
     {
       path: "nouvelle-cotisation",
       component:CreateCotisationComponent
+    },
+    {
+      path: "user-cotisation",
+      component:UserCotisationComponent
     },
     {
       path: "modifier-cotisation/:id",

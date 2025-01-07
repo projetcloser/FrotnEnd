@@ -22,6 +22,16 @@ export class CotisationService {
    return this.http.get<Cotisation[]>(this.apiUrl);
  }
 
+ getUserCotisations(): Observable<any> {
+  const token = localStorage.getItem('access_token'); // Récupérer le token
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.get<any>(`${this.apiUrl}/user`, { headers });
+}
+
  // Récupérer un événement par ID
  getCotisationById(id: number): Observable<Cotisation> {
    return this.http.get<Cotisation>(`${this.apiUrl}/${id}`);
