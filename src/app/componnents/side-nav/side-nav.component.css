@@ -2,3 +2,67 @@
   background-color: #28a745 !important;
   background-image: none !important; /* Pour s'assurer qu'aucun gradient ne se superpose */
 }
+
+
+/* Bouton principal du menu déroulant */
+.language-dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.dropdown-btn:hover {
+  background-color: #e2e6ea;
+}
+
+/* Icône de drapeau */
+.flag-icon {
+  width: 20px;
+  height: 15px;
+}
+
+/* Menu déroulant */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+  width: 150px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none; /* Masqué par défaut */
+  z-index: 10;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f1f1f1;
+}
+
+/* Flèche */
+.arrow-down {
+  font-size: 12px;
+}

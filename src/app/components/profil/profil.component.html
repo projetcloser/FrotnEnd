@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="profile-container">
+    <div class="profile-header">
+      <i class="fas fa-user-circle"></i>
+      <h2>Mon Profil</h2>
+      <span *ngIf="user.role.name === 'membre'" class="badge-role">Membre</span>
+      <span *ngIf="user.role.name === 'personnel'" class="badge-role">Personnel</span>
+    </div>
+    <div class="profile-info" *ngIf="user.role.name === 'membre'">
+      <h4>Profil Membre</h4>
+      <p><strong>Nom :</strong> {{ user.perso.lastname }} {{ user.perso.firstname }}</p>
+      <p><strong>Téléphone :</strong> {{ user.perso.phone }}</p>
+      <p><strong>Email :</strong> {{ user.perso.email }}</p>
+      <p><strong>Date de création :</strong> {{ user.perso.created_at | date:'dd/MM/yyyy' }}</p>
+    </div>
+    <div class="profile-info" *ngIf="user.role.name === 'personnel'">
+      <h4>Profil Personnel</h4>
+      <p><strong>Nom :</strong> {{ user.perso.lastname }} {{ user.perso.firstname }}</p>
+      <p><strong>Téléphone :</strong> {{ user.perso.phone }}</p>
+      <p><strong>Email :</strong> {{ user.perso.email }}</p>
+      <p><strong>Date de création :</strong> {{ user.perso.created_at | date:'dd/MM/yyyy' }}</p>
+    </div>
+    <div *ngIf="!user.role">
+      <p>Chargement du profil...</p>
+    </div>
+    <div class="text-center mt-4">
+      <button class="btn btn-primary"><i class="fas fa-edit"></i> Modifier le profil</button>
+    </div>
+  </div>
+</div>

@@ -90,6 +90,14 @@ export class AuthService {
     });
     return this.http.get(`${this.apiUrlRacine}user-info`, { headers });
   }
+// foget password
+  sendResetLink(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/forgot-password`, { email });
+  }
+
+  resetPassword(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reset-password`, data);
+  }
 
 
 }

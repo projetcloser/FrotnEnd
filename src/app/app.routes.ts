@@ -86,6 +86,7 @@ import { SinglepageCreateComponent } from './componnents/entreprise/singlepage-c
 import { UserCotisationComponent } from './componnents/cotisation/user-cotisation/user-cotisation.component';
 import { UserAmendeComponent } from './componnents/amende/user-amende/user-amende.component';
 import { UserDetteComponent } from './componnents/dette/user-dette/user-dette.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 
 
@@ -108,6 +109,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'perso', component: CreateUserComponent },
   { path: 'list-utulisateur', component: IndexUserComponent },
+  // { path: 'fpw', component: FpwComponent },
+
   // anonce
   { path: 'annonces', component: ListAnnonceComponent },
   { path: 'annonces/new', component: CreateAnnonceComponent },
@@ -127,6 +130,10 @@ export const routes: Routes = [
   { path: 'dettes/edit/:id', component: UpdateDetteComponent },
   { path: 'dettes/details/:id', component: DetailsDetteComponent },
   // personnels
+  {
+    path: "profil",
+    component:ProfilComponent
+  },
   {
     path: "personnel",
     component:IndexpersonnelComponent
