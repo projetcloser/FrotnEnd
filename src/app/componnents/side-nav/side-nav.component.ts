@@ -57,7 +57,7 @@ import { MultilangService } from '../../services/multilang.service';
     //     deps: [HttpClient]
     //   }
     // }),
-    
+
 
     NgxPaginationModule,
   TranslateModule],
@@ -66,27 +66,22 @@ import { MultilangService } from '../../services/multilang.service';
 })
 export class SideNavComponent implements OnInit {
 
-  //traduction 
+  //traduction
   multilangService = inject(MultilangService);
   toogleLanguage(language: string):void{
     if(this.multilangService.languageSignal() !== language){
       this.multilangService.updateLanguage(language);
       console.log('language changed to', language);
-      
+
     }
   }
   getLanguageIconClass(language: string): string{
     switch (language) {
-      case 'en':
-        return 'fi fi-us';
-      case "fr":
-        return "fi fi-fr";
-      case "es":
-        return "fi fi-es";
-      case "ru":
-        return "fi fi-ru";
-      default:
-        return "fi fi-fr";
+      case 'en': return 'flag-icon flag-icon-gb';  // Drapeau du Royaume-Uni
+      case 'fr': return 'flag-icon flag-icon-fr';  // Drapeau de la France
+      case 'ru': return 'flag-icon flag-icon-ru';  // Drapeau de la Russie
+      case 'es': return 'flag-icon flag-icon-es';  // Drapeau de l'Espagne
+      default: return 'flag-icon flag-icon-gb';    // Par défaut : Royaume-Uni
     }
   }
   getLanguageName(language:string): string{
@@ -117,7 +112,7 @@ export class SideNavComponent implements OnInit {
   }
 
   ngOnInit(): void {
- 
+
     this.loadUserProfile();
   }
 
@@ -136,7 +131,7 @@ export class SideNavComponent implements OnInit {
       }
     );
 
- 
+
   }
 
 

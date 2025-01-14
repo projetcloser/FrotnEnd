@@ -1,0 +1,34 @@
+{
+  "MENU": "Menu",
+  "PRODUCTS": "Produits",
+  "NAME": "Nom",
+  "DESCRIPTION": "Description",
+  "PRICE": "Prix",
+  "ADD": "Ajouter",
+  "UPDATE": "Mettre à jour",
+  "EDIT": "Éditer",
+  "DELETE": "Supprimer",
+
+  
+    "sideNav": {
+      "Tableau_de_bord": "Dashboard",
+      "Attestation_entreprise": "Company Certificate",
+      "Non_payé": "Unpaid",
+      "Payé": "Paid",
+      "Statut_Initiated": "Status Initiated",
+      "Attestation_personnel": "Personnel Certificate",
+      "Annonces": "Announcements",
+      "Amendes": "Fines",
+      "Cotisations": "Contributions",
+      "Dettes": "Debts",
+      "Demande_de_cachet": "Seal Request",
+      "Evènements": "Events",
+      "Entreprises": "Companies",
+      "Membres": "Members",
+      "Personnels": "Staff",
+      "Déconnexion": "Logout",
+      "Configuration": "Configuration"
+    }
+
+
+}

@@ -4,27 +4,112 @@
       <i class="fas fa-user-circle"></i>
       <h2>Mon Profil</h2>
       <span *ngIf="user.role.name === 'membre'" class="badge-role">Membre</span>
-      <span *ngIf="user.role.name === 'personnel'" class="badge-role">Personnel</span>
+      <span *ngIf="user.role.name === 'administrateur'" class="badge-role">administrateur</span>
     </div>
     <div class="profile-info" *ngIf="user.role.name === 'membre'">
-      <h4>Profil Membre</h4>
-      <p><strong>Nom :</strong> {{ user.perso.lastname }} {{ user.perso.firstname }}</p>
-      <p><strong>Téléphone :</strong> {{ user.perso.phone }}</p>
-      <p><strong>Email :</strong> {{ user.perso.email }}</p>
-      <p><strong>Date de création :</strong> {{ user.perso.created_at | date:'dd/MM/yyyy' }}</p>
+      <!-- <h4>Profil Membre</h4> -->
+      <div class="row">
+        <div class="col"> <p><strong>Nom :</strong> {{ user.perso.lastname }} {{ user.perso.firstname }}</p></div>
+        <div class="col"><p><strong>Téléphone :</strong> {{ user.perso.phone }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Date de Naissance :</strong> {{ user.perso.birthday | date:'dd/MM/yyyy' }}</p></div>
+        <div class="col"><p><strong>A :</strong> {{ user.perso.place_birth }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Type de contrat :</strong> {{ user.perso.contract_type
+           }}</p></div>
+        <div class="col"><p><strong>Genre:</strong> {{ user.perso.gender }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Statut matrimonial :</strong> {{ user.perso.marital_status}}</p></div>
+        <div class="col"><p><strong>Enfant(s) :</strong> {{ user.perso.num_children  }}</p></div>
+
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Téléphone 1 :</strong> {{ user.perso.phone }}</p></div>
+        <div class="col"><p><strong>Téléphone 2 :</strong> {{ user.perso.phone_2 }}</p></div>
+
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Téléphone du pere :</strong> {{ user.perso.father_phone }}</p></div>
+        <div class="col"><p><strong>Nom du pere :</strong> {{ user.perso.father_name  }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Poste :</strong> {{ user.perso.position }}</p></div>
+        <div class="col"><p><strong>Profession :</strong> {{ user.perso.profession
+           }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Validiter de la carte :</strong> {{ user.perso.date_card_validity | date:'dd/MM/yyyy' }}</p></div>
+        <!-- <div class="col"><p><strong>Date de création :</strong> {{ user.perso.country_id}} {{user.perso.city_id }}</p></div> -->
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Pays :</strong> {{ getCountryName(user.perso.country_id)}}</p></div>
+        <div class="col"><p><strong>Ville :</strong>  {{getCityName(user.perso.city_id )}}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Creation du Compte :</strong> {{ user.perso.created_at | date:'dd/MM/yyyy' }}</p></div>
+        <div class="col"><p><strong>Modification du compte :</strong>  {{user.perso.updated_at| date:'dd/MM/yyyy'  }}</p></div>
+      </div>
+
     </div>
-    <div class="profile-info" *ngIf="user.role.name === 'personnel'">
-      <h4>Profil Personnel</h4>
-      <p><strong>Nom :</strong> {{ user.perso.lastname }} {{ user.perso.firstname }}</p>
-      <p><strong>Téléphone :</strong> {{ user.perso.phone }}</p>
-      <p><strong>Email :</strong> {{ user.perso.email }}</p>
-      <p><strong>Date de création :</strong> {{ user.perso.created_at | date:'dd/MM/yyyy' }}</p>
+    <div class="profile-info" *ngIf="user.role.name === 'administrateur'">
+      <!-- <h4>Profil Administrateur</h4> -->
+      <div class="row">
+        <div class="col"> <p><strong>Nom :</strong> {{ user.perso.lastname }} {{ user.perso.firstname }}</p></div>
+        <div class="col"><p><strong>Téléphone :</strong> {{ user.perso.phone }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Date de Naissance :</strong> {{ user.perso.birthday | date:'dd/MM/yyyy' }}</p></div>
+        <div class="col"><p><strong>A :</strong> {{ user.perso.place_birth }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Type de contrat :</strong> {{ user.perso.contract_type
+           }}</p></div>
+        <div class="col"><p><strong>Genre:</strong> {{ user.perso.gender }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Statut matrimonial :</strong> {{ user.perso.marital_status}}</p></div>
+        <div class="col"><p><strong>Enfant(s) :</strong> {{ user.perso.num_children  }}</p></div>
+
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Téléphone 1 :</strong> {{ user.perso.phone }}</p></div>
+        <div class="col"><p><strong>Téléphone 2 :</strong> {{ user.perso.phone_2 }}</p></div>
+
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Téléphone du pere :</strong> {{ user.perso.father_phone }}</p></div>
+        <div class="col"><p><strong>Nom du pere :</strong> {{ user.perso.father_name  }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Poste :</strong> {{ user.perso.position }}</p></div>
+        <div class="col"><p><strong>Profession :</strong> {{ user.perso.profession
+           }}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Validiter de la carte :</strong> {{ user.perso.date_card_validity | date:'dd/MM/yyyy' }}</p></div>
+        <!-- <div class="col"><p><strong>Date de création :</strong> {{ user.perso.country_id}} {{user.perso.city_id }}</p></div> -->
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Pays :</strong> {{ getCountryName(user.perso.country_id)}}</p></div>
+        <div class="col"><p><strong>Ville :</strong>  {{getCityName(user.perso.city_id )}}</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><p><strong>Creation du Compte :</strong> {{ user.perso.created_at | date:'dd/MM/yyyy' }}</p></div>
+        <div class="col"><p><strong>Modification du compte :</strong>  {{user.perso.updated_at| date:'dd/MM/yyyy'  }}</p></div>
+      </div>
+
+
+
+
     </div>
     <div *ngIf="!user.role">
       <p>Chargement du profil...</p>
     </div>
     <div class="text-center mt-4">
-      <button class="btn btn-primary"><i class="fas fa-edit"></i> Modifier le profil</button>
+      <a class="btn btn-primary" [routerLink]="['/Closer/membre/edit', user.perso.id]"  ><i class="fas fa-edit"></i> Modifier le profil</a>
     </div>
   </div>
 </div>

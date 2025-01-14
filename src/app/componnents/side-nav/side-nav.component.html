@@ -49,7 +49,7 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>
                       <!-- Tableau de bord  -->
-                       {{'sideNav. '| translate }}
+                       {{'sideNav.Tableau_de_bord'| translate }}
                     </span></a>
             </li>
 
@@ -71,7 +71,7 @@
                   aria-expanded="true" aria-controls="collapseTw" >
                   <i class="fa-solid fa-ticket"></i>
                   <span>
-                    {{'sideNav.Attestation_entreprise '| translate }}
+                    {{'sideNav.Attestation_entreprise'| translate }}
                     <!-- Attestation entreprise -->
                   </span>
               </a>
@@ -81,14 +81,14 @@
                       <li >
                         <a class="collapse-item" routerLink="/Closer/attestation-non_paye"  style="color: white;">
                           <i class="fa-solid fa-ticket"></i>
-                          {{'sideNav.Non_payé '| translate }}
+                          {{'sideNav.Non_payé'| translate }}
                           <!-- Non payé -->
                         </a>
                       </li>
                       <li >
                         <a class="collapse-item" routerLink="/Closer/attestation-paye"  style="color: white;">
                           <i class="fa-solid fa-ticket"></i>
-                          {{'sideNav.Non_payé '| translate }}
+                          {{'sideNav.Non_payé'| translate }}
                           <!-- Payé -->
                         </a>
                       </li>
@@ -96,7 +96,7 @@
                       <li >
                         <a class="collapse-item" routerLink="/Closer/attestation-initied"  style="color: white;">
                           <i class="fa-solid fa-ticket"></i>
-                          {{'sideNav.Statut_Initiated '| translate }}
+                          {{'sideNav.Statut_Initiated'| translate }}
                           <!-- Statut Initiated -->
                           <!-- json-server --watch db.json -->
 
@@ -113,7 +113,7 @@
                 <i class="fa-solid fa-ticket"></i>
                 <span>
                   <!-- Attestation personnel -->
-                  {{'sideNav.Attestation_personnel '| translate }}
+                  {{'sideNav.Attestation_personnel'| translate }}
                 </span>
             </a>
           </li>
@@ -125,7 +125,7 @@
             <i class="fa fa-calendar"></i>
             <span>
               <!-- Annonces -->
-              {{'sideNav.Annonces '| translate }}
+              {{'sideNav.Annonces'| translate }}
 
             </span>
           </a>
@@ -136,7 +136,7 @@
             <i class="fa fa-dollar"></i>
             <span>
               <!-- Amendes -->
-              {{'sideNav.Amendes '| translate }}
+              {{'sideNav.Amendes'| translate }}
             </span>
           </a>
         </li>
@@ -147,7 +147,7 @@
               <i class="fa fa-dollar"></i>
               <span>
                 <!-- Amendes -->
-                {{'sideNav.Amendes '| translate }}
+                {{'sideNav.Amendes'| translate }}
               </span>
             </a>
           </li>
@@ -159,7 +159,7 @@
               <i class="fas fa-donate"></i>
               <span>
                 <!-- Cotisations -->
-                {{'sideNav.Cotisations '| translate }}
+                {{'sideNav.Cotisations'| translate }}
               </span>
             </a>
           </li>
@@ -172,7 +172,7 @@
             <i class="fas fa-donate"></i>
             <span>
               <!-- Cotisations -->
-              {{'sideNav.Cotisations '| translate }}
+              {{'sideNav.Cotisations'| translate }}
             </span>
           </a>
         </li>
@@ -186,7 +186,7 @@
               <i class="fas fa-donate"></i>
               <span>
                 <!-- Dettes -->
-                {{'sideNav.Dettes '| translate }}
+                {{'sideNav.Dettes'| translate }}
               </span>
             </a>
           </li>
@@ -198,7 +198,7 @@
               <i class="fas fa-donate"></i>
               <span>
                 <!-- Dettes -->
-                {{'sideNav.Dettes '| translate }}
+                {{'sideNav.Dettes'| translate }}
               </span>
             </a>
           </li>
@@ -208,7 +208,7 @@
             <i class="far fa-folder-open"></i>
             <span>
               <!-- Demande de cachet -->
-              {{'sideNav.Dettes '| translate }}
+              {{'sideNav.Demande_de_cachet'| translate }}
             </span>
         </a>
         </li>
@@ -217,7 +217,7 @@
             <i class="fa fa-list-alt" aria-hidden="true"></i>
             <span>
               <!-- Evènements -->
-              {{'sideNav.Dettes '| translate }}
+              {{'sideNav.Evènements'| translate }}
             </span>
         </a>
         </li>
@@ -242,7 +242,7 @@
             <i class="fa-solid fa-building"></i>
             <span>
               <!-- Entreprises -->
-              {{'sideNav.Dettes '| translate }}
+              {{'sideNav.Entreprises'| translate }}
             </span>
             </a>
         </li>
@@ -276,7 +276,7 @@
                 <i class="fa fa-users"></i>
                 <span>
                   <!-- Membres  -->
-                  {{'sideNav.Dettes '| translate }}
+                  {{'sideNav.Membres'| translate }}
                 </span>
               </a>
             </li>
@@ -286,7 +286,7 @@
                 <i class="fa fa-users"></i>
                 <span>
                   <!-- Personnels -->
-                  {{'sideNav.Dettes '| translate }}
+                  {{'sideNav.Personnels'| translate }}
                 </span>
               </a>
             </li>
@@ -361,7 +361,7 @@
 
 
                         <!-- Nav Item - Messages -->
-                        <div class="language-dropdown">
+                        <!-- <div class="language-dropdown">
                           <button class="dropdown-btn">
                             <img src="flags/en.svg" alt="English" [ngClass]="getLanguageIconClass(multilangService.languageSignal())" class="flag-icon" />
                               {{ getLanguageName(multilangService.languageSignal())}}
@@ -377,14 +377,34 @@
                               </a>
 
                             </li>
-                            <!-- <li data-lang="es">
+                            <li data-lang="es">
                               <img src="flags/es.svg" alt="Español" class="flag-icon" /> Español
                             </li>
                             <li data-lang="de">
                               <img src="flags/de.svg" alt="Deutsch" class="flag-icon" /> Deutsch
-                            </li> -->
+                            </li>
+                          </ul>
+
+                        </div> -->
+
+                        <div class="language-dropdown">
+                          <button class="dropdown-btn" style="margin-top: 16px;">
+                            <i [ngClass]="getLanguageIconClass(multilangService.languageSignal())"></i>
+                            {{ getLanguageName(multilangService.languageSignal()) }}
+                            <span class="arrow-down">▼</span>
+                          </button>
+
+                          <ul class="dropdown-menu">
+                            <li *ngFor="let language of ['en', 'fr', 'ru', 'es']">
+                              <a class="dropdown-item" (click)="toogleLanguage(language)"
+                                 [ngClass]="{'active': multilangService.languageSignal() === language}">
+                                <i [ngClass]="getLanguageIconClass(language)"></i>
+                                {{ getLanguageName(language) }}
+                              </a>
+                            </li>
                           </ul>
                         </div>
+
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
