@@ -5,6 +5,7 @@ import { Cotisation } from '../cotisation';
 import { CotisationService } from '../cotisation.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { Membre } from '../../../models/membre';
 import { Caisse } from '../../../models/caisse';
 import { MembreServiceService } from '../../membre/membre-service.service';
@@ -17,6 +18,7 @@ import { PaginationService } from '../../../components/pagination.service';
 
 import { NonPayeService } from '../../attestation/nonPaye/non-paye.service';
 import { Payment } from '../../attestation/nonPaye/payer/payment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-index-cotisation',
@@ -41,11 +43,12 @@ export class IndexCotisationComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 10;
   totalItems: number = 0;
+  private cotisationurl = environment.apiUrl + 'cotisations';
 
 
   constructor(private fb: FormBuilder, private excelService: ExcelService, private router: Router, private cotisationService: CotisationService,
     private membersService: MembreServiceService, private caisseService: CaisseServiceService
-    , private authService: AuthService, private paginationService: PaginationService, private attestationService: NonPayeService) { }
+    , private authService: AuthService, private paginationService: PaginationService, private attestationService: NonPayeService, private http: HttpClient) { }
 
 
 
@@ -87,11 +90,43 @@ export class IndexCotisationComponent implements OnInit {
     );
   }
 
-  loadcotisations() {
-    this.cotisationService.getCotisations().subscribe((data: Cotisation[]) => {
-      this.cotisations = data;
+  // loadcotisations() {
+  //   this.cotisationService.getCotisations().subscribe((data: Cotisation[]) => {
+  //     this.cotisations = data;
 
-    });
+  //   });
+  // }
+
+  loadcotisations() {
+    // Étape 1 : Récupération du profil utilisateur
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);
+
+        // Étape 2 : Assurez-vous que 'id_perso' existe avant de continuer
+        const idPerso = this.user.perso?.id;
+        const idRole = this.user.role?.id;
+        if (!idPerso) {
+          console.error("ID personnel non trouvé pour l'utilisateur.");
+          return;
+        }
+        // Étape 3 : Requête pour les données du tableau de bord
+        this.http.get(`${this.cotisationurl}?id_perso=${idPerso}&id_role=${idRole}`).subscribe(
+          (cotisationsResponse: any) => {
+            this.cotisations = cotisationsResponse;
+
+            console.log('Données du tableau de bord:', this.cotisations);
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des données du tableau de bord:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
   }
 
   // Récupérer les villes

@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { environment } from '../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { AmendeServiceService } from '../amende-service.service';
 import { MembreServiceService } from '../../membre/membre-service.service';
 import { AuthService } from '../../../components/auth/auth.service';
@@ -32,19 +34,22 @@ export class ListAmendeComponent implements OnInit
   currentPage: number = 1;
   pageSize: number = 10;
   totalItems: number = 0;
+  private amendeurl = environment.apiUrl + 'fines';
 
   constructor(
     private amendeService: AmendeServiceService,
     private membreService: MembreServiceService,
     private authService: AuthService,
-     private attestationService: NonPayeService,
-    private paginationService: PaginationService
+    private http: HttpClient,
+    private paginationService: PaginationService,
+    private attestationService: NonPayeService
 
   ) { }
 
   ngOnInit(): void {
     this.loadMembres();
     this.loadAmendes();
+    this.loadUserProfile();
   }
 
   // ngAfterViewInit(): void {
@@ -79,11 +84,83 @@ export class ListAmendeComponent implements OnInit
     });
   }
 
+  // loadAmendes() {
+  //   this.amendeService.getUserAmendes().subscribe((data) => {
+  //     this.amendes = data;
+  //   });
+  // }
+
   loadAmendes() {
-    this.amendeService.getUserAmendes().subscribe((data) => {
-      this.amendes = data;
-    });
+
+    // Étape 1 : Récupération du profil utilisateur
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);
+
+        // Étape 2 : Assurez-vous que 'id_perso' existe avant de continuer
+        const idPerso = this.user.perso?.id;
+        const idRole = this.user.role?.id;
+        if (!idPerso) {
+          console.error("ID personnel non trouvé pour l'utilisateur.");
+          return;
+        }
+        // Étape 3 : Requête pour les données du tableau de bord
+        this.http.get(`${this.amendeurl}?id_perso=${idPerso}&id_role=${idRole}`).subscribe(
+          (amendesResponse: any) => {
+            this.amendes = amendesResponse;
+
+            console.log('Données du tableau de bord:', this.amendes);
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des données du tableau de bord:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
   }
+
+  // loadAmendes() {
+
+  //   this.amendeService.getAmendes().subscribe((data) => {
+  //     this.amendes = data;
+  //   });
+  // }
+
+  // loadAmendes(): void {
+  //   // Étape 1 : Récupération du profil utilisateur
+  //   this.authService.getUserProfile().subscribe(
+  //     (response: any) => {
+  //       this.user = response;
+  //       console.log('Utilisateur connecté:', this.user);
+
+  //       // Étape 2 : Assurez-vous que 'id_perso' existe avant de continuer
+  //       const idPerso = this.user.perso?.id;
+  //       if (!idPerso) {
+  //         console.error("ID personnel non trouvé pour l'utilisateur.");
+  //         return;
+  //       }
+
+  //       // Étape 3 : Requête pour les données du tableau de bord
+  //       this.http.get(`${this.amendeService.getAmendes}?id_perso=${idPerso}`).subscribe(
+  //         (amendesResponse: any) => {
+  //           this.amendes = amendesResponse;
+
+  //           console.log('Données du tableau de bord:', this.amendes);
+  //         },
+  //         (error) => {
+  //           console.error('Erreur lors de la récupération des données des amendes', error);
+  //         }
+  //       );
+  //     },
+  //     (error) => {
+  //       console.error('Erreur lors de la récupération du profil utilisateur:', error);
+  //     }
+  //   );
+  // }
 
   getMembreName(membreId: number): string {
     const membre = this.membres.find((m) => m.id === membreId);
@@ -130,8 +207,10 @@ export class ListAmendeComponent implements OnInit
   payer(amende: any): void {
     const payment: Payment = {
       id: 0, // ou une valeur par défaut
-      transaction_id:amende.id,
+      transaction_id: amende.id,
       member_id: amende.member_id,
+      company_attestation_id: amende.id,
+      cotisation_id: amende.id,
       customer_name: this.getMembreName(amende.member_id),
       customer_surname: this.getMemberUserName(amende.member_id), // Renseignez si applicable
       amount: amende.amount, // Assurez-vous que l'objet `item` contient cette information

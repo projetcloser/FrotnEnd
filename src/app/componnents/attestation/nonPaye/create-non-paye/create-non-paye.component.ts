@@ -42,7 +42,7 @@ export class CreateNonPayeComponent {
       payment_amount: [],
       // ref_dem_part: ['', Validators.required],
       // type: ['', Validators.required],
-      cashflow_id: [1],
+      cashflow_id: [3],
       ref_dem_part: [''],
       // city_id: ['', Validators.required],
       // contact_person: ['', Validators.required],
@@ -73,10 +73,10 @@ export class CreateNonPayeComponent {
       year: formattedDate, // Date actuelle formatée
       author: this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response.user.name;
+          this.user = response;
           console.log('Utilisateur attestation connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.addForm.patchValue({ author: this.user });
+          this.addForm.patchValue({ author: response.user.name });
 
         },
         (error) => {
@@ -92,7 +92,10 @@ export class CreateNonPayeComponent {
       this.generateReference(numeroref);
     });
 
+
   }
+
+
 
   generateReference(numeroref: number): void {
     const paddedNumeroref = numeroref.toString().padStart(4, '0'); // Ajout des zéros pour avoir 4 chiffres

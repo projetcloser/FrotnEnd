@@ -18,8 +18,8 @@
 
       <!-- Champ pour l'objet avec icône -->
       <div class="form-group mb-4">
-        <label for="objet" class="form-label"><i class="fas fa-info-circle me-2"></i>Objet</label>
-        <textarea id="object" class="form-control" formControlName="object" rows="3" placeholder="Décrivez l'objet de l'attestation" style="height: 150px;"></textarea>
+        <label for="objet" class="form-label"><i class="fas fa-info-circle me-2"></i>Objet *</label>
+        <textarea id="object" class="form-control" formControlName="object" rows="3" placeholder="Décrivez l'objet de l'attestation" style="height: 150px;" required></textarea>
       </div>
 
       <!-- Champ pour le montant avec icône -->
@@ -31,12 +31,21 @@
       </div> -->
 
       <!-- Champ pour la sélection du membre avec icône -->
-      <div class="form-group mb-4">
-        <label for="member_id" class="form-label"><i class="fas fa-user-friends me-2"></i>Membre</label>
-        <select id="member_id" class="form-select" formControlName="member_id">
+      <div *ngIf="user.role.id !== 1" class="form-group mb-4">
+        <label for="member_id" class="form-label"><i class="fas fa-user-friends me-2"></i>Membre *</label>
+        <select id="member_id" class="form-select" formControlName="member_id" required>
           <option value="" disabled>Sélectionnez un membre</option>
           <option *ngFor="let membre of membres" [value]="membre.id">
             {{ membre.firstname }} {{ membre.lastname }}
+          </option>
+        </select>
+      </div>
+
+      <div *ngIf="user.role.id === 1"class="form-group mb-4">
+        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>Membre</label>
+        <select id="member_id" class="form-select" formControlName="member_id">
+          <option  value="{{ user.perso.id }}" selected>
+            {{ user.perso.firstname }} {{ user.perso.lastname }}
           </option>
         </select>
       </div>

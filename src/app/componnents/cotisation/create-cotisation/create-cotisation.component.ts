@@ -44,7 +44,7 @@ export class CreateCotisationComponent implements OnInit {
 
   ngOnInit(): void {
     this.cotisationForm = this.fb.group({
-      cashflow_id: [1],
+      cashflow_id: [3],
       member_id: [''],
       // pay_year: [this.currentYear], // Année actuelle
       pay_year: [{ value: '', disabled: true }],

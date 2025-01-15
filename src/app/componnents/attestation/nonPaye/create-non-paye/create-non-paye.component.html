@@ -26,14 +26,14 @@
       </div>
 
       <div class="form-group mb-4">
-        <label for="payment_amount" class="form-label" i18n>Maître d'ouvrage</label>
-        <input type="text" id="ouvrage" class="form-control border-0 bg-light" formControlName="payment_amount" >
+        <label for="payment_amount" class="form-label" i18n>Maître d'ouvrage *</label>
+        <input type="text" id="ouvrage" class="form-control border-0 bg-light" formControlName="payment_amount" required="Entrer le maître d'ouvrage">
       </div>
 
       <!-- Champ pour l'objet avec icône -->
       <div class="form-group mb-4">
-        <label for="motif" class="form-label"><i class="fas fa-info-circle me-2" i18n></i>Objet</label>
-        <textarea id="motif" class="form-control" formControlName="motif" rows="3" placeholder="Décrivez l'objet de l'attestation" style="height: 150px;"></textarea>
+        <label for="motif" class="form-label"><i class="fas fa-info-circle me-2" i18n></i>Objet *</label>
+        <textarea id="motif" class="form-control" formControlName="motif" rows="3" placeholder="Décrivez l'objet de l'attestation" style="height: 150px;" required="Enter l'objet"></textarea>
       </div>
 
       <!-- Champ pour le montant avec icône -->
@@ -46,19 +46,28 @@
 
         <!-- Champ pour le montant avec icône -->
         <div class="form-group mb-4">
-          <label for="company_id" class="form-label" i18n><i class="fas fa-user me-2"></i>Entreprise</label>
-          <select formControlName="company_id" class="form-control">
+          <label for="company_id" class="form-label" i18n><i class="fas fa-user me-2"></i>Entreprise *</label>
+          <select formControlName="company_id" class="form-control" required>
             <option *ngFor="let caisse of companies" [value]="caisse.id">{{ caisse.social_reason }}</option>
           </select>
         </div>
 
       <!-- Champ pour la sélection du membre avec icône -->
-      <div class="form-group mb-4">
-        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>Membre</label>
-        <select id="member_id" class="form-select" formControlName="member_id">
+      <div *ngIf="user.role.id !== 1"class="form-group mb-4">
+        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>Membre *</label>
+        <select id="member_id" class="form-select" formControlName="member_id" required>
           <option value="" disabled i18n>Sélectionnez un membre</option>
           <option *ngFor="let membre of membres" [value]="membre.id">
             {{ membre.firstname }} {{ membre.lastname }}
+          </option>
+        </select>
+      </div>
+
+      <div *ngIf="user.role.id === 1"class="form-group mb-4">
+        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>Membre</label>
+        <select id="member_id" class="form-select" formControlName="member_id">
+          <option  value="{{ user.perso.id }}" selected>
+            {{ user.perso.firstname }} {{ user.perso.lastname }}
           </option>
         </select>
       </div>

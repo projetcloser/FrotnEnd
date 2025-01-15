@@ -34,11 +34,20 @@
 
 
               <div class="row">
-                <div class="col-md-6">
+                <div *ngIf="user.role.id !== 1"class="col-md-6">
+                  <div class="form-group">
+                    <label for="member_id" i18n>Membre *</label>
+                    <select id="member_id" formControlName="member_id" class="form-control" required>
+                      <option *ngFor="let country of members" [value]="country.id">{{ country.firstname }} {{ country.lastname }}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div *ngIf="user.role.id === 1"class="col-md-6">
                   <div class="form-group">
                     <label for="member_id" i18n>Membre</label>
                     <select id="member_id" formControlName="member_id" class="form-control">
-                      <option *ngFor="let country of members" [value]="country.id">{{ country.firstname }}</option>
+                      <option value="{{ user.perso.id }}" selected>{{ user.perso.firstname }} {{ user.perso.lastname }}</option>
                     </select>
                   </div>
                 </div>
@@ -64,11 +73,18 @@
                   </div>
                 </div>
 
-                <div class="col-md-6">
+                <div *ngIf="user.role.id !== 1" class="col-md-6">
                   <label for="name" i18n>Status</label>
                   <select id="status" formControlName="status" class="form-control" required>
                     <option value="" disabled selected>Choisir un statut</option>
                     <option *ngFor="let option of statusOptions" [value]="option.value">{{ option.label }}</option>
+                  </select>
+                </div>
+
+                <div *ngIf="user.role.id === 1" class="col-md-6">
+                  <label for="name" i18n>Status</label>
+                  <select id="status" formControlName="status" class="form-control" required>
+                    <option value="1" selected>En cours de fabrication</option>
                   </select>
                 </div>
 

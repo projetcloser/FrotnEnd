@@ -11,7 +11,7 @@ import { AuthService } from '../../../components/auth/auth.service';
 @Component({
   selector: 'app-create-cachet',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './create-cachet.component.html',
   styleUrl: './create-cachet.component.css'
 })
@@ -20,14 +20,14 @@ export class CreateCachetComponent {
   cahet: Cachet[] = [];
   countries: any[] = [];
   cities: any[] = []
-  members:any[]=[]
+  members: any[] = []
   user: any = {};
 
   currentTime = new Date();
   currentDay = new Date();
 
-   // Définir les options de statut
-   statusOptions = [
+  // Définir les options de statut
+  statusOptions = [
     { value: 1, label: 'En cours de fabrication' },
     { value: 2, label: 'Disponible' },
     { value: 3, label: 'Envoyée' },
@@ -35,22 +35,22 @@ export class CreateCachetComponent {
   ];
 
   constructor(public companyService: CachetService,
-    private authService: AuthService, private router:Router, private route:ActivatedRoute,
-    private fb: FormBuilder, private countryService: PaysServiceService, cityService:VilleServiceService){
+    private authService: AuthService, private router: Router, private route: ActivatedRoute,
+    private fb: FormBuilder, private countryService: PaysServiceService, cityService: VilleServiceService) {
 
   }
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.entrepriseForm = this.fb.group({
       receipt_number: [],
       author: [{ value: '', disabled: true }],
-        phone: [],
-        year: [],
-        // nui: [this.company.nui],
-        // type: [this.company.company_type],
-        member_id: [],
-        city_id: [],
-        status: []
+      phone: [],
+      year: [],
+      // nui: [this.company.nui],
+      // type: [this.company.company_type],
+      member_id: [],
+      city_id: [],
+      status: []
     });
 
     this.loadCities();
@@ -62,18 +62,18 @@ export class CreateCachetComponent {
     // Récupérer l'auteur (utilisateur connecté) et la date
     this.entrepriseForm.patchValue({
       pay_year: formattedDate, // Date actuelle formatée
-      author:  this.authService.getUserProfile().subscribe(
+      author: this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response.user.name;
+          this.user = response;
           console.log('Utilisateur amende connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.entrepriseForm.patchValue({ author: this.user });
+          this.entrepriseForm.patchValue({ author: response.user.name });
 
         },
         (error) => {
-            console.error('Erreur lors de la récupération du profil utilisateur:', error);
+          console.error('Erreur lors de la récupération du profil utilisateur:', error);
         }
-    ) // Auteur connecté
+      ) // Auteur connecté
     });
 
   }
@@ -91,15 +91,15 @@ export class CreateCachetComponent {
     });
   }
 
-  loadmembers(){
-     // Charger la liste des villes
-     this.companyService.getMembers().subscribe((data: any[]) => {
+  loadmembers() {
+    // Charger la liste des villes
+    this.companyService.getMembers().subscribe((data: any[]) => {
       this.members = data;
     })
 
   }
 
-  get f(){
+  get f() {
     return this.entrepriseForm.controls;
   }
 

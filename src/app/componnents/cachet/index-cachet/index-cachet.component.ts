@@ -5,14 +5,16 @@ import { CachetService } from '../cachet.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExcelService } from '../../../services/excel.service';
-import {AuthService} from "../../../components/auth/auth.service";
+import { AuthService } from "../../../components/auth/auth.service";
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
 import { PaginationService } from '../../../components/pagination.service';
+import { environment } from '../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-index-cachet',
   standalone: true,
-  imports: [CommonModule,RouterModule,FormsModule,ReactiveFormsModule,PaginationComponent],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, PaginationComponent],
   templateUrl: './index-cachet.component.html',
   styleUrl: './index-cachet.component.css'
 })
@@ -22,7 +24,7 @@ export class IndexCachetComponent implements OnInit {
 
   countries: any[] = [];
   cities: any[] = [];
-  members:any[]=[];
+  members: any[] = [];
 
   searchTerm: string = ''; // Terme de recherche
 
@@ -39,22 +41,26 @@ export class IndexCachetComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 10;
   totalItems: number = 0;
+  private cacheteurl = environment.apiUrl + 'stamps';
 
-  constructor(private fb: FormBuilder,private excelService: ExcelService,private cachetService: CachetService,private router: Router,
-    private paginationService: PaginationService,private authService: AuthService) {this.searchForm = this.fb.group({
+  constructor(private fb: FormBuilder, private excelService: ExcelService, private cachetService: CachetService, private router: Router,
+    private paginationService: PaginationService, private authService: AuthService, private http: HttpClient) {
+    this.searchForm = this.fb.group({
       keyword: [''],
       statut: [''],
       gender: [''],
-    });}
+    });
+  }
 
   ngOnInit(): void {
-    this.cachetService.getCachets().subscribe((data: any[]) => {
-      this.cachets = data;
-      this.filteredCachets = [...this.cachets]; // Initialisation de la liste filtrée
-        // pagination
-        this.totalItems = this.cachets.length;
-        this.updatePage();
-    });
+    // this.cachetService.getCachets().subscribe((data: any[]) => {
+    //   this.cachets = data;
+    //   this.filteredCachets = [...this.cachets]; // Initialisation de la liste filtrée
+    //   // pagination
+    //   this.totalItems = this.cachets.length;
+    //   this.updatePage();
+    // });
+    this.loadCachets();
     this.loadCities();
     this.loadCountries();
     this.loadMembers();
@@ -67,68 +73,105 @@ export class IndexCachetComponent implements OnInit {
     });
   }
 
-loadUserProfile(): void {
-  this.authService.getUserProfile().subscribe(
-    (response: any) => {
-      this.user = response;
-      console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
+  loadUserProfile(): void {
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
 
-    },
-    (error) => {
-      console.error('Erreur lors de la récupération du profil utilisateur:', error);
-    }
-  );
-}
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
+  }
 
 
-// Récupérer les pays
-loadCountries(): void {
-  this.cachetService.getCountries().subscribe(data => {
-    this.countries = data;
-  });
-}
+  loadCachets(): void {
+    // Étape 1 : Récupération du profil utilisateur
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);
 
-// Récupérer les villes
-loadCities(): void {
-  this.cachetService.getCities().subscribe(data => {
-    this.cities = data;
-  });
-}
+        // Étape 2 : Assurez-vous que 'id_perso' existe avant de continuer
+        const idPerso = this.user.perso?.id;
+        const idRole = this.user.role?.id;
+        if (!idPerso) {
+          console.error("ID personnel non trouvé pour l'utilisateur.");
+          return;
+        }
+        // Étape 3 : Requête pour les données du tableau de bord
+        this.http.get(`${this.cacheteurl}?id_perso=${idPerso}&id_role=${idRole}`).subscribe(
+          (cachetResponse: any) => {
+            this.cachets = cachetResponse;
+            this.filteredCachets = [...this.cachets]; // Initialisation de la liste filtrée
+            // pagination
+            this.totalItems = this.cachets.length;
+            this.updatePage();
 
-// Récupérer les membres
-loadMembers(): void {
-  this.cachetService.getMembers().subscribe(data => {
-    this.members = data;
-  });
-}
+            console.log('Données du tableau de bord:', this.cachets);
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des données du tableau de bord:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
+  }
 
-// Trouver le nom du pays à partir de l'ID
-getCountryName(country_id: number): string {
-  const country = this.countries.find(c => c.id === country_id);
-  return country ? country.name : 'Non défini';
-}
 
-// Trouver le nom de la ville à partir de l'ID
-getCityName(city_id: number): string {
-  const city = this.cities.find(c => c.id === city_id);
-  return city ? city.name : 'Non défini';
-}
+  // Récupérer les pays
+  loadCountries(): void {
+    this.cachetService.getCountries().subscribe(data => {
+      this.countries = data;
+    });
+  }
 
-// Trouver le nom de la ville à partir de l'ID
-getMembersName(member_id: number): string {
-  const membre = this.members.find(c => c.id === member_id);
-  return membre ? membre.firstname : 'Non défini';
-}
-// Trouver le nom de la ville à partir de l'ID
-getMembersphone(city_id: number): string {
-  const membrephone = this.members.find(c => c.id === city_id);
-  return membrephone ? membrephone.phone : 'Non défini';
-}
-// Trouver le nom de la ville à partir de l'ID
-getMembersmatrivule(city_id: number): string {
-  const membrematricule = this.members.find(c => c.id === city_id);
-  return membrematricule ? membrematricule.matricule : 'Non défini';
-}
+  // Récupérer les villes
+  loadCities(): void {
+    this.cachetService.getCities().subscribe(data => {
+      this.cities = data;
+    });
+  }
+
+  // Récupérer les membres
+  loadMembers(): void {
+    this.cachetService.getMembers().subscribe(data => {
+      this.members = data;
+    });
+  }
+
+  // Trouver le nom du pays à partir de l'ID
+  getCountryName(country_id: number): string {
+    const country = this.countries.find(c => c.id === country_id);
+    return country ? country.name : 'Non défini';
+  }
+
+  // Trouver le nom de la ville à partir de l'ID
+  getCityName(city_id: number): string {
+    const city = this.cities.find(c => c.id === city_id);
+    return city ? city.name : 'Non défini';
+  }
+
+  // Trouver le nom de la ville à partir de l'ID
+  getMembersName(member_id: number): string {
+    const membre = this.members.find(c => c.id === member_id);
+    return membre ? membre.firstname : 'Non défini';
+  }
+  // Trouver le nom de la ville à partir de l'ID
+  getMembersphone(city_id: number): string {
+    const membrephone = this.members.find(c => c.id === city_id);
+    return membrephone ? membrephone.phone : 'Non défini';
+  }
+  // Trouver le nom de la ville à partir de l'ID
+  getMembersmatrivule(city_id: number): string {
+    const membrematricule = this.members.find(c => c.id === city_id);
+    return membrematricule ? membrematricule.matricule : 'Non défini';
+  }
 
   navigateToForm() {
     this.router.navigate(['/Closer/nouveau-cachet']);
@@ -138,17 +181,17 @@ getMembersmatrivule(city_id: number): string {
     this.router.navigate(['/Closer/modifier-cachet']);
   }
 
-  deletePersonnel(id:number){
+  deletePersonnel(id: number) {
     this.cachetService.deleteCachet(id).subscribe(res => {
-         this.cachets = this.cachets.filter(item => item.id !== id);
-        //  console.log('activites deleted successfully!');
-         alert("cachets deleted successfully!")
+      this.cachets = this.cachets.filter(item => item.id !== id);
+      //  console.log('activites deleted successfully!');
+      alert("cachets deleted successfully!")
     })
   }
 
 
-   // Méthode de confirmation avant la suppression
-   confirmDelete(id: number) {
+  // Méthode de confirmation avant la suppression
+  confirmDelete(id: number) {
     const confirmed = confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
     if (confirmed) {
       this.deletePersonnel(id);
@@ -168,7 +211,8 @@ getMembersmatrivule(city_id: number): string {
         return 'Livrée';
       default:
         return 'Inconnu';
-    }}
+    }
+  }
 
   exportCachetsByStatus(status: number): void {
     // Filtrer les cachets par statut
@@ -189,18 +233,18 @@ getMembersmatrivule(city_id: number): string {
 
   // pagination
 
- updatePage(): void {
-  this.paginatedData = this.paginationService.paginate(
-    this.cachets,
-    this.currentPage,
-    this.pageSize
-  );
-}
+  updatePage(): void {
+    this.paginatedData = this.paginationService.paginate(
+      this.cachets,
+      this.currentPage,
+      this.pageSize
+    );
+  }
 
-onPageChange(page: number): void {
-  this.currentPage = page;
-  this.updatePage();
-}
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.updatePage();
+  }
 
 }
 

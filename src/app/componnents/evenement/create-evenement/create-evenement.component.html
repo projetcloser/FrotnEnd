@@ -13,14 +13,14 @@
               <form [formGroup]="evenementForm" (ngSubmit)="onSubmit()">
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span i18n>titre</span>
-                    <input type="text" formControlName="title" class="form-control" />
+                    <span i18n>titre *</span>
+                    <input type="text" formControlName="title" class="form-control" required/>
                     <!-- <div *ngIf="evenementForm.controls['pay'].invalid && evenementForm.controls['pay'].touched" class="text-danger">
                       <small *ngIf="evenementForm.controls['pay'].hasError('required')">Raison sociale est requise.</small>
                     </div> -->
                   </div>
                   <div class="col-md-6">
-                    <span i18n>Place</span>
+                    <span i18n>Place *</span>
                     <input type="text" formControlName="place" class="form-control" value="0" />
                     <!-- <div *ngIf="evenementForm.controls['amount'].invalid && evenementForm.controls['amount'].touched" class="text-danger">
                       <small *ngIf="evenementForm.controls['amount'].hasError('required')">Somme est requise.</small>
@@ -70,12 +70,12 @@
 
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span i18n>Debut</span>
-                    <input type="date" formControlName="start_date" class="form-control"  />
+                    <span i18n>Debut *</span>
+                    <input type="date" formControlName="start_date" class="form-control" required />
                   </div>
                   <div class="col-md-6">
-                    <span i18n>Fin</span>
-                    <input type="date" formControlName="end_date" class="form-control"  />
+                    <span i18n>Fin *</span>
+                    <input type="date" formControlName="end_date" class="form-control"  required/>
                   </div>
                 </div>
 

@@ -11,7 +11,9 @@ import { PaginationComponent } from '../../../../components/pagination/paginatio
 import { PaginationService } from '../../../../components/pagination.service';
 import { environment } from '../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-
+import { AuthService } from '../../../../components/auth/auth.service';
+import QRCode from 'qrcode';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-index-paye',
@@ -26,6 +28,8 @@ export class IndexPayeComponent {
   statusFilter = 3; //Filtre par défaut : non payé
   members: Membre[] = [];
   companies: Entreprise[] = [];
+  user: any = {};
+  private attestSuccessurl = environment.apiUrl + 'companies/attestations/success';
 
   // pagination
   paginatedData: any[] = []; // Données de la page courante
@@ -34,12 +38,11 @@ export class IndexPayeComponent {
   pageSize: number = 10;
   totalItems: number = 0;
   private loadattesturl = environment.apiUrl + 'companies/attestations/success';
-  constructor(private router: Router, private attestationService: NonPayeService, private entrepriseService: EntrepriseServiceService,
-    private paginationService: PaginationService, private http: HttpClient) { }
+  constructor(private router: Router, private attestationService: NonPayeService, private entrepriseService: EntrepriseServiceService, private authService: AuthService, private paginationService: PaginationService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    // this.loadAttestations();
-    this.loadAttestationsByStatus(this.statusFilter);
+    this.loadAttestations();
+    //this.loadAttestationsByStatus(this.statusFilter);
     this.getMemberALL();
     this.getCompanies();
     //this.loadAttestPaye();
@@ -66,6 +69,44 @@ export class IndexPayeComponent {
 
   //   });
   // }
+
+  loadAttestations(): void {
+    // this.attestationService.getAttestations().subscribe(data => {
+    //   this.attestations = data;
+    //   console.log('info sur attestationentreprise', this.attestations);
+
+    // });
+    // Étape 1 : Récupération du profil utilisateur
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);
+
+        // Étape 2 : Assurez-vous que 'id_perso' existe avant de continuer
+        const idPerso = this.user.perso?.id;
+        const idRole = this.user.role?.id;
+        if (!idPerso) {
+          console.error("ID personnel non trouvé pour l'utilisateur.");
+          return;
+        }
+        // Étape 3 : Requête pour les données du tableau de bord
+        this.http.get(`${this.attestSuccessurl}?id_perso=${idPerso}&id_role=${idRole}`).subscribe(
+          (amendesResponse: any) => {
+            this.attestations = amendesResponse;
+
+            console.log('Données du tableau de bord:', this.attestations);
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des données du tableau de bord:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
+  }
+
 
 
 
@@ -149,6 +190,181 @@ export class IndexPayeComponent {
   onPageChange(page: number): void {
     this.currentPage = page;
     this.updatePage();
+  }
+
+  generatePdf(attest: NonPaye): void {
+    const doc = new jsPDF('portrait', 'mm', 'A4');
+
+    // Date actuelle formatée
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('fr-FR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    // En-tête avec une image
+    try {
+      doc.addImage('assets/img/header.jpg', 'PNG', 10, 5, 190, 45);
+    } catch (error) {
+      console.error('Erreur lors de l’ajout de l’en-tête :', error);
+    }
+
+    // Numéro de référence
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`N° 0972 / 01 /Pdt/SG/ONIGC/24`, 120, 60);
+
+    // Titre central - ATTESTATION
+    doc.setFontSize(24);
+    // doc.setTextColor(0, 0, 128); // Bleu
+    doc.text('A T T E S T A T I O N', 102, 85, { align: 'center' });
+
+    // Corps du texte
+    doc.setFontSize(16);
+    doc.setTextColor(0, 0, 0); // Noir
+    doc.text('Le Président de l’Ordre', 70, 100);
+    doc.setFont('helvetica', 'normal');
+    doc.text('atteste que', 85, 108);
+
+    // Nom de l'ingénieur
+    doc.setFont('helvetica', 'bold');
+    doc.text(`l’Ingénieur ${this.getMemberName(attest.member_id)}`, 55, 116);
+    doc.setFont('helvetica', 'normal');
+    doc.text(
+      `est bien inscrit au Tableau de l’Ordre pour l’année 2024`,
+      35,
+      124
+    );
+    doc.text(`sous le matricule ${this.getmemberMatricule(attest.member_id)}`, 70, 132);
+
+    // Validité
+    doc.setFontSize(14);
+    doc.text(
+      `A ce titre, il est autorisé à exercer la profession `,
+      50,
+      146
+    );
+    doc.text(
+      `d’Ingénieur de Génie Civil pour la période allant `,
+      50,
+      154
+    );
+    doc.text(
+      `du 1er janvier 2025 au 31 décembre 2025.`,
+      53,
+      162
+    );
+    doc.text(
+      `et à faire prévaloir la présente attestation`,
+      53,
+      170
+    );
+    doc.setTextColor(0, 0, 0); // Bleu
+    doc.text(
+      `Démandée par`,
+      45,
+      178
+    );
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 128); //
+    doc.setFont('helvetica', 'bold');
+    doc.text(
+      `${this.getCompaniesNames(attest.company_id)}`,
+      80,
+      178
+    );
+    //noir
+    // doc.setFontSize(14);
+    // doc.setFont('helvetica', 'normal');
+    // doc.setTextColor(0, 0, 0); // Noir
+    // doc.text(
+    //   `pour `,
+    //   25,
+    //   186
+    // );
+    //blue
+    // Configuration pour le texte en bleu
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 128); // Bleu
+    doc.setFont('helvetica', 'bold');
+
+    // Texte à insérer
+    const longText = `Pour ` + ` ${attest.motif}`;
+
+    // Largeur maximale autorisée pour le texte (en mm)
+    const maxWidth = 150;
+
+    // Fractionner le texte pour qu'il s'adapte à la largeur spécifiée
+    const wrappedText = doc.splitTextToSize(longText, maxWidth);
+
+    // Insérer le texte fractionné sur plusieurs lignes et obtenir la hauteur résultante
+    const initialY = 186; // Position de départ
+    const lineHeight = 6; // Hauteur d'une ligne (approximative, ajustez si nécessaire)
+    const wrappedTextHeight = wrappedText.length * lineHeight;
+    doc.text(wrappedText, 35, initialY);
+
+    // Configuration pour le texte noir
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(14);
+    doc.setTextColor(0, 0, 0); // Noir
+
+
+    // Calcul dynamique de la position Y pour éviter le chevauchement
+    const dynamicY = initialY + wrappedTextHeight; // Ajout de marge entre les blocs de texte
+    doc.text(
+      `Fait à Yaoundé, le ${formattedDate} pour servir et valoir ce que de droit.`,
+      20,
+      dynamicY
+    );
+
+
+
+
+    // QR Code
+    const qrCodeText = `N° Attestation: xxx\nNom de l’ingénieur: ${this.getMemberName(attest.member_id)}\nTableau de l’Ordre: xxxx\nMatricule: ${this.getmemberMatricule(attest.member_id)}\nDate: ${formattedDate}`;
+    const qrCodeSize = 30; // Taille du QR code
+    try {
+      const qrCodeCanvas = document.createElement('canvas');
+      /* The above code appears to be a comment block in TypeScript. It mentions the term "QRCode" and
+      uses the " */
+      QRCode.toCanvas(qrCodeCanvas, qrCodeText, { width: qrCodeSize });
+      const qrCodeDataURL = qrCodeCanvas.toDataURL('image/png');
+      doc.addImage(qrCodeDataURL, 'PNG', 38, 215, qrCodeSize, qrCodeSize);
+    } catch (error) {
+      console.error('Erreur lors de la génération du QR Code :', error);
+    }
+
+
+
+    // Cachet
+    try {
+      doc.addImage('assets/img/signe2.png', 'PNG', 130, 213, 40, 40);
+    } catch (error) {
+      console.error('Erreur lors de l’ajout du cachet :', error);
+    }
+    doc.setFont('helvetica', 'bold');
+    doc.line(130, 216, 185, 216); // Ligne horizontale
+    doc.text(
+      `Le Président de l'Ordre`,
+      130,
+      215
+    );
+
+    // Bas de page
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'italic');
+    doc.text('Ce document est généré par CLOSER (c)', 20, 250);
+    doc.text('Le QR-CODE atteste de son authenticité', 20, 255);
+    try {
+      doc.addImage('assets/img/footer.jpg', 'PNG', 20, 260, 170, 15);
+    } catch (error) {
+      console.error('Erreur lors de l’ajout du pied de page :', error);
+    }
+
+    // Exporter le PDF
+    const fileName = `Attestation_entreprise_${attest.member_id}.pdf`;
+    doc.save(fileName);
   }
 
   // loadAttestPaye(): void {

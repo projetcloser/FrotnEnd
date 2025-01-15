@@ -56,9 +56,9 @@
 
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span i18n>Membre</span>
-                    <select formControlName="member_id" class="form-control">
-                      <option *ngFor="let membre of membres" [value]="membre.id">{{ membre.firstname }}</option>
+                    <span i18n>Membre *</span>
+                    <select formControlName="member_id" class="form-control" required>
+                      <option *ngFor="let membre of membres" [value]="membre.id">{{ membre.firstname }} {{ membre.lastname }}</option>
                     </select>
                   </div>
                   <!-- <div class="col-md-6">
@@ -70,13 +70,13 @@
                 </div>
 
                 <div class="row mb-3">
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     <span i18n>Caissse</span>
                     <select formControlName="cashflow_id" class="form-control">
 
                       <option *ngFor="let caisse of caisses" [value]="caisse.id">{{ caisse.name }}</option>
                     </select>
-                  </div>
+                  </div> -->
                   <div class="col-md-6">
                     <span i18n>Année</span>
                     <input type="text" formControlName="pay_year" class="form-control" [value]="currentYear"  />

@@ -8,9 +8,11 @@ import { Membre } from '../../../../models/membre';
 import jsPDF from 'jspdf'; // Assurez-vous d'avoir installé jsPDF: `npm install jspdf`
 import QRCode from 'qrcode';
 import html2canvas from 'html2canvas';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { PaginationComponent } from '../../../../components/pagination/pagination.component';
 import { PaginationService } from '../../../../components/pagination.service';
+import { AuthService } from '../../../../components/auth/auth.service'; // Adjust the path as necessary
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-index-attest-personnel',
@@ -21,8 +23,8 @@ import { PaginationService } from '../../../../components/pagination.service';
   styleUrl: './index-attest-personnel.component.css'
 })
 export class IndexAttestPersonnelComponent implements OnInit {
-  constructor(private fb: FormBuilder, private router: Router, private attestPersonnelService: AttestPersonnelService,
-    private paginationService: PaginationService) {
+  constructor(private fb: FormBuilder, private router: Router, private attestPersonnelService: AttestPersonnelService, private authService: AuthService,
+    private http: HttpClient, private paginationService: PaginationService) {
     this.searchForm = this.fb.group({
       keyword: [''],
       year: [''],
@@ -41,10 +43,12 @@ export class IndexAttestPersonnelComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 10;
   totalItems: number = 0;
+  user: any = {};
 
   // Image de la signature (fichier PNG dans le dossier assets)
   signatureImage = 'assets/img/1.jpg';
   qrCodeImage = 'assets/img/2.jpg';
+  private attestPersourl = environment.apiUrl + 'personal-certificates';
 
   // seracc back
   searchForm: FormGroup;
@@ -54,14 +58,51 @@ export class IndexAttestPersonnelComponent implements OnInit {
     this.getMemberALL();
   }
 
-  getAttestations(): void {
-    this.attestPersonnelService.getAll().subscribe((data: AttestPersonnel[]) => {
-      this.attestations = data;
-      // pagination
-      this.totalItems = this.attestations.length;
-      this.updatePage();
+  // getAttestations(): void {
+  //   this.attestPersonnelService.getAll().subscribe((data: AttestPersonnel[]) => {
+  //     this.attestations = data;
+  //     // pagination
+  //     this.totalItems = this.attestations.length;
+  //     this.updatePage();
 
-    });
+  //   });
+  // }
+
+  getAttestations(): void {
+    // this.attestationService.getAttestations().subscribe(data => {
+    //   this.attestations = data;
+    //   console.log('info sur attestationentreprise', this.attestations);
+
+    // });
+    // Étape 1 : Récupération du profil utilisateur
+    this.authService.getUserProfile().subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);
+
+        // Étape 2 : Assurez-vous que 'id_perso' existe avant de continuer
+        const idPerso = this.user.perso?.id;
+        const idRole = this.user.role?.id;
+        if (!idPerso) {
+          console.error("ID personnel non trouvé pour l'utilisateur.");
+          return;
+        }
+        // Étape 3 : Requête pour les données du tableau de bord
+        this.http.get(`${this.attestPersourl}?id_perso=${idPerso}&id_role=${idRole}`).subscribe(
+          (attestPersoResponse: any) => {
+            this.attestations = attestPersoResponse;
+
+            console.log('Données du tableau de bord:', this.attestations);
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des données du tableau de bord:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
+      }
+    );
   }
 
   onSearch() {
@@ -106,81 +147,6 @@ export class IndexAttestPersonnelComponent implements OnInit {
   }
 
 
-
-
-
-
-  generatePdfs(attest: AttestPersonnel): void {
-    const doc = new jsPDF('portrait');
-
-    // En-tête
-    const headerImage = new Image();
-    headerImage.src = 'assets/img/onigc.jpg';
-    headerImage.onload = () => {
-      doc.addImage(headerImage, 'PNG', 80, 10, 50, 20); // Image centrée
-      doc.setFontSize(12);
-      doc.text('République du Cameroun', 20, 20);
-      doc.text('Republic of Cameroon', 140, 20);
-      doc.text('Paix - Travail - Patrie', 20, 30);
-      doc.text('Peace - Work - Fatherland', 140, 30);
-
-      doc.setFontSize(14);
-      doc.text('Ordre National des Ingénieurs de Génie Civil', 60, 50);
-      doc.text('National Order of Civil Engineers', 65, 60);
-
-      doc.setFontSize(12);
-      doc.text('N° 0457 / 11 /Pdt/SG/ONIGC/24', 80, 80);
-
-      // Titre
-      doc.setFontSize(18);
-      doc.text('A T T E S T A T I O N', 75, 100);
-
-      // Corps du texte
-      doc.setFontSize(14);
-      doc.text('Le Président de l’Ordre', 20, 120);
-      doc.text('atteste que', 20, 130);
-      doc.setFontSize(16);
-      doc.text(`l’Ingénieur ${this.getMemberName(attest.member_id)} `, 20, 140);
-      doc.text('est bien inscrit au Tableau de l’Ordre pour l’année 2024', 20, 150);
-      doc.text(`sous le matricule ${this.getmemberMatricule(attest.member_id)}`, 20, 160);
-      doc.setFontSize(14);
-      doc.text('A ce titre, il est autorisé à exercer la profession', 20, 170);
-      doc.text('d’Ingénieur de Génie Civil pour la période allant', 20, 180);
-      doc.text('du 1er janvier 2024 au 31 décembre 2024', 20, 190);
-      doc.text('et à faire prévaloir la présente attestation', 20, 200);
-      doc.text('pour usage personnel.', 20, 210);
-
-      // Signature et QR Code
-      const qrCodeImg = new Image();
-      qrCodeImg.src = 'assets/img/2.jpg';
-      qrCodeImg.onload = () => {
-        doc.addImage(qrCodeImg, 'PNG', 150, 250, 40, 40); // QR Code à droite
-        const signatureImg = new Image();
-        signatureImg.src = 'assets/img/signe.jpg';
-        signatureImg.onload = () => {
-          doc.addImage(signatureImg, 'PNG', 30, 250, 40, 40); // Signature à gauche
-
-          // Footer
-          doc.setLineWidth(0.5);
-          doc.line(20, 290, 190, 290); // Ligne de séparation
-          doc.setFontSize(10);
-          doc.text(
-            'Montée Elig Essono - Yaoundé - 20822- (+237) 677.66.10.66 / 655.01.02.03 - noceonigc@yahoo.fr - www.onigc.cm',
-            20,
-            300
-          );
-          doc.text(
-            'Comptes bancaires : BICEC Yaoundé – Vallée sous le N° 31615665001-03 / ECOBANK Yaoundé - Hippodrome sous le N° 01316146701-72',
-            20,
-            310
-          );
-
-          // Sauvegarde
-          doc.save(`attestation_${attest.member_id}.pdf`);
-        };
-      };
-    };
-  }
 
 
   generatePdf(attest: AttestPersonnel): void {
@@ -266,7 +232,7 @@ export class IndexAttestPersonnelComponent implements OnInit {
 
 
     // QR Code
-    const qrCodeText = `N° Attestation: xxx\nNom de l’ingénieur: ${this.getMemberName(attest.id)} ${this.getMemberUserName(attest.id)}\nTableau de l’Ordre: xxxx\nMatricule: ${this.getmemberMatricule(attest.member_id)}\nDate: ${formattedDate}`;
+    const qrCodeText = `N° Attestation: xxx\nNom de l’ingénieur: ${this.getMemberName(attest.member_id)} ${this.getMemberUserName(attest.id)}\nTableau de l’Ordre: xxxx\nMatricule: ${this.getmemberMatricule(attest.member_id)}\nDate: ${formattedDate}`;
     const qrCodeSize = 30; // Taille du QR code
     try {
       const qrCodeCanvas = document.createElement('canvas');

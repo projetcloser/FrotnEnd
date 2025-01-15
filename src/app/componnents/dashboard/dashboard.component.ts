@@ -58,16 +58,60 @@ export class DashboardComponent {
     );
   }
 
-  loadDashboardData(): void {
+  // loadDashboardData(): void {
 
-    this.http.get(this.dashboardurl).subscribe(
+  //   this.http.get(this.dashboardurl).subscribe(
+  //     (response: any) => {
+  //       this.dashboardData = response;
+  //       // Filtrage des cotisations pour un membre spécifique
+  //     if (this.user.role?.name === 'membre') {
+  //       this.dashboardData.cotisations.total = this.dashboardData.cotisations.membreTotal; // Par exemple, `membreTotal` doit être défini dans vos données backend
+  //     }
+  //       console.log('Données du tableau de bord:', this.dashboardData);
+  //     },
+  //     (error) => {
+  //       console.error('Erreur lors de la récupération des données du tableau de bord:', error);
+  //     }
+  //   );
+  // }
+
+  loadDashboardData(): void {
+    // Étape 1 : Récupération du profil utilisateur
+    this.authService.getUserProfile().subscribe(
       (response: any) => {
-        this.dashboardData = response;
-        console.log('Données du tableau de bord:', this.dashboardData);
+        this.user = response;
+        console.log('Utilisateur connecté:', this.user);
+
+        // Étape 2 : Assurez-vous que 'id_perso' existe avant de continuer
+        const idPerso = this.user.perso?.id;
+        const idRole = this.user.role?.id;
+        if (!idPerso) {
+          console.error("ID personnel non trouvé pour l'utilisateur.");
+          return;
+        }
+
+        // Étape 3 : Requête pour les données du tableau de bord
+        this.http.get(`${this.dashboardurl}?id_perso=${idPerso}&id_role=${idRole}`).subscribe(
+          (dashboardResponse: any) => {
+            this.dashboardData = dashboardResponse;
+
+            // Si l'utilisateur a le rôle 'membre', utilisez des données spécifiques
+            // if (this.user.role?.name === 'membre') {
+            //   this.dashboardData.cotisations.total = this.dashboardData.cotisations.member_total;
+            // }
+
+            console.log('Données du tableau de bord:', this.dashboardData);
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des données du tableau de bord:', error);
+          }
+        );
       },
       (error) => {
-        console.error('Erreur lors de la récupération des données du tableau de bord:', error);
+        console.error('Erreur lors de la récupération du profil utilisateur:', error);
       }
     );
   }
+
+
 }

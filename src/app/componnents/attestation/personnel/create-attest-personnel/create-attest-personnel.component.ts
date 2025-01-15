@@ -61,10 +61,10 @@ export class CreateAttestPersonnelComponent {
       certification_date: formattedDate, // Date actuelle formatée
       auteur: this.authService.getUserProfile().subscribe(
         (response: any) => {
-          this.user = response.user.name;
+          this.user = response;
           console.log('Utilisateur attestation connecté:', this.user);  // Vérifie les données ici
           // Mettre à jour le champ 'author' avec le nom de l'utilisateur
-          this.addForm.patchValue({ author: this.user });
+          this.addForm.patchValue({ author: response.user.name });
 
         },
         (error) => {
