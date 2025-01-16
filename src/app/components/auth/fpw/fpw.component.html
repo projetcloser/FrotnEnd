@@ -1,1 +1,45 @@
-<p>fpw works!</p>
+<div class="container">
+  <div class="reset-container">
+    <div class="reset-header">
+      <i class="fas fa-key"></i>
+      <h2>Réinitialisation du mot de passe</h2>
+    </div>
+
+    <!-- Formulaire 1: Matricule et Email -->
+    <form [formGroup]="forgotPasswordForm" (ngSubmit)="onSubmitStep1()" class="form-step active" id="step1">
+      <div class="mb-3">
+        <label for="matricule" class="form-label">Matricule</label>
+        <input type="text" formControlName="matricule" id="matricule" class="form-control" placeholder="Entrez votre matricule">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" formControlName="email" id="email" class="form-control" placeholder="Entrez votre email">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Envoyer</button>
+    </form>
+
+    <!-- Formulaire 2: OTP -->
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmitStep2()" class="form-step" id="step2">
+      <div class="mb-3">
+        <label for="otp" class="form-label">Code de vérification (OTP)</label>
+        <input type="text" formControlName="otp" id="otp" class="form-control" placeholder="Entrez le code reçu par email">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Vérifier</button>
+    </form>
+
+    <!-- Formulaire 3: Nouveau mot de passe -->
+    <form [formGroup]="resetPasswordForm" (ngSubmit)="onSubmitStep3()" class="form-step" id="step3">
+      <div class="mb-3">
+        <label for="newPassword" class="form-label">Nouveau mot de passe</label>
+        <input type="password" formControlName="newPassword" id="newPassword" class="form-control" placeholder="Entrez votre nouveau mot de passe">
+      </div>
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+        <input type="password" formControlName="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirmez votre mot de passe">
+      </div>
+      <button type="submit" class="btn btn-success w-100">Réinitialiser le mot de passe</button>
+    </form>
+
+    <p *ngIf="message" class="text-center mt-3 text-success">{{ message }}</p>
+  </div>
+</div>

@@ -47,7 +47,10 @@
             <li class="nav-item active">
                 <a class="nav-link" routerLink="/Closer/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Tableau de bord</span></a>
+                    <span>
+                      <!-- Tableau de bord  -->
+                       {{'sideNav.Tableau_de_bord'| translate }}
+                    </span></a>
             </li>
 
             <!-- Divider -->
@@ -62,63 +65,79 @@
           <ng-container *ngIf="user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional' || user.role.name === 'receptionniste' ">
 
             <ng-container *ngIf="user.role.name === 'administrateur'|| user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'president' || user.role.name === 'secretaire administrative' ">
-            <li class="nav-item active">
+              <li class="nav-item active">
 
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTw"
-                  aria-expanded="true" aria-controls="collapseTw" >
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTw"
+                    aria-expanded="true" aria-controls="collapseTw" >
+                    <i class="fa-solid fa-ticket"></i>
+                    <span>
+                      {{'sideNav.Attestation_entreprise'| translate }}
+                      <!-- Attestation entreprise -->
+                    </span>
+                </a>
+                <div id="collapseTw" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-gradient-green py-2 collapse-inner rounded">
+
+                        <li >
+                          <a class="collapse-item" routerLink="/Closer/attestation-non_paye"  style="color: white;">
+                            <i class="fa-solid fa-ticket"></i>
+                            {{'sideNav.Non_payé'| translate }}
+                            <!-- Non payé -->
+                          </a>
+                        </li>
+                        <li >
+                          <a class="collapse-item" routerLink="/Closer/attestation-paye"  style="color: white;">
+                            <i class="fa-solid fa-ticket"></i>
+                            {{'sideNav.Non_payé'| translate }}
+                            <!-- Payé -->
+                          </a>
+                        </li>
+                      <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional' || user.role.name === 'president' ">
+                        <li >
+                          <a class="collapse-item" routerLink="/Closer/attestation-initied"  style="color: white;">
+                            <i class="fa-solid fa-ticket"></i>
+                            {{'sideNav.Statut_Initiated'| translate }}
+                            <!-- Statut Initiated -->
+                            <!-- json-server --watch db.json -->
+
+                          </a>
+                        </li>
+                      </ng-container>
+
+
+                    </div>
+                </div>
+            </li>
+              <li class="nav-item active">
+                <a class="nav-link collapsed" routerLink="/Closer/attestPersonnel" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
                   <i class="fa-solid fa-ticket"></i>
-                  <span>Attestation entreprise</span>
+                  <span>
+                    <!-- Attestation personnel -->
+                    {{'sideNav.Attestation_personnel'| translate }}
+                  </span>
               </a>
-              <div id="collapseTw" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                  <div class="bg-gradient-green py-2 collapse-inner rounded">
-
-                      <li >
-                        <a class="collapse-item" routerLink="/Closer/attestation-non_paye"  style="color: white;">
-                          <i class="fa-solid fa-ticket"></i>
-                          Non payé
-                        </a>
-                      </li>
-                      <li >
-                        <a class="collapse-item" routerLink="/Closer/attestation-paye"  style="color: white;">
-                          <i class="fa-solid fa-ticket"></i>
-                          Payé
-                        </a>
-                      </li>
-                    <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' || user.role.name === 'secretaire administrative' || user.role.name === 'representant regional' || user.role.name === 'president' ">
-                      <li >
-                        <a class="collapse-item" routerLink="/Closer/attestation-initied"  style="color: white;">
-                          <i class="fa-solid fa-ticket"></i>
-                          Statut Initiated
-                          <!-- json-server --watch db.json -->
-
-                        </a>
-                      </li>
-                    </ng-container>
-
-
-                  </div>
-              </div>
-          </li>
-            <li class="nav-item active">
-              <a class="nav-link collapsed" routerLink="/Closer/attestPersonnel" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-                <i class="fa-solid fa-ticket"></i>
-                <span>Attestation personnel</span>
-            </a>
-          </li>
+            </li>
             </ng-container>
 
 
         <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/annonces" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fa fa-calendar"></i>
-            <span>Annonces</span>
+            <span>
+              <!-- Annonces -->
+              {{'sideNav.Annonces'| translate }}
+
+            </span>
           </a>
         </li>
 
         <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/amendes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fa fa-dollar"></i>
-            <span>Amendes</span>
+            <span>
+              <!-- Amendes -->
+              {{'sideNav.Amendes'| translate }}
+            </span>
           </a>
         </li>
         <!-- <ng-container *ngIf="user.role.name === 'membre'   ">
@@ -126,7 +145,10 @@
           <li class="nav-item active">
             <a class="nav-link collapsed" routerLink="/Closer/user-amendes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
               <i class="fa fa-dollar"></i>
-              <span>Amendes</span>
+              <span>
+                 Amendes
+                {{'sideNav.Amendes'| translate }}
+              </span>
             </a>
           </li>
        </ng-container> -->
@@ -135,7 +157,10 @@
           <li class="nav-item active">
             <a class="nav-link collapsed" routerLink="/Closer/cotisation" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
               <i class="fas fa-donate"></i>
-              <span>Cotisations</span>
+              <span>
+                <!-- Cotisations -->
+                {{'sideNav.Cotisations'| translate }}
+              </span>
             </a>
           </li>
        </ng-container>
@@ -145,7 +170,10 @@
         <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/user-cotisation" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fas fa-donate"></i>
-            <span>Cotisations</span>
+            <span>
+               Cotisations
+              {{'sideNav.Cotisations'| translate }}
+            </span>
           </a>
         </li>
       </ng-container> -->
@@ -156,14 +184,30 @@
           <li class="nav-item active">
             <a class="nav-link collapsed" routerLink="/Closer/dettes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
               <i class="fas fa-donate"></i>
-              <span>Dettes</span>
+              <span>
+                <!-- Dettes -->
+                {{'sideNav.Dettes'| translate }}
+              </span>
             </a>
           </li>
         </ng-container>
+
         <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/cachet" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="far fa-folder-open"></i>
-            <span>Demande de cachet</span>
+            <span>
+              <!-- Demande de cachet -->
+              {{'sideNav.Demande_de_cachet'| translate }}
+            </span>
+        </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link collapsed" routerLink="/Closer/evenement" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+            <i class="fa fa-list-alt" aria-hidden="true"></i>
+            <span>
+              <!-- Evènements -->
+              {{'sideNav.Evènements'| translate }}
+            </span>
         </a>
         </li>
         <!-- <li class="nav-item active">
@@ -185,17 +229,20 @@
         <li class="nav-item active">
           <a class="nav-link collapsed" routerLink="/Closer/entreprise" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
             <i class="fa-solid fa-building"></i>
-            <span>Entreprises</span>
+            <span>
+              <!-- Entreprises -->
+              {{'sideNav.Entreprises'| translate }}
+            </span>
             </a>
         </li>
 
 
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link collapsed" routerLink="/Closer/evenement" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
           <i class="fa fa-list-alt" aria-hidden="true"></i>
           <span>Evènements</span>
       </a>
-      </li>
+      </li> -->
 
     </ng-container>
 
@@ -205,14 +252,20 @@
 
               <a class="nav-link collapsed" routerLink="/Closer/membre" routerLinkActive="active"  aria-controls="collapseTwo" style="color: white;">
                 <i class="fa fa-users"></i>
-                <span>Membres </span>
+                <span>
+                  <!-- Membres  -->
+                  {{'sideNav.Membres'| translate }}
+                </span>
               </a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" routerLink="/Closer/personnel" routerLinkActive="active"
                  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
                 <i class="fa fa-users"></i>
-                <span>Personnels</span>
+                <span>
+                  <!-- Personnels -->
+                  {{'sideNav.Personnels'| translate }}
+                </span>
               </a>
             </li>
 
@@ -288,40 +341,69 @@
       <li class="nav-item active">
         <a class="nav-link collapsed" routerLink="/Closer/annonces" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
           <i class="fa fa-calendar"></i>
-          <span>Annonces</span>
+          <span>
+            <!-- Annonces -->
+            {{'sideNav.Annonces'| translate }}
+
+          </span>
         </a>
       </li>
 
       <li class="nav-item active">
         <a class="nav-link collapsed" routerLink="/Closer/amendes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
           <i class="fa fa-dollar"></i>
-          <span>Amendes</span>
+          <span>
+            <!-- Amendes -->
+            {{'sideNav.Amendes'| translate }}
+          </span>
         </a>
       </li>
       <li class="nav-item active">
         <a class="nav-link collapsed" routerLink="/Closer/cotisation" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
           <i class="fas fa-donate"></i>
-          <span>Cotisations</span>
+          <span>
+            <!-- Cotisations -->
+            {{'sideNav.Cotisations'| translate }}
+          </span>
         </a>
       </li>
 
-          <li class="nav-item active">
+
+          <!-- <li class="nav-item active">
             <a class="nav-link collapsed" routerLink="/Closer/user-dettes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
               <i class="fas fa-donate"></i>
               <span>Dettes</span>
             </a>
-          </li>
-          <ng-container *ngIf="user.role.name === 'membre' && firstStatus === 3"><li class="nav-item active">
-            <a class="nav-link collapsed" routerLink="/Closer/cachet" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
-              <i class="far fa-folder-open"></i>
-              <span>Demande de cachet</span>
-          </a>
-          </li></ng-container>
+          </li> -->
+
+            <li class="nav-item active">
+              <a class="nav-link collapsed" routerLink="/Closer/user-dettes" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+                <i class="fas fa-donate"></i>
+                <span>
+                  <!-- Dettes -->
+                  {{'sideNav.Dettes'| translate }}
+                </span>
+              </a>
+            </li>
+          <ng-container *ngIf="user.role.name === 'membre' && firstStatus === 3">
+            <li class="nav-item active">
+              <a class="nav-link collapsed" routerLink="/Closer/cachet" aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
+                <i class="far fa-folder-open"></i>
+                <span>
+                  <!-- Demande de cachet -->
+                  {{'sideNav.Demande_de_cachet'| translate }}
+                </span>
+            </a>
+            </li>
+          </ng-container>
 
           <li class="nav-item active">
             <a class="nav-link collapsed" routerLink="/Closer/evenement" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" style="color: white;">
               <i class="fa fa-list-alt" aria-hidden="true"></i>
-              <span>Evènements</span>
+              <span>
+                <!-- Evènements -->
+                {{'sideNav.Evènements'| translate }}
+              </span>
           </a>
           </li>
 
@@ -377,6 +459,50 @@
 
 
                         <!-- Nav Item - Messages -->
+                        <!-- <div class="language-dropdown">
+                          <button class="dropdown-btn">
+                            <img src="flags/en.svg" alt="English" [ngClass]="getLanguageIconClass(multilangService.languageSignal())" class="flag-icon" />
+                              {{ getLanguageName(multilangService.languageSignal())}}
+                            <span class="arrow-down">▼</span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li data-lang="fr" *ngFor="let languange of ['en','fr','ru','es']">
+                              <a class="dropdown-item" (click)="toogleLanguage(languange)"
+                                [ngClass]="{'active': multilangService.languageSignal() === languange}"
+                              >
+                                <img src="flags/fr.svg" [ngClass]="getLanguageIconClass(languange)" alt="Français" class="flag-icon" />
+                                  {{getLanguageName(languange)}}
+                              </a>
+
+                            </li>
+                            <li data-lang="es">
+                              <img src="flags/es.svg" alt="Español" class="flag-icon" /> Español
+                            </li>
+                            <li data-lang="de">
+                              <img src="flags/de.svg" alt="Deutsch" class="flag-icon" /> Deutsch
+                            </li>
+                          </ul>
+
+                        </div> -->
+
+                        <div class="language-dropdowns">
+                          <button class="dropdown-btns" style="margin-top: 16px; color:white;">
+                            <i [ngClass]="getLanguageIconClass(multilangService.languageSignal())"></i>
+                            {{ getLanguageName(multilangService.languageSignal()) }}
+                            <span class="arrow-downs">▼</span>
+                          </button>
+
+                          <ul class="dropdown-menu">
+                            <li *ngFor="let language of ['en', 'fr', 'ru', 'es']">
+                              <a class="dropdown-item" (click)="toogleLanguage(language)"
+                                 [ngClass]="{'active': multilangService.languageSignal() === language}">
+                                <i [ngClass]="getLanguageIconClass(language)"></i>
+                                {{ getLanguageName(language) }}
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -389,10 +515,17 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>
+                                </a> -->
+                                <a class="dropdown-item" routerLink="/Closer/profil" routerLinkActive="active"  aria-expanded="true" aria-controls="collapseTwo" >
+                                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                  <span>
+                                    <!-- Evènements -->
+                                    Profile
+                                  </span>
+                              </a>
 <!--                                <a class="dropdown-item" href="#">-->
 <!--                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
 <!--                                    Paramètres-->
@@ -408,6 +541,7 @@
                                 </a>
                             </div>
                         </li>
+
 
                     </ul>
 

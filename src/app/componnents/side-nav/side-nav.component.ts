@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../components/auth/auth.service';
 import { Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -22,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TranslateService } from '@ngx-translate/core'; // Importer TranslateService
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { MultilangService } from '../../services/multilang.service';
 
 
 
@@ -57,12 +59,47 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
     //   }
     // }),
 
-    NgxPaginationModule],
+
+    NgxPaginationModule,
+    TranslateModule],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.css'
 })
 export class SideNavComponent implements OnInit {
-  currentLang = 'fr'; // Langue par défaut
+
+  //traduction
+  multilangService = inject(MultilangService);
+  toogleLanguage(language: string): void {
+    if (this.multilangService.languageSignal() !== language) {
+      this.multilangService.updateLanguage(language);
+      console.log('language changed to', language);
+
+    }
+  }
+  getLanguageIconClass(language: string): string {
+    switch (language) {
+      case 'en': return 'flag-icon flag-icon-gb';  // Drapeau du Royaume-Uni
+      case 'fr': return 'flag-icon flag-icon-fr';  // Drapeau de la France
+      case 'ru': return 'flag-icon flag-icon-ru';  // Drapeau de la Russie
+      case 'es': return 'flag-icon flag-icon-es';  // Drapeau de l'Espagne
+      default: return 'flag-icon flag-icon-gb';    // Par défaut : Royaume-Uni
+    }
+  }
+  getLanguageName(language: string): string {
+    switch (language) {
+      case 'en':
+        return 'English';
+      case "fr":
+        return "Francais";
+      case "es":
+        return "Spanish";
+      case "ru":
+        return "Russian";
+      default:
+        return "English";
+    }
+  }
+  // traduction fin
   user: any = {};
   private cotisationurl = environment.apiUrl + 'cotisations';
   cotisations: any[] = [];
@@ -78,25 +115,13 @@ export class SideNavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.currentLang = this.translate.getDefaultLang(); // Assurez-vous que la langue par défaut est bien chargée
 
-    // this.authService.getUser().subscribe(
-    //   (data) => {
-    //     this.user = data;
-    //     console.log('Utilisateur connecté:', this.user);  // Vérifie les données ici
-    //   },
-    //   (error) => {
-    //     console.error('Erreur lors du chargement des informations utilisateur', error);
-    //   }
-    // );
     this.loadUserProfile();
     this.loadcotisations();
   }
 
 
-  changeLanguage(lang: string): void {
-    // this.translate.use(lang);
-  }
+
 
   loadUserProfile(): void {
     this.authService.getUserProfile().subscribe(
@@ -117,11 +142,6 @@ export class SideNavComponent implements OnInit {
 
     //       this.user = response.user.name;
 
-    //     },
-    //     (error) => {
-    //       console.error('Erreur lors de la récupération du profil utilisateur:', error);
-    //     }
-    // );
   }
 
   loadcotisations() {
