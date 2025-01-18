@@ -5,11 +5,12 @@ import { Router, RouterModule } from '@angular/router';
 import { Evenement } from '../evenement';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../components/auth/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-evenement',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,TranslateModule],
   templateUrl: './create-evenement.component.html',
   styleUrl: './create-evenement.component.css'
 })

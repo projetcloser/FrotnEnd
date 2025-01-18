@@ -19,11 +19,12 @@ import { PaginationService } from '../../../components/pagination.service';
 import { NonPayeService } from '../../attestation/nonPaye/non-paye.service';
 import { Payment } from '../../attestation/nonPaye/payer/payment';
 import { environment } from '../../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index-cotisation',
   standalone: true,
-  imports: [PaginationComponent, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [PaginationComponent, CommonModule, FormsModule, ReactiveFormsModule, RouterModule,TranslateModule],
   templateUrl: './index-cotisation.component.html',
   styleUrl: './index-cotisation.component.css'
 })

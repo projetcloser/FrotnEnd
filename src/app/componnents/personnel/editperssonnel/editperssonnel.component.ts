@@ -9,11 +9,12 @@ import { PersonnelService } from '../personnel.service';
 import { VilleServiceService } from '../../ville/ville-service.service';
 import { PaysServiceService } from '../../pays/pays-service.service';
 import { Personnel } from '../personnel';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-editperssonnel',
   standalone: true,
-  imports: [RouterModule,CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [RouterModule,CommonModule,FormsModule,ReactiveFormsModule,TranslateModule],
   templateUrl: './editperssonnel.component.html',
   styleUrl: './editperssonnel.component.css'
 })

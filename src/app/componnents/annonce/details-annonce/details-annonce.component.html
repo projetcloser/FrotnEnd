@@ -3,14 +3,14 @@
 
 
 <div class="container mt-5">
-  <h2 class="text-center text-primary " i18n>Détails de l'annonce</h2>
+  <h2 class="text-center text-primary " i18n>{{"page.Détails de l'annonce"| translate}}</h2>
 
   <div class="debt-details card border-0 rounded shadow-sm mb-4">
     <div class="card-body" *ngIf="annonce">
       <h4 class="card-title text-muted" i18n>Informations sur l'annonce </h4>
-      <p><strong i18n>Titre :</strong> <span class="text-dark">{{ annonce.object }}</span></p>
-      <p><strong i18n>Auteur :</strong> <span class="text-dark">{{ annonce.author }}</span></p>
-      <p><strong i18n>contenue :</strong> <span class="text-dark">{{ annonce.body }}</span></p>
+      <p><strong i18n>{{'page.Titre'| translate}} :</strong> <span class="text-dark">{{ annonce.object }}</span></p>
+      <p><strong i18n>{{'page.Auteur'| translate}} :</strong> <span class="text-dark">{{ annonce.author }}</span></p>
+      <p><strong i18n>{{'page.Contenu'| translate}} :</strong> <span class="text-dark">{{ annonce.body }}</span></p>
       <!-- <p><strong i18n>Nombre de participants :</strong> <span class="text-dark">{{ event.participants }}</span></p>
       <p><strong i18n>Montant :</strong> <span class="text-dark">{{ event.price  | currency }}</span></p>
       <p><strong i18n>debut :</strong> <span class="text-dark">{{ event.start_date | date }}</span></p>

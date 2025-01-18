@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 import {Observable} from "rxjs";
 import {HttpHeaders} from "@angular/common/http";
 import {AuthService} from "../../../components/auth/auth.service";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-annonce',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule,TranslateModule],
   templateUrl: './list-annonce.component.html',
   styleUrl: './list-annonce.component.css'
 })

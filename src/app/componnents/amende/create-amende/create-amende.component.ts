@@ -6,11 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MembreServiceService } from '../../membre/membre-service.service';
 import { AuthService } from '../../../components/auth/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-amende',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,TranslateModule],
   templateUrl: './create-amende.component.html',
   styleUrl: './create-amende.component.css'
 })

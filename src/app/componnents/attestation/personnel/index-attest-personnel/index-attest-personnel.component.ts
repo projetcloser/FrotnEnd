@@ -13,12 +13,13 @@ import { PaginationComponent } from '../../../../components/pagination/paginatio
 import { PaginationService } from '../../../../components/pagination.service';
 import { AuthService } from '../../../../components/auth/auth.service'; // Adjust the path as necessary
 import { environment } from '../../../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index-attest-personnel',
   standalone: true,
   imports: [FormsModule,
-    CommonModule, ReactiveFormsModule, RouterModule, HttpClientModule, PaginationComponent],
+    CommonModule, ReactiveFormsModule, RouterModule, HttpClientModule, PaginationComponent,TranslateModule],
   templateUrl: './index-attest-personnel.component.html',
   styleUrl: './index-attest-personnel.component.css'
 })

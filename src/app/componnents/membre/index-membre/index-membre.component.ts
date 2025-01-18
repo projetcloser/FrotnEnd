@@ -10,11 +10,12 @@ import { ExcelService } from '../../../services/excel.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationService } from '../../../components/pagination.service';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index-membre',
   standalone: true,
-  imports: [RouterModule, CommonModule,FormsModule,ReactiveFormsModule,PaginationComponent],
+  imports: [RouterModule, CommonModule,FormsModule,ReactiveFormsModule,PaginationComponent,TranslateModule],
   templateUrl: './index-membre.component.html',
   styleUrl: './index-membre.component.css'
 })

@@ -10,11 +10,12 @@ import { Payment } from '../../attestation/nonPaye/payer/payment';
 import { NonPayeService } from '../../attestation/nonPaye/non-paye.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-dette',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, CommonModule, FormsModule, RouterModule,TranslateModule],
   templateUrl: './list-dette.component.html',
   styleUrl: './list-dette.component.css'
 })

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Annonce } from '../model/annonce';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AnnonceServiceService } from '../annonce-service.service';
 import { CommonModule } from '@angular/common';
 import { Poste } from '../../poste/poste';
 import { PosteService } from '../../poste/poste.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-annonce',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,ReactiveFormsModule,FormsModule,TranslateModule,RouterLink],
   templateUrl: './update-annonce.component.html',
   styleUrl: './update-annonce.component.css'
 })

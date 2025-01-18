@@ -93,6 +93,8 @@ export class SideNavComponent implements OnInit {
         return "Francais";
       case "es":
         return "Spanish";
+      case "ch":
+        return "Chinois";
       case "ru":
         return "Russian";
       default:

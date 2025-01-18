@@ -1,11 +1,11 @@
 <div class="container mt-5">
-  <h2 class="text-center mb-4" i18n>Modifier une  Annonce</h2>
+  <h2 class="text-center mb-4" i18n>{{'page.Modifier une  Annonce'| translate}}</h2>
 
   <form [formGroup]="annonceForm" (ngSubmit)="onSubmit()" novalidate enctype="multipart/form-data">
     <div class="row">
       <!-- Champ auteur -->
       <div class="col-md-12 mb-3">
-        <label for="author" class="form-label font-weight-bold" i18n>Auteur <span class="text-danger">*</span></label>
+        <label for="author" class="form-label font-weight-bold" i18n>{{'page.Auteur'| translate}} <span class="text-danger">*</span></label>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
@@ -19,7 +19,7 @@
       </div>
       <!-- Champ Object -->
       <div class="col-md-12 mb-3">
-        <label for="object" class="form-label font-weight-bold" i18n>Objet <span class="text-danger">*</span></label>
+        <label for="object" class="form-label font-weight-bold" i18n>{{'page.Objet'| translate}} <span class="text-danger">*</span></label>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
@@ -34,7 +34,7 @@
 
         <!-- Champ Object -->
         <div class="col-md-12 mb-3">
-          <label for="object" class="form-label font-weight-bold" i18n>Groupe <span class="text-danger">*</span></label>
+          <label for="object" class="form-label font-weight-bold" i18n> {{'page.Groupe'| translate}} <span class="text-danger">*</span></label>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
@@ -47,7 +47,7 @@
 
       <!-- Champ Contenu -->
       <div class="col-md-12 mb-3">
-        <label for="body  " class="form-label font-weight-bold" i18n>Contenu <span class="text-danger">*</span></label>
+        <label for="body  " class="form-label font-weight-bold" i18n>{{'page.Contenu'| translate}} <span class="text-danger">*</span></label>
         <textarea id="body" formControlName="body" rows="5" class="form-control" placeholder="Écrire le contenu de l'annonce" ></textarea>
         <!-- [ngClass]="{ 'is-invalid': submitted && f.contenu.errors }" -->
         <!-- <div *ngIf="submitted && f.contenu.errors" class="invalid-feedback">
@@ -67,9 +67,9 @@
 
     <!-- Boutons d'action -->
     <div class="d-flex justify-content-between mt-4">
-      <button type="button" class="btn btn-outline-secondary" i18n >Annuler</button>
+      <button type="button" [routerLink]="['/Closer/annonces']" class="btn btn-outline-secondary" i18n >{{'page.Annuler'| translate}}</button>
       <button type="submit" class="btn btn-primary" i18n>
-        <i class="fas fa-save"></i> Enregistrer l'annonce
+        <i class="fas fa-save"></i> {{'page.Enregistrer'| translate}} 
       </button>
     </div>
   </form>

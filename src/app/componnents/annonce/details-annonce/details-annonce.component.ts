@@ -6,11 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Poste } from '../../poste/poste';
 import { PosteService } from '../../poste/poste.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-annonce',
   standalone: true,
-  imports: [FormsModule,ReactiveFormsModule,CommonModule,RouterLink ],
+  imports: [FormsModule,ReactiveFormsModule,CommonModule,RouterLink,TranslateModule ],
   templateUrl: './details-annonce.component.html',
   styleUrl: './details-annonce.component.css'
 })

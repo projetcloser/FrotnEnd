@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="card shadow-lg p-4 border-0">
-    <h3 class="card-title text-center text-primary" i18n>Ajouter une Attestation</h3>
+    <h3 class="card-title text-center text-primary" i18n> {{'page.titleStore'| translate }}</h3>
     <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
 
       <!-- Champ pour la date (readonly) avec icône -->
@@ -11,7 +11,7 @@
       <!-- <input type="hidden" formControlName="ref_dem_part"  [value]="reference"> -->
       <!-- Champ pour l'auteur (readonly) avec icône -->
       <div class="form-group mb-4">
-        <label for="author" class="form-label"><i class="fas fa-user me-2" i18n></i>Auteur</label>
+        <label for="author" class="form-label"><i class="fas fa-user me-2" i18n></i>{{'page.Auteur'| translate }}</label>
         <input type="text" id="author" class="form-control border-0 bg-light" formControlName="author" readonly>
       </div>
 
@@ -21,24 +21,24 @@
       </div> -->
 
       <div class="form-group mb-4">
-        <label for="ref_dem_part" class="form-label" i18n>Réference</label>
+        <label for="ref_dem_part" class="form-label" i18n>{{'page.Réference'| translate }}</label>
         <input type="text" id="ref" class="form-control border-0 bg-light" formControlName="ref_dem_part" >
       </div>
 
       <div class="form-group mb-4">
-        <label for="payment_amount" class="form-label" i18n>Maître d'ouvrage *</label>
+        <label for="payment_amount" class="form-label" i18n>{{"page.Maître d'ouvrage"| translate }} *</label>
         <input type="text" id="ouvrage" class="form-control border-0 bg-light" formControlName="payment_amount" required="Entrer le maître d'ouvrage">
       </div>
 
       <!-- Champ pour l'objet avec icône -->
       <div class="form-group mb-4">
-        <label for="motif" class="form-label"><i class="fas fa-info-circle me-2" i18n></i>Objet *</label>
+        <label for="motif" class="form-label"><i class="fas fa-info-circle me-2" i18n></i>{{'page.Objet'| translate }} *</label>
         <textarea id="motif" class="form-control" formControlName="motif" rows="3" placeholder="Décrivez l'objet de l'attestation" style="height: 150px;" required="Enter l'objet"></textarea>
       </div>
 
       <!-- Champ pour le montant avec icône -->
       <div class="form-group mb-4" style="display: none;">
-        <label for="cashflow_id" class="form-label"><i class="fas fa-dollar-sign me-2" i18n></i>Caisse</label>
+        <label for="cashflow_id" class="form-label"><i class="fas fa-dollar-sign me-2" i18n></i>{{'page.Caisse'| translate }}</label>
         <select formControlName="cashflow_id" class="form-control">
           <option *ngFor="let caisse of caisses" [value]="caisse.id">{{ caisse.name }}</option>
         </select>
@@ -46,7 +46,7 @@
 
         <!-- Champ pour le montant avec icône -->
         <div class="form-group mb-4">
-          <label for="company_id" class="form-label" i18n><i class="fas fa-user me-2"></i>Entreprise *</label>
+          <label for="company_id" class="form-label" i18n><i class="fas fa-user me-2"></i>{{'page.Entreprise'| translate }} *</label>
           <select formControlName="company_id" class="form-control" required>
             <option *ngFor="let caisse of companies" [value]="caisse.id">{{ caisse.social_reason }}</option>
           </select>
@@ -54,9 +54,9 @@
 
       <!-- Champ pour la sélection du membre avec icône -->
       <div *ngIf="user.role.id !== 1"class="form-group mb-4">
-        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>Membre *</label>
+        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>{{'page.Membre'| translate }} *</label>
         <select id="member_id" class="form-select" formControlName="member_id" required>
-          <option value="" disabled i18n>Sélectionnez un membre</option>
+          <option value="" disabled i18n>{{'page.Sélectionnez un membre'| translate }}</option>
           <option *ngFor="let membre of membres" [value]="membre.id">
             {{ membre.firstname }} {{ membre.lastname }}
           </option>
@@ -64,7 +64,7 @@
       </div>
 
       <div *ngIf="user.role.id === 1"class="form-group mb-4">
-        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>Membre</label>
+        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>{{'page.Membre'| translate }} </label>
         <select id="member_id" class="form-select" formControlName="member_id">
           <option  value="{{ user.perso.id }}" selected>
             {{ user.perso.firstname }} {{ user.perso.lastname }}
@@ -75,10 +75,10 @@
       <!-- Boutons Enregistrer et Annuler -->
       <div class="text-center mt-4">
         <button type="submit" class="btn btn-primary px-5 me-3" i18n>
-          <i class="fas fa-save me-2"></i>Enregistrer
+          <i class="fas fa-save me-2"></i>{{'page.Enregistrer'| translate }}
         </button>
         <button type="button" class="btn btn-secondary px-4" (click)="cancel()" i18n>
-          <i class="fas fa-times me-2"></i>Annuler
+          <i class="fas fa-times me-2"></i>{{'page.Annuler'| translate }}
         </button>
       </div>
     </form>

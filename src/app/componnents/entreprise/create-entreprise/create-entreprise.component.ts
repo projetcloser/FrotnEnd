@@ -5,11 +5,12 @@ import { Router, RouterModule } from '@angular/router';
 import { Entreprise } from '../../../models/entreprise';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../components/auth/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-entreprise',
   standalone: true,
-  imports: [RouterModule,ReactiveFormsModule,CommonModule],
+  imports: [RouterModule,ReactiveFormsModule,CommonModule,TranslateModule],
   templateUrl: './create-entreprise.component.html',
   styleUrl: './create-entreprise.component.css'
 })

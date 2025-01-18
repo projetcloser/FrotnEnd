@@ -9,11 +9,12 @@ import { NonPayeService } from '../../nonPaye/non-paye.service';
 import { EntrepriseServiceService } from '../../../entreprise/entreprise-service.service';
 import { PaginationComponent } from '../../../../components/pagination/pagination.component';
 import { PaginationService } from '../../../../components/pagination.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-indexstatut',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,PaginationComponent],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,PaginationComponent,TranslateModule],
   templateUrl: './indexstatut.component.html',
   styleUrl: './indexstatut.component.css'
 })

@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaysServiceService } from '../../pays/pays-service.service';
 import { VilleServiceService } from '../../ville/ville-service.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule,FormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,RouterModule,TranslateModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })

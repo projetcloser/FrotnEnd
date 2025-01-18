@@ -10,11 +10,12 @@ import { PaginationComponent } from '../../../components/pagination/pagination.c
 import { PaginationService } from '../../../components/pagination.service';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index-cachet',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, PaginationComponent],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, PaginationComponent,TranslateModule],
   templateUrl: './index-cachet.component.html',
   styleUrl: './index-cachet.component.css'
 })

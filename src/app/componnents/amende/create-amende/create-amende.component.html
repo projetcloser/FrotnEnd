@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="card shadow-lg p-4 border-0">
-    <h3 class="card-title text-center text-primary" i18n>Ajouter une Amende</h3>
+    <h3 class="card-title text-center text-primary" i18n>{{'page.Ajouter une Amende'| translate}}</h3>
     <form [formGroup]="amendeForm" (ngSubmit)="onSubmit()">
 
       <!-- Champ pour la date (readonly) avec icône -->
@@ -11,25 +11,25 @@
 
       <!-- Champ pour l'auteur (readonly) avec icône -->
       <div class="form-group mb-4">
-        <label for="author" class="form-label"><i class="fas fa-user me-2" i18n></i>Auteur</label>
+        <label for="author" class="form-label"><i class="fas fa-user me-2" i18n></i>{{'page.Auteur'| translate}}</label>
         <input type="text" id="author" class="form-control border-0 bg-light" value="{{user.name}}" formControlName="author" readonly>
       </div>
 
       <!-- Champ pour l'objet avec icône -->
       <div class="form-group mb-4">
-        <label for="object" class="form-label"><i class="fas fa-info-circle me-2" i18n></i>Objet</label>
+        <label for="object" class="form-label"><i class="fas fa-info-circle me-2" i18n></i>{{'page.Objet'| translate}}</label>
         <textarea id="object" class="form-control" formControlName="object" rows="3" placeholder="Décrivez l'objet de l'amende"></textarea>
       </div>
 
       <!-- Champ pour le montant avec icône -->
       <div class="form-group mb-4">
-        <label for="amount" class="form-label" i18n>Montant</label>
+        <label for="amount" class="form-label" i18n>{{'page.Montant'| translate}}</label>
         <input type="number" id="amount" class="form-control" formControlName="amount" placeholder="Entrez le montant">
       </div>
 
       <!-- Champ pour la sélection du membre avec icône -->
       <div class="form-group mb-4">
-        <label for="member_id" class="form-label"><i class="fas fa-user-friends me-2" i18n></i>Membre</label>
+        <label for="member_id" class="form-label"><i class="fas fa-user-friends me-2" i18n></i>{{'page.membres'| translate}}</label>
         <select id="member_id" class="form-select" formControlName="member_id">
           <option value="" disabled i18n>Sélectionnez un membre</option>
           <option *ngFor="let membre of membres" [value]="membre.id">
@@ -41,10 +41,10 @@
       <!-- Boutons Enregistrer et Annuler -->
       <div class="text-center mt-4">
         <button type="submit" class="btn btn-primary px-5 me-3" i18n>
-          <i class="fas fa-save me-2"></i>Enregistrer
+          <i class="fas fa-save me-2"></i>{{'page.Enregistrer'| translate}}
         </button>
         <button type="button" class="btn btn-secondary px-4" (click)="cancel()" i18n>
-          <i class="fas fa-times me-2"></i>Annuler
+          <i class="fas fa-times me-2"></i>{{'page.Annuler'| translate}}
         </button>
       </div>
     </form>

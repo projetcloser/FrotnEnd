@@ -4,11 +4,12 @@ import { EntrepriseServiceService } from '../entreprise-service.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-entreprise',
   standalone: true,
-  imports: [CommonModule,FormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,RouterModule,TranslateModule],
   templateUrl: './details-entreprise.component.html',
   styleUrl: './details-entreprise.component.css'
 })

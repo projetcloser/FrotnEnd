@@ -3,13 +3,13 @@
   <ng-container *ngIf=" user.role.name === 'administrateur'|| user.role.name === 'responsable de communication' || user.role.name === 'secretaire general' || user.role.name === 'responsable administratif' ">
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-primary shadow" (click)="goToCreateAnnonce()" i18n>
-      <i class="fas fa-plus mr-2"></i> Créer une nouvelle annonce
+      <i class="fas fa-plus mr-2"></i> {{'page.Créer une annonce'| translate}}
     </button>
   </div>
   </ng-container>
 
   <!-- Titre principal -->
-  <h2 class="text-center mb-4" i18n>Liste des annonces</h2>
+  <h2 class="text-center mb-4" i18n>{{'page.titleAnnonce'| translate}}</h2>
 
   <div class="row">
     <!-- Boucle pour chaque annonce -->
@@ -36,7 +36,7 @@
 
           <!-- Fichiers joints si disponibles -->
         <div *ngIf="annonce.fichiers?.length" class="mt-3">
-          <h6 class="text-info" i18n>Fichiers joints :</h6>
+          <h6 class="text-info" i18n>{{'page.Joindre des fichiers'| translate}}Fichiers joints :</h6>
           <ul class="list-unstyled">
             <!-- Chaque fichier devient un lien de téléchargement -->
             <li *ngFor="let fichier of annonce.fichiers">

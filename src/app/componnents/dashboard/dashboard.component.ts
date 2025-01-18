@@ -4,12 +4,14 @@ import { AuthService } from '../../components/auth/auth.service';
 import { Router } from '@angular/router';
 import { NgIf } from "@angular/common";
 import { environment } from '../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+  TranslateModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'

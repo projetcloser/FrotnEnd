@@ -7,12 +7,13 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { AuthService } from "../../../components/auth/auth.service";
 import { PaginationService } from '../../../components/pagination.service';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index-evenement',
   standalone: true,
   imports: [CommonModule,
-    RouterModule, ReactiveFormsModule, FormsModule,PaginationComponent],
+    RouterModule, ReactiveFormsModule, FormsModule,PaginationComponent,TranslateModule],
   templateUrl: './index-evenement.component.html',
   styleUrl: './index-evenement.component.css'
 })

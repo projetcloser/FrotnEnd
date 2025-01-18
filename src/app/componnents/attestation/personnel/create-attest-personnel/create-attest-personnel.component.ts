@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { MembreServiceService } from '../../../membre/membre-service.service';
 import { CaisseServiceService } from '../../../Caisse/caisse-service.service';
 import { AuthService } from '../../../../components/auth/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-attest-personnel',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,TranslateModule],
   templateUrl: './create-attest-personnel.component.html',
   styleUrl: './create-attest-personnel.component.css'
 })

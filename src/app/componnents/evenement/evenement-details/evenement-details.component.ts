@@ -4,11 +4,12 @@ import { EvenementService } from '../evenement.service';
 import { Evenement } from '../evenement';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-evenement-details',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,TranslateModule],
   templateUrl: './evenement-details.component.html',
   styleUrl: './evenement-details.component.css'
 })

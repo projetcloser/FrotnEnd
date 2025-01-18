@@ -26,7 +26,7 @@ export class MultilangService {
         case "ch":
           return "ch";
         default:
-          return "fr"  
+          return "fr"
       }
     });
   }
@@ -37,7 +37,7 @@ export class MultilangService {
       window.localStorage.setItem('languageSignal', JSON.stringify(this.languageSignal()));
       this.translateService.use(this.languageSignal());
       console.log(this.languageSignal);
-      
+
     });
    }
 }

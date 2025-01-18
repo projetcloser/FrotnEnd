@@ -11,11 +11,12 @@ import { saveAs } from 'file-saver';
 import {AuthService} from "../../../components/auth/auth.service";
 import { PaginationService } from '../../../components/pagination.service';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index-entreprise',
   standalone: true,
-  imports: [RouterModule, RouterLink, CommonModule,FormsModule,ReactiveFormsModule,PaginationComponent],
+  imports: [RouterModule, RouterLink, CommonModule,FormsModule,ReactiveFormsModule,PaginationComponent,TranslateModule],
   templateUrl: './index-entreprise.component.html',
   styleUrl: './index-entreprise.component.css'
 })

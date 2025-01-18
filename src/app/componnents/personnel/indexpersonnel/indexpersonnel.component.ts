@@ -12,6 +12,7 @@ import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
 import { PaginationService } from '../../../components/pagination.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
@@ -22,7 +23,7 @@ import { PaginationService } from '../../../components/pagination.service';
     ReactiveFormsModule,
     FontAwesomeModule,
     RouterModule,
-    PaginationComponent
+    PaginationComponent,TranslateModule
 
   ],
   templateUrl: './indexpersonnel.component.html',

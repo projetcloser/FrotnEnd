@@ -2,10 +2,10 @@
   <div class="card shadow-sm">
 
     <div class="card-header d-flex justify-content-between align-items-center">
-      <h4 class="card-title">Liste des Amendes</h4>
+      <h4 class="card-title">{{'page.Liste des Amendes'| translate}}</h4>
 
 <ng-container *ngIf="user.role.name !== 'membre'   ">
-      <button class="btn btn-primary" [routerLink]="['/Closer/amendes/new']">Ajouter une Amende</button>
+      <button class="btn btn-primary" [routerLink]="['/Closer/amendes/new']">{{'page.Ajouter une Amende'| translate}}</button>
     </ng-container>
 
     </div>
@@ -22,13 +22,13 @@
           <tr>
             <!-- <th scope="col">#</th> -->
             <th scope="col"i18n>Date</th>
-            <th scope="col"i18n>Auteur</th>
-            <th scope="col" i18n>Objet</th>
-            <th scope="col" i18n>Montant</th>
-            <th scope="col" i18n>Membre</th>
-            <th scope="col" i18n>Statuts</th>
+            <th scope="col"i18n>{{'page.Auteur'| translate}}</th>
+            <th scope="col" i18n>{{'page.Objet'| translate}}</th>
+            <th scope="col" i18n>{{'page.Montant'| translate}}</th>
+            <th scope="col" i18n>{{'page.Membre'| translate}}</th>
+            <th scope="col" i18n>{{'page.Statuts'| translate}}</th>
             <th scope="col" i18n>
-              Prévisualisation</th>
+              {{'page.Prévisualisation'| translate}}</th>
             <th scope="col" class="text-center">Actions</th>
           </tr>
         </thead>

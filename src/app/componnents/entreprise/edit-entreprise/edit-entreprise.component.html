@@ -1,7 +1,7 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <h1 class="mt-4 " i18n>Modifier Entreprise</h1>
+    <h1 class="mt-4 " i18n>{{'page.Modifier Entreprise'| translate}}</h1>
     <ol class="breadcrumb mb-4 text-center">
       <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;" i18n>
         Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
@@ -13,21 +13,21 @@
         <!-- form start -->
         <div class="card">
           <div class="card-header">
-            <h2 i18n>Mettre à jour l'entreprise</h2>
+            <h2 i18n>{{'page.Modifier Entreprise'| translate}}</h2>
           </div>
           <div class="card-body">
             <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="name" i18n>Nom de l'Entreprise</label>
+                    <label for="name" i18n>{{"page.Nom de l'Entreprise"| translate}}</label>
                     <input id="name" formControlName="name" class="form-control" type="text" />
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="author" i18n>Auteur</label>
+                    <label for="author" i18n>{{"page.Auteur"| translate}}</label>
                     <input id="author" formControlName="author" class="form-control" type="text" />
                   </div>
                 </div>
@@ -36,7 +36,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="phone" i18n>Téléphone</label>
+                    <label for="phone" i18n>{{"page.Téléphone"| translate}}</label>
                     <input id="phone" formControlName="phone" class="form-control" type="text" />
                   </div>
                 </div>
@@ -68,7 +68,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="country_id" i18n>Pays</label>
+                    <label for="country_id" i18n>{{"page.Pays"| translate}}</label>
                     <select id="country_id" formControlName="country_id" class="form-control">
                       <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
                     </select>
@@ -77,7 +77,7 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="city_id" i18n>Ville</label>
+                    <label for="city_id" i18n>{{"page.Ville"| translate}}</label>
                     <select id="city_id" formControlName="city_id" class="form-control">
                       <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
                     </select>
@@ -88,14 +88,14 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="neighborhood" i18n>Quartier</label>
+                    <label for="neighborhood" i18n>{{"page.Quartier"| translate}}</label>
                     <input id="neighborhood" formControlName="neighborhood" class="form-control" type="text" />
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="contact_person" i18n>Personne de contact</label>
+                    <label for="contact_person" i18n>{{"page.Personne de contact"| translate}}</label>
                     <input id="contact_person" formControlName="contact_person" class="form-control" type="text" />
                   </div>
                 </div>
@@ -104,7 +104,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="contact_person_phone" i18n>Téléphone de la personne de contact</label>
+                    <label for="contact_person_phone" i18n>{{"page.Téléphone de la personne de contact"| translate}}</label>
                     <input id="contact_person_phone" formControlName="contact_person_phone" class="form-control" type="text" />
                   </div>
                 </div>
@@ -117,7 +117,7 @@
                 </div> -->
               </div>
 
-              <button type="submit" class="btn btn-primary" i18n>Mettre à jour</button>
+              <button type="submit" class="btn btn-primary" i18n>{{"page.Soumettre"| translate}}</button>
             </form>
           </div>
         </div>

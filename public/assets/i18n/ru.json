@@ -1,0 +1,112 @@
+{
+  "sideNav": {
+  "Tableau_de_bord": "Панель управления",
+  "Attestation_entreprise": "Сертификат компании",
+  "Non_payé": "Неоплачено",
+  "Payé": "Оплачено",
+  "Statut_Initiated": "Статус инициирован",
+  "Attestation_personnel": "Сертификат персонала",
+  "Annonces": "Объявления",
+  "Amendes": "Штрафы",
+  "Cotisations": "Взносы",
+  "Dettes": "Долги",
+  "Demande_de_cachet": "Запрос печати",
+  "Evènements": "События",
+  "Entreprises": "Компании",
+  "Membres": "Члены",
+  "Personnels": "Персонал",
+  "Déconnexion": "Выйти",
+  "Configuration": "Настройки"
+},
+"tableau": {
+  "bord": "Панель управления",
+  "titre": "Добро пожаловать в Closer!",
+  "subtitre": "ваше привилегированное пространство для Национального ордена инженеров гражданского строительства Камеруна",
+
+  "Membres": "Члены",
+  "Membres Inscrit": "Зарегистрированные члены",
+  "Membres Actifs": "Активные члены",
+  "Membres Echus": "Просроченные члены",
+
+  "Sercices Vendus": "Проданные услуги",
+  "Frais cotisations": "Членские взносы",
+  "Frais attestations": "Плата за сертификаты",
+
+  "Dettes-Ingénieurs": "Долги инженеров",
+  "Dettes totales": "Общие долги",
+  "Dettes acquises": "Накопленные долги",
+  "Dettes en cours": "Текущие долги",
+
+  "Demande de cachets": "Запрос на печати",
+  "Demandes envoyées": "Отправленные запросы",
+  "Cachets disponibles": "Доступные печати",
+  "Cachets livrés": "Выданные печати",
+
+  "Attestations_entreprise": "Сертификаты для компаний",
+  "Demandes totales": "Общее количество запросов",
+  "Attestations generées": "Выданные сертификаты",
+  "Demandes rejetées": "Отклонённые запросы",
+
+  "Attestations_personnel": "Сертификаты для личного пользования",
+
+  " Personnels_Entreprises": "Персонал/Компании",
+  "Personnels": "Персонал",
+  "Entreprises": "Компании"
+}
+,
+"page": {
+  "Matricule": "Регистрационный номер",
+  "Nom_ingénieur": "Имя инженера",
+  "Nouvelle demande":"Новая заявка",
+  "Entreprise": "Компания",
+  "Statut": "Статус",
+  "Auteur": "Автор",
+  "Prévisualisation": "Предпросмотр",
+  "titte1": "Список неоплаченных запросов на сертификаты для компаний",
+  "titleStore": "Добавить сертификат",
+  "Réference": "Справка",
+  "Maître_ouvrage": "Заказчик",
+  "Objet": "Объект",
+  "Enregistrer": "Сохранить",
+  "Annuler": "Отменить",
+  "title2": "Список оплаченных запросов на сертификаты для компаний",
+  "title3": "Список начатых запросов на сертификаты для компаний",
+  "Modifier_la_cotisation": "Изменить взнос",
+    "Modifier_une_cotisation": "Изменить взнос",
+    "Somme": "Сумма",
+  "titlePerssonel": "Список запросов на личные сертификаты",
+
+  "titleAnnonce": "Список объявлений",
+  "Groupe": "Группа",
+  "Contenu": "Содержание",
+  "Joindre des fichiers": "Прикрепить файлы",
+  "Créer une annonce": "Создать объявление",
+  "Modifier une Annonce": "Изменить объявление",
+
+  "Liste des Amendes": "Список штрафов",
+  "Ajouter une Amende": "Добавить штраф",
+  "Montant": "Сумма",
+
+  "Caisse": "Касса",
+  "Année d'inscription": "Год регистрации",
+  "Payé": "Оплачено",
+  "Reste": "Остаток",
+  "Nouvelle cotisation": "Новый взнос",
+  "Verssement": "Платеж",
+  "Exporter": "Экспортировать",
+
+  "Liste des Dettes": "Список долгов",
+  "Nom du Membre": "Имя участника",
+  "Date d'Échéance": "Дата погашения",
+
+  "Liste des Cachets": "Список печатей",
+  "Disponible": "Доступно",
+  "Livrée": "Доставлено",
+
+  "login_title": "Добро пожаловать в Closer, платформу, которая приближает вас к услугам Национального ордена гражданских инженеров!",
+  "Réinitialisation du mot de passe": "Сброс пароля"
+}
+
+
+
+}

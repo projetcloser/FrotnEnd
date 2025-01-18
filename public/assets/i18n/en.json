@@ -20,190 +20,174 @@
 
 
   },
-  "annonce":{
-    "index_annonce":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_annonce":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_annonce":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_annonce":{
-      "auteur":"other",
-      "membre":"Members"
-    }
+  "tableau": {
+  "bord": "Dashboard",
+  "titre": "Welcome to Closer!",
+  "subtitre": "your privileged space for the National Order of Civil Engineers of Cameroon",
 
-  },
-  "amende":{
-    "index_amende":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_amende":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_amende":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_amende":{
-      "auteur":"other",
-      "membre":"Members"
-    }
+  "Membres": "Members",
+  "Membres Inscrit": "Registered Members",
+  "Membres Actifs": "Active Members",
+  "Membres Echus": "Expired Members",
 
-  },
-  "attestation":{
-    "index_attestation":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_attestation":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_attestation":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_attestation":{
-      "auteur":"other",
-      "membre":"Members"
-    }
+  "Sercices Vendus": "Services Sold",
+  "Frais cotisations": "Contribution Fees",
+  "Frais attestations": "Certification Fees",
 
-  },
-  "cotisation":{
-    "index_cotisation":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_cotisation":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_cotisation":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_cotisation":{
-      "auteur":"other",
-      "membre":"Members"
-    }
+  "Dettes-Ingénieurs": "Engineers' Debts",
+  "Dettes totales": "Total Debts",
+  "Dettes acquises": "Accrued Debts",
+  "Dettes en cours": "Ongoing Debts",
 
-  },
-  "dette":{
-    "index_dette":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_dette":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_dette":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_dette":{
-      "auteur":"other",
-      "membre":"Members"
-    }
+  "Demande de cachets": "Seal Requests",
+  "Demandes envoyées": "Requests Sent",
+  "Cachets disponibles": "Available Seals",
+  "Cachets livrés": "Delivered Seals",
 
-  },
-  "entrprise":{
-    "index_entrprise":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_entrprise":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_entrprise":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_entrprise":{
-      "auteur":"other",
-      "membre":"Members"
-    }
-  },
-  "event":{
-    "index_event":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_event":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_event":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_entrprise":{
-      "auteur":"other",
-      "membre":"Members"
-    }
-  },
-  "member":{
-    "index_member":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_member":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_member":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_member":{
-      "auteur":"other",
-      "membre":"Members"
-    }
-  },
-  "country":{
-    "index_country":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_country":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_country":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_country":{
-      "auteur":"other",
-      "membre":"Members"
-    }
-  },
-  "staff":{
-    "index_staff":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "store_staff":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "update_staff":{
-      "auteur":"other",
-      "membre":"Members"
-    },
-    "details_staff":{
-      "auteur":"other",
-      "membre":"Members"
-    }
-  }
+  "Attestations_entreprise": "Certificates for Companies",
+  "Demandes totales": "Total Requests",
+  "Attestations generées": "Generated Certificates",
+  "Demandes rejetées": "Rejected Requests",
+
+  "Attestations_personnel": "Personal Use Certificates",
+
+  " Personnels/Entreprises": "Staff/Companies",
+  "Personnels": "Staff",
+  "Entreprises": "Companies"
+},
   
+  "page": {
+  "Matricule": "Registration Number",
+  "Nom_ingénieur": "Engineer Name",
+  "Nouvelle demande":"New request",
+  "Entreprise": "Company",
+  "Statut": "Status",
+  "Auteur": "Author",
+  "membres":"Member",
+  "Prévisualisation": "Preview",
+  "titte1": "List of unpaid certificate requests for companies",
+  "titleStore": "Add a Certificate",
+  "Réference": "Reference",
+  "Maître_ouvrage": "Project Owner",
+  "Objet": "Subject",
+  "Enregistrer": "Save",
+  "Annuler": "Cancel",
+  "title2": "List of paid certificate requests for companies",
+  "title3": "List of initiated certificate requests for companies",
+  "titlePerssonel": "List of personal certificate requests",
+
+  "titleAnnonce": "List of announcements",
+  "Groupe": "Group",
+  "Contenu": "Content",
+  "Joindre des fichiers": "Attach files",
+  "Créer une annonce": "Create an announcement",
+  "Modifier une Annonce": "Edit an announcement",
+
+  "Liste des Amendes": "List of fines",
+  "Ajouter une Amende": "Add a fine",
+  "Montant": "Amount",
+
+  "Caisse": "Cash Register",
+  "Année d'inscription": "Registration Year",
+  "Payé": "Paid",
+  "Reste": "Remaining",
+  "Nouvelle cotisation": "New contribution",
+  "Creer une nouvelle cotisation": "Create a new contribution",
+  "Modifier_la_cotisation": "Edit the contribution",
+  "Modifier_une_cotisation": "Edit a contribution",
+  "Somme": "Amount",
+  "Verssement": "Payment",
+  "Soumettre": "Submit",
+  "Non Actifs": "Inactive",
+  "Actifs": "Active",
+  "Exporter": "Export",
+  "Liste des Cotisations": "List of Contributions",
+
+  "Liste des Dettes": "List of Debts",
+  "Nom du Membre": "Member Name",
+  "Date d'Échéance": "Due Date",
+
+  "Liste des Cachets": "List of Seals",
+  "N° Recue": "Receipt Number",
+  "Année": "Year",
+  "Modifier le cachet": "Edit the seal",
+  "Mettre à jour le cachet": "Update the seal",
+  "Cachet Livré": "Seal Delivered",
+  "Cachet disponible": "Seal Available",
+  "Demande envoyée": "Request Sent",
+  "En cours de fabrication": "In Production",
+  "Disponible": "Available",
+  "Envoyée": "Sent",
+  "Livrée": "Delivered",
+
+  "Liste des Evènements": "List of Events",
+  "Titre": "Title",
+  "Lieu": "Location",
+  "Nbre participants": "Number of Participants",
+  "Coût": "Cost",
+  "Date bedut": "Start Date",
+  "Date fin": "End Date",
+  "Nouvelle evenement": "New Event",
+  "Enregistrer un évènement": "Save an Event",
+  "Participant": "Participant",
+  "prix": "Price",
+  "Debut": "Start",
+  "Fin": "End",
+  "Participer": "Participate",
+  "annuler": "Cancel",
+  "Nouveau évènement": "New Event",
+  "Modifier l'evenement": "Edit Event",
+
+  "Liste des Entreprises": "List of Companies",
+  "Entreprises": "Companies",
+  "Categorie": "Category",
+  "Localisation": "Location",
+  "Point Focal": "Focal Point",
+  "Contact": "Contact",
+  "liste des entreprises": "Company List",
+  "Nouvelle Entreprise": "New Company",
+  "Enregistrer une entreprise": "Register a Company",
+  "Raison sociale": "Company Name",
+  "Pays": "Country",
+  "Personne de contact": "Contact Person",
+  "Ville": "City",
+  "Téléphone de la personne de contact": "Contact Person's Phone",
+  "Quartier": "Neighborhood",
+  "Créer l'entreprise": "Create the Company",
+  "Details entreprises": "Company Details",
+  "Modifier Entreprise": "Edit Company",
+
+  "Créer un nouveau Membre": "Create a New Member",
+  "Prénom": "First Name",
+  "Nom": "Last Name",
+  "Téléphone": "Phone",
+  "Pièce jointe": "Attachment",
+  "Photo": "Photo",
+  "Créer le menbre": "Create Member",
+  "Editer un nouveau Membre": "Edit New Member",
+  "Liste des membres": "List of Members",
+
+  "Liste des personnels": "List of Staff",
+  "Profession": "Profession",
+  "Situation Matrimoniale": "Marital Status",
+  "Nombre d'Enfants": "Number of Children",
+  "Date de Naissance": "Date of Birth",
+  "Nom du Père": "Father's Name",
+  "Nom de la mère": "Mother's Name",
+  "Email": "Email",
+  "Type Contrat": "Contract Type",
+  "Position": "Position",
+
+  "Liste des Caisses": "List of Cash Registers",
+  "Liste des groupes": "List of Groups",
+  "Liste des Utilisateurs": "List of Users",
+  "Mon Profil": "My Profile",
+
+  "Nouvelle entreprise": "New Company",
+  "Catégorie d'entreprise": "Company Category",
+
+  "login_title": "Welcome to Closer, the platform that brings you closer to the services of the National Order of Civil Engineers!",
+  "Réinitialisation du mot de passe": "Password Reset"
+}
+
 }

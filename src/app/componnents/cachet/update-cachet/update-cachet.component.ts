@@ -6,11 +6,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { VilleServiceService } from '../../ville/ville-service.service';
 import { PaysServiceService } from '../../pays/pays-service.service';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-cachet',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,TranslateModule],
   templateUrl: './update-cachet.component.html',
   styleUrl: './update-cachet.component.css'
 })

@@ -6,6 +6,7 @@ import { CaisseServiceService } from '../caisse-service.service';
 import { FormsModule } from '@angular/forms';
 import { PersonnelService } from '../../personnel/personnel.service';
 import { Personnel } from '../../personnel/personnel';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index-caisse',
@@ -13,7 +14,7 @@ import { Personnel } from '../../personnel/personnel';
   imports: [CommonModule,
     CommonModule,
     FormsModule,
-    RouterModule,
+    RouterModule,TranslateModule
   ],
   templateUrl: './index-caisse.component.html',
   styleUrl: './index-caisse.component.css'

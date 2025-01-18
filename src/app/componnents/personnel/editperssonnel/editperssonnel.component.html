@@ -25,7 +25,7 @@
                 <div class="row mb-3">
                   <!-- firstname -->
                   <div class="col-md-6">
-                    <span i18n>Nom</span>
+                    <span i18n>{{'page.Nom'| translate}}</span>
                     <input type="text" formControlName="firstname" class="form-control" />
                     <!-- <div *ngIf="personnelForm.controls['firstname'].invalid && personnelForm.controls['firstname'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['firstname'].hasError('required')">Raison sociale est requise.</small>
@@ -34,7 +34,7 @@
 
                   <!-- Author -->
                   <div class="col-md-6">
-                    <span i18n>Auteur</span>
+                    <span i18n>{{'page.Auteur'| translate}}</span>
                     <input type="text" formControlName="author" class="form-control" />
                     <!-- <div *ngIf="personnelForm.controls['author'].invalid && personnelForm.controls['author'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['author'].hasError('required')">Auteur est requis.</small>
@@ -45,7 +45,7 @@
                 <div class="row mb-3">
                   <!-- Prénom -->
                   <div class="col-md-6">
-                    <span i18n>Prénom</span>
+                    <span i18n>{{'page.Prénom'| translate}}</span>
                     <input type="text" formControlName="lastname" class="form-control" />
                     <!-- <div *ngIf="personnelForm.controls['lastname'].invalid && personnelForm.controls['lastname'].touched" class="text-danger">
                       <small *ngIf="personnelForm.controls['lastname'].hasError('required')">Télélastname est requis.</small>
@@ -54,7 +54,7 @@
 
                     <!-- Tel -->
                     <div class="col-md-6">
-                      <span i18n>Téléphone</span>
+                      <span i18n>{{'page.Téléphone'| translate}}</span>
                       <input type="text" formControlName="phone" class="form-control" />
                       <!-- <div *ngIf="personnelForm.controls['phone'].invalid && personnelForm.controls['phone'].touched" class="text-danger">
                         <small *ngIf="personnelForm.controls['phone'].hasError('required')">Personne de contact est requise.</small>
@@ -94,7 +94,7 @@
                 <div class="row mb-3">
                   <!-- Country -->
                   <div class="col-md-6">
-                    <span i18n>Pays</span>
+                    <span i18n>{{'page.Pays'| translate}}</span>
                     <select formControlName="country_id" class="form-control">
                       <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
                     </select>
@@ -105,7 +105,7 @@
 
                   <!-- City -->
                   <div class="col-md-6">
-                    <span i18n>Ville</span>
+                    <span i18n>{{'page.Ville'| translate}}</span>
                     <select formControlName="city_id" class="form-control">
                       <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
                     </select>
@@ -120,13 +120,13 @@
 
                    <!-- profession -->
                    <div class="col-md-6">
-                    <span i18n>Profession</span>
+                    <span i18n>{{'page.Profession'| translate}}</span>
                     <input type="text" formControlName="profession" class="form-control" />
                   </div>
 
                    <!-- genre -->
                    <div class="col-md-6">
-                    <span i18n>Genre</span>
+                    <span i18n>{{'page.Genre'| translate}}</span>
                     <select formControlName="gender" class="form-control">
                       <option value="N/A" selected="">
                         ...
@@ -145,7 +145,7 @@
                 <div class="row mb-3">
                   <!-- marital_status -->
                   <div class="col-md-6">
-                    <span i18n>Situation Matrimoniale</span>
+                    <span i18n>{{'page.Situation Matrimoniale'| translate}}</span>
                     <select formControlName="marital_status" class="form-control">
                       <option value="N/A" selected="">
                         ...
@@ -166,14 +166,14 @@
                   </div>
                <!--Nombre D'enfants -->
                <div class="col-md-6">
-                <span i18n>Nombre d'Enfants</span>
+                <span i18n>{{"page.Nombre d'Enfants"| translate}}</span>
                 <input type="text" formControlName="num_children" class="form-control" />
               </div>
             </div>
             <div class="row mb-3">
               <!-- Date de Naissance -->
               <div class="col-md-6">
-                <span i18n>Date de Naissance</span>
+                <span i18n>{{'page.Date de Naissance'| translate}}</span>
                 <input type="date" formControlName="birthday" class="form-control" />
                 <div *ngIf="personnelForm.controls['birthday'].invalid && personnelForm.controls['birthday'].touched" class="text-danger">
                   <small *ngIf="personnelForm.controls['birthday'].hasError('required')">Personne de contact est requise.</small>
@@ -182,7 +182,7 @@
 
               <!-- Lieu de Naissance -->
               <div class="col-md-6">
-                <span i18n>Lieu de Naissance</span>
+                <span i18n>{{'page.Lieu de Naissance'| translate}}</span>
                 <input type="text" formControlName="place_birth" class="form-control" />
                 <div *ngIf="personnelForm.controls['place_birth'].invalid && personnelForm.controls['place_birth'].touched" class="text-danger">
                   <small *ngIf="personnelForm.controls['place_birth'].hasError('required')">Lieu de Naissance est requis.</small>
@@ -192,12 +192,12 @@
                 <div class="row mb-3">
                   <!-- father_name -->
                   <div class="col-md-6">
-                    <span i18n>Nom du Père</span>
+                    <span i18n>{{'page.Nom du Père'| translate}}</span>
                     <input type="text" formControlName="father_name" class="form-control" />
                   </div>
                    <!-- mother_name -->
                    <div class="col-md-6">
-                    <span i18n>Nom de la mère</span>
+                    <span i18n>{{'page.Nom de la mère'| translate}}</span>
                     <input type="text" formControlName="mother_name" class="form-control" />
                   </div>
                 </div>
@@ -223,7 +223,7 @@
                 <div class="row mb-3">
                   <!-- Piece jointe -->
                   <div class="col-md-6">
-                    <span i18n>Piece jointe</span>
+                    <span i18n>{{'page.Joindre des fichiers'| translate}}</span>
                     <input type="file" formControlName="attachment" (change)="handleFileInput($event)" class="form-control" multiple />
                   </div>
                    <!--Nombre D'enfants -->
@@ -236,7 +236,7 @@
                 <div class="row mb-3">
                   <!-- Submit Button -->
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block" i18n>Enregistrer</button>
+                    <button type="submit" class="btn btn-primary btn-block" i18n>{{'page.Enregistrer'| translate}}</button>
                   </div>
                 </div>
               </form>

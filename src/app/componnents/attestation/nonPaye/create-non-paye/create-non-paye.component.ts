@@ -7,11 +7,12 @@ import { MembreServiceService } from '../../../membre/membre-service.service';
 import { NonPayeService } from '../non-paye.service';
 import { CommonModule } from '@angular/common';
 import { EntrepriseServiceService } from '../../../entreprise/entreprise-service.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-non-paye',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, RouterModule,TranslateModule],
   templateUrl: './create-non-paye.component.html',
   styleUrl: './create-non-paye.component.css'
 })

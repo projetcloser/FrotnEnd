@@ -493,7 +493,7 @@
                           </button>
 
                           <ul class="dropdown-menu">
-                            <li *ngFor="let language of ['en', 'fr', 'ru', 'es']">
+                            <li *ngFor="let language of ['en', 'fr', 'ru','ch', 'es']">
                               <a class="dropdown-item" (click)="toogleLanguage(language)"
                                  [ngClass]="{'active': multilangService.languageSignal() === language}">
                                 <i [ngClass]="getLanguageIconClass(language)"></i>
@@ -508,7 +508,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" style="color: white;"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-white-600 small" >Bienvenue , {{ user.perso.firstname }} {{ user.perso.lastname }} ( {{ user.role.name}})</span>
+                                <span class="mr-2 d-none d-lg-inline text-white-600 small" >{{'tableau.titre'| translate }} , {{ user.perso.firstname }} {{ user.perso.lastname }} ( {{ user.role.name}})</span>
                                 <img class="img-profile rounded-circle"
                                     src="assets/img/undraw_profile.svg">
                             </a>

@@ -8,11 +8,12 @@ import { AuthService } from '../../../../components/auth/auth.service';
 import { MembreServiceService } from '../../../membre/membre-service.service';
 import { CommonModule } from '@angular/common';
 import { NonPaye } from '../non-paye';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-non-paye',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,RouterModule,RouterModule],
+  imports: [CommonModule,ReactiveFormsModule,RouterModule,RouterModule,TranslateModule],
   templateUrl: './edit-non-paye.component.html',
   styleUrl: './edit-non-paye.component.css'
 })

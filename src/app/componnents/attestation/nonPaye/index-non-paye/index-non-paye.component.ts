@@ -15,12 +15,13 @@ import QRCode from 'qrcode';
 import { AuthService } from "../../../../components/auth/auth.service";
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index-non-paye',
   standalone: true,
 
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PaginationComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PaginationComponent, TranslateModule],
 
   templateUrl: './index-non-paye.component.html',
   styleUrl: './index-non-paye.component.css'

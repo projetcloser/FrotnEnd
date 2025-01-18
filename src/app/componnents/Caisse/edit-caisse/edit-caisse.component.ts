@@ -4,11 +4,12 @@ import { CaisseServiceService } from '../caisse-service.service';
 import { PersonnelService } from '../../personnel/personnel.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-caisse',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,ReactiveFormsModule,FormsModule,TranslateModule],
   templateUrl: './edit-caisse.component.html',
   styleUrl: './edit-caisse.component.css'
 })

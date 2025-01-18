@@ -1,0 +1,121 @@
+{
+ 
+"sideNav": {
+      "Tableau_de_bord": "仪表板",
+      "Attestation_entreprise": "公司证明",
+      "Non_payé": "未支付",
+      "Payé": "已支付",
+      "Statut_Initiated": "已启动状态",
+      "Attestation_personnel": "员工证明",
+      "Annonces": "公告",
+      "Amendes": "罚款",
+      "Cotisations": "会费",
+      "Dettes": "债务",
+      "Demande_de_cachet": "印章申请",
+      "Evènements": "活动",
+      "Entreprises": "公司",
+      "Membres": "成员",
+      "Personnels": "员工",
+      "Déconnexion": "退出登录",
+      "Configuration": "设置"
+},
+   
+"tableau": {
+  "bord": "仪表盘",
+  "titre": "欢迎来到 Closer!",
+  "subtitre": "您在喀麦隆国家土木工程师协会的专属空间",
+
+  "Membres": "会员",
+  "Membres Inscrit": "注册会员",
+  "Membres Actifs": "活跃会员",
+  "Membres Echus": "过期会员",
+
+  "Sercices Vendus": "已售服务",
+  "Frais cotisations": "会费",
+  "Frais attestations": "证明费用",
+
+  "Dettes-Ingénieurs": "工程师的债务",
+  "Dettes totales": "总债务",
+  "Dettes acquises": "应收债务",
+  "Dettes en cours": "进行中的债务",
+
+  "Demande de cachets": "印章请求",
+  "Demandes envoyées": "已发送请求",
+  "Cachets disponibles": "可用印章",
+  "Cachets livrés": "已交付印章",
+
+  "Attestations_entreprise": "公司证明",
+  "Demandes totales": "总请求",
+  "Attestations generées": "已生成的证明",
+  "Demandes rejetées": "被拒绝的请求",
+
+  "Attestations_personnel": "个人用途证明",
+
+  " Personnels_Entreprises": "人员/公司",
+  "Personnels": "人员",
+  "Entreprises": "公司"
+},
+"page": {
+  "Matricule": "注册号",
+  "Nom_ingénieur": "工程师姓名",
+  "Nouvelle demande":"新请求",
+  "Entreprise": "公司",
+  "Statut": "状态",
+  "Auteur": "作者",
+  "Prévisualisation": "预览",
+  "titte1": "公司未支付的证明请求列表",
+  "titleStore": "添加证明",
+  "Réference": "参考号",
+  "Maître_ouvrage": "项目业主",
+  "Objet": "主题",
+  "Enregistrer": "保存",
+  "Annuler": "取消",
+  "title2": "公司已支付的证明请求列表",
+  "title3": "公司已启动的证明请求列表",
+  "titlePerssonel": "个人使用的证明请求列表",
+
+  "titleAnnonce": "公告列表",
+  "Groupe": "小组",
+  "Contenu": "内容",
+  "Joindre des fichiers": "附加文件",
+  "Créer une annonce": "创建公告",
+  "Modifier une Annonce": "编辑公告",
+
+  "Liste des Amendes": "罚款列表",
+  "Ajouter une Amende": "添加罚款",
+  "Montant": "金额",
+
+  "Caisse": "现金账户",
+  "Année d'inscription": "注册年份",
+  "Payé": "已支付",
+  "Reste": "剩余",
+  "Nouvelle cotisation": "新会费",
+  "Creer une nouvelle cotisation": "创建新会费",
+  "Modifier_la_cotisation": "修改会费",
+    "Modifier_une_cotisation": "修改一笔会费",
+    "Somme": "金额",
+  "Verssement": "支付",
+  "Soumettre": "提交",
+  "Non Actifs": "非活跃",
+  "Actifs": "活跃",
+  "Exporter": "导出",
+  "Liste des Cotisations": "会费列表",
+
+  "Liste des Dettes": "债务列表",
+  "Nom du Membre": "会员姓名",
+  "Date d'Échéance": "到期日期",
+
+  "Liste des Cachets": "印章列表",
+  "N° Recue": "收据编号",
+  "Année": "年份",
+  "Modifier le cachet": "编辑印章",
+  "Mettre à jour le cachet": "更新印章",
+  "Cachet Livré": "印章已交付",
+  "Cachet disponible": "印章可用",
+
+  "login_title": "欢迎来到 Closer，拉近您与国家土木工程师协会服务的距离！",
+  "Réinitialisation du mot de passe": "重置密码"
+}
+
+
+}

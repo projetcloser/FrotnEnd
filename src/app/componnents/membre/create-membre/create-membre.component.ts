@@ -10,11 +10,12 @@ import { image } from 'html2canvas/dist/types/css/types/image';
 import { AuthService } from '../../../components/auth/auth.service';
 import { Poste } from '../../poste/poste';
 import { PosteService } from '../../poste/poste.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-membre',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,TranslateModule],
   templateUrl: './create-membre.component.html',
   styleUrl: './create-membre.component.css'
 })

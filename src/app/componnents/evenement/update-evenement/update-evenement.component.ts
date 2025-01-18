@@ -4,11 +4,12 @@ import { EvenementService } from '../evenement.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Evenement } from '../evenement';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-evenement',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,TranslateModule],
   templateUrl: './update-evenement.component.html',
   styleUrl: './update-evenement.component.css'
 })

@@ -11,13 +11,14 @@ import { PaginationComponent } from '../../../components/pagination/pagination.c
 import { PaginationService } from '../../../components/pagination.service';
 import { NonPayeService } from '../../attestation/nonPaye/non-paye.service';
 import { Payment } from '../../attestation/nonPaye/payer/payment';
+import { TranslateModule } from '@ngx-translate/core';
 
 declare var $: any; // Utiliser jQuery globalement
 
 @Component({
   selector: 'app-list-amende',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PaginationComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PaginationComponent,TranslateModule],
   templateUrl: './list-amende.component.html',
   styleUrl: './list-amende.component.css',
 })

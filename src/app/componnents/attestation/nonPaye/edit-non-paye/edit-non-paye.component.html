@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="card shadow-lg p-4 border-0">
-    <h3 class="card-title text-center text-primary" i18n>Modifier une Attestation</h3>
+    <h3 class="card-title text-center text-primary" i18n>Update Certificate</h3>
     <form [formGroup]="addForm" (ngSubmit)="onUpdate()">
 
       <!-- Champ pour la date (readonly) avec icône -->
@@ -11,24 +11,24 @@
 
       <!-- Champ pour l'auteur (readonly) avec icône -->
       <div class="form-group mb-4">
-        <label for="author" class="form-label"><i class="fas fa-user me-2" i18n></i>Auteur</label>
+        <label for="author" class="form-label"><i class="fas fa-user me-2" i18n></i>{{'page.Auteur'| translate }}</label>
         <input type="text" id="author" class="form-control border-0 bg-light" formControlName="author" readonly>
       </div>
 
       <div class="form-group mb-4">
-        <label for="payment_amount" class="form-label"><i class="fas fa-dollar-sign me-2" i18n></i>Verssement</label>
+        <label for="payment_amount" class="form-label"><i class="fas fa-dollar-sign me-2" i18n></i>{{'page.Verssement'| translate }}</label>
         <input type="text" id="payment_amount" class="form-control border-0 bg-light" formControlName="payment_amount" >
       </div>
 
       <!-- Champ pour l'objet avec icône -->
       <div class="form-group mb-4">
-        <label for="motif" class="form-label"><i class="fas fa-info-circle me-2" i18n></i>Objet</label>
+        <label for="motif" class="form-label"><i class="fas fa-info-circle me-2" i18n></i>{{'page.Objet'| translate }}</label>
         <textarea id="motif" class="form-control" formControlName="motif" rows="3" placeholder="Décrivez l'objet de l'attestation"></textarea>
       </div>
 
       <!-- Champ pour le montant avec icône -->
       <div class="form-group mb-4">
-        <label for="cashflow_id" class="form-label"><i class="fas fa-dollar-sign me-2" i18n></i>Caisse</label>
+        <label for="cashflow_id" class="form-label"><i class="fas fa-dollar-sign me-2" i18n></i>{{'page.Caisse'| translate }}</label>
         <select formControlName="cashflow_id" class="form-control">
           <option *ngFor="let caisse of caisses" [value]="caisse.id">{{ caisse.name }}</option>
         </select>
@@ -36,7 +36,7 @@
 
         <!-- Champ pour le montant avec icône -->
         <div class="form-group mb-4">
-          <label for="company_id" class="form-label"><i class="fas fa-user me-2" i18n></i>Entreprise</label>
+          <label for="company_id" class="form-label"><i class="fas fa-user me-2" i18n></i>{{'page.Entreprise'| translate }}</label>
           <select formControlName="company_id" class="form-control">
             <option *ngFor="let caisse of companies" [value]="caisse.id">{{ caisse.social_reason }}</option>
           </select>
@@ -44,7 +44,7 @@
 
       <!-- Champ pour la sélection du membre avec icône -->
       <div class="form-group mb-4">
-        <label for="member_id" class="form-label"><i class="fas fa-user-friends me-2" i18n></i>Membre</label>
+        <label for="member_id" class="form-label"><i class="fas fa-user-friends me-2" i18n></i>{{'page.membres'| translate }}</label>
         <select id="member_id" class="form-select" formControlName="member_id">
           <option value="" disabled i18n>Sélectionnez un membre</option>
           <option *ngFor="let membre of membres" [value]="membre.id">
@@ -56,10 +56,10 @@
       <!-- Boutons Enregistrer et Annuler -->
       <div class="text-center mt-4">
         <button type="submit" class="btn btn-primary px-5 me-3">
-          <i class="fas fa-save me-2" i18n></i>Enregistrer
+          <i class="fas fa-save me-2" i18n></i>{{'page.Enregistrer'| translate }}
         </button>
         <button type="button" class="btn btn-secondary px-4" (click)="cancel()" i18n>
-          <i class="fas fa-times me-2"></i>Annuler
+          <i class="fas fa-times me-2"></i>{{'page.Annuler'| translate }}
         </button>
       </div>
     </form>

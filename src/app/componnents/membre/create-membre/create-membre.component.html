@@ -2,7 +2,7 @@
 <section class="content">
   <div class="container-fluid">
     <!-- <h1 class="mt-4 ">Nouvelle Personne</h1> -->
-    <ol class="breadcrumb mb-4 text-center ">
+    <ol class="breadcrumb mb-4 text-center " style="align-items: center;">
       <li class="breadcrumb-item active " style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;" i18n>
         Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
       </li>
@@ -18,14 +18,14 @@
         <div class="container mt-5">
           <div class="card">
             <div class="card-header">
-              <h4 i18n>Créer un nouveau Membre</h4>
+              <h4 i18n>{{'page.Créer un nouveau Membre'| translate}}</h4>
             </div>
             <div class="card-body">
               <form [formGroup]="membreForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
                 <div class="row mb-3">
                   <!-- firstname -->
                   <div class="col-md-6">
-                    <span i18n>Nom</span>
+                    <span i18n>{{'page.Nom'| translate}}</span>
                     <input type="text" formControlName="firstname" class="form-control" />
                     <!-- <div *ngIf="membreForm.controls['firstname'].invalid && membreForm.controls['firstname'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['firstname'].hasError('required')">Raison sociale est requise.</small>
@@ -34,7 +34,7 @@
 
                   <!-- Author -->
                   <div class="col-md-6">
-                    <span i18n>Auteur</span>
+                    <span i18n>{{'page.Auteur'| translate}}</span>
                     <input type="text" formControlName="author" class="form-control" />
                     <!-- <div *ngIf="membreForm.controls['author'].invalid && membreForm.controls['author'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['author'].hasError('required')">Auteur est requis.</small>
@@ -45,7 +45,7 @@
                 <div class="row mb-3">
                   <!-- Prénom -->
                   <div class="col-md-6">
-                    <span i18n>Prénom</span>
+                    <span i18n>{{'page.Prénom'| translate}}</span>
                     <input type="text" formControlName="lastname" class="form-control" />
                     <!-- <div *ngIf="membreForm.controls['lastname'].invalid && membreForm.controls['lastname'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['lastname'].hasError('required')">Télélastname est requis.</small>
@@ -54,7 +54,7 @@
 
                    <!-- groupe -->
                    <div class="col-md-6">
-                    <span i18n>Groupe</span>
+                    <span i18n>{{'page.Groupe'| translate}}</span>
                     <select formControlName="group_id" class="form-control">
                       <option *ngFor="let country of groupe" [value]="country.id">{{ country.label }}</option>
                     </select>
@@ -69,7 +69,7 @@
                 <div class="row mb-3">
                   <!-- Tel1 -->
                   <div class="col-md-6">
-                    <span i18n>Téléphone 1</span>
+                    <span i18n> {{'page.Téléphone'| translate}}1</span>
                     <input type="text" formControlName="phone" class="form-control" />
                     <!-- <div *ngIf="membreForm.controls['phone'].invalid && membreForm.controls['phone'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['phone'].hasError('required')">Personne de contact est requise.</small>
@@ -78,7 +78,7 @@
 
                    <!-- Tel -->
                    <div class="col-md-6">
-                    <span i18n>Téléphone 2</span>
+                    <span i18n>{{'page.Téléphone'| translate}} 2</span>
                     <input type="text" formControlName="phone_2" class="form-control" />
                     <!-- <div *ngIf="membreForm.controls['phone_2'].invalid && membreForm.controls['phone_2'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['phone_2'].hasError('required')">Personne de contact est requise.</small>
@@ -93,7 +93,7 @@
 
                    <!-- Matricule -->
                    <div class="col-md-6">
-                    <span i18n>Matricule</span>
+                    <span i18n>{{'page.Matricule'| translate}}</span>
                     <input type="text" formControlName="matricule" class="form-control" />
                     <!-- <div *ngIf="membreForm.controls['matricule'].invalid && membreForm.controls['matricule'].touched" class="text-danger">
                       <small *ngIf="membreForm.controls['matricule'].hasError('matricule')">matricule invalide.</small>
@@ -115,7 +115,7 @@
 
                   <!-- City -->
                   <div class="col-md-6">
-                    <span i18n>Pays</span>
+                    <span i18n>{{'page.Pays'| translate}}</span>
                     <select formControlName="country_id" class="form-control">
                       <option *ngFor="let country of country" [value]="country.id">{{ country.name }}</option>
                     </select>
@@ -125,7 +125,7 @@
                   </div>
 
                   <div class="col-md-6">
-                    <span i18n>Ville</span>
+                    <span i18n>{{'page.Ville'| translate}}</span>
                     <select formControlName="city_id" class="form-control">
                       <option *ngFor="let city of city" [value]="city.id">{{ city.name }}</option>
                     </select>
@@ -141,14 +141,14 @@
                   <div class="row mb-3">
                     <!-- Piece jointe -->
                     <div class="col-md-6">
-                      <span i18n>Pièce jointe</span>
+                      <span i18n>{{'page.Pièce jointe'| translate}}</span>
                       <input type="file" accept=".pdf, .txt,.doc" (change)="onSelectDocument($event)" class="form-control"  />
                       <!-- formControlName="folder"  -->
                     </div>
                      <!--Nombre D'enfants -->
 
                       <div class="col-md-6">
-                        <span i18n>Photo</span>
+                        <span i18n>{{'page.Photo'| translate}}</span>
                         <input type="file" accept=".pmg, .jpeg, .jpg"  (change)="onSelectImage($event)" class="form-control"  />
                         <!-- formControlName="picture" -->
                       </div>
@@ -159,7 +159,7 @@
                 <div class="row mb-3">
                   <!-- Submit Button -->
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block" i18n>Créer le membre</button>
+                    <button type="submit" class="btn btn-primary btn-block" i18n>{{'page.Créer le menbre'| translate}}</button>
                   </div>
                 </div>
               </form>

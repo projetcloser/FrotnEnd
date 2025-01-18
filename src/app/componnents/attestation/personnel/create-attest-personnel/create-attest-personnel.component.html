@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="card shadow-lg p-4 border-0">
-    <h3 class="card-title text-center text-primary">Ajouter une Attestation</h3>
+    <h3 class="card-title text-center text-primary">{{'page.titleStore'| translate}}</h3>
     <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
 
       <!-- Champ pour la date (readonly) avec icône -->
@@ -12,13 +12,13 @@
 
       <!-- Champ pour l'auteur (readonly) avec icône -->
       <div class="form-group mb-4">
-        <label for="author" class="form-label"><i class="fas fa-user me-2"></i>Auteur</label>
+        <label for="author" class="form-label"><i class="fas fa-user me-2"></i>{{'page.Auteur'| translate}}</label>
         <input type="text" id="author" class="form-control border-0 bg-light" formControlName="author" readonly>
       </div>
 
       <!-- Champ pour l'objet avec icône -->
       <div class="form-group mb-4">
-        <label for="objet" class="form-label"><i class="fas fa-info-circle me-2"></i>Objet *</label>
+        <label for="objet" class="form-label"><i class="fas fa-info-circle me-2"></i>{{'page.Objet'| translate}} *</label>
         <textarea id="object" class="form-control" formControlName="object" rows="3" placeholder="Décrivez l'objet de l'attestation" style="height: 150px;" required></textarea>
       </div>
 
@@ -32,7 +32,7 @@
 
       <!-- Champ pour la sélection du membre avec icône -->
       <div *ngIf="user.role.id !== 1" class="form-group mb-4">
-        <label for="member_id" class="form-label"><i class="fas fa-user-friends me-2"></i>Membre *</label>
+        <label for="member_id" class="form-label"><i class="fas fa-user-friends me-2"></i>{{'page.membres'| translate}}  *</label>
         <select id="member_id" class="form-select" formControlName="member_id" required>
           <option value="" disabled>Sélectionnez un membre</option>
           <option *ngFor="let membre of membres" [value]="membre.id">
@@ -42,7 +42,7 @@
       </div>
 
       <div *ngIf="user.role.id === 1"class="form-group mb-4">
-        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>Membre</label>
+        <label for="member_id" class="form-label" i18n><i class="fas fa-user-friends me-2"></i>{{'page.membres'| translate}}</label>
         <select id="member_id" class="form-select" formControlName="member_id">
           <option  value="{{ user.perso.id }}" selected>
             {{ user.perso.firstname }} {{ user.perso.lastname }}
@@ -53,10 +53,10 @@
       <!-- Boutons Enregistrer et Annuler -->
       <div class="text-center mt-4">
         <button type="submit" class="btn btn-primary px-5 me-3">
-          <i class="fas fa-save me-2"></i>Enregistrer
+          <i class="fas fa-save me-2"></i>{{'page.Enregistrer'| translate}} 
         </button>
         <button type="button" class="btn btn-secondary px-4" (click)="cancel()">
-          <i class="fas fa-times me-2"></i>Annuler
+          <i class="fas fa-times me-2"></i>{{'page.Annuler'| translate}} 
         </button>
       </div>
     </form>

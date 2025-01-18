@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <h2 class="mb-4" i18n>Liste des Dettes</h2>
+  <h2 class="mb-4" i18n>{{'page.Liste des Dettes'| translate}}</h2>
 
   <div class="d-flex justify-content-between mb-3">
     <input type="text" [(ngModel)]="searchTerm" (input)="filterDettes()" class="form-control w-50" placeholder="Rechercher par nom ou montant...">
@@ -10,12 +10,12 @@
     <thead>
       <tr>
         <!-- <th>ID</th> -->
-        <th i18n>Nom du Membre</th>
-        <th i18n>Montant</th>
-        <th i18n>Date d'Échéance</th>
-        <th i18n>Statut</th>
+        <th i18n>{{'page.Nom du Membre'| translate}}</th>
+        <th i18n>{{'page.Montant'| translate}}</th>
+        <th i18n>{{"page.Date d'Échéance"| translate}}</th>
+        <th i18n>{{'page.Statut'| translate}}</th>
         <th scope="col" i18n>
-          Prévisualisation</th>
+          {{'page.Prévisualisation'| translate}}</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -42,13 +42,13 @@
        </td>
         <td>
           <button (click)="viewDetails(dette.id)" class="btn btn-outline-info btn-sm" i18n>
-            <i class="fas fa-eye"></i> Détails
+            <i class="fas fa-eye"></i> {{'page.Détails'| translate}} 
           </button>
           <button (click)="editDette(dette.id)" class="btn btn-outline-warning btn-sm" i18n>
-            <i class="fas fa-pencil-alt"></i> Modifier
+            <i class="fas fa-pencil-alt"></i>{{'page.Modifier'| translate}} 
           </button>
           <button (click)="deleteDette(dette.id)" class="btn btn-outline-danger btn-sm" i18n>
-            <i class="fas fa-trash"></i> Supprimer
+            <i class="fas fa-trash"></i>{{'page.Supprimer'| translate}}  
           </button>
         </td>
       </tr>

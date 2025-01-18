@@ -1,6 +1,6 @@
 <section class="content" style="margin-left: 15px;">
   <div class="container-fluid">
-    <h1 class="mt-4">Modifier la cotisation</h1>
+    <h1 class="mt-4">{{'page.Modifier_la_cotisation'| translate}}</h1>
     <ol class="breadcrumb mb-4 text-center">
       <li class="breadcrumb-item active" style="background-color: lightblue; border-radius: 2px; margin: 2px; padding: 5px;" i18n>
         Hello M/Mme MONGO SALOMON, il {{ currentTime | date: 'HH:mm' }} en ce jour du {{ currentDay | date: 'EEEE, dd MMMM yyyy' }}.
@@ -11,20 +11,20 @@
         <div class="container mt-5">
           <div class="card">
             <div class="card-header">
-              <h4 i18n>Modifier une cotisation</h4>
+              <h4 i18n>{{'page.Modifier_une_cotisation'| translate}}</h4>
             </div>
             <div class="card-body">
               <form [formGroup]="cotisationForm" (ngSubmit)="onSubmit()">
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span i18n>Verssement</span>
+                    <span i18n>{{'page.Verssement'| translate}}</span>
                     <input type="text" formControlName="pay" class="form-control" />
                     <!-- <div *ngIf="cotisationForm.controls['pay'].invalid && cotisationForm.controls['pay'].touched" class="text-danger">
                       <small *ngIf="cotisationForm.controls['pay'].hasError('required')">Raison sociale est requise.</small>
                     </div> -->
                   </div>
                   <div class="col-md-6">
-                    <span i18n>Somme</span>
+                    <span i18n>{{'page.Somme'| translate}}</span>
                     <input type="text" formControlName="amount" class="form-control" />
                     <!-- <div *ngIf="cotisationForm.controls['amount'].invalid && cotisationForm.controls['amount'].touched" class="text-danger">
                       <small *ngIf="cotisationForm.controls['amount'].hasError('required')">Somme est requise.</small>
@@ -34,14 +34,14 @@
 
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span i18n>Téléphone</span>
+                    <span i18n>{{'page.Téléphone'| translate}}</span>
                     <input type="text" formControlName="phone" class="form-control" />
                     <!-- <div *ngIf="cotisationForm.controls['phone'].invalid && cotisationForm.controls['phone'].touched" class="text-danger">
                       <small *ngIf="cotisationForm.controls['phone'].hasError('required')">Téléphone est requis.</small>
                     </div> -->
                   </div>
                   <div class="col-md-6">
-                    <span i18n>Auteur</span>
+                    <span i18n>{{'page.Auteur'| translate}}</span>
                     <input type="text" formControlName="author" class="form-control" />
                     <!-- <div *ngIf="cotisationForm.controls['author'].invalid && cotisationForm.controls['author'].touched" class="text-danger">
                       <small *ngIf="cotisationForm.controls['author'].hasError('required')">Auteur est requis.</small>
@@ -51,13 +51,13 @@
 
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span i18n>Membre</span>
+                    <span i18n>{{'page.membres'| translate}}</span>
                     <select formControlName="member_id" class="form-control">
                       <option *ngFor="let membre of membres" [value]="membre.id">{{ membre.firstname }}</option>
                     </select>
                   </div>
                   <div class="col-md-6">
-                    <span i18n>Caissse</span>
+                    <span i18n>{{'page.Caisse'| translate}}</span>
                     <select formControlName="cashflow_id" class="form-control">
                       <option *ngFor="let caisse of caisses" [value]="caisse.id">{{ caisse.name }}</option>
                     </select>
@@ -66,14 +66,14 @@
 
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span i18n>Année</span>
+                    <span i18n>{{'page.Année'| translate}}</span>
                     <input type="text" formControlName="pay_year" class="form-control" [value]="currentYear"  />
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block" i18n>Soumettre</button>
+                    <button type="submit" class="btn btn-primary btn-block" i18n>{{'page.Soumettre'| translate}}</button>
                   </div>
                 </div>
               </form>

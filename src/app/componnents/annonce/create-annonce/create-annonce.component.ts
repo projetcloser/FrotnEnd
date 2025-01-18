@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AnnonceServiceService } from '../annonce-service.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../components/auth/auth.service';
 import { Poste } from '../../poste/poste';
 import { PosteService } from '../../poste/poste.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-annonce',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,ReactiveFormsModule,FormsModule,TranslateModule,RouterLink],
   templateUrl: './create-annonce.component.html',
   styleUrl: './create-annonce.component.css'
 })

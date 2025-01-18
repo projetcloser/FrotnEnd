@@ -11,6 +11,7 @@ import { VilleModule } from '../../ville/ville/ville.module';
 import { PaysServiceService } from '../../pays/pays-service.service';
 import { VilleServiceService } from '../../ville/ville-service.service';
 import { AuthService } from '../../../components/auth/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-personnel-create',
@@ -19,7 +20,7 @@ import { AuthService } from '../../../components/auth/auth.service';
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,TranslateModule
   ],
   templateUrl: './personnel-create.component.html',
   styleUrl: './personnel-create.component.css'

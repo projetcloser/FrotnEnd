@@ -14,11 +14,12 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../../components/auth/auth.service';
 import QRCode from 'qrcode';
 import jsPDF from 'jspdf';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index-paye',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PaginationComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PaginationComponent,TranslateModule],
   templateUrl: './index-paye.component.html',
   styleUrl: './index-paye.component.css'
 })

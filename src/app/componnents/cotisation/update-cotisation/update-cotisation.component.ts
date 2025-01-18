@@ -6,11 +6,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { CaisseServiceService } from '../../Caisse/caisse-service.service';
 import { Cotisation } from '../cotisation';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-cotisation',
   standalone: true,
-  imports: [CommonModule, FormsModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule, FormsModule,ReactiveFormsModule,RouterModule,TranslateModule],
   templateUrl: './update-cotisation.component.html',
   styleUrl: './update-cotisation.component.css'
 })

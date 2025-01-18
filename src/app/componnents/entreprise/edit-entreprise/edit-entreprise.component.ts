@@ -6,11 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PaysServiceService } from '../../pays/pays-service.service';
 import { VilleServiceService } from '../../ville/ville-service.service';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-entreprise',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,TranslateModule],
   templateUrl: './edit-entreprise.component.html',
   styleUrl: './edit-entreprise.component.css'
 })
